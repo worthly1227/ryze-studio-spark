@@ -182,7 +182,7 @@ const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
 };
 
 const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => (
-  <div className="rounded-3xl border border-border bg-card overflow-hidden organic-shadow hover:organic-shadow-lg transition-all duration-300">
+  <div className="rounded-3xl border border-border/60 bg-gradient-to-b from-card to-card/80 overflow-hidden organic-shadow card-hover">
     <div className="flex items-center gap-2 px-4 py-3">
       <img src={ryzeLogo} alt="Ryze" className="w-7 h-7 rounded-full object-cover" />
       <span className="text-sm font-semibold font-heading">Ryze Studios</span>
@@ -223,7 +223,7 @@ const StatPill: React.FC<{ value: string; label: string; delay?: number }> = ({ 
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay, duration: 0.5 }}
-    className="inline-flex items-center gap-3 bg-card border border-border rounded-2xl px-5 py-3 organic-shadow"
+    className="inline-flex items-center gap-3 bg-gradient-to-r from-card to-card/90 border border-border/60 rounded-2xl px-5 py-3 organic-shadow card-hover"
   >
     <span className="text-2xl font-heading font-black text-primary">{value}</span>
     <span className="text-sm text-muted-foreground">{label}</span>
@@ -363,7 +363,7 @@ const Index: React.FC = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 + i * 0.1 }}
-              className="bg-card border border-border rounded-2xl p-5 organic-shadow hover:organic-shadow-lg transition-all duration-300 group"
+              className="bg-gradient-to-br from-card to-card/80 border border-border/60 rounded-2xl p-5 organic-shadow card-hover group"
             >
               <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
                 <s.icon className="w-5 h-5 text-accent-foreground group-hover:text-primary transition-colors" />
@@ -460,7 +460,7 @@ const Index: React.FC = () => {
             <p className="text-muted-foreground text-lg">See how we compare — across every metric that matters.</p>
           </motion.div>
 
-          <div className="rounded-3xl border border-border bg-card overflow-hidden organic-shadow">
+          <div className="rounded-3xl border border-border/60 bg-gradient-to-b from-card to-card/80 overflow-hidden organic-shadow-lg">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -501,7 +501,7 @@ const Index: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {subscriptionTiers.map((tier, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
-                <Card className={`relative h-full rounded-3xl transition-all duration-300 hover:organic-shadow-lg ${tier.popular ? "border-primary ring-2 ring-primary/20 organic-shadow-lg" : ""} ${tier.premium ? "bg-gradient-to-b from-card to-primary/5 border-primary/30" : "organic-shadow"}`}>
+                <Card className={`relative h-full rounded-3xl transition-all duration-300 card-hover ${tier.popular ? "border-primary ring-2 ring-primary/20 organic-shadow-lg" : ""} ${tier.premium ? "bg-gradient-to-b from-card to-primary/5 border-primary/30" : "organic-shadow border-border/60"}`}>
                   {tier.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-primary text-primary-foreground font-heading text-[10px] rounded-full px-4">Most Popular</Badge></div>}
                   {tier.premium && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-foreground text-background font-heading text-[10px] rounded-full px-4">Premium</Badge></div>}
                   <CardHeader className="pb-3 pt-7">
@@ -554,7 +554,7 @@ const Index: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {addOns.map((addon, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
-                <Card className="h-full rounded-3xl organic-shadow hover:organic-shadow-lg transition-all duration-300">
+                <Card className="h-full rounded-3xl organic-shadow card-hover border-border/60">
                   <CardContent className="p-5">
                     <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center mb-3">
                       <addon.icon className="w-5 h-5 text-accent-foreground" />
@@ -720,7 +720,7 @@ const Index: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <Card className="rounded-3xl organic-shadow hover:organic-shadow-lg transition-all duration-300">
+            <Card className="rounded-3xl organic-shadow card-hover border-border/60">
               <CardContent className="p-6">
                 <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center mb-3">
                   <CalendarDays className="w-5 h-5 text-accent-foreground" />
@@ -730,7 +730,7 @@ const Index: React.FC = () => {
                 <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/80 font-heading rounded-xl">Book a Call</Button>
               </CardContent>
             </Card>
-            <Card className="rounded-3xl organic-shadow hover:organic-shadow-lg transition-all duration-300">
+            <Card className="rounded-3xl organic-shadow card-hover border-border/60">
               <CardContent className="p-6">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
                   <Zap className="w-5 h-5 text-primary" />
