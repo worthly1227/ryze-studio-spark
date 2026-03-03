@@ -8,7 +8,8 @@ import {
   Zap, Shield, Users, MessageSquare, Calendar, Crown,
   Heart, MessageCircle, Send, Bookmark, TrendingUp, BarChart3,
   ImageIcon, BookOpen, Palette, Plus, Volume2,
-  Phone, Lightbulb, Globe, LayoutGrid, Rocket, Camera, Wand2, Megaphone, PenTool, FileText
+  Phone, Lightbulb, Globe, LayoutGrid, Rocket, Camera, Wand2, Megaphone, PenTool, FileText,
+  Menu
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
