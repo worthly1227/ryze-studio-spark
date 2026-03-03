@@ -88,7 +88,6 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
               ${totalPrice.toLocaleString()}
               <span className="text-sm font-normal text-muted-foreground">{period ? period : ""}</span>
             </p>
-            </p>
 
             <Separator className="my-4" />
 
