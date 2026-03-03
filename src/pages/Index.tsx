@@ -591,7 +591,7 @@ const Index: React.FC = () => {
               Your On-Demand Creative<br />Team and AI Production<br />Engine, Starting at <span className="text-primary">$10/mo</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-6 max-w-lg leading-relaxed">
-              We handle your product photography, social content, UGC videos, and brand strategy — so you can focus on selling.
+              We create distortion-free AI visuals, social content, UGC, and brand strategies so you can focus on pushing your business to the next level.
             </p>
             <div className="grid grid-cols-2 gap-3 mb-8">
               {[
