@@ -24,6 +24,7 @@ import InsightsBlog from "./pages/InsightsBlog";
 import LegalHub from "./pages/LegalHub";
 import SettingsPage from "./pages/SettingsPage";
 import BookDemo from "./pages/BookDemo";
+import Plans from "./pages/Plans";
 
 const queryClient = new QueryClient();
 
