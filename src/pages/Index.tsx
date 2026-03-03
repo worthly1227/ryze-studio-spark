@@ -1300,7 +1300,7 @@ const Index: React.FC = () => {
       {/* ─── MODALS ─── */}
       <CheckoutModal
         open={!!checkoutTier}
-        onOpenChange={(open) => !open && setCheckoutTier(null)}
+        onOpenChange={(open) => { if (!open) { setCheckoutTier(null); setPendingAddOn(null); } }}
         planName={checkoutTier?.name || ""}
         price={checkoutTier?.price || 0}
         period={checkoutTier?.price ? "/mo" : ""}
