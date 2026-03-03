@@ -775,7 +775,7 @@ const Index: React.FC = () => {
               <button
                 key={ind}
                 onClick={() => setActiveGridIndustry(ind)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${activeGridIndustry === ind ? "bg-card border-border shadow-sm text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+                className={`px-5 py-3 rounded-xl text-sm font-medium border transition-all ${activeGridIndustry === ind ? "bg-card border-primary/40 shadow-md text-foreground ring-1 ring-primary/20" : "bg-card/50 border-border text-muted-foreground hover:text-foreground hover:border-primary/20 hover:bg-card"}`}
               >
                 {gridEmojis[ind]} {ind}
               </button>
