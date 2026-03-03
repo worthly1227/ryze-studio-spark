@@ -763,8 +763,8 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ SOCIAL MEDIA GRID GALLERY ═══════ */}
-      <section className="py-20 px-6 bg-accent/30">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-20 bg-accent/30">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Ryze Studio's Design Vault</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Everything your brand needs in one place, including social templates, investor decks, portfolio websites, single product stores, and seasonal campaigns.</p>
@@ -781,9 +781,10 @@ const Index: React.FC = () => {
               </button>
             ))}
           </div>
+        </div>
 
-          {/* 6-column IG grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1">
+          {/* 6-column IG grid — full width */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 px-1">
             {Array.from({ length: 12 }).map((_, i) => {
               const gradients = [
                 "from-rose-300 to-pink-500", "from-amber-300 to-orange-500", "from-emerald-300 to-teal-500",
@@ -791,10 +792,8 @@ const Index: React.FC = () => {
                 "from-fuchsia-300 to-pink-500", "from-yellow-300 to-amber-500", "from-lime-300 to-green-500",
                 "from-indigo-300 to-blue-600", "from-red-300 to-rose-500", "from-teal-300 to-cyan-500",
               ];
-              const isCenter = i >= 1 && i <= 4 || i >= 7 && i <= 10;
               return (
                 <motion.div key={`${activeGridIndustry}-${i}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.03 }}>
-                  {isCenter ? (
                     <div className="rounded-xl overflow-hidden border border-border bg-card">
                       <div className="flex items-center gap-1.5 px-2 py-1.5">
                         <img src={ryzeLogo} alt="Ryze" className="w-4 h-4 rounded-full object-cover" />
@@ -811,20 +810,16 @@ const Index: React.FC = () => {
                         <Bookmark className="w-3 h-3 text-muted-foreground ml-auto" />
                       </div>
                     </div>
-                  ) : (
-                    <div className="aspect-square rounded-xl border-2 border-dashed border-border/50 bg-muted/30" />
-                  )}
                 </motion.div>
               );
             })}
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-8 px-6">
             <Button className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-heading px-8">
               Browse Template Store <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
-        </div>
       </section>
 
       {/* ═══════ BEFORE & AFTER ═══════ */}
