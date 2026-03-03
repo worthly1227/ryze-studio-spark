@@ -567,6 +567,7 @@ const Index: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [checkoutTier, setCheckoutTier] = useState<typeof subscriptionTiers[0] | null>(null);
   const [calendlyTier, setCalendlyTier] = useState<typeof subscriptionTiers[0] | null>(null);
+  const [pendingAddOn, setPendingAddOn] = useState<{ name: string; price: number; description: string } | null>(null);
 
   const handleTierClick = (tier: typeof subscriptionTiers[0]) => {
     if (tier.price >= 299) {
@@ -574,6 +575,12 @@ const Index: React.FC = () => {
     } else {
       setCheckoutTier(tier);
     }
+  };
+
+  const handleAddOnClick = (addon: typeof addOns[0]) => {
+    const numericPrice = parseInt(addon.price.replace(/[^0-9]/g, ""));
+    setPendingAddOn({ name: addon.name, price: numericPrice, description: addon.desc });
+    document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleCalendlyBooked = () => {
@@ -764,7 +771,7 @@ const Index: React.FC = () => {
                       <span className="text-2xl font-heading font-black">{addon.price}</span>
                       {addon.unit && <span className="text-xs text-muted-foreground">{addon.unit}</span>}
                     </div>
-                    <Button variant="outline" className="w-full text-xs font-heading border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors" size="sm">
+                    <Button onClick={() => handleAddOnClick(addon)} variant="outline" className="w-full text-xs font-heading border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors" size="sm">
                       Add to Plan
                     </Button>
                   </CardContent>
@@ -1293,12 +1300,14 @@ const Index: React.FC = () => {
       {/* ─── MODALS ─── */}
       <CheckoutModal
         open={!!checkoutTier}
-        onOpenChange={(open) => !open && setCheckoutTier(null)}
+        onOpenChange={(open) => { if (!open) { setCheckoutTier(null); setPendingAddOn(null); } }}
         planName={checkoutTier?.name || ""}
         price={checkoutTier?.price || 0}
         period={checkoutTier?.price ? "/mo" : ""}
         features={checkoutTier?.features.filter(f => f.included).map(f => f.text)}
         suggestedAddOn={checkoutTier ? suggestedAddOns[checkoutTier.name] : undefined}
+        preSelectedAddOn={pendingAddOn || undefined}
+        preSelectedAddOnQty={pendingAddOn ? 1 : 0}
       />
       <CalendlyModal
         open={!!calendlyTier}
