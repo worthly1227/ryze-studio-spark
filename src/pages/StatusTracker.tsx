@@ -6,8 +6,8 @@ import { CheckCircle, Clock, Loader2 } from "lucide-react";
 
 const jobs = [
   { name: "Spring Campaign Batch", status: "In Production", progress: 50 },
-  { name: "Product Shots — Summer Line", status: "Quality Review", progress: 75 },
-  { name: "UGC Video — Skincare Kit", status: "Product Received", progress: 25 },
+  { name: "Product Shots - Summer Line", status: "Quality Review", progress: 75 },
+  { name: "UGC Video - Skincare Kit", status: "Product Received", progress: 25 },
   { name: "Hero Banner Redesign", status: "Final Delivery", progress: 100 },
 ];
 

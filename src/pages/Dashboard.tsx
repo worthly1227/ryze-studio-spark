@@ -89,10 +89,10 @@ const Dashboard: React.FC = () => {
         <CardContent>
           <div className="space-y-4">
             {[
-              { action: "AI Edit completed", item: "Product Shot — White Sneakers", time: "2 hours ago" },
+              { action: "AI Edit completed", item: "Product Shot - White Sneakers", time: "2 hours ago" },
               { action: "Production request submitted", item: "Spring Campaign Batch", time: "1 day ago" },
               { action: "Asset downloaded", item: "Hero Banner v3.png", time: "2 days ago" },
-              { action: "UGC video delivered", item: "Unboxing — Premium Candle Set", time: "3 days ago" },
+              { action: "UGC video delivered", item: "Unboxing - Premium Candle Set", time: "3 days ago" },
             ].map((a, i) => (
               <div key={i} className="flex items-center justify-between py-3 border-b border-border last:border-0">
                 <div>
