@@ -127,12 +127,12 @@ const addOns = [
 ];
 
 const comparisonData = [
-  { feature: "Cost Basis", agency: "High Retainers ($2k+)", ai: "Monthly Subscriptions for credits", ryze: "$10 Pay-Per-Product" },
-  { feature: "Product Integrity", agency: "Manual (Human Error)", ai: "High Distortion (AI Hallucinations)", ryze: "100% Geometry Lock" },
-  { feature: "Production", agency: "Studio/Physical Setup", ai: "Background Swaps Only", ryze: "AI Production Factory" },
-  { feature: "Turnaround", agency: "2 to 4 Weeks", ai: "Minutes (Low Quality)", ryze: "High-Speed Luxury Output" },
-  { feature: "Strategy", agency: "$5k+ Monthly Commit", ai: "None (DIY)", ryze: "On-Demand $225 Sessions" },
-  { feature: "Design", agency: "Hired Designer Needed", ai: "Manual Templates", ryze: "Editorial Layouts Built-In" },
+  { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10/mo" },
+  { feature: "Visual Accuracy", agency: "Prone to human error", ai: "AI distortion & artifacts", ryze: "Pixel-perfect fidelity" },
+  { feature: "Production Method", agency: "Physical studios required", ai: "Basic background swaps", ryze: "Full AI creative pipeline" },
+  { feature: "Speed", agency: "3–6 week lead times", ai: "Fast but low quality", ryze: "Same-week premium output" },
+  { feature: "Brand Strategy", agency: "$5k+ retainer required", ai: "Zero guidance", ryze: "Bookable $225 sessions" },
+  { feature: "Creative Range", agency: "Limited to one designer", ai: "Template-based only", ryze: "Unlimited styles & formats" },
 ];
 
 const gridIndustries = ["Beauty", "Skincare", "Real Estate", "Dental Clinic", "Food Products", "Yoga"];
@@ -142,21 +142,21 @@ const beforeAfterClients = ["SpinSudz", "KokoKai Foods LLC", "Crystal Imagery", 
 
 const featureTabs = ["Services", "Onboarding", "Communication", "Collaboration", "Scheduling", "Analytics"];
 const featureContent: Record<string, { title: string; desc: string }> = {
-  Services: { title: "Choose & Customize", desc: "Browse our full service catalog and build your perfect creative package, tailored to your brand." },
-  Onboarding: { title: "Quick Setup", desc: "Get started in minutes with our guided onboarding flow. We learn your brand voice and visual identity." },
-  Communication: { title: "Real-time Chat", desc: "Message your dedicated team directly. Get updates, share feedback, and stay in the loop." },
-  Collaboration: { title: "Easy Collaboration", desc: "Review, approve, and request revisions all in one place with our collaboration dashboard." },
-  Scheduling: { title: "Schedule & Post", desc: "We handle scheduling and posting for you across your social channels, ensuring consistency." },
-  Analytics: { title: "Track Performance", desc: "Monitor your content performance with detailed analytics and insights to optimize your strategy." },
+  Services: { title: "Pick Your Package", desc: "Explore our creative menu and assemble the exact mix of AI edits, UGC, and strategy your brand needs." },
+  Onboarding: { title: "5-Minute Brand Intake", desc: "Share your brand guidelines, colors, and tone — our system learns your identity and starts producing instantly." },
+  Communication: { title: "Direct Line to Your Team", desc: "Chat with your dedicated creative lead in real time. Feedback loops that actually move fast." },
+  Collaboration: { title: "One Dashboard, Zero Chaos", desc: "Approve assets, request tweaks, and track every deliverable from a single streamlined workspace." },
+  Scheduling: { title: "We Post, You Grow", desc: "Ryze handles content scheduling and publishing across all your channels so you never miss a beat." },
+  Analytics: { title: "See What's Working", desc: "Track reach, engagement, and conversion with built-in analytics that help you double down on winners." },
 };
 
 const faqItems = [
-  { q: "How much does it cost?", a: "Plans start at just $10/month for the Entry Level Pass. Choose the tier that fits your needs and scale up anytime." },
-  { q: "Why are you so affordable?", a: "Our AI-powered production pipeline eliminates the overhead of traditional agencies while maintaining premium quality." },
-  { q: "Where is the Ryze team located?", a: "We're a distributed global team with creative talent across North America, Europe, and Asia." },
-  { q: "How do I get started?", a: "Simply choose a plan, complete onboarding (takes ~5 minutes), and your first content is in production." },
-  { q: "What happens after I sign up?", a: "You'll be guided through brand onboarding, then your account manager begins producing content immediately." },
-  { q: "How will I communicate with your team?", a: "Through our built-in chat system, scheduled calls (on qualifying tiers), and email support." },
+  { q: "What does Ryze Studios cost?", a: "Our Entry Level Pass starts at $10/mo for a single AI product edit. From there, scale into UGC, managed posting, and full creative outsourcing as your brand grows." },
+  { q: "How can you charge so little?", a: "We built a proprietary AI production engine that replaces bloated agency overhead. You get luxury-grade output at a fraction of the traditional cost." },
+  { q: "Where is your team based?", a: "Ryze operates globally with creative leads in the US, UK, and Southeast Asia — ensuring round-the-clock production capacity." },
+  { q: "How fast can I get started?", a: "Pick a plan, complete our 5-minute brand intake, and your first assets enter production the same day." },
+  { q: "What happens once I subscribe?", a: "Your dedicated creative lead reaches out within hours, walks you through the dashboard, and kicks off your first content batch." },
+  { q: "How do I give feedback on deliverables?", a: "Everything lives in your Ryze dashboard — review, approve, or request revisions with one click. Plus direct chat with your creative lead." },
 ];
 
 /* ─── REUSABLE COMPONENTS ─── */
@@ -454,8 +454,8 @@ const FactoryProofSection: React.FC = () => {
     <section className="py-20 px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Examples of our work</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Get your design & marketing content done without the hassle. Pay a fixed, monthly, and predictable rate, with no contracts or surprises.</p>
+          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">What we've built for brands like yours</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Real results from real clients. Browse by content type or industry to see the caliber of work Ryze delivers every single week.</p>
         </motion.div>
 
         <div className="flex justify-center mb-6">
@@ -574,16 +574,16 @@ const Index: React.FC = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="pt-6">
             <Badge className="mb-6 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
-              <Sparkles className="w-3 h-3 mr-1.5 text-primary" /> TOP 1% OF GLOBAL CREATIVE TALENT
+              <Sparkles className="w-3 h-3 mr-1.5 text-primary" /> AI-POWERED CREATIVE PRODUCTION
             </Badge>
             <h1 className="text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6">
-              Expert AI creative<br />management from<br />only <span className="text-primary">$10/mo</span>
+              Your entire creative<br />team, powered by AI,<br />from <span className="text-primary">$10/mo</span>
             </h1>
             <div className="space-y-3 mb-8">
               {[
-                { bold: "Premium", text: "content with your branding" },
-                { bold: "80% cheaper", text: "than alternatives" },
-                { bold: "Studio-grade AI", text: "– win the 3‑second judgment" },
+                { bold: "Brand-matched", text: "visuals that look like you hired an agency" },
+                { bold: "90% less", text: "than traditional creative services" },
+                { bold: "Production-ready", text: "assets delivered in days, not weeks" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
@@ -594,9 +594,9 @@ const Index: React.FC = () => {
               ))}
             </div>
             <Button size="lg" onClick={() => navigate("/dashboard")} className="bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-base px-8 py-6 rounded-full mb-5">
-              Schedule a free demo call <ArrowRight className="w-5 h-5 ml-2" />
+              Book your free strategy call <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <p className="text-sm text-muted-foreground">Trusted by <strong className="text-foreground">2,400+</strong> brands  |  Cancel anytime</p>
+            <p className="text-sm text-muted-foreground">Trusted by <strong className="text-foreground">1,800+</strong> growing brands  |  No contracts, cancel anytime</p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="hidden lg:block relative">
@@ -618,10 +618,10 @@ const Index: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
-              SUBSCRIPTION PLANS
+              PLANS & PRICING
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Choose Your Tier</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Scale from solo creator to full production house. No contracts, cancel anytime.</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Find your perfect fit</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Whether you need one polished product shot or a full content engine, there's a Ryze plan built for you.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
@@ -702,10 +702,10 @@ const Index: React.FC = () => {
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
-              WHY RYZE
+              THE RYZE DIFFERENCE
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Why We're Better</h2>
-            <p className="text-muted-foreground text-lg">See how Ryze Studios compares to the alternatives.</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Stack us up against anyone</h2>
+            <p className="text-muted-foreground text-lg">See exactly where agencies, AI tools, and Ryze Studios stand side by side.</p>
           </motion.div>
 
           <div className="overflow-x-auto">
@@ -737,8 +737,8 @@ const Index: React.FC = () => {
       <section className="py-20 px-6 bg-accent/30">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Social Media Grid Gallery</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Explore our branded masterpieces, where every post fits into a larger, cohesive picture.</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Your feed, elevated</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Every post designed to fit a cohesive grid — turning your social presence into a visual storefront.</p>
           </motion.div>
 
           <div className="flex justify-center gap-3 mb-10 flex-wrap">
@@ -803,10 +803,10 @@ const Index: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-6">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
-              🎨 CLIENT WORK
+              🎨 TRANSFORMATIONS
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Before & After</h2>
-            <p className="text-muted-foreground text-lg">Explore our social media makeovers and brand transformations.</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">The Ryze effect</h2>
+            <p className="text-muted-foreground text-lg">See how brands went from scattered feeds to scroll-stopping content.</p>
           </motion.div>
 
           {/* Client tabs */}
@@ -873,8 +873,8 @@ const Index: React.FC = () => {
       <section className="py-20 px-6 bg-muted/30">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-3">Ryze Studios Demo Video</h2>
-            <p className="text-muted-foreground mb-8">Watch our 4-min demo video, then sign up or book a call to learn more.</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-3">See Ryze in action</h2>
+            <p className="text-muted-foreground mb-8">A quick walkthrough of how we turn your raw products into premium, brand-ready content.</p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative aspect-video rounded-2xl overflow-hidden bg-muted border border-border mb-10 group cursor-pointer">
@@ -897,8 +897,8 @@ const Index: React.FC = () => {
                 <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
                   <CalendarDays className="w-5 h-5 text-muted-foreground" />
                 </div>
-                <h3 className="font-heading font-bold mb-1">Schedule a call</h3>
-                <p className="text-sm text-muted-foreground mb-4">Book a 20-min call with someone from our team and get any of your questions answered.</p>
+                <h3 className="font-heading font-bold mb-1">Talk to our team</h3>
+                <p className="text-sm text-muted-foreground mb-4">Hop on a 20-minute call with a Ryze creative lead and map out your content plan.</p>
                 <Button className="w-full bg-foreground text-background hover:bg-foreground/90 font-heading">Book a Call</Button>
               </CardContent>
             </Card>
@@ -907,8 +907,8 @@ const Index: React.FC = () => {
                 <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
                   <Zap className="w-5 h-5 text-muted-foreground" />
                 </div>
-                <h3 className="font-heading font-bold mb-1">Get started now</h3>
-                <p className="text-sm text-muted-foreground mb-4">Select any of our services and start using Ryze Studios right away.</p>
+                <h3 className="font-heading font-bold mb-1">Jump in today</h3>
+                <p className="text-sm text-muted-foreground mb-4">Pick a plan and start receiving polished, on-brand content within days.</p>
                 <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading">Start Using Ryze Now</Button>
               </CardContent>
             </Card>
@@ -921,10 +921,10 @@ const Index: React.FC = () => {
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
-              <LayoutGrid className="w-3 h-3 mr-1.5 text-primary" /> FEATURES
+              <LayoutGrid className="w-3 h-3 mr-1.5 text-primary" /> HOW IT WORKS
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Seamless experience</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Ryze Studios is a flexible subscription-based service enabled by technology to deliver compelling creative at scale.</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Built for zero friction</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">From onboarding to analytics, every touchpoint is designed so you spend less time managing and more time growing.</p>
           </motion.div>
 
           <div className="flex justify-center gap-2 mb-10 flex-wrap">
@@ -963,10 +963,10 @@ const Index: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
-              ⚡ CREATIVE SUCCESS
+              ⚡ WHY BRANDS SWITCH
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">The better way</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Think about all the pains of dealing with an agency or freelancers. Now, forget them. Working with <strong className="text-foreground">2,400+</strong> businesses, we've perfected the recipe for getting creative done.</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">The smarter creative model</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Agencies are slow and expensive. DIY AI tools lack quality. Ryze sits in the sweet spot — delivering <strong className="text-foreground">1,800+</strong> brands premium content without the overhead.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -974,7 +974,7 @@ const Index: React.FC = () => {
             <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-primary/10 text-primary border-0 text-[10px] font-heading">📉 COST COMPARISON</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-6">Save up to 95% vs agencies</h3>
+                <h3 className="text-2xl font-heading font-bold mb-6">Cut creative costs by up to 95%</h3>
                 <div className="space-y-4">
                   {[
                     { label: "Traditional Agency", value: 100, amount: "$2,000+/mo", color: "bg-destructive/60" },
@@ -1000,7 +1000,7 @@ const Index: React.FC = () => {
             <Card>
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">⏱️ TURNAROUND TIME</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-6">Lightning-fast delivery</h3>
+                <h3 className="text-2xl font-heading font-bold mb-6">From brief to deliverable, fast</h3>
                 <div className="flex items-end gap-4 h-48 mb-4">
                   {[
                     { label: "Agency", days: 21, height: "100%", color: "bg-destructive/40" },
@@ -1034,8 +1034,8 @@ const Index: React.FC = () => {
                     <span className="text-3xl font-heading font-black">98%</span>
                   </div>
                 </div>
-                <p className="font-heading font-semibold">Client Satisfaction</p>
-                <p className="text-xs text-muted-foreground mt-1">Based on 2,400+ projects</p>
+                <p className="font-heading font-semibold">Brand Satisfaction</p>
+                <p className="text-xs text-muted-foreground mt-1">Across 1,800+ active brands</p>
               </CardContent>
             </Card>
 
@@ -1043,7 +1043,7 @@ const Index: React.FC = () => {
             <Card>
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">💬 COLLABORATION</Badge>
-                <h3 className="text-xl font-heading font-bold mb-4">Tech built for easy collaboration</h3>
+                <h3 className="text-xl font-heading font-bold mb-4">Your creative team, one chat away</h3>
                 <div className="space-y-3">
                   <div className="bg-muted rounded-xl p-3">
                     <p className="text-xs font-semibold mb-1">Chat</p>
@@ -1060,7 +1060,7 @@ const Index: React.FC = () => {
             <Card>
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">📈 OUTPUT GROWTH</Badge>
-                <h3 className="text-xl font-heading font-bold mb-4">Content output over time</h3>
+                <h3 className="text-xl font-heading font-bold mb-4">Watch your output scale</h3>
                 <div className="flex items-end gap-1.5 h-32 mt-4">
                   {[15, 25, 30, 45, 55, 50, 70, 80, 75, 90, 95, 100].map((h, i) => (
                     <motion.div key={i} className="flex-1 bg-primary/20 rounded-t relative" initial={{ height: 0 }} whileInView={{ height: `${h}%` }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}>
@@ -1072,7 +1072,7 @@ const Index: React.FC = () => {
                   <span className="text-[10px] text-muted-foreground font-heading">Month 1</span>
                   <span className="text-[10px] text-muted-foreground font-heading">Month 12</span>
                 </div>
-                <p className="text-xs text-primary font-heading font-semibold mt-2 text-center">+340% avg. content increase</p>
+                <p className="text-xs text-primary font-heading font-semibold mt-2 text-center">+280% avg. output growth in 12 months</p>
               </CardContent>
             </Card>
           </div>
@@ -1082,9 +1082,9 @@ const Index: React.FC = () => {
             <Card>
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">👋 THE OLD WAY</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-4">Say goodbye to</h3>
+                <h3 className="text-2xl font-heading font-bold mb-4">Leave behind</h3>
                 <div className="grid grid-cols-2 gap-2">
-                  {["Searching for freelancers", "Slow turnaround times", "Expensive agencies", "Dozens of interviews", "Getting 100 applications", "Still having no one to hire"].map((item, i) => (
+                  {["Chasing unreliable freelancers", "Weeks-long turnaround", "Overpriced agency retainers", "Endless hiring cycles", "Inconsistent brand quality", "DIY tools that fall short"].map((item, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm">
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${i === 5 ? "bg-destructive/10" : "bg-muted"}`}>
                         <X className={`w-3 h-3 ${i === 5 ? "text-destructive" : "text-muted-foreground"}`} />
@@ -1100,9 +1100,9 @@ const Index: React.FC = () => {
             <Card>
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">💳 SUBSCRIPTION BASED</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-4">Flexible subscription model</h3>
+                <h3 className="text-2xl font-heading font-bold mb-4">Subscribe on your terms</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["Cancel anytime", "No contracts", "Pause anytime", "Upgrade/Downgrade", "One-time monthly payment"].map((item, i) => (
+                  {["Cancel anytime", "Zero lock-in contracts", "Pause when you need", "Scale up or down freely", "Simple monthly billing"].map((item, i) => (
                     <Badge key={i} variant="secondary" className="text-xs font-heading">{item}</Badge>
                   ))}
                 </div>
@@ -1122,12 +1122,12 @@ const Index: React.FC = () => {
                   <Sparkles className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-base text-foreground">Looking to resell our services to your clients?</h3>
-                  <p className="text-muted-foreground text-sm font-heading font-medium">Apply to join the Ryze Studios reseller program</p>
+                  <h3 className="font-heading font-bold text-base text-foreground">Want to offer Ryze-quality creative to your own clients?</h3>
+                  <p className="text-muted-foreground text-sm font-heading font-medium">Join the Ryze partner network and white-label our services</p>
                 </div>
               </div>
               <Button onClick={() => navigate("/reseller")} className="bg-primary text-primary-foreground hover:bg-primary/90 font-heading font-semibold rounded-full px-6 py-5 whitespace-nowrap text-sm relative">
-                Apply to become a reseller <ArrowRight className="w-4 h-4 ml-1" />
+                Apply for partner access <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
           </motion.div>
@@ -1141,8 +1141,8 @@ const Index: React.FC = () => {
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               ❓ QUESTIONS & ANSWERS
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Frequently asked questions</h2>
-            <p className="text-muted-foreground">If you have any questions that aren't listed below, feel free to schedule a demo to speak with someone from our team.</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Got questions? We've got answers</h2>
+            <p className="text-muted-foreground">Don't see yours here? Book a free call and we'll walk you through everything.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-10">
@@ -1162,7 +1162,7 @@ const Index: React.FC = () => {
                       <Users className="w-5 h-5 text-muted-foreground" />
                     </div>
                   </div>
-                  <h3 className="font-heading font-bold text-lg mb-2">Get started with a free strategy call!</h3>
+                  <h3 className="font-heading font-bold text-lg mb-2">Ready to level up your brand?</h3>
                   <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading mt-2">
                     Schedule Demo
                   </Button>
