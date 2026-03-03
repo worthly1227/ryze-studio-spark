@@ -559,7 +559,7 @@ const Index: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2.5">
-              <img src={ryzeLogo} alt="Ryze Studios" className="w-9 h-9 rounded-lg object-cover" />
+              <img src={ryzeLogo} alt="Ryze Studios" className="w-9 h-9 rounded-lg object-cover flex-shrink-0" />
               <span className="font-heading font-bold text-xl tracking-tight">Ryze Studios</span>
             </div>
             <div className="hidden md:flex items-center gap-5 text-sm font-medium text-muted-foreground">
