@@ -10,18 +10,14 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Onboarding from "./pages/Onboarding";
 import AuthenticatedLayout from "./components/layout/AuthenticatedLayout";
+import AdminLayout from "./components/layout/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import AIFactory from "./pages/AIFactory";
 import Marketplace from "./pages/Marketplace";
 import Templates from "./pages/Templates";
-import ProductionRequests from "./pages/ProductionRequests";
-import AssetArchive from "./pages/AssetArchive";
-import BrandKit from "./pages/BrandKit";
 import StatusTracker from "./pages/StatusTracker";
 import ResellerHub from "./pages/ResellerHub";
 import Affiliate from "./pages/Affiliate";
-import InsightsBlog from "./pages/InsightsBlog";
-import LegalHub from "./pages/LegalHub";
 import SettingsPage from "./pages/SettingsPage";
 import BookDemo from "./pages/BookDemo";
 import Plans from "./pages/Plans";
@@ -52,29 +48,32 @@ const App = () => (
             <Route path="/book-demo" element={<BookDemo />} />
             <Route path="/plans" element={<Plans />} />
             <Route path="/template-store" element={<TemplateStore />} />
+
+            {/* Client portal */}
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/ai-factory" element={<AIFactory />} />
-              <Route path="/marketplace" element={<Marketplace />} />
               <Route path="/templates" element={<Templates />} />
-              <Route path="/production-requests" element={<ProductionRequests />} />
-              <Route path="/asset-archive" element={<AssetArchive />} />
-              <Route path="/brand-kit" element={<BrandKit />} />
               <Route path="/status-tracker" element={<StatusTracker />} />
-              <Route path="/reseller-hub" element={<ResellerHub />} />
-              <Route path="/affiliate" element={<Affiliate />} />
-              <Route path="/insights" element={<InsightsBlog />} />
-              <Route path="/legal" element={<LegalHub />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/client/uploads" element={<ClientUploads />} />
               <Route path="/client/messages" element={<ClientMessages />} />
               <Route path="/client/projects" element={<ClientProjects />} />
               <Route path="/client/deliverables" element={<ClientDeliverables />} />
-              <Route path="/admin/clients" element={<AdminClients />} />
-              <Route path="/admin/deliverables" element={<AdminDeliverables />} />
-              <Route path="/admin/messages" element={<AdminMessages />} />
-              <Route path="/admin/projects" element={<AdminProjects />} />
             </Route>
+
+            {/* Admin portal */}
+            <Route element={<AdminLayout />}>
+              <Route path="/admin/dashboard" element={<Dashboard />} />
+              <Route path="/admin/clients" element={<AdminClients />} />
+              <Route path="/admin/projects" element={<AdminProjects />} />
+              <Route path="/admin/messages" element={<AdminMessages />} />
+              <Route path="/admin/deliverables" element={<AdminDeliverables />} />
+              <Route path="/marketplace" element={<Marketplace />} />
+              <Route path="/reseller-hub" element={<ResellerHub />} />
+              <Route path="/affiliate" element={<Affiliate />} />
+            </Route>
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
