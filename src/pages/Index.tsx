@@ -613,11 +613,13 @@ const Index: React.FC = () => {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="hidden lg:block relative">
-            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-            <div className="grid grid-cols-2 gap-3">
-              <ScrollingColumn cards={col1Cards} speed={30} />
-              <ScrollingColumn cards={col2Cards} speed={35} reverse />
+            <div className="absolute -inset-20 bg-gradient-to-b from-background via-transparent to-background z-10 pointer-events-none" />
+            <div className="absolute -inset-20 bg-gradient-to-r from-background via-transparent to-background z-10 pointer-events-none" />
+            <div className="transform -rotate-12 origin-center scale-110">
+              <div className="grid grid-cols-2 gap-3">
+                <ScrollingColumn cards={col1Cards} speed={30} />
+                <ScrollingColumn cards={col2Cards} speed={35} reverse />
+              </div>
             </div>
           </motion.div>
         </div>
