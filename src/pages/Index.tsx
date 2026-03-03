@@ -356,7 +356,7 @@ const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reve
       className={`flex flex-col gap-3 ${reverse ? "animate-scroll-down" : "animate-scroll-up"}`}
       style={{ animationDuration: `${speed}s` }}
     >
-      {[...cards, ...cards].map((card, i) => (
+      {[...cards, ...cards, ...cards].map((card, i) => (
         <div key={i}>{card}</div>
       ))}
     </div>
