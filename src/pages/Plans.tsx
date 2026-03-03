@@ -11,6 +11,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
+import CheckoutModal from "@/components/CheckoutModal";
+import CalendlyModal from "@/components/CalendlyModal";
 
 /* ─── PLAN DATA WITH SUPPORT TIERS ─── */
 const plans = [
@@ -191,13 +193,23 @@ const Plans: React.FC = () => {
   const navigate = useNavigate();
   const [expandedPlan, setExpandedPlan] = useState<string | null>(null);
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
+  const [checkoutPlan, setCheckoutPlan] = useState<typeof plans[0] | null>(null);
+  const [calendlyPlan, setCalendlyPlan] = useState<typeof plans[0] | null>(null);
+  const [showCheckoutAfterBooking, setShowCheckoutAfterBooking] = useState(false);
 
   const handleGetStarted = (plan: typeof plans[0]) => {
-    // Plans that allow contact go to calendly, others go to signup/payment
     if (plan.canContact) {
-      navigate("/book-demo");
+      setCalendlyPlan(plan);
     } else {
-      navigate("/signup");
+      setCheckoutPlan(plan);
+    }
+  };
+
+  const handleCalendlyBooked = () => {
+    const plan = calendlyPlan;
+    setCalendlyPlan(null);
+    if (plan) {
+      setCheckoutPlan(plan);
     }
   };
 
