@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Check, CreditCard, Lock, ShieldCheck, ArrowLeft } from "lucide-react";
+import { Check, CreditCard, Lock, ShieldCheck, ArrowLeft, Plus, Minus } from "lucide-react";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 
 interface AddOn {
@@ -109,13 +109,22 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 </div>
                 <span className="font-heading font-bold text-sm">${price.toLocaleString()}</span>
               </div>
-              {addOnSelected && suggestedAddOn && (
+              {addOnQty > 0 && activeAddOn && (
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="font-heading font-semibold text-sm">{activeAddOn.name} ×{addOnQty}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Add-on service</p>
+                  </div>
+                  <span className="font-heading font-bold text-sm">${(activeAddOn.price * addOnQty).toLocaleString()}</span>
+                </div>
+              )}
+              {preAddOnQty > 0 && preSelectedAddOn && suggestedAddOn && preSelectedAddOn.name !== suggestedAddOn.name && addOnQty > 0 && (
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="font-heading font-semibold text-sm">{suggestedAddOn.name}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">Add-on service</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Recommended</p>
                   </div>
-                  <span className="font-heading font-bold text-sm">${suggestedAddOn.price.toLocaleString()}</span>
+                  <span className="text-xs text-muted-foreground">See below</span>
                 </div>
               )}
             </div>
@@ -165,32 +174,40 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
               </>
             )}
 
-            {suggestedAddOn && (
+            {activeAddOn && (
               <>
                 <Separator className="my-4" />
-                <p className="text-[10px] text-muted-foreground font-heading mb-2">RECOMMENDED ADD-ON</p>
-                <button
-                  type="button"
-                  onClick={() => setAddOnSelected(!addOnSelected)}
-                  className={`w-full text-left rounded-lg border p-3 transition-all ${
-                    addOnSelected
-                      ? "border-primary bg-primary/5 ring-1 ring-primary"
-                      : "border-border hover:border-primary/40"
-                  }`}
-                >
+                <p className="text-[10px] text-muted-foreground font-heading mb-2">
+                  {preSelectedAddOn ? "SELECTED ADD-ON" : "RECOMMENDED ADD-ON"}
+                </p>
+                <div className={`w-full rounded-lg border p-3 transition-all ${
+                  addOnQty > 0
+                    ? "border-primary bg-primary/5 ring-1 ring-primary"
+                    : "border-border"
+                }`}>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-heading font-semibold text-xs">{suggestedAddOn.name}</span>
-                    <div className="flex items-center gap-2">
-                      <span className="font-heading font-bold text-xs">${suggestedAddOn.price}</span>
-                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
-                        addOnSelected ? "border-primary bg-primary" : "border-muted-foreground/30"
-                      }`}>
-                        {addOnSelected && <Check className="w-2.5 h-2.5 text-primary-foreground" />}
-                      </div>
-                    </div>
+                    <span className="font-heading font-semibold text-xs">{activeAddOn.name}</span>
+                    <span className="font-heading font-bold text-xs">${activeAddOn.price}/ea</span>
                   </div>
-                  <p className="text-[10px] text-muted-foreground leading-relaxed">{suggestedAddOn.description}</p>
-                </button>
+                  <p className="text-[10px] text-muted-foreground leading-relaxed mb-2">{activeAddOn.description}</p>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setAddOnQty(Math.max(0, addOnQty - 1))}
+                      className="w-7 h-7 rounded-lg border border-border flex items-center justify-center hover:bg-muted transition-colors"
+                    >
+                      <Minus className="w-3 h-3" />
+                    </button>
+                    <span className="font-heading font-bold text-sm w-6 text-center">{addOnQty}</span>
+                    <button
+                      type="button"
+                      onClick={() => setAddOnQty(addOnQty + 1)}
+                      className="w-7 h-7 rounded-lg border border-primary bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                    >
+                      <Plus className="w-3 h-3 text-primary" />
+                    </button>
+                  </div>
+                </div>
               </>
             )}
           </div>
