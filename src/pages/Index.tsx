@@ -130,7 +130,7 @@ const col1Cards = [
   <ServiceCard key="ads" icon={<TrendingUp className="w-5 h-5" />} label="AI Ad Creatives">
     <InstaPostMock gradient="bg-gradient-to-br from-violet-500 to-purple-700" overlayText="GAME, YOUR STORY" />
   </ServiceCard>,
-  <ServiceCard key="photo2" icon={<Image className="w-5 h-5" />} label="Product Photography">
+  <ServiceCard key="photo2" icon={<ImageIcon className="w-5 h-5" />} label="Product Photography">
     <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center">
       <span className="text-4xl">📸</span>
     </div>
@@ -186,7 +186,7 @@ const col2Cards = [
       ))}
     </div>
   </ServiceCard>,
-  <ServiceCard key="carousel" icon={<Image className="w-5 h-5" />} label="Carousel Posts">
+  <ServiceCard key="carousel" icon={<ImageIcon className="w-5 h-5" />} label="Carousel Posts">
     <InstaPostMock gradient="bg-gradient-to-br from-yellow-400 to-amber-500" overlayText="BUILD YOUR EMPIRE" />
   </ServiceCard>,
   <ServiceCard key="brand" icon={<Palette className="w-5 h-5" />} label="Brand Assets">
@@ -307,10 +307,9 @@ const Index: React.FC = () => {
             <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
             <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
 
-            <div className="grid grid-cols-3 gap-3">
-              <ScrollingColumn cards={scrollCards.slice(0, 3)} speed={22} />
-              <ScrollingColumn cards={scrollCards.slice(3, 6)} speed={28} reverse />
-              <ScrollingColumn cards={scrollCards.slice(6, 9)} speed={25} />
+            <div className="grid grid-cols-2 gap-3">
+              <ScrollingColumn cards={col1Cards} speed={30} />
+              <ScrollingColumn cards={col2Cards} speed={35} reverse />
             </div>
           </motion.div>
         </div>
