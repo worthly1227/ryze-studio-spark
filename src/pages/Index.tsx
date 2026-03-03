@@ -8,7 +8,7 @@ import {
   Zap, Shield, Users, MessageSquare, Calendar, Crown,
   Heart, MessageCircle, Send, Bookmark, TrendingUp, BarChart3,
   ImageIcon, BookOpen, Palette, Plus, Volume2,
-  CalendarDays, Lightbulb, Globe, LayoutGrid
+  Phone, Lightbulb, Globe, LayoutGrid, Rocket, Camera, Wand2, Megaphone, PenTool, FileText
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -22,6 +22,8 @@ const subscriptionTiers = [
     price: 10,
     tagline: "Best for early stage brands testing premium visuals.",
     icon: Zap,
+    competitorPrice: 39,
+    savingsPercent: "74%",
     features: [
       { text: "1 AI Product Edit", included: true },
       { text: "Standard Processing", included: true },
@@ -38,6 +40,8 @@ const subscriptionTiers = [
     price: 110,
     tagline: "For consistent brand visuals.",
     icon: Sparkles,
+    competitorPrice: 870,
+    savingsPercent: "87%",
     features: [
       { text: "10 AI Product Edits", included: true },
       { text: "Standard Processing", included: true },
@@ -55,6 +59,8 @@ const subscriptionTiers = [
     tagline: "Performance focused content.",
     icon: Users,
     popular: true,
+    competitorPrice: 2100,
+    savingsPercent: "88%",
     features: [
       { text: "1 UGC Video", included: true },
       { text: "5 AI Product Edits", included: true },
@@ -71,6 +77,8 @@ const subscriptionTiers = [
     price: 299,
     tagline: "Structured social execution.",
     icon: Shield,
+    competitorPrice: 1800,
+    savingsPercent: "83%",
     features: [
       { text: "Managed Social Posting", included: true },
       { text: "20 AI Edits", included: true },
@@ -87,6 +95,8 @@ const subscriptionTiers = [
     price: 499,
     tagline: "Full creative outsourcing.",
     icon: Calendar,
+    competitorPrice: 5500,
+    savingsPercent: "91%",
     features: [
       { text: "Full Content Batch", included: true },
       { text: "Strategic Direction", included: true },
@@ -104,6 +114,8 @@ const subscriptionTiers = [
     tagline: "High volume scaling.",
     icon: Crown,
     premium: true,
+    competitorPrice: 6800,
+    savingsPercent: "90%",
     features: [
       { text: "Unlimited AI Edits", included: true },
       { text: "Premium UGC Priority", included: true },
@@ -113,30 +125,29 @@ const subscriptionTiers = [
       { text: "Priority Queue", included: true },
       { text: "Strategy Access", included: true },
       { text: "Priority Strategy Access", included: true },
-      { text: "Instant Processing", included: true },
     ],
   },
 ];
 
 const addOns = [
-  { name: "Extra AI Product Image", price: "$10", unit: "per final download", desc: "Generate unlimited variations and only pay for the final image you choose.", icon: ImageIcon },
-  { name: "30-Second UGC Video", price: "$99", unit: "", desc: "Professionally produced social media-ready video featuring vetted creators.", icon: Play },
-  { name: "Short Video (<20 sec)", price: "$59", unit: "", desc: "Quick, attention-grabbing clips optimized for Reels, TikTok, and social posts.", icon: TrendingUp },
-  { name: "Strategic Consultancy", price: "$225", unit: "", desc: "A 45-minute one-on-one session to guide your brand strategy and growth planning.", icon: Lightbulb },
-  { name: "Website Templates", price: "$999", unit: "each", desc: "Pre-built, fully branded Ryze designs that integrate seamlessly with your content.", icon: Globe },
+  { name: "Extra AI Product Image", price: "$10", unit: "per final download", desc: "Generate unlimited variations and only pay for the final image you choose.", icon: Camera, color: "from-sky-400 to-cyan-500" },
+  { name: "30-Second UGC Video", price: "$99", unit: "", desc: "Professionally produced social media-ready video featuring vetted creators.", icon: Play, color: "from-violet-400 to-purple-500" },
+  { name: "Short Video (<20 sec)", price: "$59", unit: "", desc: "Quick, attention-grabbing clips optimized for Reels, TikTok, and social posts.", icon: Rocket, color: "from-amber-400 to-orange-500" },
+  { name: "Strategic Consultancy", price: "$225", unit: "", desc: "A 45-minute one-on-one session to guide your brand strategy and growth planning.", icon: Megaphone, color: "from-emerald-400 to-teal-500" },
+  { name: "Website Templates", price: "$999", unit: "each", desc: "Pre-built, fully branded Ryze designs that integrate seamlessly with your content.", icon: PenTool, color: "from-rose-400 to-pink-500" },
 ];
 
 const comparisonData = [
   { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10/mo" },
-  { feature: "Visual Accuracy", agency: "Prone to human error", ai: "AI distortion & artifacts", ryze: "Pixel-perfect fidelity" },
+  { feature: "Visual Quality", agency: "Prone to human error", ai: "AI distortion & artifacts", ryze: "Pixel-perfect quality" },
   { feature: "Production Method", agency: "Physical studios required", ai: "Basic background swaps", ryze: "Full AI creative pipeline" },
   { feature: "Speed", agency: "3–6 week lead times", ai: "Fast but low quality", ryze: "Same-week premium output" },
   { feature: "Brand Strategy", agency: "$5k+ retainer required", ai: "Zero guidance", ryze: "Bookable $225 sessions" },
   { feature: "Creative Range", agency: "Limited to one designer", ai: "Template-based only", ryze: "Unlimited styles & formats" },
 ];
 
-const gridIndustries = ["Beauty", "Skincare", "Real Estate", "Dental Clinic", "Food Products", "Yoga"];
-const gridEmojis: Record<string, string> = { Beauty: "💅", Skincare: "🧴", "Real Estate": "🏠", "Dental Clinic": "🦷", "Food Products": "🍔", Yoga: "🧘" };
+const gridIndustries = ["Skincare", "Supplements", "Pet Products", "Candles", "Coffee", "Jewellery"];
+const gridEmojis: Record<string, string> = { Skincare: "🧴", Supplements: "💊", "Pet Products": "🐾", Candles: "🕯️", Coffee: "☕", Jewellery: "💍" };
 
 const beforeAfterClients = ["SpinSudz", "KokoKai Foods LLC", "Crystal Imagery", "True North Wellness", "No Place Like Home", "Darkhorse Solutions"];
 
@@ -354,21 +365,21 @@ const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reve
 
 /* Factory Proof Section */
 const contentTypes = ["Posts", "Videos", "UGC", "Static Ads", "Video Ads", "Emails", "Blogs", "Stories"];
-const industries = ["Featured", "Beauty Services", "Food & Beverages", "Health & Wellness", "Home Services", "Products", "Professional Services", "Real Estate", "SaaS & Tech", "Travel & Tourism", "Other"];
+const industries = ["Featured", "Skincare & Beauty", "Food & Beverages", "Health & Supplements", "Pet Products", "Home & Lifestyle", "Fashion & Accessories", "Fitness & Wellness", "Coffee & Tea", "Handmade & Artisan"];
 
 const proofItems = [
-  { before: "📦", after: "✨", category: "Posts", industry: "Beauty Services", gradient: "from-rose-400 to-pink-600" },
+  { before: "📦", after: "✨", category: "Posts", industry: "Skincare & Beauty", gradient: "from-rose-400 to-pink-600" },
   { before: "📷", after: "🎨", category: "Posts", industry: "Food & Beverages", gradient: "from-amber-400 to-orange-500" },
-  { before: "🏷️", after: "💎", category: "Posts", industry: "Products", gradient: "from-emerald-400 to-teal-600" },
-  { before: "🎥", after: "🎬", category: "Videos", industry: "Travel & Tourism", gradient: "from-sky-400 to-blue-600" },
-  { before: "📸", after: "🌟", category: "UGC", industry: "Health & Wellness", gradient: "from-violet-400 to-purple-600" },
-  { before: "📄", after: "🔥", category: "Static Ads", industry: "SaaS & Tech", gradient: "from-cyan-400 to-teal-500" },
-  { before: "🎞️", after: "⚡", category: "Video Ads", industry: "Real Estate", gradient: "from-indigo-400 to-blue-700" },
-  { before: "✉️", after: "💌", category: "Emails", industry: "Professional Services", gradient: "from-rose-300 to-red-500" },
-  { before: "📝", after: "📖", category: "Blogs", industry: "Home Services", gradient: "from-lime-400 to-green-600" },
-  { before: "📱", after: "🚀", category: "Stories", industry: "Beauty Services", gradient: "from-fuchsia-400 to-pink-600" },
+  { before: "🏷️", after: "💎", category: "Posts", industry: "Fashion & Accessories", gradient: "from-emerald-400 to-teal-600" },
+  { before: "🎥", after: "🎬", category: "Videos", industry: "Coffee & Tea", gradient: "from-sky-400 to-blue-600" },
+  { before: "📸", after: "🌟", category: "UGC", industry: "Health & Supplements", gradient: "from-violet-400 to-purple-600" },
+  { before: "📄", after: "🔥", category: "Static Ads", industry: "Pet Products", gradient: "from-cyan-400 to-teal-500" },
+  { before: "🎞️", after: "⚡", category: "Video Ads", industry: "Home & Lifestyle", gradient: "from-indigo-400 to-blue-700" },
+  { before: "✉️", after: "💌", category: "Emails", industry: "Handmade & Artisan", gradient: "from-rose-300 to-red-500" },
+  { before: "📝", after: "📖", category: "Blogs", industry: "Fitness & Wellness", gradient: "from-lime-400 to-green-600" },
+  { before: "📱", after: "🚀", category: "Stories", industry: "Skincare & Beauty", gradient: "from-fuchsia-400 to-pink-600" },
   { before: "🖼️", after: "🎯", category: "Posts", industry: "Featured", gradient: "from-yellow-400 to-amber-600" },
-  { before: "🏠", after: "🏡", category: "Static Ads", industry: "Real Estate", gradient: "from-slate-400 to-gray-600" },
+  { before: "🏠", after: "🏡", category: "Static Ads", industry: "Home & Lifestyle", gradient: "from-slate-400 to-gray-600" },
 ];
 
 const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
@@ -454,8 +465,8 @@ const FactoryProofSection: React.FC = () => {
     <section className="py-20 px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">What we've built for brands like yours</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Real results from real clients. Browse by content type or industry to see the caliber of work Ryze delivers every single week.</p>
+          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Built for product brands like yours</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Real transformations from real product brands. Browse by content type or niche to see the caliber of work Ryze delivers every single week.</p>
         </motion.div>
 
         <div className="flex justify-center mb-6">
@@ -536,7 +547,7 @@ const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
 const Index: React.FC = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
-  const [activeGridIndustry, setActiveGridIndustry] = useState("Beauty");
+  const [activeGridIndustry, setActiveGridIndustry] = useState("Skincare");
   const [activeClient, setActiveClient] = useState("SpinSudz");
   const [activeFeatureTab, setActiveFeatureTab] = useState("Services");
 
@@ -577,19 +588,21 @@ const Index: React.FC = () => {
               <Sparkles className="w-3 h-3 mr-1.5 text-primary" /> AI-POWERED CREATIVE PRODUCTION
             </Badge>
             <h1 className="text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6">
-              Your entire creative<br />team, powered by AI,<br />from <span className="text-primary">$10/mo</span>
+              Your On-Demand Creative<br />Team and AI Production<br />Engine, Starting at <span className="text-primary">$10/mo</span>
             </h1>
-            <div className="space-y-3 mb-8">
+            <p className="text-lg text-muted-foreground mb-6 max-w-lg leading-relaxed">
+              We handle your product photography, social content, UGC videos, and brand strategy — so you can focus on selling.
+            </p>
+            <div className="grid grid-cols-2 gap-3 mb-8">
               {[
-                { bold: "Brand-matched", text: "visuals that look like you hired an agency" },
-                { bold: "90% less", text: "than traditional creative services" },
-                { bold: "Production-ready", text: "assets delivered in days, not weeks" },
+                { icon: Camera, text: "Studio-grade product shots" },
+                { icon: Wand2, text: "AI-powered, brand-matched" },
+                { icon: Rocket, text: "Delivered in days, not weeks" },
+                { icon: FileText, text: "Posts, reels, ads & more" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-primary-foreground" />
-                  </div>
-                  <p className="text-base"><strong>{item.bold}</strong> {item.text}</p>
+                <div key={i} className="flex items-center gap-2.5 bg-card border border-border rounded-xl px-3 py-2.5">
+                  <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                  <p className="text-sm font-medium">{item.text}</p>
                 </div>
               ))}
             </div>
@@ -632,10 +645,16 @@ const Index: React.FC = () => {
                   {tier.premium && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-foreground text-background font-heading text-[10px]">Premium</Badge></div>}
                   <CardHeader className="pb-3 pt-6">
                     <CardTitle className="font-heading text-sm">{tier.name}</CardTitle>
-                    <div className="flex items-baseline gap-0.5 mt-1">
+                    <div className="mt-1">
+                      {tier.competitorPrice && (
+                        <span className="text-sm text-muted-foreground line-through mr-2">${tier.competitorPrice}</span>
+                      )}
                       <span className="text-3xl font-heading font-black">${tier.price}</span>
                       <span className="text-muted-foreground text-xs">/mo</span>
                     </div>
+                    {tier.competitorPrice && (
+                      <Badge className="mt-1.5 bg-primary/10 text-primary border-0 text-[10px] font-heading">{tier.savingsPercent} cheaper</Badge>
+                    )}
                     <p className="text-xs text-muted-foreground mt-1">{tier.tagline}</p>
                   </CardHeader>
                   <CardContent className="pt-0">
@@ -670,22 +689,23 @@ const Index: React.FC = () => {
             <p className="text-muted-foreground max-w-xl mx-auto">Enhance any plan with individual services.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {addOns.map((addon, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-                <Card className="h-full hover:shadow-md transition-shadow">
-                  <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
-                      <addon.icon className="w-5 h-5 text-muted-foreground" />
+                <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-0 shadow-md overflow-hidden group">
+                  <div className={`h-1.5 bg-gradient-to-r ${addon.color}`} />
+                  <CardContent className="p-5 flex flex-col h-full">
+                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${addon.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                      <addon.icon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-heading font-semibold text-sm mb-1">{addon.name}</h3>
-                    <p className="text-muted-foreground text-xs mb-3">{addon.desc}</p>
-                    <div className="mt-auto">
+                    <h3 className="font-heading font-bold text-base mb-2">{addon.name}</h3>
+                    <p className="text-muted-foreground text-xs mb-4 flex-1">{addon.desc}</p>
+                    <div className="flex items-baseline gap-1 mb-3">
                       <span className="text-2xl font-heading font-black">{addon.price}</span>
-                      {addon.unit && <span className="text-xs text-muted-foreground ml-1">{addon.unit}</span>}
+                      {addon.unit && <span className="text-xs text-muted-foreground">{addon.unit}</span>}
                     </div>
-                    <Button variant="outline" className="w-full mt-3 text-xs font-heading" size="sm">
-                      Add to Plan <ArrowRight className="w-3 h-3 ml-1" />
+                    <Button variant="outline" className="w-full text-xs font-heading border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors" size="sm">
+                      Add to Plan
                     </Button>
                   </CardContent>
                 </Card>
@@ -738,7 +758,7 @@ const Index: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Your feed, elevated</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Every post designed to fit a cohesive grid — turning your social presence into a visual storefront.</p>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Every post crafted to reinforce your brand identity and transform your page into a polished, conversion-driven storefront.</p>
           </motion.div>
 
           <div className="flex justify-center gap-3 mb-10 flex-wrap">
@@ -834,7 +854,7 @@ const Index: React.FC = () => {
                 ))}
               </div>
               <div className="mt-4 space-y-2">
-                {["Inconsistent visual identity across posts", "Basic stock-like content without personality", "Limited content variety and formats", "Missed engagement opportunities"].map((t, i) => (
+                {["Posting randomly without a real content plan", "Reels and posts not aligned or connected", "A messy grid that doesn't fully reflect the brand", "Spent a lot of time creating content that barely gets engagement", "Inconsistent visuals that confuse followers", "No clear strategy behind what is being posted"].map((t, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <X className="w-4 h-4 text-destructive flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">{t}</span>
@@ -857,7 +877,7 @@ const Index: React.FC = () => {
                 })}
               </div>
               <div className="mt-4 space-y-2">
-                {["Strong brand consistency across all posts", "Custom designed content that stands out", "Diverse content mix to keep feeds fresh", "Strategic content that drives engagement"].map((t, i) => (
+                {["A structured content plan for posts and Reels", "Everything aligned under one clear visual direction", "A clean, intentional grid that reflects the brand", "Content designed with purpose, not guesswork", "Consistent visuals that build recognition", "A strategy behind every piece of content"].map((t, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-primary flex-shrink-0" />
                     <span className="text-sm">{t}</span>
@@ -891,27 +911,23 @@ const Index: React.FC = () => {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <Card className="hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
-                <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
-                  <CalendarDays className="w-5 h-5 text-muted-foreground" />
-                </div>
-                <h3 className="font-heading font-bold mb-1">Talk to our team</h3>
-                <p className="text-sm text-muted-foreground mb-4">Hop on a 20-minute call with a Ryze creative lead and map out your content plan.</p>
-                <Button className="w-full bg-foreground text-background hover:bg-foreground/90 font-heading">Book a Call</Button>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
-                <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
-                  <Zap className="w-5 h-5 text-muted-foreground" />
-                </div>
-                <h3 className="font-heading font-bold mb-1">Jump in today</h3>
-                <p className="text-sm text-muted-foreground mb-4">Pick a plan and start receiving polished, on-brand content within days.</p>
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading">Start Using Ryze Now</Button>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-foreground to-foreground/80 rounded-2xl p-8 text-background">
+              <Phone className="w-8 h-8 mb-4 text-primary" />
+              <h3 className="font-heading font-bold text-xl mb-2">Let's map out your strategy</h3>
+              <p className="text-sm text-background/70 mb-6">Hop on a 20-minute call with a Ryze creative lead and build a content plan tailored to your brand.</p>
+              <Button className="w-full bg-background text-foreground hover:bg-background/90 font-heading rounded-xl py-5">
+                Schedule a Call <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary/20 rounded-2xl p-8">
+              <Rocket className="w-8 h-8 mb-4 text-primary" />
+              <h3 className="font-heading font-bold text-xl mb-2">Ready to go? Pick a plan</h3>
+              <p className="text-sm text-muted-foreground mb-6">Choose your package and start receiving polished, on-brand content within days.</p>
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-xl py-5">
+                Browse Plans <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
