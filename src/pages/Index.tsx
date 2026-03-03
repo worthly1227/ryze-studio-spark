@@ -17,6 +17,7 @@ import { Moon, Sun } from "lucide-react";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 import CheckoutModal from "@/components/CheckoutModal";
 import CalendlyModal from "@/components/CalendlyModal";
+import { useToast } from "@/hooks/use-toast";
 
 /* ─── PRICING TIERS DATA ─── */
 const subscriptionTiers = [
@@ -580,6 +581,10 @@ const Index: React.FC = () => {
   const handleAddOnClick = (addon: typeof addOns[0]) => {
     const numericPrice = parseInt(addon.price.replace(/[^0-9]/g, ""));
     setPendingAddOn({ name: addon.name, price: numericPrice, description: addon.desc });
+    toast({
+      title: "✅ " + addon.name + " added!",
+      description: "Now select a plan below to continue to checkout.",
+    });
     document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
   };
 
