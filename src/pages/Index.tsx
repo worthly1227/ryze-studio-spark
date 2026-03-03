@@ -211,7 +211,176 @@ const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reve
   </div>
 );
 
-const Index: React.FC = () => {
+const contentTypes = ["Posts", "Videos", "UGC", "Static Ads", "Video Ads", "Emails", "Blogs", "Stories"];
+const industries = ["Featured", "Beauty Services", "Food & Beverages", "Health & Wellness", "Home Services", "Products", "Professional Services", "Real Estate", "SaaS & Tech", "Travel & Tourism", "Other"];
+
+const proofItems = [
+  { before: "📦", after: "✨", category: "Posts", industry: "Beauty Services", gradient: "from-rose-400 to-pink-600" },
+  { before: "📷", after: "🎨", category: "Posts", industry: "Food & Beverages", gradient: "from-amber-400 to-orange-500" },
+  { before: "🏷️", after: "💎", category: "Posts", industry: "Products", gradient: "from-emerald-400 to-teal-600" },
+  { before: "🎥", after: "🎬", category: "Videos", industry: "Travel & Tourism", gradient: "from-sky-400 to-blue-600" },
+  { before: "📸", after: "🌟", category: "UGC", industry: "Health & Wellness", gradient: "from-violet-400 to-purple-600" },
+  { before: "📄", after: "🔥", category: "Static Ads", industry: "SaaS & Tech", gradient: "from-cyan-400 to-teal-500" },
+  { before: "🎞️", after: "⚡", category: "Video Ads", industry: "Real Estate", gradient: "from-indigo-400 to-blue-700" },
+  { before: "✉️", after: "💌", category: "Emails", industry: "Professional Services", gradient: "from-rose-300 to-red-500" },
+  { before: "📝", after: "📖", category: "Blogs", industry: "Home Services", gradient: "from-lime-400 to-green-600" },
+  { before: "📱", after: "🚀", category: "Stories", industry: "Beauty Services", gradient: "from-fuchsia-400 to-pink-600" },
+  { before: "🖼️", after: "🎯", category: "Posts", industry: "Featured", gradient: "from-yellow-400 to-amber-600" },
+  { before: "🏠", after: "🏡", category: "Static Ads", industry: "Real Estate", gradient: "from-slate-400 to-gray-600" },
+];
+
+const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
+  const [pos, setPos] = useState(50);
+  const ref = useRef<HTMLDivElement>(null);
+  const drag = useRef(false);
+
+  const handleMove = (clientX: number) => {
+    if (!ref.current || !drag.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    setPos((x / rect.width) * 100);
+  };
+
+  useEffect(() => {
+    const up = () => { drag.current = false; };
+    window.addEventListener("mouseup", up);
+    window.addEventListener("touchend", up);
+    return () => { window.removeEventListener("mouseup", up); window.removeEventListener("touchend", up); };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="aspect-square rounded-xl overflow-hidden cursor-col-resize select-none relative"
+      onMouseDown={() => { drag.current = true; }}
+      onMouseMove={(e) => handleMove(e.clientX)}
+      onTouchStart={() => { drag.current = true; }}
+      onTouchMove={(e) => handleMove(e.touches[0].clientX)}
+    >
+      {/* Before */}
+      <div className="absolute inset-0 bg-muted flex items-center justify-center">
+        <div className="text-center">
+          <span className="text-5xl">{item.before}</span>
+          <p className="text-xs text-muted-foreground mt-2 font-heading font-semibold">Before</p>
+        </div>
+      </div>
+      {/* After */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} flex items-center justify-center`} style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
+        <div className="text-center">
+          <span className="text-5xl">{item.after}</span>
+          <p className="text-xs text-white/90 mt-2 font-heading font-semibold">After</p>
+        </div>
+      </div>
+      {/* Slider line */}
+      <div className="absolute top-0 bottom-0 w-0.5 bg-white/80" style={{ left: `${pos}%`, transform: "translateX(-50%)" }}>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white shadow-lg flex items-center justify-center cursor-col-resize">
+          <span className="text-foreground text-[10px] font-bold">⟷</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => (
+  <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    {/* Header like Instagram */}
+    <div className="flex items-center gap-2 px-3 py-2.5">
+      <img src={ryzeLogo} alt="Ryze" className="w-7 h-7 rounded-full object-cover" />
+      <span className="text-sm font-semibold font-heading">Ryze Studios</span>
+      <span className="text-muted-foreground ml-auto text-sm">···</span>
+    </div>
+    {/* Slider image */}
+    <MiniSlider item={item} />
+    {/* Engagement bar */}
+    <div className="px-3 py-2.5 flex items-center gap-3">
+      <Heart className="w-5 h-5 text-destructive fill-destructive" />
+      <MessageCircle className="w-5 h-5 text-muted-foreground" />
+      <Send className="w-5 h-5 text-muted-foreground" />
+      <Bookmark className="w-5 h-5 text-muted-foreground ml-auto" />
+    </div>
+  </div>
+);
+
+const FactoryProofSection: React.FC = () => {
+  const [activeType, setActiveType] = useState("Posts");
+  const [activeIndustry, setActiveIndustry] = useState("Featured");
+  const [showAll, setShowAll] = useState(false);
+
+  const filtered = proofItems.filter((item) => {
+    const typeMatch = item.category === activeType;
+    const industryMatch = activeIndustry === "Featured" || item.industry === activeIndustry;
+    return typeMatch && industryMatch;
+  });
+
+  const visible = showAll ? filtered : filtered.slice(0, 6);
+
+  return (
+    <section className="py-20 px-6 bg-muted/30">
+      <div className="max-w-6xl mx-auto">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Examples of our work</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Get your design & marketing content done without the hassle. Pay a fixed, monthly, and predictable rate, with no contracts or surprises.</p>
+        </motion.div>
+
+        {/* Content type tabs */}
+        <div className="flex justify-center mb-6">
+          <div className="inline-flex bg-card border border-border rounded-full p-1 gap-0.5 flex-wrap justify-center">
+            {contentTypes.map((type) => (
+              <button
+                key={type}
+                onClick={() => { setActiveType(type); setShowAll(false); }}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeType === type ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                {type}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Industry filter pills */}
+        <div className="flex justify-center mb-10">
+          <div className="flex gap-2 flex-wrap justify-center">
+            {industries.map((ind) => (
+              <button
+                key={ind}
+                onClick={() => { setActiveIndustry(ind); setShowAll(false); }}
+                className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${activeIndustry === ind ? "border-primary text-primary bg-primary/5" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"}`}
+              >
+                {ind}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Gallery grid */}
+        {visible.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {visible.map((item, i) => (
+              <motion.div key={`${item.category}-${item.industry}-${i}`} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
+                <ProofCard item={item} />
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-muted-foreground">No examples yet for this combination. Check back soon!</p>
+          </div>
+        )}
+
+        {/* Load more */}
+        {filtered.length > 6 && !showAll && (
+          <div className="flex justify-center mt-10">
+            <Button onClick={() => setShowAll(true)} className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-heading px-8">
+              Load more
+            </Button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
 
