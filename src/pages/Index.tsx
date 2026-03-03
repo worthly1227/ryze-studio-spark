@@ -140,6 +140,16 @@ const addOns = [
   { name: "Max Business Launch", price: "$2500", unit: "each", desc: "We build your US brand, stock it with products, and give you the keys in 24 hours.", icon: Rocket, color: "from-rose-400 to-pink-500" },
 ];
 
+const suggestedAddOns: Record<string, { name: string; price: number; description: string }> = {
+  "Entry Level Pass": { name: "Extra AI Product Image", price: 10, description: "Generate unlimited variations — only pay for the final image you choose." },
+  "Visual Starter Kit": { name: "Short Video (<20s)", price: 59, description: "Quick, scroll-stopping clips optimized for Reels, TikTok, and Stories." },
+  "Viral Growth": { name: "30-Second UGC Video", price: 99, description: "Professionally produced social-ready video featuring vetted creators." },
+  "Full Brand Manager": { name: "Strategic Consultancy", price: 224, description: "45-minute 1-on-1 session to guide your brand strategy and growth." },
+  "Done For You": { name: "30-Second UGC Video", price: 99, description: "Professionally produced social-ready video featuring vetted creators." },
+  "Master Production": { name: "Strategic Consultancy", price: 224, description: "45-minute 1-on-1 session to guide your brand strategy and growth." },
+  "Max Business Launch": { name: "Strategic Consultancy", price: 224, description: "45-minute 1-on-1 session to guide your brand strategy and growth." },
+};
+
 const comparisonData = [
   { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10/mo" },
   { feature: "Visual Quality", agency: "Prone to human error", ai: "AI distortion & artifacts", ryze: "Pixel-perfect quality" },
