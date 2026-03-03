@@ -25,6 +25,7 @@ import LegalHub from "./pages/LegalHub";
 import SettingsPage from "./pages/SettingsPage";
 import BookDemo from "./pages/BookDemo";
 import Plans from "./pages/Plans";
+import TemplateStore from "./pages/TemplateStore";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/book-demo" element={<BookDemo />} />
             <Route path="/plans" element={<Plans />} />
+            <Route path="/template-store" element={<TemplateStore />} />
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/ai-factory" element={<AIFactory />} />
