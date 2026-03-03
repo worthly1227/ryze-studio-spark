@@ -698,6 +698,31 @@ const Index: React.FC = () => {
       {/* ═══════ SUBSCRIPTION TIERS ═══════ */}
       <section id="pricing" className="py-12 sm:py-20 px-4 sm:px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
+          {/* Pending add-on banner */}
+          <AnimatePresence>
+            {pendingAddOn && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: "auto" }}
+                exit={{ opacity: 0, y: -10, height: 0 }}
+                className="mb-6"
+              >
+                <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-primary/10 border border-primary/30 text-sm">
+                  <div className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span className="font-heading font-semibold text-primary">
+                      {pendingAddOn.name} added!
+                    </span>
+                    <span className="text-muted-foreground hidden sm:inline">— Select a plan below to continue.</span>
+                  </div>
+                  <button onClick={() => setPendingAddOn(null)} className="text-muted-foreground hover:text-foreground transition-colors">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 sm:mb-14">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               PLANS & PRICING
