@@ -11,6 +11,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
+import CheckoutModal from "@/components/CheckoutModal";
+import CalendlyModal from "@/components/CalendlyModal";
 
 /* ─── PLAN DATA WITH SUPPORT TIERS ─── */
 const plans = [
@@ -191,13 +193,23 @@ const Plans: React.FC = () => {
   const navigate = useNavigate();
   const [expandedPlan, setExpandedPlan] = useState<string | null>(null);
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
+  const [checkoutPlan, setCheckoutPlan] = useState<typeof plans[0] | null>(null);
+  const [calendlyPlan, setCalendlyPlan] = useState<typeof plans[0] | null>(null);
+  const [showCheckoutAfterBooking, setShowCheckoutAfterBooking] = useState(false);
 
   const handleGetStarted = (plan: typeof plans[0]) => {
-    // Plans that allow contact go to calendly, others go to signup/payment
     if (plan.canContact) {
-      navigate("/book-demo");
+      setCalendlyPlan(plan);
     } else {
-      navigate("/signup");
+      setCheckoutPlan(plan);
+    }
+  };
+
+  const handleCalendlyBooked = () => {
+    const plan = calendlyPlan;
+    setCalendlyPlan(null);
+    if (plan) {
+      setCheckoutPlan(plan);
     }
   };
 
@@ -513,6 +525,24 @@ const Plans: React.FC = () => {
           <p className="text-xs text-muted-foreground">© 2025 Ryze Studios. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* ─── MODALS ─── */}
+      <CheckoutModal
+        open={!!checkoutPlan}
+        onOpenChange={(open) => !open && setCheckoutPlan(null)}
+        planName={checkoutPlan?.name || ""}
+        price={checkoutPlan?.price || 0}
+        period={checkoutPlan?.period || ""}
+        features={checkoutPlan?.features.filter(f => f.included).map(f => f.text)}
+      />
+      <CalendlyModal
+        open={!!calendlyPlan}
+        onOpenChange={(open) => !open && setCalendlyPlan(null)}
+        planName={calendlyPlan?.name || ""}
+        price={calendlyPlan?.price || 0}
+        period={calendlyPlan?.period || ""}
+        onBooked={handleCalendlyBooked}
+      />
     </div>
   );
 };
