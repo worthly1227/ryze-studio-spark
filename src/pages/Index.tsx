@@ -1,22 +1,165 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Play, Star, ArrowRight, Sparkles, ChevronRight, Zap, Shield, Users, MessageSquare, Calendar, Crown, Heart, MessageCircle, Send, Bookmark, TrendingUp, BarChart3, ImageIcon, BookOpen, Palette } from "lucide-react";
+import {
+  Check, X, Play, Star, ArrowRight, Sparkles, ChevronRight, ChevronDown,
+  Zap, Shield, Users, MessageSquare, Calendar, Crown,
+  Heart, MessageCircle, Send, Bookmark, TrendingUp, BarChart3,
+  ImageIcon, BookOpen, Palette, Plus, Volume2,
+  CalendarDays, Lightbulb, Globe, LayoutGrid
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 
-const pricingTiers = [
-  { name: "Entry Level Pass", price: 10, deliverables: ["1 AI Edit"], support: "AI FAQ & Email", icon: Zap },
-  { name: "Visual Starter Kit", price: 110, deliverables: ["10 AI Edits"], support: "AI FAQ & Email", icon: Sparkles },
-  { name: "Viral Growth", price: 240, deliverables: ["1 UGC Video", "5 AI Edits"], support: "AI FAQ & Email", icon: Users, popular: true },
-  { name: "Full Brand Manager", price: 299, deliverables: ["Managed Social", "20 AI Edits"], support: "Live Chat", icon: Shield },
-  { name: "Done For You", price: 499, deliverables: ["Full Content Batch", "Strategy"], support: "Meeting Booking", icon: Calendar },
-  { name: "Master Production", price: 679, deliverables: ["Unlimited AI", "Premium UGC"], support: "Priority Meeting Access", icon: Crown, premium: true },
+/* ─── PRICING TIERS DATA ─── */
+const subscriptionTiers = [
+  {
+    name: "Entry Level Pass",
+    price: 10,
+    tagline: "Best for early stage brands testing premium visuals.",
+    icon: Zap,
+    features: [
+      { text: "1 AI Product Edit", included: true },
+      { text: "Standard Processing", included: true },
+      { text: "Email Support", included: true },
+      { text: "UGC Video", included: false },
+      { text: "Managed Social Posting", included: false },
+      { text: "Strategy Calls", included: false },
+      { text: "Priority Queue", included: false },
+      { text: "Unlimited AI", included: false },
+    ],
+  },
+  {
+    name: "Visual Starter Kit",
+    price: 110,
+    tagline: "For consistent brand visuals.",
+    icon: Sparkles,
+    features: [
+      { text: "10 AI Product Edits", included: true },
+      { text: "Standard Processing", included: true },
+      { text: "Email Support", included: true },
+      { text: "UGC Video", included: false },
+      { text: "Managed Social Posting", included: false },
+      { text: "Strategy Calls", included: false },
+      { text: "Priority Queue", included: false },
+      { text: "Unlimited AI", included: false },
+    ],
+  },
+  {
+    name: "Viral Growth",
+    price: 240,
+    tagline: "Performance focused content.",
+    icon: Users,
+    popular: true,
+    features: [
+      { text: "1 UGC Video", included: true },
+      { text: "5 AI Product Edits", included: true },
+      { text: "Standard Processing", included: true },
+      { text: "Email Support", included: true },
+      { text: "Managed Social Posting", included: false },
+      { text: "Strategy Calls", included: false },
+      { text: "Priority Queue", included: false },
+      { text: "Unlimited AI", included: false },
+    ],
+  },
+  {
+    name: "Full Brand Manager",
+    price: 299,
+    tagline: "Structured social execution.",
+    icon: Shield,
+    features: [
+      { text: "Managed Social Posting", included: true },
+      { text: "20 AI Edits", included: true },
+      { text: "1 UGC Video", included: true },
+      { text: "Standard Processing", included: true },
+      { text: "Live Chat Support", included: true },
+      { text: "Strategy Calls", included: false },
+      { text: "Priority Queue", included: false },
+      { text: "Unlimited AI", included: false },
+    ],
+  },
+  {
+    name: "Done For You",
+    price: 499,
+    tagline: "Full creative outsourcing.",
+    icon: Calendar,
+    features: [
+      { text: "Full Content Batch", included: true },
+      { text: "Strategic Direction", included: true },
+      { text: "AI + UGC Mix", included: true },
+      { text: "Managed Social Posting", included: true },
+      { text: "Strategy Call Booking", included: true },
+      { text: "Fast Track Processing", included: true },
+      { text: "Unlimited AI", included: false },
+      { text: "Priority Queue", included: false },
+    ],
+  },
+  {
+    name: "Master Production",
+    price: 679,
+    tagline: "High volume scaling.",
+    icon: Crown,
+    premium: true,
+    features: [
+      { text: "Unlimited AI Edits", included: true },
+      { text: "Premium UGC Priority", included: true },
+      { text: "Full Content Batch", included: true },
+      { text: "Strategic Direction", included: true },
+      { text: "Managed Social Posting", included: true },
+      { text: "Priority Queue", included: true },
+      { text: "Strategy Access", included: true },
+      { text: "Priority Strategy Access", included: true },
+      { text: "Instant Processing", included: true },
+    ],
+  },
 ];
+
+const addOns = [
+  { name: "Extra AI Product Image", price: "$10", unit: "per final download", desc: "Generate unlimited variations and only pay for the final image you choose.", icon: ImageIcon },
+  { name: "30-Second UGC Video", price: "$99", unit: "", desc: "Professionally produced social media-ready video featuring vetted creators.", icon: Play },
+  { name: "Short Video (<20 sec)", price: "$59", unit: "", desc: "Quick, attention-grabbing clips optimized for Reels, TikTok, and social posts.", icon: TrendingUp },
+  { name: "Strategic Consultancy", price: "$225", unit: "", desc: "A 45-minute one-on-one session to guide your brand strategy and growth planning.", icon: Lightbulb },
+  { name: "Website Templates", price: "$999", unit: "each", desc: "Pre-built, fully branded Ryze designs that integrate seamlessly with your content.", icon: Globe },
+];
+
+const comparisonData = [
+  { feature: "Cost Basis", agency: "High Retainers ($2k+)", ai: "Monthly Subscriptions for credits", ryze: "$10 Pay-Per-Product" },
+  { feature: "Product Integrity", agency: "Manual (Human Error)", ai: "High Distortion (AI Hallucinations)", ryze: "100% Geometry Lock" },
+  { feature: "Production", agency: "Studio/Physical Setup", ai: "Background Swaps Only", ryze: "AI Production Factory" },
+  { feature: "Turnaround", agency: "2 to 4 Weeks", ai: "Minutes (Low Quality)", ryze: "High-Speed Luxury Output" },
+  { feature: "Strategy", agency: "$5k+ Monthly Commit", ai: "None (DIY)", ryze: "On-Demand $225 Sessions" },
+  { feature: "Design", agency: "Hired Designer Needed", ai: "Manual Templates", ryze: "Editorial Layouts Built-In" },
+];
+
+const gridIndustries = ["Beauty", "Skincare", "Real Estate", "Dental Clinic", "Food Products", "Yoga"];
+const gridEmojis: Record<string, string> = { Beauty: "💅", Skincare: "🧴", "Real Estate": "🏠", "Dental Clinic": "🦷", "Food Products": "🍔", Yoga: "🧘" };
+
+const beforeAfterClients = ["SpinSudz", "KokoKai Foods LLC", "Crystal Imagery", "True North Wellness", "No Place Like Home", "Darkhorse Solutions"];
+
+const featureTabs = ["Services", "Onboarding", "Communication", "Collaboration", "Scheduling", "Analytics"];
+const featureContent: Record<string, { title: string; desc: string }> = {
+  Services: { title: "Choose & Customize", desc: "Browse our full service catalog and build your perfect creative package, tailored to your brand." },
+  Onboarding: { title: "Quick Setup", desc: "Get started in minutes with our guided onboarding flow. We learn your brand voice and visual identity." },
+  Communication: { title: "Real-time Chat", desc: "Message your dedicated team directly. Get updates, share feedback, and stay in the loop." },
+  Collaboration: { title: "Easy Collaboration", desc: "Review, approve, and request revisions all in one place with our collaboration dashboard." },
+  Scheduling: { title: "Schedule & Post", desc: "We handle scheduling and posting for you across your social channels, ensuring consistency." },
+  Analytics: { title: "Track Performance", desc: "Monitor your content performance with detailed analytics and insights to optimize your strategy." },
+};
+
+const faqItems = [
+  { q: "How much does it cost?", a: "Plans start at just $10/month for the Entry Level Pass. Choose the tier that fits your needs and scale up anytime." },
+  { q: "Why are you so affordable?", a: "Our AI-powered production pipeline eliminates the overhead of traditional agencies while maintaining premium quality." },
+  { q: "Where is the Ryze team located?", a: "We're a distributed global team with creative talent across North America, Europe, and Asia." },
+  { q: "How do I get started?", a: "Simply choose a plan, complete onboarding (takes ~5 minutes), and your first content is in production." },
+  { q: "What happens after I sign up?", a: "You'll be guided through brand onboarding, then your account manager begins producing content immediately." },
+  { q: "How will I communicate with your team?", a: "Through our built-in chat system, scheduled calls (on qualifying tiers), and email support." },
+];
+
+/* ─── REUSABLE COMPONENTS ─── */
 
 const BeforeAfterSlider: React.FC = () => {
   const [sliderPos, setSliderPos] = useState(50);
@@ -76,8 +219,8 @@ const BeforeAfterSlider: React.FC = () => {
 };
 
 /* Service preview cards for scrolling hero */
-const ServiceCard: React.FC<{ icon: React.ReactNode; label: string; children: React.ReactNode; tall?: boolean }> = ({ icon, label, children, tall }) => (
-  <div className={`rounded-2xl border border-border bg-card shadow-sm flex-shrink-0 overflow-hidden ${tall ? "" : ""}`}>
+const ServiceCard: React.FC<{ icon: React.ReactNode; label: string; children: React.ReactNode }> = ({ icon, label, children }) => (
+  <div className="rounded-2xl border border-border bg-card shadow-sm flex-shrink-0 overflow-hidden">
     <div className="flex items-center gap-2 px-4 pt-4 pb-2">
       <div className="w-5 h-5 text-muted-foreground">{icon}</div>
       <span className="font-heading font-semibold text-sm">{label}</span>
@@ -105,7 +248,6 @@ const InstaPostMock: React.FC<{ gradient: string; overlayText: string }> = ({ gr
   </div>
 );
 
-/* Column 1 cards */
 const col1Cards = [
   <ServiceCard key="ugc" icon={<Play className="w-5 h-5" />} label="UGC Videos">
     <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
@@ -137,7 +279,6 @@ const col1Cards = [
   </ServiceCard>,
 ];
 
-/* Column 2 cards */
 const col2Cards = [
   <ServiceCard key="growth" icon={<TrendingUp className="w-5 h-5" />} label="Growth Analytics">
     <div className="space-y-3">
@@ -211,6 +352,7 @@ const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reve
   </div>
 );
 
+/* Factory Proof Section */
 const contentTypes = ["Posts", "Videos", "UGC", "Static Ads", "Video Ads", "Emails", "Blogs", "Stories"];
 const industries = ["Featured", "Beauty Services", "Food & Beverages", "Health & Wellness", "Home Services", "Products", "Professional Services", "Real Estate", "SaaS & Tech", "Travel & Tourism", "Other"];
 
@@ -257,21 +399,18 @@ const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
       onTouchStart={() => { drag.current = true; }}
       onTouchMove={(e) => handleMove(e.touches[0].clientX)}
     >
-      {/* Before */}
       <div className="absolute inset-0 bg-muted flex items-center justify-center">
         <div className="text-center">
           <span className="text-5xl">{item.before}</span>
           <p className="text-xs text-muted-foreground mt-2 font-heading font-semibold">Before</p>
         </div>
       </div>
-      {/* After */}
       <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} flex items-center justify-center`} style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
         <div className="text-center">
           <span className="text-5xl">{item.after}</span>
           <p className="text-xs text-white/90 mt-2 font-heading font-semibold">After</p>
         </div>
       </div>
-      {/* Slider line */}
       <div className="absolute top-0 bottom-0 w-0.5 bg-white/80" style={{ left: `${pos}%`, transform: "translateX(-50%)" }}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white shadow-lg flex items-center justify-center cursor-col-resize">
           <span className="text-foreground text-[10px] font-bold">⟷</span>
@@ -283,15 +422,12 @@ const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
 
 const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => (
   <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-    {/* Header like Instagram */}
     <div className="flex items-center gap-2 px-3 py-2.5">
       <img src={ryzeLogo} alt="Ryze" className="w-7 h-7 rounded-full object-cover" />
       <span className="text-sm font-semibold font-heading">Ryze Studios</span>
       <span className="text-muted-foreground ml-auto text-sm">···</span>
     </div>
-    {/* Slider image */}
     <MiniSlider item={item} />
-    {/* Engagement bar */}
     <div className="px-3 py-2.5 flex items-center gap-3">
       <Heart className="w-5 h-5 text-destructive fill-destructive" />
       <MessageCircle className="w-5 h-5 text-muted-foreground" />
@@ -322,7 +458,6 @@ const FactoryProofSection: React.FC = () => {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Get your design & marketing content done without the hassle. Pay a fixed, monthly, and predictable rate, with no contracts or surprises.</p>
         </motion.div>
 
-        {/* Content type tabs */}
         <div className="flex justify-center mb-6">
           <div className="inline-flex bg-card border border-border rounded-full p-1 gap-0.5 flex-wrap justify-center">
             {contentTypes.map((type) => (
@@ -337,7 +472,6 @@ const FactoryProofSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Industry filter pills */}
         <div className="flex justify-center mb-10">
           <div className="flex gap-2 flex-wrap justify-center">
             {industries.map((ind) => (
@@ -352,7 +486,6 @@ const FactoryProofSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Gallery grid */}
         {visible.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {visible.map((item, i) => (
@@ -367,7 +500,6 @@ const FactoryProofSection: React.FC = () => {
           </div>
         )}
 
-        {/* Load more */}
         {filtered.length > 6 && !showAll && (
           <div className="flex justify-center mt-10">
             <Button onClick={() => setShowAll(true)} className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-heading px-8">
@@ -379,9 +511,34 @@ const FactoryProofSection: React.FC = () => {
     </section>
   );
 };
+
+/* ─── FAQ ITEM ─── */
+const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-border">
+      <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between py-5 text-left">
+        <span className="font-heading font-semibold text-base">{q}</span>
+        <Plus className={`w-5 h-5 text-muted-foreground transition-transform ${open ? "rotate-45" : ""}`} />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+            <p className="pb-5 text-muted-foreground">{a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+/* ─── MAIN PAGE ─── */
 const Index: React.FC = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
+  const [activeGridIndustry, setActiveGridIndustry] = useState("Beauty");
+  const [activeClient, setActiveClient] = useState("SpinSudz");
+  const [activeFeatureTab, setActiveFeatureTab] = useState("Services");
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -412,28 +569,16 @@ const Index: React.FC = () => {
         </div>
       </nav>
 
-      {/* Hero — Feedbird-style split layout */}
+      {/* Hero */}
       <section className="pt-28 pb-16 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left: text */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="pt-6"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="pt-6">
             <Badge className="mb-6 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               <Sparkles className="w-3 h-3 mr-1.5 text-primary" /> TOP 1% OF GLOBAL CREATIVE TALENT
             </Badge>
-
             <h1 className="text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6">
-              Expert AI creative
-              <br />
-              management from
-              <br />
-              only <span className="text-primary">$10/mo</span>
+              Expert AI creative<br />management from<br />only <span className="text-primary">$10/mo</span>
             </h1>
-
             <div className="space-y-3 mb-8">
               {[
                 { bold: "Premium", text: "content with your branding" },
@@ -444,37 +589,19 @@ const Index: React.FC = () => {
                   <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-primary-foreground" />
                   </div>
-                  <p className="text-base">
-                    <strong>{item.bold}</strong> {item.text}
-                  </p>
+                  <p className="text-base"><strong>{item.bold}</strong> {item.text}</p>
                 </div>
               ))}
             </div>
-
-            <Button
-              size="lg"
-              onClick={() => navigate("/dashboard")}
-              className="bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-base px-8 py-6 rounded-full mb-5"
-            >
+            <Button size="lg" onClick={() => navigate("/dashboard")} className="bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-base px-8 py-6 rounded-full mb-5">
               Schedule a free demo call <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-
-            <p className="text-sm text-muted-foreground">
-              Trusted by <strong className="text-foreground">2,400+</strong> brands  |  Cancel anytime
-            </p>
+            <p className="text-sm text-muted-foreground">Trusted by <strong className="text-foreground">2,400+</strong> brands  |  Cancel anytime</p>
           </motion.div>
 
-          {/* Right: scrolling social content columns */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="hidden lg:block relative"
-          >
-            {/* Fade masks top and bottom */}
+          <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="hidden lg:block relative">
             <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
             <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-
             <div className="grid grid-cols-2 gap-3">
               <ScrollingColumn cards={col1Cards} speed={30} />
               <ScrollingColumn cards={col2Cards} speed={35} reverse />
@@ -486,92 +613,467 @@ const Index: React.FC = () => {
       {/* Factory Proof */}
       <FactoryProofSection />
 
-      {/* Wall of Proof */}
+      {/* ═══════ SUBSCRIPTION TIERS ═══════ */}
       <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Wall of Proof</h2>
-            <p className="text-muted-foreground text-lg">Real results from real brands</p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {[
-              { name: "Sarah K.", role: "E-commerce Brand Owner", quote: "Ryze transformed our product imagery overnight." },
-              { name: "Marcus T.", role: "Dropship Entrepreneur", quote: "From $0 to $50k months with Ryze content." },
-              { name: "Jenna L.", role: "Fashion Label Founder", quote: "Studio-quality without the studio price." },
-            ].map((t, i) => (
-              <Card key={i} className="group hover:border-primary/30 transition-all duration-300 hover:cyan-glow-sm">
-                <CardContent className="p-6">
-                  <div className="aspect-video rounded-lg bg-muted mb-4 flex items-center justify-center group-hover:bg-primary/5 transition-colors">
-                    <Play className="w-10 h-10 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </div>
-                  <div className="flex items-center gap-1 mb-2">
-                    {[...Array(5)].map((_, j) => <Star key={j} className="w-4 h-4 fill-primary text-primary" />)}
-                  </div>
-                  <p className="text-foreground font-medium mb-2">"{t.quote}"</p>
-                  <p className="text-sm text-muted-foreground">{t.name} · {t.role}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { metric: "312%", label: "Avg. Engagement Lift" },
-              { metric: "48hr", label: "Avg. Turnaround" },
-              { metric: "2,400+", label: "Edits Delivered" },
-              { metric: "98%", label: "Client Satisfaction" },
-            ].map((r, i) => (
-              <div key={i} className="text-center p-6 rounded-xl bg-card border border-border">
-                <p className="text-3xl md:text-4xl font-heading font-black text-primary cyan-glow-text">{r.metric}</p>
-                <p className="text-sm text-muted-foreground mt-2">{r.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="py-20 px-6 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+            <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+              SUBSCRIPTION PLANS
+            </Badge>
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Choose Your Tier</h2>
-            <p className="text-muted-foreground text-lg">Scale from solo creator to full production house</p>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Scale from solo creator to full production house. No contracts, cancel anytime.</p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pricingTiers.map((tier, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-                <Card className={`relative h-full transition-all duration-300 hover:cyan-glow-sm ${tier.popular ? "border-primary cyan-glow-sm" : ""} ${tier.premium ? "border-primary/50 bg-gradient-to-br from-card to-primary/5" : ""}`}>
-                  {tier.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-primary text-primary-foreground font-heading">Most Popular</Badge></div>}
-                  {tier.premium && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground font-heading">Premium</Badge></div>}
-                  <CardHeader className="pb-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
-                      <tier.icon className="w-6 h-6 text-primary" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+            {subscriptionTiers.map((tier, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
+                <Card className={`relative h-full transition-all duration-300 hover:shadow-lg ${tier.popular ? "border-primary ring-2 ring-primary/20" : ""} ${tier.premium ? "border-primary/50 bg-gradient-to-b from-card to-primary/5" : ""}`}>
+                  {tier.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-primary text-primary-foreground font-heading text-[10px]">Most Popular</Badge></div>}
+                  {tier.premium && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-foreground text-background font-heading text-[10px]">Premium</Badge></div>}
+                  <CardHeader className="pb-3 pt-6">
+                    <CardTitle className="font-heading text-sm">{tier.name}</CardTitle>
+                    <div className="flex items-baseline gap-0.5 mt-1">
+                      <span className="text-3xl font-heading font-black">${tier.price}</span>
+                      <span className="text-muted-foreground text-xs">/mo</span>
                     </div>
-                    <CardTitle className="font-heading text-xl">{tier.name}</CardTitle>
-                    <div className="flex items-baseline gap-1 mt-2">
-                      <span className="text-4xl font-heading font-black text-primary">${tier.price}</span>
-                      <span className="text-muted-foreground">/mo</span>
-                    </div>
+                    <p className="text-xs text-muted-foreground mt-1">{tier.tagline}</p>
                   </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3 mb-6">
-                      {tier.deliverables.map((d, j) => (
+                  <CardContent className="pt-0">
+                    <div className="space-y-2 mb-5">
+                      {tier.features.map((f, j) => (
                         <div key={j} className="flex items-center gap-2">
-                          <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                          <span className="text-sm">{d}</span>
+                          {f.included ? (
+                            <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                          ) : (
+                            <X className="w-3.5 h-3.5 text-muted-foreground/40 flex-shrink-0" />
+                          )}
+                          <span className={`text-xs ${f.included ? "text-foreground" : "text-muted-foreground/50"}`}>{f.text}</span>
                         </div>
                       ))}
-                      <div className="flex items-center gap-2">
-                        <MessageSquare className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{tier.support}</span>
-                      </div>
                     </div>
-                    <Button className={`w-full font-heading ${tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`}>
-                      Get Started <ChevronRight className="w-4 h-4 ml-1" />
+                    <Button className={`w-full text-xs font-heading ${tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
+                      Get Started
                     </Button>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ ADD-ONS ═══════ */}
+      <section className="py-16 px-6 bg-muted/30">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-3">Add-Ons</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">Enhance any plan with individual services.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {addOns.map((addon, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
+                <Card className="h-full hover:shadow-md transition-shadow">
+                  <CardContent className="p-5">
+                    <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
+                      <addon.icon className="w-5 h-5 text-muted-foreground" />
+                    </div>
+                    <h3 className="font-heading font-semibold text-sm mb-1">{addon.name}</h3>
+                    <p className="text-muted-foreground text-xs mb-3">{addon.desc}</p>
+                    <div className="mt-auto">
+                      <span className="text-2xl font-heading font-black">{addon.price}</span>
+                      {addon.unit && <span className="text-xs text-muted-foreground ml-1">{addon.unit}</span>}
+                    </div>
+                    <Button variant="outline" className="w-full mt-3 text-xs font-heading" size="sm">
+                      Add to Plan <ArrowRight className="w-3 h-3 ml-1" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ COMPARISON TABLE ═══════ */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+            <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+              WHY RYZE
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Why We're Better</h2>
+            <p className="text-muted-foreground text-lg">See how Ryze Studios compares to the alternatives.</p>
+          </motion.div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className="text-left p-4 font-heading font-semibold text-sm text-muted-foreground border-b border-border">Feature</th>
+                  <th className="p-4 font-heading font-semibold text-sm text-muted-foreground border-b border-border text-center">Traditional Agencies</th>
+                  <th className="p-4 font-heading font-semibold text-sm text-muted-foreground border-b border-border text-center">AI SaaS Tools</th>
+                  <th className="p-4 font-heading font-semibold text-sm border-b border-primary bg-primary/5 text-primary text-center rounded-t-xl">Ryze Studios</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonData.map((row, i) => (
+                  <tr key={i} className="border-b border-border last:border-0">
+                    <td className="p-4 font-heading font-semibold text-sm">{row.feature}</td>
+                    <td className="p-4 text-sm text-muted-foreground text-center">{row.agency}</td>
+                    <td className="p-4 text-sm text-muted-foreground text-center">{row.ai}</td>
+                    <td className="p-4 text-sm font-semibold text-primary text-center bg-primary/5">{row.ryze}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ SOCIAL MEDIA GRID GALLERY ═══════ */}
+      <section className="py-20 px-6 bg-accent/30">
+        <div className="max-w-6xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Social Media Grid Gallery</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Explore our branded masterpieces, where every post fits into a larger, cohesive picture.</p>
+          </motion.div>
+
+          <div className="flex justify-center gap-3 mb-10 flex-wrap">
+            {gridIndustries.map((ind) => (
+              <button
+                key={ind}
+                onClick={() => setActiveGridIndustry(ind)}
+                className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${activeGridIndustry === ind ? "bg-card border-border shadow-sm text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+              >
+                {gridEmojis[ind]} {ind}
+              </button>
+            ))}
+          </div>
+
+          {/* 6-column IG grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1">
+            {Array.from({ length: 12 }).map((_, i) => {
+              const gradients = [
+                "from-rose-300 to-pink-500", "from-amber-300 to-orange-500", "from-emerald-300 to-teal-500",
+                "from-sky-300 to-blue-500", "from-violet-300 to-purple-500", "from-cyan-300 to-teal-400",
+                "from-fuchsia-300 to-pink-500", "from-yellow-300 to-amber-500", "from-lime-300 to-green-500",
+                "from-indigo-300 to-blue-600", "from-red-300 to-rose-500", "from-teal-300 to-cyan-500",
+              ];
+              const isCenter = i >= 1 && i <= 4 || i >= 7 && i <= 10;
+              return (
+                <motion.div key={`${activeGridIndustry}-${i}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.03 }}>
+                  {isCenter ? (
+                    <div className="rounded-xl overflow-hidden border border-border bg-card">
+                      <div className="flex items-center gap-1.5 px-2 py-1.5">
+                        <img src={ryzeLogo} alt="Ryze" className="w-4 h-4 rounded-full object-cover" />
+                        <span className="text-[10px] font-semibold font-heading">Ryze Studios</span>
+                        <span className="text-muted-foreground ml-auto text-[10px]">···</span>
+                      </div>
+                      <div className={`aspect-square bg-gradient-to-br ${gradients[i]} flex items-center justify-center`}>
+                        <span className="text-white text-3xl drop-shadow-lg">{gridEmojis[activeGridIndustry]}</span>
+                      </div>
+                      <div className="p-1.5 flex items-center gap-1.5">
+                        <Heart className="w-3 h-3 text-destructive fill-destructive" />
+                        <MessageCircle className="w-3 h-3 text-muted-foreground" />
+                        <Send className="w-3 h-3 text-muted-foreground" />
+                        <Bookmark className="w-3 h-3 text-muted-foreground ml-auto" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="aspect-square rounded-xl border-2 border-dashed border-border/50 bg-muted/30" />
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-8">
+            <Button className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-heading px-8">
+              Browse Template Store <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ BEFORE & AFTER ═══════ */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-6">
+            <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+              🎨 CLIENT WORK
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Before & After</h2>
+            <p className="text-muted-foreground text-lg">Explore our social media makeovers and brand transformations.</p>
+          </motion.div>
+
+          {/* Client tabs */}
+          <div className="flex gap-2 justify-center mb-10 flex-wrap">
+            {beforeAfterClients.map((client) => (
+              <button
+                key={client}
+                onClick={() => setActiveClient(client)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeClient === client ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground border border-border"}`}
+              >
+                {client}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* Before */}
+            <div>
+              <h3 className="font-heading font-bold text-2xl mb-4">Before</h3>
+              <div className="grid grid-cols-3 gap-2">
+                {Array.from({ length: 9 }).map((_, i) => (
+                  <div key={i} className="aspect-square rounded-lg bg-muted border border-border flex items-center justify-center">
+                    <span className="text-2xl opacity-50">📷</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 space-y-2">
+                {["Inconsistent visual identity across posts", "Basic stock-like content without personality", "Limited content variety and formats", "Missed engagement opportunities"].map((t, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <X className="w-4 h-4 text-destructive flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground">{t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* After */}
+            <div>
+              <h3 className="font-heading font-bold text-2xl mb-4 text-primary">After</h3>
+              <div className="grid grid-cols-3 gap-2">
+                {Array.from({ length: 9 }).map((_, i) => {
+                  const grads = ["from-rose-400 to-pink-500", "from-teal-400 to-cyan-500", "from-amber-400 to-orange-500", "from-violet-400 to-purple-500", "from-sky-400 to-blue-500", "from-emerald-400 to-teal-500", "from-fuchsia-400 to-pink-500", "from-indigo-400 to-blue-500", "from-yellow-400 to-amber-500"];
+                  return (
+                    <div key={i} className={`aspect-square rounded-lg bg-gradient-to-br ${grads[i]} flex items-center justify-center`}>
+                      <span className="text-2xl text-white drop-shadow">✨</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-4 space-y-2">
+                {["Strong brand consistency across all posts", "Custom designed content that stands out", "Diverse content mix to keep feeds fresh", "Strategic content that drives engagement"].map((t, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span className="text-sm">{t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ DEMO VIDEO ═══════ */}
+      <section className="py-20 px-6 bg-muted/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-3">Ryze Studios Demo Video</h2>
+            <p className="text-muted-foreground mb-8">Watch our 4-min demo video, then sign up or book a call to learn more.</p>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative aspect-video rounded-2xl overflow-hidden bg-muted border border-border mb-10 group cursor-pointer">
+            <div className="absolute inset-0 bg-gradient-to-br from-foreground/80 to-foreground/60 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-2xl bg-primary flex items-center justify-center cyan-glow group-hover:scale-110 transition-transform">
+                <Play className="w-8 h-8 text-primary-foreground ml-1" />
+              </div>
+              <span className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/80 font-heading text-sm bg-black/40 px-3 py-1 rounded-full">4:15</span>
+            </div>
+            <div className="absolute top-4 right-4">
+              <div className="w-10 h-10 rounded-full bg-foreground/80 flex items-center justify-center">
+                <Volume2 className="w-5 h-5 text-background" />
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
+                  <CalendarDays className="w-5 h-5 text-muted-foreground" />
+                </div>
+                <h3 className="font-heading font-bold mb-1">Schedule a call</h3>
+                <p className="text-sm text-muted-foreground mb-4">Book a 20-min call with someone from our team and get any of your questions answered.</p>
+                <Button className="w-full bg-foreground text-background hover:bg-foreground/90 font-heading">Book a Call</Button>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
+                  <Zap className="w-5 h-5 text-muted-foreground" />
+                </div>
+                <h3 className="font-heading font-bold mb-1">Get started now</h3>
+                <p className="text-sm text-muted-foreground mb-4">Select any of our services and start using Ryze Studios right away.</p>
+                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading">Start Using Ryze Now</Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ SEAMLESS EXPERIENCE ═══════ */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
+            <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+              <LayoutGrid className="w-3 h-3 mr-1.5 text-primary" /> FEATURES
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Seamless experience</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Ryze Studios is a flexible subscription-based service enabled by technology to deliver compelling creative at scale.</p>
+          </motion.div>
+
+          <div className="flex justify-center gap-2 mb-10 flex-wrap">
+            {featureTabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveFeatureTab(tab)}
+                className={`px-5 py-2.5 rounded-full text-sm font-heading font-medium transition-all ${activeFeatureTab === tab ? "bg-foreground text-background" : "border border-border text-muted-foreground hover:text-foreground"}`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          <motion.div key={activeFeatureTab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl bg-muted/50 border border-border p-10 md:p-14">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+              <div>
+                <h3 className="text-2xl md:text-3xl font-heading font-bold mb-4">{featureContent[activeFeatureTab].title}</h3>
+                <p className="text-muted-foreground text-lg">{featureContent[activeFeatureTab].desc}</p>
+              </div>
+              <div className="aspect-[4/3] rounded-2xl bg-card border border-border flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <LayoutGrid className="w-10 h-10 text-primary" />
+                  </div>
+                  <p className="text-sm text-muted-foreground font-heading">{activeFeatureTab} Preview</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════ THE BETTER WAY ═══════ */}
+      <section className="py-20 px-6 bg-muted/30">
+        <div className="max-w-6xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+            <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+              ⚡ CREATIVE SUCCESS
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">The better way</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Think about all the pains of dealing with an agency or freelancers. Now, forget them. Working with <strong className="text-foreground">2,400+</strong> businesses, we've perfected the recipe for getting creative done.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            {/* Top 1% talent */}
+            <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+              <CardContent className="p-8">
+                <Badge className="mb-3 bg-primary/10 text-primary border-0 text-[10px] font-heading">🌟 FULLY MANAGED CREATIVE TALENT</Badge>
+                <h3 className="text-2xl font-heading font-bold mb-4">Top 1% of global creative talent</h3>
+                <div className="flex gap-3 flex-wrap">
+                  {["Chris Meadow", "Carla Rodriguez", "Henry Tom", "Anna Debora"].map((name, i) => (
+                    <div key={i} className="flex items-center gap-2 bg-card rounded-full px-3 py-1.5 border border-border">
+                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                        <span className="text-[10px] font-bold text-primary">{name[0]}</span>
+                      </div>
+                      <span className="text-xs font-medium">{name}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Say goodbye to */}
+            <Card>
+              <CardContent className="p-8">
+                <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">👋 THE OLD WAY</Badge>
+                <h3 className="text-2xl font-heading font-bold mb-4">Say goodbye to</h3>
+                <div className="grid grid-cols-2 gap-2">
+                  {["Searching for freelancers", "Slow turnaround times", "Expensive agencies", "Dozens of interviews", "Getting 100 applications", "Still having no one to hire"].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm">
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${i === 5 ? "bg-destructive/10" : "bg-muted"}`}>
+                        <X className={`w-3 h-3 ${i === 5 ? "text-destructive" : "text-muted-foreground"}`} />
+                      </div>
+                      <span className="text-muted-foreground text-xs">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Collaboration */}
+            <Card>
+              <CardContent className="p-8">
+                <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">💬 COLLABORATION</Badge>
+                <h3 className="text-2xl font-heading font-bold mb-4">Tech built for easy collaboration</h3>
+                <div className="space-y-3">
+                  <div className="bg-muted rounded-xl p-3">
+                    <p className="text-xs font-semibold mb-1">Chat</p>
+                    <div className="space-y-2">
+                      <div className="bg-card rounded-lg p-2 text-xs"><strong>Martin Lawrence</strong> · If you need any help, I'm your Account Manager</div>
+                      <div className="bg-primary/10 rounded-lg p-2 text-xs"><strong>Anna Carlton</strong> · Thanks Martin. I'll reach out soon about billing.</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Subscription model */}
+            <Card>
+              <CardContent className="p-8">
+                <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">💳 SUBSCRIPTION BASED</Badge>
+                <h3 className="text-2xl font-heading font-bold mb-4">Flexible subscription model</h3>
+                <div className="flex flex-wrap gap-2">
+                  {["Cancel anytime", "No contracts", "Pause anytime", "Upgrade/Downgrade", "One-time monthly payment"].map((item, i) => (
+                    <Badge key={i} variant="secondary" className="text-xs font-heading">{item}</Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ FAQ ═══════ */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+            <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+              ❓ QUESTIONS & ANSWERS
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Frequently asked questions</h2>
+            <p className="text-muted-foreground">If you have any questions that aren't listed below, feel free to schedule a demo to speak with someone from our team.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-10">
+            <div>
+              {faqItems.map((item, i) => (
+                <FaqItem key={i} q={item.q} a={item.a} />
+              ))}
+            </div>
+            <div className="hidden md:block">
+              <Card className="sticky top-24 border-primary/20">
+                <CardContent className="p-6 text-center">
+                  <div className="flex justify-center gap-2 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Plus className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
+                      <Users className="w-5 h-5 text-muted-foreground" />
+                    </div>
+                  </div>
+                  <h3 className="font-heading font-bold text-lg mb-2">Get started with a free strategy call!</h3>
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading mt-2">
+                    Schedule Demo
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
