@@ -771,7 +771,7 @@ const Index: React.FC = () => {
                       <span className="text-2xl font-heading font-black">{addon.price}</span>
                       {addon.unit && <span className="text-xs text-muted-foreground">{addon.unit}</span>}
                     </div>
-                    <Button variant="outline" className="w-full text-xs font-heading border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors" size="sm">
+                    <Button onClick={() => handleAddOnClick(addon)} variant="outline" className="w-full text-xs font-heading border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors" size="sm">
                       Add to Plan
                     </Button>
                   </CardContent>
@@ -1306,6 +1306,8 @@ const Index: React.FC = () => {
         period={checkoutTier?.price ? "/mo" : ""}
         features={checkoutTier?.features.filter(f => f.included).map(f => f.text)}
         suggestedAddOn={checkoutTier ? suggestedAddOns[checkoutTier.name] : undefined}
+        preSelectedAddOn={pendingAddOn || undefined}
+        preSelectedAddOnQty={pendingAddOn ? 1 : 0}
       />
       <CalendlyModal
         open={!!calendlyTier}
