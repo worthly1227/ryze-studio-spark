@@ -316,15 +316,7 @@ const Index: React.FC = () => {
       </section>
 
       {/* Factory Proof */}
-      <section className="py-20 px-6 bg-muted/30">
-        <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Factory Proof</h2>
-            <p className="text-muted-foreground text-lg">See the transformation. Drag to compare.</p>
-          </motion.div>
-          <BeforeAfterSlider />
-        </div>
-      </section>
+      <FactoryProofSection />
 
       {/* Wall of Proof */}
       <section className="py-20 px-6">
