@@ -244,10 +244,10 @@ const SettingsPage: React.FC = () => {
             <>
               <DialogHeader>
                 <DialogTitle className="font-heading flex items-center gap-2">
-                  <Gift className="w-5 h-5 text-primary" /> Wait — here's a gift!
-                </DialogTitle>
-                <DialogDescription className="space-y-2">
-                  <span className="block">We'd hate to see you leave. Stay on your current plan and get <strong className="text-primary">10 free AI photo credits</strong> on us — no strings attached.</span>
+                   <Gift className="w-5 h-5 text-primary" /> Here's a bonus before you fully decide.
+                 </DialogTitle>
+                 <DialogDescription className="space-y-2">
+                   <span className="block">Keep your current plan and receive <strong className="text-primary">10 complimentary AI product images</strong>.</span>
                 </DialogDescription>
               </DialogHeader>
               <div className="p-4 bg-primary/10 rounded-xl border border-primary/20 text-center my-2">
