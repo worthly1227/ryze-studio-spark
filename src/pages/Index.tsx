@@ -686,16 +686,20 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ ADD-ONS ═══════ */}
-      <section className="py-16 px-6 bg-muted/30">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 bg-muted/30 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-3">Add-Ons</h2>
             <p className="text-muted-foreground max-w-xl mx-auto">Enhance any plan with individual services.</p>
           </motion.div>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {addOns.map((addon, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
+        <div className="relative">
+          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
+          <div className="flex gap-5 animate-scroll-up" style={{ animationName: 'scroll-left', animationDuration: '30s', animationTimingFunction: 'linear', animationIterationCount: 'infinite' }}>
+            {[...addOns, ...addOns, ...addOns].map((addon, i) => (
+              <div key={i} className="flex-shrink-0 w-72">
                 <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-0 shadow-md overflow-hidden group">
                   <div className={`h-1.5 bg-gradient-to-r ${addon.color}`} />
                   <CardContent className="p-5 flex flex-col h-full">
@@ -713,7 +717,7 @@ const Index: React.FC = () => {
                     </Button>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
