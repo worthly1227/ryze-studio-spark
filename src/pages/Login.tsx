@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, Eye, EyeOff, Mail } from "lucide-react";
+import { ArrowLeft, ArrowRight, Eye, EyeOff, Mail } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 
@@ -51,7 +51,10 @@ const Login: React.FC = () => {
       </div>
 
       {/* Right - form */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-12">
+      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 relative">
+        <button onClick={() => navigate(-1)} className="absolute top-6 left-6 flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors font-heading">
+          <ArrowLeft className="w-4 h-4" /> Back
+        </button>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="w-full max-w-sm">
           <div className="lg:hidden flex items-center gap-2 mb-8">
             <img src={ryzeLogo} alt="Ryze Studios" className="w-9 h-9 rounded-lg object-cover" />
