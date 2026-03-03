@@ -351,7 +351,7 @@ const col2Cards = [
 ];
 
 const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reverse?: boolean }> = ({ cards, speed = 30, reverse = false }) => (
-  <div className="relative overflow-hidden h-[600px]">
+  <div className="relative overflow-hidden h-[720px]">
     <div
       className={`flex flex-col gap-3 ${reverse ? "animate-scroll-down" : "animate-scroll-up"}`}
       style={{ animationDuration: `${speed}s` }}
@@ -612,9 +612,9 @@ const Index: React.FC = () => {
             <p className="text-sm text-muted-foreground">Trusted by <strong className="text-foreground">1,800+</strong> growing brands  |  No contracts, cancel anytime</p>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="hidden lg:block relative">
-            <div className="absolute -inset-20 bg-gradient-to-b from-background via-transparent to-background z-10 pointer-events-none" />
-            <div className="absolute -inset-20 bg-gradient-to-r from-background via-transparent to-background z-10 pointer-events-none" />
+          <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="hidden lg:block relative overflow-hidden rounded-[2rem]">
+            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background via-background/70 to-transparent z-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/70 to-transparent z-10 pointer-events-none" />
             <div className="transform -rotate-12 origin-center scale-110">
               <div className="grid grid-cols-2 gap-3">
                 <ScrollingColumn cards={col1Cards} speed={30} />
