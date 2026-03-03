@@ -799,7 +799,7 @@ const Index: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
             {/* Cost comparison */}
-            <Card className="rounded-3xl organic-shadow bg-gradient-to-br from-card to-accent/30 border-border">
+            <Card className="rounded-3xl organic-shadow card-hover bg-gradient-to-br from-card to-accent/20 border-border/60">
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-primary/10 text-primary border-0 text-[10px] font-heading rounded-full">📉 COST COMPARISON</Badge>
                 <h3 className="text-2xl font-heading font-bold mb-6">Save up to 95%</h3>
@@ -825,7 +825,7 @@ const Index: React.FC = () => {
             </Card>
 
             {/* Turnaround */}
-            <Card className="rounded-3xl organic-shadow">
+            <Card className="rounded-3xl organic-shadow card-hover border-border/60">
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-accent text-accent-foreground border-0 text-[10px] font-heading rounded-full">⏱️ TURNAROUND TIME</Badge>
                 <h3 className="text-2xl font-heading font-bold mb-6">Lightning-fast delivery</h3>
@@ -850,7 +850,7 @@ const Index: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
             {/* Quality ring */}
-            <Card className="rounded-3xl organic-shadow">
+            <Card className="rounded-3xl organic-shadow card-hover border-border/60">
               <CardContent className="p-8 text-center">
                 <Badge className="mb-3 bg-accent text-accent-foreground border-0 text-[10px] font-heading rounded-full">🎯 QUALITY</Badge>
                 <div className="relative w-28 h-28 mx-auto my-4">
@@ -868,7 +868,7 @@ const Index: React.FC = () => {
             </Card>
 
             {/* Collaboration */}
-            <Card className="rounded-3xl organic-shadow">
+            <Card className="rounded-3xl organic-shadow card-hover border-border/60">
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-accent text-accent-foreground border-0 text-[10px] font-heading rounded-full">💬 COLLABORATION</Badge>
                 <h3 className="text-lg font-heading font-bold mb-4">Built for teams</h3>
@@ -880,7 +880,7 @@ const Index: React.FC = () => {
             </Card>
 
             {/* Output growth */}
-            <Card className="rounded-3xl organic-shadow">
+            <Card className="rounded-3xl organic-shadow card-hover border-border/60">
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-accent text-accent-foreground border-0 text-[10px] font-heading rounded-full">📈 GROWTH</Badge>
                 <h3 className="text-lg font-heading font-bold mb-4">Content output</h3>
@@ -898,7 +898,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <Card className="rounded-3xl organic-shadow">
+            <Card className="rounded-3xl organic-shadow card-hover border-border/60">
               <CardContent className="p-8">
                 <h3 className="text-xl font-heading font-bold mb-4">Say goodbye to</h3>
                 <div className="grid grid-cols-2 gap-2">
@@ -914,7 +914,7 @@ const Index: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="rounded-3xl organic-shadow">
+            <Card className="rounded-3xl organic-shadow card-hover border-border/60">
               <CardContent className="p-8">
                 <h3 className="text-xl font-heading font-bold mb-4">Flexible & simple</h3>
                 <div className="flex flex-wrap gap-2">
