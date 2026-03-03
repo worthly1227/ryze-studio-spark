@@ -610,12 +610,14 @@ const Plans: React.FC = () => {
       {/* ─── MODALS ─── */}
       <CheckoutModal
         open={!!checkoutPlan}
-        onOpenChange={(open) => !open && setCheckoutPlan(null)}
+        onOpenChange={(open) => { if (!open) { setCheckoutPlan(null); setPendingAddOn(null); } }}
         planName={checkoutPlan?.name || ""}
         price={checkoutPlan?.price || 0}
         period={checkoutPlan?.period || ""}
         features={checkoutPlan?.features.filter(f => f.included).map(f => f.text)}
         suggestedAddOn={checkoutPlan ? suggestedAddOns[checkoutPlan.name] : undefined}
+        preSelectedAddOn={pendingAddOn || undefined}
+        preSelectedAddOnQty={pendingAddOn ? 1 : 0}
       />
       <CalendlyModal
         open={!!calendlyPlan}
