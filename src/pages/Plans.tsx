@@ -6,13 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import {
   Check, X, ArrowRight, Sparkles, Zap, Shield, Users, Calendar, Crown,
   Rocket, Camera, Play, Megaphone, MessageSquare, Mail, Headphones,
-  Video, Hash, ChevronDown, ChevronUp, HelpCircle, Bot, Clock
+  Video, Hash, ChevronDown, ChevronUp, HelpCircle, Bot, Clock, Plus, Minus
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 import CheckoutModal from "@/components/CheckoutModal";
 import CalendlyModal from "@/components/CalendlyModal";
+import { useToast } from "@/hooks/use-toast";
 
 /* ─── PLAN DATA WITH SUPPORT TIERS ─── */
 const plans = [
@@ -201,11 +202,13 @@ const suggestedAddOns: Record<string, { name: string; price: number; description
 
 const Plans: React.FC = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [expandedPlan, setExpandedPlan] = useState<string | null>(null);
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
   const [checkoutPlan, setCheckoutPlan] = useState<typeof plans[0] | null>(null);
   const [calendlyPlan, setCalendlyPlan] = useState<typeof plans[0] | null>(null);
   const [showCheckoutAfterBooking, setShowCheckoutAfterBooking] = useState(false);
+  const [pendingAddOn, setPendingAddOn] = useState<{ name: string; price: number; description: string } | null>(null);
 
   const handleGetStarted = (plan: typeof plans[0]) => {
     if (plan.canContact) {
@@ -213,6 +216,16 @@ const Plans: React.FC = () => {
     } else {
       setCheckoutPlan(plan);
     }
+  };
+
+  const handleAddOnClick = (addon: typeof addOns[0]) => {
+    const numericPrice = parseInt(addon.price.replace(/[^0-9]/g, ""));
+    setPendingAddOn({ name: addon.name, price: numericPrice, description: addon.desc });
+    toast({
+      title: "✅ " + addon.name + " added!",
+      description: "Now select a plan below to continue to checkout.",
+    });
+    document.getElementById("plans-grid")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleCalendlyBooked = () => {
