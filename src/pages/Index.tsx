@@ -364,22 +364,22 @@ const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reve
 );
 
 /* Factory Proof Section */
-const contentTypes = ["Posts", "Videos", "UGC", "Static Ads", "Video Ads", "Emails", "Blogs", "Stories"];
-const industries = ["Featured", "Skincare & Beauty", "Food & Beverages", "Health & Supplements", "Pet Products", "Home & Lifestyle", "Fashion & Accessories", "Fitness & Wellness", "Coffee & Tea", "Handmade & Artisan"];
+const contentTypes = ["AI Visuals", "Social Content", "UGC", "Brand Strategy", "Product Photos", "Ad Creatives", "Content Calendars", "Brand Guides"];
+const industries = ["Featured", "E-Commerce", "DTC Brands", "Startups", "Small Business", "Personal Brands", "Agencies", "SaaS", "Local Business", "Creators"];
 
 const proofItems = [
-  { before: "📦", after: "✨", category: "Posts", industry: "Skincare & Beauty", gradient: "from-rose-400 to-pink-600" },
-  { before: "📷", after: "🎨", category: "Posts", industry: "Food & Beverages", gradient: "from-amber-400 to-orange-500" },
-  { before: "🏷️", after: "💎", category: "Posts", industry: "Fashion & Accessories", gradient: "from-emerald-400 to-teal-600" },
-  { before: "🎥", after: "🎬", category: "Videos", industry: "Coffee & Tea", gradient: "from-sky-400 to-blue-600" },
-  { before: "📸", after: "🌟", category: "UGC", industry: "Health & Supplements", gradient: "from-violet-400 to-purple-600" },
-  { before: "📄", after: "🔥", category: "Static Ads", industry: "Pet Products", gradient: "from-cyan-400 to-teal-500" },
-  { before: "🎞️", after: "⚡", category: "Video Ads", industry: "Home & Lifestyle", gradient: "from-indigo-400 to-blue-700" },
-  { before: "✉️", after: "💌", category: "Emails", industry: "Handmade & Artisan", gradient: "from-rose-300 to-red-500" },
-  { before: "📝", after: "📖", category: "Blogs", industry: "Fitness & Wellness", gradient: "from-lime-400 to-green-600" },
-  { before: "📱", after: "🚀", category: "Stories", industry: "Skincare & Beauty", gradient: "from-fuchsia-400 to-pink-600" },
-  { before: "🖼️", after: "🎯", category: "Posts", industry: "Featured", gradient: "from-yellow-400 to-amber-600" },
-  { before: "🏠", after: "🏡", category: "Static Ads", industry: "Home & Lifestyle", gradient: "from-slate-400 to-gray-600" },
+  { before: "📦", after: "✨", category: "AI Visuals", industry: "E-Commerce", gradient: "from-rose-400 to-pink-600" },
+  { before: "📷", after: "🎨", category: "Social Content", industry: "DTC Brands", gradient: "from-amber-400 to-orange-500" },
+  { before: "🏷️", after: "💎", category: "Brand Strategy", industry: "Startups", gradient: "from-emerald-400 to-teal-600" },
+  { before: "🎥", after: "🎬", category: "UGC", industry: "Personal Brands", gradient: "from-sky-400 to-blue-600" },
+  { before: "📸", after: "🌟", category: "Product Photos", industry: "Small Business", gradient: "from-violet-400 to-purple-600" },
+  { before: "📄", after: "🔥", category: "Ad Creatives", industry: "E-Commerce", gradient: "from-cyan-400 to-teal-500" },
+  { before: "🎞️", after: "⚡", category: "Content Calendars", industry: "Agencies", gradient: "from-indigo-400 to-blue-700" },
+  { before: "✉️", after: "💌", category: "Brand Guides", industry: "SaaS", gradient: "from-rose-300 to-red-500" },
+  { before: "📝", after: "📖", category: "Social Content", industry: "Creators", gradient: "from-lime-400 to-green-600" },
+  { before: "📱", after: "🚀", category: "AI Visuals", industry: "Featured", gradient: "from-fuchsia-400 to-pink-600" },
+  { before: "🖼️", after: "🎯", category: "Product Photos", industry: "Local Business", gradient: "from-yellow-400 to-amber-600" },
+  { before: "🏠", after: "🏡", category: "Ad Creatives", industry: "DTC Brands", gradient: "from-slate-400 to-gray-600" },
 ];
 
 const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
@@ -547,7 +547,7 @@ const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
 const Index: React.FC = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
-  const [activeGridIndustry, setActiveGridIndustry] = useState("Skincare");
+  const [activeGridIndustry, setActiveGridIndustry] = useState("E-Commerce");
   const [activeClient, setActiveClient] = useState("SpinSudz");
   const [activeFeatureTab, setActiveFeatureTab] = useState("Services");
 
