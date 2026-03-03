@@ -1045,7 +1045,7 @@ const Index: React.FC = () => {
               <Rocket className="w-7 h-7 sm:w-8 sm:h-8 mb-3 sm:mb-4 text-primary" />
               <h3 className="font-heading font-bold text-lg sm:text-xl mb-2">Ready to go? Pick a plan</h3>
               <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">Choose your package and start receiving polished, on-brand content within days.</p>
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-xl py-4 sm:py-5 text-sm">
+              <Button onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-xl py-4 sm:py-5 text-sm">
                 Browse Plans <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
