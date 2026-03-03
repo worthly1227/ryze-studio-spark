@@ -763,8 +763,8 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ SOCIAL MEDIA GRID GALLERY ═══════ */}
-      <section className="py-20 bg-accent/30">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-20 px-6 bg-accent/30">
+        <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Ryze Studio's Design Vault</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Everything your brand needs in one place, including social templates, investor decks, portfolio websites, single product stores, and seasonal campaigns.</p>
@@ -781,10 +781,9 @@ const Index: React.FC = () => {
               </button>
             ))}
           </div>
-        </div>
 
-          {/* 6-column IG grid — full width */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 px-1">
+          {/* 4-column IG grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1">
             {Array.from({ length: 12 }).map((_, i) => {
               const gradients = [
                 "from-rose-300 to-pink-500", "from-amber-300 to-orange-500", "from-emerald-300 to-teal-500",
@@ -815,11 +814,12 @@ const Index: React.FC = () => {
             })}
           </div>
 
-          <div className="text-center mt-8 px-6">
+          <div className="text-center mt-8">
             <Button className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-heading px-8">
               Browse Template Store <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
+        </div>
       </section>
 
       {/* ═══════ BEFORE & AFTER ═══════ */}
