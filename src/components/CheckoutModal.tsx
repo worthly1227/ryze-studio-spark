@@ -101,6 +101,15 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 </div>
                 <span className="font-heading font-bold text-sm">${price.toLocaleString()}</span>
               </div>
+              {addOnSelected && suggestedAddOn && (
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="font-heading font-semibold text-sm">{suggestedAddOn.name}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Add-on service</p>
+                  </div>
+                  <span className="font-heading font-bold text-sm">${suggestedAddOn.price.toLocaleString()}</span>
+                </div>
+              )}
             </div>
 
             <Separator className="my-4" />
@@ -145,6 +154,35 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     </div>
                   ))}
                 </div>
+              </>
+            )}
+
+            {suggestedAddOn && (
+              <>
+                <Separator className="my-4" />
+                <p className="text-[10px] text-muted-foreground font-heading mb-2">RECOMMENDED ADD-ON</p>
+                <button
+                  type="button"
+                  onClick={() => setAddOnSelected(!addOnSelected)}
+                  className={`w-full text-left rounded-lg border p-3 transition-all ${
+                    addOnSelected
+                      ? "border-primary bg-primary/5 ring-1 ring-primary"
+                      : "border-border hover:border-primary/40"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-heading font-semibold text-xs">{suggestedAddOn.name}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-heading font-bold text-xs">${suggestedAddOn.price}</span>
+                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
+                        addOnSelected ? "border-primary bg-primary" : "border-muted-foreground/30"
+                      }`}>
+                        {addOnSelected && <Check className="w-2.5 h-2.5 text-primary-foreground" />}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground leading-relaxed">{suggestedAddOn.description}</p>
+                </button>
               </>
             )}
           </div>
@@ -230,7 +268,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 ) : (
                   <span className="flex items-center gap-2">
                     <Lock className="w-3.5 h-3.5" />
-                    Pay ${price.toLocaleString()}
+                    Pay ${totalPrice.toLocaleString()}
                   </span>
                 )}
               </Button>
