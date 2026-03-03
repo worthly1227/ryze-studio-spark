@@ -134,7 +134,7 @@ const addOns = [
   { name: "30-Second UGC Video", price: "$99", unit: "", desc: "Professionally produced social media-ready video featuring vetted creators.", icon: Play, color: "from-violet-400 to-purple-500" },
   { name: "Short Video (<20 sec)", price: "$59", unit: "", desc: "Quick, attention-grabbing clips optimized for Reels, TikTok, and social posts.", icon: Rocket, color: "from-amber-400 to-orange-500" },
   { name: "Strategic Consultancy", price: "$224", unit: "", desc: "A 45-minute one-on-one session to guide your brand strategy and growth planning.", icon: Megaphone, color: "from-emerald-400 to-teal-500" },
-  { name: "Max Business Launch", price: "$2499", unit: "each", desc: "We build your US brand, stock it with products, and give you the keys in 24 hours.", icon: PenTool, color: "from-rose-400 to-pink-500" },
+  { name: "Max Business Launch", price: "$2500", unit: "each", desc: "We build your US brand, stock it with products, and give you the keys in 24 hours.", icon: Rocket, color: "from-rose-400 to-pink-500" },
 ];
 
 const comparisonData = [
