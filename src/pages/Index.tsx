@@ -75,29 +75,28 @@ const BeforeAfterSlider: React.FC = () => {
   );
 };
 
-const scrollCards = [
-  { color: "bg-gradient-to-br from-amber-400 to-orange-500", title: "ANOTHER WAY TO GROW", hasVideo: true },
-  { color: "bg-gradient-to-br from-slate-600 to-slate-800", title: "RISE ABOVE THE REST" },
-  { color: "bg-gradient-to-br from-rose-400 to-red-500", title: "GAME, YOUR STORY" },
-  { color: "bg-gradient-to-br from-violet-500 to-purple-700", title: "BUILD YOUR EMPIRE" },
-  { color: "bg-gradient-to-br from-emerald-400 to-teal-600", title: "CREATE & INSPIRE", hasVideo: true },
-  { color: "bg-gradient-to-br from-cyan-400 to-blue-600", title: "LEVEL UP TODAY" },
-  { color: "bg-gradient-to-br from-pink-400 to-rose-600", title: "STAND OUT NOW" },
-  { color: "bg-gradient-to-br from-yellow-400 to-amber-600", title: "SHINE BRIGHTER", hasVideo: true },
-  { color: "bg-gradient-to-br from-indigo-400 to-blue-800", title: "DREAM BIGGER" },
-];
-
-const SocialPostCard: React.FC<{ color: string; title: string; hasVideo?: boolean }> = ({ color, title, hasVideo }) => (
-  <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm flex-shrink-0">
-    <div className={`aspect-[4/5] ${color} flex items-center justify-center relative`}>
-      {hasVideo && (
-        <div className="w-12 h-12 rounded-full bg-background/80 backdrop-blur flex items-center justify-center">
-          <Play className="w-5 h-5 text-foreground ml-0.5" />
-        </div>
-      )}
-      <p className="absolute bottom-3 left-3 right-3 text-white font-heading font-bold text-sm leading-tight drop-shadow-lg">{title}</p>
+/* Service preview cards for scrolling hero */
+const ServiceCard: React.FC<{ icon: React.ReactNode; label: string; children: React.ReactNode; tall?: boolean }> = ({ icon, label, children, tall }) => (
+  <div className={`rounded-2xl border border-border bg-card shadow-sm flex-shrink-0 overflow-hidden ${tall ? "" : ""}`}>
+    <div className="flex items-center gap-2 px-4 pt-4 pb-2">
+      <div className="w-5 h-5 text-muted-foreground">{icon}</div>
+      <span className="font-heading font-semibold text-sm">{label}</span>
     </div>
-    <div className="p-2.5 flex items-center gap-2.5">
+    <div className="px-4 pb-4">{children}</div>
+  </div>
+);
+
+const InstaPostMock: React.FC<{ gradient: string; overlayText: string }> = ({ gradient, overlayText }) => (
+  <div className="rounded-xl overflow-hidden border border-border">
+    <div className="flex items-center gap-2 px-3 py-2 bg-card">
+      <div className="w-6 h-6 rounded-full bg-muted border border-border" />
+      <span className="text-xs font-medium">Business</span>
+      <span className="text-xs text-muted-foreground ml-auto">···</span>
+    </div>
+    <div className={`aspect-square ${gradient} flex items-center justify-center relative`}>
+      <p className="text-white font-heading font-bold text-sm text-center px-4 drop-shadow-lg">{overlayText}</p>
+    </div>
+    <div className="p-2.5 flex items-center gap-2.5 bg-card">
       <Heart className="w-4 h-4 text-destructive fill-destructive" />
       <MessageCircle className="w-4 h-4 text-muted-foreground" />
       <Send className="w-4 h-4 text-muted-foreground" />
@@ -106,14 +105,107 @@ const SocialPostCard: React.FC<{ color: string; title: string; hasVideo?: boolea
   </div>
 );
 
-const ScrollingColumn: React.FC<{ cards: typeof scrollCards; speed?: number; reverse?: boolean }> = ({ cards, speed = 25, reverse = false }) => (
-  <div className="relative overflow-hidden h-[540px]">
+/* Column 1 cards */
+const col1Cards = [
+  <ServiceCard key="ugc" icon={<Play className="w-5 h-5" />} label="UGC Videos">
+    <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+      <div className="w-12 h-12 rounded-full bg-background/80 backdrop-blur flex items-center justify-center">
+        <Play className="w-5 h-5 text-foreground ml-0.5" />
+      </div>
+    </div>
+  </ServiceCard>,
+  <ServiceCard key="social" icon={<Heart className="w-5 h-5" />} label="Social Media Posts">
+    <InstaPostMock gradient="bg-gradient-to-br from-teal-400 to-cyan-600" overlayText="RISE ABOVE THE REST" />
+  </ServiceCard>,
+  <ServiceCard key="stories" icon={<Bookmark className="w-5 h-5" />} label="Instagram Stories">
+    <div className="grid grid-cols-2 gap-2">
+      <div className="aspect-[9/16] rounded-xl bg-gradient-to-b from-emerald-400 to-teal-600 flex items-end p-2">
+        <div className="flex items-center gap-1"><div className="w-4 h-4 rounded-full bg-background/50 border border-primary" /><span className="text-[9px] text-white font-medium">3s ago</span></div>
+      </div>
+      <div className="aspect-[9/16] rounded-xl bg-gradient-to-b from-cyan-500 to-blue-600 flex items-end p-2">
+        <div className="flex items-center gap-1"><div className="w-4 h-4 rounded-full bg-background/50 border border-primary" /><span className="text-[9px] text-white font-medium">3s ago</span></div>
+      </div>
+    </div>
+  </ServiceCard>,
+  <ServiceCard key="ads" icon={<TrendingUp className="w-5 h-5" />} label="AI Ad Creatives">
+    <InstaPostMock gradient="bg-gradient-to-br from-violet-500 to-purple-700" overlayText="GAME, YOUR STORY" />
+  </ServiceCard>,
+  <ServiceCard key="photo2" icon={<Image className="w-5 h-5" />} label="Product Photography">
+    <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center">
+      <span className="text-4xl">📸</span>
+    </div>
+  </ServiceCard>,
+];
+
+/* Column 2 cards */
+const col2Cards = [
+  <ServiceCard key="growth" icon={<TrendingUp className="w-5 h-5" />} label="Growth Analytics">
+    <div className="space-y-3">
+      <div>
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-xs text-muted-foreground">Followers</span>
+          <BarChart3 className="w-3.5 h-3.5 text-primary" />
+        </div>
+        <p className="text-xl font-heading font-black">8.4K <span className="text-xs text-primary font-medium">+128%</span></p>
+        <div className="h-12 mt-1.5 flex items-end gap-0.5">
+          {[30,45,35,55,50,70,65,80,90,85,95,100].map((h,i) => (
+            <div key={i} className="flex-1 bg-primary/20 rounded-t" style={{ height: `${h}%` }}>
+              <div className="w-full bg-primary rounded-t" style={{ height: `${h * 0.6}%` }} />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-xs text-muted-foreground">Reach</span>
+          <BarChart3 className="w-3.5 h-3.5 text-primary" />
+        </div>
+        <p className="text-xl font-heading font-black">129K <span className="text-xs text-primary font-medium">+348%</span></p>
+      </div>
+    </div>
+  </ServiceCard>,
+  <ServiceCard key="email" icon={<MessageSquare className="w-5 h-5" />} label="Email Design">
+    <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-rose-400 to-pink-600 flex items-center justify-center">
+      <div className="bg-background/90 rounded-lg p-3 text-center">
+        <p className="font-heading font-bold text-xs">NEW STYLES</p>
+        <p className="font-heading font-bold text-xs">JUST DROPPED</p>
+        <p className="text-[9px] text-primary mt-1">SHOP NOW →</p>
+      </div>
+    </div>
+  </ServiceCard>,
+  <ServiceCard key="seo" icon={<BookOpen className="w-5 h-5" />} label="SEO Content">
+    <div className="space-y-2">
+      {[
+        { img: "bg-gradient-to-br from-amber-200 to-amber-400", title: "The Role of Healthy..." },
+        { img: "bg-gradient-to-br from-green-200 to-green-400", title: "How Local Ingredients..." },
+      ].map((item, i) => (
+        <div key={i} className="flex items-center gap-2 rounded-lg border border-border p-2">
+          <div className={`w-10 h-10 rounded-lg ${item.img} flex-shrink-0`} />
+          <span className="text-xs font-medium truncate">{item.title}</span>
+        </div>
+      ))}
+    </div>
+  </ServiceCard>,
+  <ServiceCard key="carousel" icon={<Image className="w-5 h-5" />} label="Carousel Posts">
+    <InstaPostMock gradient="bg-gradient-to-br from-yellow-400 to-amber-500" overlayText="BUILD YOUR EMPIRE" />
+  </ServiceCard>,
+  <ServiceCard key="brand" icon={<Palette className="w-5 h-5" />} label="Brand Assets">
+    <div className="grid grid-cols-3 gap-1.5">
+      {["bg-primary", "bg-foreground", "bg-muted", "bg-destructive", "bg-secondary", "bg-accent"].map((c, i) => (
+        <div key={i} className={`aspect-square rounded-lg ${c} border border-border`} />
+      ))}
+    </div>
+  </ServiceCard>,
+];
+
+const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reverse?: boolean }> = ({ cards, speed = 30, reverse = false }) => (
+  <div className="relative overflow-hidden h-[600px]">
     <div
       className={`flex flex-col gap-3 ${reverse ? "animate-scroll-down" : "animate-scroll-up"}`}
       style={{ animationDuration: `${speed}s` }}
     >
       {[...cards, ...cards].map((card, i) => (
-        <SocialPostCard key={i} {...card} />
+        <div key={i}>{card}</div>
       ))}
     </div>
   </div>
