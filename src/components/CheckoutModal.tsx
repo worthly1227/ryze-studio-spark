@@ -8,6 +8,12 @@ import { Separator } from "@/components/ui/separator";
 import { Check, CreditCard, Lock, ShieldCheck, ArrowLeft } from "lucide-react";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 
+interface AddOn {
+  name: string;
+  price: number;
+  description: string;
+}
+
 interface CheckoutModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -15,6 +21,7 @@ interface CheckoutModalProps {
   price: number;
   period: string;
   features?: string[];
+  suggestedAddOn?: AddOn;
 }
 
 const CheckoutModal: React.FC<CheckoutModalProps> = ({
@@ -24,6 +31,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   price,
   period,
   features = [],
+  suggestedAddOn,
 }) => {
   const [email, setEmail] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -33,6 +41,9 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [promoCode, setPromoCode] = useState("");
   const [showPromo, setShowPromo] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const [addOnSelected, setAddOnSelected] = useState(false);
+
+  const totalPrice = addOnSelected && suggestedAddOn ? price + suggestedAddOn.price : price;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
