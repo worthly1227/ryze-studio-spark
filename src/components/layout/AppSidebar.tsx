@@ -2,7 +2,6 @@ import React from "react";
 import {
   LayoutDashboard, Factory, ShoppingBag, LayoutTemplate, ClipboardList,
   Archive, Palette, Activity, Store, Users, BookOpen, Scale, Settings,
-  Sparkles,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
@@ -10,6 +9,7 @@ import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
   SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,
 } from "@/components/ui/sidebar";
+import ryzeLogo from "@/assets/ryze-logo.jpeg";
 
 const navItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
@@ -34,10 +34,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border bg-sidebar">
-      <div className="p-4 flex items-center gap-2 border-b border-sidebar-border">
-        <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center cyan-glow-sm flex-shrink-0">
-          <Sparkles className="w-5 h-5 text-primary-foreground" />
-        </div>
+      <div className="p-4 flex items-center gap-2.5 border-b border-sidebar-border">
+        <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 rounded-lg object-cover flex-shrink-0" />
         {!collapsed && <span className="font-heading font-bold text-lg text-sidebar-foreground tracking-tight">Ryze Studios</span>}
       </div>
       <SidebarContent className="pt-2">
