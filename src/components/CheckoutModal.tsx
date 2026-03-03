@@ -22,6 +22,8 @@ interface CheckoutModalProps {
   period: string;
   features?: string[];
   suggestedAddOn?: AddOn;
+  preSelectedAddOn?: AddOn;
+  preSelectedAddOnQty?: number;
 }
 
 const CheckoutModal: React.FC<CheckoutModalProps> = ({
@@ -32,6 +34,8 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   period,
   features = [],
   suggestedAddOn,
+  preSelectedAddOn,
+  preSelectedAddOnQty = 0,
 }) => {
   const [email, setEmail] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -41,9 +45,13 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [promoCode, setPromoCode] = useState("");
   const [showPromo, setShowPromo] = useState(false);
   const [processing, setProcessing] = useState(false);
-  const [addOnSelected, setAddOnSelected] = useState(false);
+  const [addOnQty, setAddOnQty] = useState(preSelectedAddOnQty > 0 ? preSelectedAddOnQty : 0);
+  const [preAddOnQty, setPreAddOnQty] = useState(preSelectedAddOnQty);
 
-  const totalPrice = addOnSelected && suggestedAddOn ? price + suggestedAddOn.price : price;
+  // The active add-on is either the pre-selected one or the suggested one
+  const activeAddOn = preSelectedAddOn || suggestedAddOn;
+  const addOnTotal = activeAddOn ? activeAddOn.price * addOnQty : 0;
+  const totalPrice = price + addOnTotal;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
