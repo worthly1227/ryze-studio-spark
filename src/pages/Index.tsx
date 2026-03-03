@@ -588,7 +588,7 @@ const Index: React.FC = () => {
               <Sparkles className="w-3 h-3 mr-1.5 text-primary" /> AI-POWERED CREATIVE PRODUCTION
             </Badge>
             <h1 className="text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6">
-              On-Demand Creative Team<br />and AI Production<br />Starting at <span className="text-primary">$10/mo</span>
+              Your On-Demand Creative Team<br />and AI Production Platform Starting at <span className="text-primary">$10/mo</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-6 max-w-lg leading-relaxed">
               We create distortion-free AI visuals, social content, UGC, and brand strategies so you can focus on pushing your business to the next level.
