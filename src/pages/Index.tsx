@@ -695,12 +695,12 @@ const Index: React.FC = () => {
           </motion.div>
         </div>
 
-        <div className="relative">
+        <div className="relative overflow-hidden">
           <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
-          <div className="flex gap-5" onMouseEnter={() => setIsAddOnsPaused(true)} onMouseLeave={() => setIsAddOnsPaused(false)} style={{ animation: 'scroll-left 30s linear infinite', animationPlayState: isAddOnsPaused ? 'paused' : 'running' }}>
+          <div className="flex" onMouseEnter={() => setIsAddOnsPaused(true)} onMouseLeave={() => setIsAddOnsPaused(false)} style={{ animation: 'scroll-left 18s linear infinite', animationPlayState: isAddOnsPaused ? 'paused' : 'running', width: 'max-content' }}>
             {[...addOns, ...addOns, ...addOns].map((addon, i) => (
-              <div key={i} className="flex-shrink-0 w-72">
+              <div key={i} className="flex-shrink-0 w-72 mx-2.5">
                 <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-0 shadow-md overflow-hidden group">
                   <div className={`h-1.5 bg-gradient-to-r ${addon.color}`} />
                   <CardContent className="p-5 flex flex-col h-full">
