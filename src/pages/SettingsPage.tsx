@@ -218,7 +218,7 @@ const SettingsPage: React.FC = () => {
 
       {/* Cancel / Grab-back Dialog */}
       <Dialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()}>
           {cancelStep === "pause" && (
             <>
               <DialogHeader>
