@@ -8,7 +8,7 @@ import {
   Zap, Shield, Users, MessageSquare, Calendar, Crown,
   Heart, MessageCircle, Send, Bookmark, TrendingUp, BarChart3,
   ImageIcon, BookOpen, Palette, Plus, Volume2,
-  CalendarDays, Lightbulb, Globe, LayoutGrid
+  Phone, Lightbulb, Globe, LayoutGrid, Rocket, Camera, Wand2, Megaphone, PenTool, FileText
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -22,6 +22,8 @@ const subscriptionTiers = [
     price: 10,
     tagline: "Best for early stage brands testing premium visuals.",
     icon: Zap,
+    competitorPrice: 39,
+    savingsPercent: "74%",
     features: [
       { text: "1 AI Product Edit", included: true },
       { text: "Standard Processing", included: true },
@@ -38,6 +40,8 @@ const subscriptionTiers = [
     price: 110,
     tagline: "For consistent brand visuals.",
     icon: Sparkles,
+    competitorPrice: 870,
+    savingsPercent: "87%",
     features: [
       { text: "10 AI Product Edits", included: true },
       { text: "Standard Processing", included: true },
@@ -55,6 +59,8 @@ const subscriptionTiers = [
     tagline: "Performance focused content.",
     icon: Users,
     popular: true,
+    competitorPrice: 2100,
+    savingsPercent: "88%",
     features: [
       { text: "1 UGC Video", included: true },
       { text: "5 AI Product Edits", included: true },
@@ -71,6 +77,8 @@ const subscriptionTiers = [
     price: 299,
     tagline: "Structured social execution.",
     icon: Shield,
+    competitorPrice: 1800,
+    savingsPercent: "83%",
     features: [
       { text: "Managed Social Posting", included: true },
       { text: "20 AI Edits", included: true },
@@ -87,6 +95,8 @@ const subscriptionTiers = [
     price: 499,
     tagline: "Full creative outsourcing.",
     icon: Calendar,
+    competitorPrice: 5500,
+    savingsPercent: "91%",
     features: [
       { text: "Full Content Batch", included: true },
       { text: "Strategic Direction", included: true },
@@ -104,6 +114,8 @@ const subscriptionTiers = [
     tagline: "High volume scaling.",
     icon: Crown,
     premium: true,
+    competitorPrice: 6800,
+    savingsPercent: "90%",
     features: [
       { text: "Unlimited AI Edits", included: true },
       { text: "Premium UGC Priority", included: true },
@@ -113,30 +125,29 @@ const subscriptionTiers = [
       { text: "Priority Queue", included: true },
       { text: "Strategy Access", included: true },
       { text: "Priority Strategy Access", included: true },
-      { text: "Instant Processing", included: true },
     ],
   },
 ];
 
 const addOns = [
-  { name: "Extra AI Product Image", price: "$10", unit: "per final download", desc: "Generate unlimited variations and only pay for the final image you choose.", icon: ImageIcon },
-  { name: "30-Second UGC Video", price: "$99", unit: "", desc: "Professionally produced social media-ready video featuring vetted creators.", icon: Play },
-  { name: "Short Video (<20 sec)", price: "$59", unit: "", desc: "Quick, attention-grabbing clips optimized for Reels, TikTok, and social posts.", icon: TrendingUp },
-  { name: "Strategic Consultancy", price: "$225", unit: "", desc: "A 45-minute one-on-one session to guide your brand strategy and growth planning.", icon: Lightbulb },
-  { name: "Website Templates", price: "$999", unit: "each", desc: "Pre-built, fully branded Ryze designs that integrate seamlessly with your content.", icon: Globe },
+  { name: "Extra AI Product Image", price: "$10", unit: "per final download", desc: "Generate unlimited variations and only pay for the final image you choose.", icon: Camera, color: "from-sky-400 to-cyan-500" },
+  { name: "30-Second UGC Video", price: "$99", unit: "", desc: "Professionally produced social media-ready video featuring vetted creators.", icon: Play, color: "from-violet-400 to-purple-500" },
+  { name: "Short Video (<20 sec)", price: "$59", unit: "", desc: "Quick, attention-grabbing clips optimized for Reels, TikTok, and social posts.", icon: Rocket, color: "from-amber-400 to-orange-500" },
+  { name: "Strategic Consultancy", price: "$225", unit: "", desc: "A 45-minute one-on-one session to guide your brand strategy and growth planning.", icon: Megaphone, color: "from-emerald-400 to-teal-500" },
+  { name: "Website Templates", price: "$999", unit: "each", desc: "Pre-built, fully branded Ryze designs that integrate seamlessly with your content.", icon: PenTool, color: "from-rose-400 to-pink-500" },
 ];
 
 const comparisonData = [
   { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10/mo" },
-  { feature: "Visual Accuracy", agency: "Prone to human error", ai: "AI distortion & artifacts", ryze: "Pixel-perfect fidelity" },
+  { feature: "Visual Quality", agency: "Prone to human error", ai: "AI distortion & artifacts", ryze: "Pixel-perfect quality" },
   { feature: "Production Method", agency: "Physical studios required", ai: "Basic background swaps", ryze: "Full AI creative pipeline" },
   { feature: "Speed", agency: "3–6 week lead times", ai: "Fast but low quality", ryze: "Same-week premium output" },
   { feature: "Brand Strategy", agency: "$5k+ retainer required", ai: "Zero guidance", ryze: "Bookable $225 sessions" },
   { feature: "Creative Range", agency: "Limited to one designer", ai: "Template-based only", ryze: "Unlimited styles & formats" },
 ];
 
-const gridIndustries = ["Beauty", "Skincare", "Real Estate", "Dental Clinic", "Food Products", "Yoga"];
-const gridEmojis: Record<string, string> = { Beauty: "💅", Skincare: "🧴", "Real Estate": "🏠", "Dental Clinic": "🦷", "Food Products": "🍔", Yoga: "🧘" };
+const gridIndustries = ["Skincare", "Supplements", "Pet Products", "Candles", "Coffee", "Jewellery"];
+const gridEmojis: Record<string, string> = { Skincare: "🧴", Supplements: "💊", "Pet Products": "🐾", Candles: "🕯️", Coffee: "☕", Jewellery: "💍" };
 
 const beforeAfterClients = ["SpinSudz", "KokoKai Foods LLC", "Crystal Imagery", "True North Wellness", "No Place Like Home", "Darkhorse Solutions"];
 
@@ -354,7 +365,7 @@ const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reve
 
 /* Factory Proof Section */
 const contentTypes = ["Posts", "Videos", "UGC", "Static Ads", "Video Ads", "Emails", "Blogs", "Stories"];
-const industries = ["Featured", "Beauty Services", "Food & Beverages", "Health & Wellness", "Home Services", "Products", "Professional Services", "Real Estate", "SaaS & Tech", "Travel & Tourism", "Other"];
+const industries = ["Featured", "Skincare & Beauty", "Food & Beverages", "Health & Supplements", "Pet Products", "Home & Lifestyle", "Fashion & Accessories", "Fitness & Wellness", "Coffee & Tea", "Handmade & Artisan"];
 
 const proofItems = [
   { before: "📦", after: "✨", category: "Posts", industry: "Beauty Services", gradient: "from-rose-400 to-pink-600" },
