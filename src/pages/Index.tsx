@@ -146,8 +146,8 @@ const comparisonData = [
   { feature: "Creative Range", agency: "Limited to one designer", ai: "Template-based only", ryze: "Unlimited styles & formats" },
 ];
 
-const gridIndustries = ["Skincare", "Supplements", "Pet Products", "Candles", "Coffee", "Jewellery"];
-const gridEmojis: Record<string, string> = { Skincare: "🧴", Supplements: "💊", "Pet Products": "🐾", Candles: "🕯️", Coffee: "☕", Jewellery: "💍" };
+const gridIndustries = ["Social Media Templates", "Pitch Deck Templates", "Portfolio Website Templates", "One Product Store Templates", "Ryze Web Design Templates", "Seasonal Campaign Templates"];
+const gridEmojis: Record<string, string> = { "Social Media Templates": "📱", "Pitch Deck Templates": "📊", "Portfolio Website Templates": "🌐", "One Product Store Templates": "🛍️", "Ryze Web Design Templates": "🎨", "Seasonal Campaign Templates": "🎄" };
 
 const beforeAfterClients = ["SpinSudz", "KokoKai Foods LLC", "Crystal Imagery", "True North Wellness", "No Place Like Home", "Darkhorse Solutions"];
 
@@ -757,8 +757,8 @@ const Index: React.FC = () => {
       <section className="py-20 px-6 bg-accent/30">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Your feed, elevated</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Every post crafted to reinforce your brand identity and transform your page into a polished, conversion-driven storefront.</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Ryze Studio's Design Vault</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Everything your brand needs in one place, including social templates, investor decks, portfolio websites, single product stores, and seasonal campaigns.</p>
           </motion.div>
 
           <div className="flex justify-center gap-3 mb-10 flex-wrap">
