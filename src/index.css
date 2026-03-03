@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 100% 96%;
     --foreground: 0 0% 8%;
 
     --card: 0 0% 98%;
@@ -48,8 +48,8 @@
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 180 100% 50%;
 
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Sora', sans-serif;
+    --font-body: 'Outfit', sans-serif;
   }
 
   .dark {
