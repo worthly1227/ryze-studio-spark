@@ -575,7 +575,7 @@ const Index: React.FC = () => {
               {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <Button variant="ghost" onClick={() => navigate("/dashboard")} className="font-medium text-sm hidden sm:inline-flex">Log in</Button>
-            <Button onClick={() => navigate("/dashboard")} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-4 sm:px-5 text-xs sm:text-sm hidden sm:inline-flex">
+            <Button onClick={() => navigate("/book-demo")} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-4 sm:px-5 text-xs sm:text-sm hidden sm:inline-flex">
               Book a Demo <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="sm:hidden p-2 rounded-lg hover:bg-muted transition-colors">
@@ -593,7 +593,7 @@ const Index: React.FC = () => {
                 <button className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Pricing</button>
                 <hr className="border-border" />
                 <button onClick={() => navigate("/dashboard")} className="block w-full text-left py-2 text-sm font-medium">Log in</button>
-                <Button onClick={() => navigate("/dashboard")} className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full text-sm">
+                <Button onClick={() => navigate("/book-demo")} className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full text-sm">
                   Book a Demo <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </div>
@@ -628,7 +628,7 @@ const Index: React.FC = () => {
                 </div>
               ))}
             </div>
-            <Button size="lg" onClick={() => navigate("/dashboard")} className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 rounded-full mb-4 sm:mb-6">
+            <Button size="lg" onClick={() => navigate("/book-demo")} className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 rounded-full mb-4 sm:mb-6">
               Book your free strategy call <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             <p className="text-xs sm:text-sm text-muted-foreground">Trusted by <strong className="text-foreground">1,800+</strong> growing brands  |  No contracts, cancel anytime</p>
@@ -969,7 +969,7 @@ const Index: React.FC = () => {
               <Phone className="w-7 h-7 sm:w-8 sm:h-8 mb-3 sm:mb-4 text-primary" />
               <h3 className="font-heading font-bold text-lg sm:text-xl mb-2">Let's map out your strategy</h3>
               <p className="text-xs sm:text-sm text-background/70 mb-4 sm:mb-6">Hop on a 20-minute call with a Ryze creative lead and build a content plan tailored to your brand.</p>
-              <Button className="w-full bg-background text-foreground hover:bg-background/90 font-heading rounded-xl py-4 sm:py-5 text-sm">
+              <Button onClick={() => navigate("/book-demo")} className="w-full bg-background text-foreground hover:bg-background/90 font-heading rounded-xl py-4 sm:py-5 text-sm">
                 Schedule a Call <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
@@ -1234,7 +1234,7 @@ const Index: React.FC = () => {
                     </div>
                   </div>
                   <h3 className="font-heading font-bold text-lg mb-2">Ready to level up your brand?</h3>
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading mt-2">
+                  <Button onClick={() => navigate("/book-demo")} className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading mt-2">
                     Schedule Demo
                   </Button>
                 </CardContent>

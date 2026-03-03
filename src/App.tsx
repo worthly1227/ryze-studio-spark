@@ -20,6 +20,7 @@ import Affiliate from "./pages/Affiliate";
 import InsightsBlog from "./pages/InsightsBlog";
 import LegalHub from "./pages/LegalHub";
 import SettingsPage from "./pages/SettingsPage";
+import BookDemo from "./pages/BookDemo";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/book-demo" element={<BookDemo />} />
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/ai-factory" element={<AIFactory />} />
