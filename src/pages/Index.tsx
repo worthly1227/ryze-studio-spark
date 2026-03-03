@@ -463,7 +463,7 @@ const FactoryProofSection: React.FC = () => {
   const visible = showAll ? filtered : filtered.slice(0, 6);
 
   return (
-    <section className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30">
+      <section id="examples" className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Built for product brands like yours</h2>
@@ -565,9 +565,9 @@ const Index: React.FC = () => {
               <span className="font-heading font-bold text-lg sm:text-xl tracking-tight">Ryze Studios</span>
             </div>
             <div className="hidden md:flex items-center gap-5 text-sm font-medium text-muted-foreground">
-              <button className="hover:text-foreground transition-colors">Services</button>
-              <button className="hover:text-foreground transition-colors">Examples</button>
-              <button className="hover:text-foreground transition-colors">Pricing</button>
+              <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Services</button>
+              <button onClick={() => document.getElementById("examples")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Examples</button>
+              <button onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Pricing</button>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -588,9 +588,9 @@ const Index: React.FC = () => {
           {mobileMenuOpen && (
             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="sm:hidden overflow-hidden border-t border-border bg-background">
               <div className="px-4 py-3 space-y-2">
-                <button className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Services</button>
-                <button className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Examples</button>
-                <button className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Pricing</button>
+                <button onClick={() => { setMobileMenuOpen(false); document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }); }} className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Services</button>
+                <button onClick={() => { setMobileMenuOpen(false); document.getElementById("examples")?.scrollIntoView({ behavior: "smooth" }); }} className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Examples</button>
+                <button onClick={() => { setMobileMenuOpen(false); document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" }); }} className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Pricing</button>
                 <hr className="border-border" />
                 <button onClick={() => navigate("/login")} className="block w-full text-left py-2 text-sm font-medium">Log in</button>
                 <Button onClick={() => navigate("/book-demo")} className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full text-sm">
@@ -653,7 +653,7 @@ const Index: React.FC = () => {
       <FactoryProofSection />
 
       {/* ═══════ SUBSCRIPTION TIERS ═══════ */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6">
+      <section id="pricing" className="py-12 sm:py-20 px-4 sm:px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 sm:mb-14">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
@@ -986,7 +986,7 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ SEAMLESS EXPERIENCE ═══════ */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6">
+      <section id="services" className="py-12 sm:py-20 px-4 sm:px-6 scroll-mt-20">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-10">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
