@@ -37,9 +37,9 @@ const Dashboard: React.FC = () => {
       {/* Quick Access */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Card className="group cursor-pointer hover:border-primary/30 hover:cyan-glow-sm transition-all" onClick={() => navigate("/ai-factory")}>
-          <CardContent className="p-6 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-              <Factory className="w-6 h-6 text-primary" />
+          <CardContent className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+              <Factory className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
             </div>
             <div>
               <h3 className="font-heading font-semibold">AI Factory</h3>
@@ -61,7 +61,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Metrics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
         {[
           { label: "Total Edits", value: "127", icon: Image, change: "+12%" },
           { label: "Views", value: "8.4K", icon: Eye, change: "+24%" },
@@ -69,10 +69,10 @@ const Dashboard: React.FC = () => {
           { label: "Credits Left", value: "2", icon: Zap, change: "" },
         ].map((m, i) => (
           <Card key={i}>
-            <CardContent className="p-5">
-              <div className="flex items-center justify-between mb-2">
-                <m.icon className="w-5 h-5 text-muted-foreground" />
-                {m.change && <span className="text-xs text-primary font-semibold">{m.change}</span>}
+            <CardContent className="p-3 sm:p-5">
+              <div className="flex items-center justify-between mb-1 sm:mb-2">
+                <m.icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
+                {m.change && <span className="text-[10px] sm:text-xs text-primary font-semibold">{m.change}</span>}
               </div>
               <p className="text-xl sm:text-2xl font-heading font-bold">{m.value}</p>
               <p className="text-xs sm:text-sm text-muted-foreground">{m.label}</p>
