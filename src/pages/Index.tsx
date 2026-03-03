@@ -165,14 +165,13 @@ const gridEmojis: Record<string, string> = { "Social Media Templates": "📱", "
 
 const beforeAfterClients = ["SpinSudz", "KokoKai Foods LLC", "Crystal Imagery", "True North Wellness", "No Place Like Home", "Darkhorse Solutions"];
 
-const featureTabs = ["Services", "Onboarding", "Communication", "Collaboration", "Scheduling", "Analytics"];
+const featureTabs = ["Services", "Onboarding", "Communication", "Collaboration", "Scheduling"];
 const featureContent: Record<string, { title: string; desc: string; image: string }> = {
   Services: { title: "Pick Your Package", desc: "Explore our creative menu and assemble the exact mix of AI edits, UGC, and strategy your brand needs.", image: "/images/feature-services.png" },
   Onboarding: { title: "5-Minute Brand Intake", desc: "Share your brand guidelines, colors, and tone. Our system learns your identity and starts producing instantly.", image: "/images/feature-onboarding.png" },
   Communication: { title: "Direct Line to Your Team", desc: "Chat with your dedicated creative lead in real time. Feedback loops that actually move fast.", image: "/images/feature-communication.png" },
   Collaboration: { title: "One Dashboard, Zero Chaos", desc: "Approve assets, request tweaks, and track every deliverable from a single streamlined workspace.", image: "/images/feature-collaboration.png" },
   Scheduling: { title: "We Post, You Grow", desc: "Ryze handles content scheduling and publishing across all your channels so you never miss a beat.", image: "/images/feature-scheduling.png" },
-  Analytics: { title: "See What's Working", desc: "Track reach, engagement, and conversion with built-in analytics that help you double down on winners.", image: "/images/feature-analytics.png" },
 };
 
 const faqItems = [
