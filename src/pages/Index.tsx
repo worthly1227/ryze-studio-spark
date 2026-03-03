@@ -695,6 +695,28 @@ const Index: React.FC = () => {
         </div>
       </section>
 
+      {/* ═══════ RESELLER CTA ═══════ */}
+      <section className="px-6 pb-16">
+        <div className="max-w-5xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-border bg-card p-6 md:p-8 shadow-sm">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold text-lg">Looking to resell our services to your clients?</h3>
+                  <p className="text-muted-foreground text-sm">Apply to join the Ryze Studios reseller program</p>
+                </div>
+              </div>
+              <Button onClick={() => navigate("/reseller")} className="bg-foreground text-background hover:bg-foreground/90 font-heading rounded-full px-6 whitespace-nowrap">
+                Apply to become a reseller
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════ COMPARISON TABLE ═══════ */}
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
@@ -968,25 +990,115 @@ const Index: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Top 1% talent */}
+            {/* Cost savings chart */}
             <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
               <CardContent className="p-8">
-                <Badge className="mb-3 bg-primary/10 text-primary border-0 text-[10px] font-heading">🌟 FULLY MANAGED CREATIVE TALENT</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-4">Top 1% of global creative talent</h3>
-                <div className="flex gap-3 flex-wrap">
-                  {["Chris Meadow", "Carla Rodriguez", "Henry Tom", "Anna Debora"].map((name, i) => (
-                    <div key={i} className="flex items-center gap-2 bg-card rounded-full px-3 py-1.5 border border-border">
-                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
-                        <span className="text-[10px] font-bold text-primary">{name[0]}</span>
+                <Badge className="mb-3 bg-primary/10 text-primary border-0 text-[10px] font-heading">📉 COST COMPARISON</Badge>
+                <h3 className="text-2xl font-heading font-bold mb-6">Save up to 95% vs agencies</h3>
+                <div className="space-y-4">
+                  {[
+                    { label: "Traditional Agency", value: 100, amount: "$2,000+/mo", color: "bg-destructive/60" },
+                    { label: "Freelancers", value: 60, amount: "$1,200/mo", color: "bg-amber-400" },
+                    { label: "AI SaaS Tools", value: 25, amount: "$500/mo", color: "bg-muted-foreground/40" },
+                    { label: "Ryze Studios", value: 5, amount: "From $10/mo", color: "bg-primary" },
+                  ].map((bar, i) => (
+                    <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-heading font-medium">{bar.label}</span>
+                        <span className="text-xs font-heading font-bold">{bar.amount}</span>
                       </div>
-                      <span className="text-xs font-medium">{name}</span>
-                    </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden">
+                        <motion.div initial={{ width: 0 }} whileInView={{ width: `${bar.value}%` }} viewport={{ once: true }} transition={{ duration: 0.8, delay: i * 0.1 }} className={`h-full rounded-full ${bar.color}`} />
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
-            {/* Say goodbye to */}
+            {/* Turnaround time chart */}
+            <Card>
+              <CardContent className="p-8">
+                <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">⏱️ TURNAROUND TIME</Badge>
+                <h3 className="text-2xl font-heading font-bold mb-6">Lightning-fast delivery</h3>
+                <div className="flex items-end gap-4 h-48 mb-4">
+                  {[
+                    { label: "Agency", days: 21, height: "100%", color: "bg-destructive/40" },
+                    { label: "Freelancer", days: 14, height: "67%", color: "bg-amber-400/60" },
+                    { label: "AI SaaS", days: 1, height: "5%", color: "bg-muted-foreground/30", note: "Low quality" },
+                    { label: "Ryze", days: 1, height: "5%", color: "bg-primary", note: "Premium" },
+                  ].map((bar, i) => (
+                    <div key={i} className="flex-1 flex flex-col items-center justify-end h-full">
+                      <span className="text-xs font-heading font-bold mb-1">{bar.days}d</span>
+                      <motion.div initial={{ height: 0 }} whileInView={{ height: bar.height }} viewport={{ once: true }} transition={{ duration: 0.8, delay: i * 0.1 }} className={`w-full rounded-t-lg ${bar.color}`} style={{ minHeight: 12 }} />
+                      <span className="text-[10px] text-muted-foreground mt-2 font-heading text-center">{bar.label}</span>
+                      {bar.note && <span className="text-[9px] text-primary font-medium">{bar.note}</span>}
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            {/* Quality score */}
+            <Card>
+              <CardContent className="p-8 text-center">
+                <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">🎯 QUALITY SCORE</Badge>
+                <div className="relative w-32 h-32 mx-auto my-4">
+                  <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="hsl(var(--muted))" strokeWidth="8" />
+                    <motion.circle cx="50" cy="50" r="42" fill="none" stroke="hsl(var(--primary))" strokeWidth="8" strokeLinecap="round" strokeDasharray={264} initial={{ strokeDashoffset: 264 }} whileInView={{ strokeDashoffset: 264 * 0.02 }} viewport={{ once: true }} transition={{ duration: 1.2 }} />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-3xl font-heading font-black">98%</span>
+                  </div>
+                </div>
+                <p className="font-heading font-semibold">Client Satisfaction</p>
+                <p className="text-xs text-muted-foreground mt-1">Based on 2,400+ projects</p>
+              </CardContent>
+            </Card>
+
+            {/* Collaboration */}
+            <Card>
+              <CardContent className="p-8">
+                <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">💬 COLLABORATION</Badge>
+                <h3 className="text-xl font-heading font-bold mb-4">Tech built for easy collaboration</h3>
+                <div className="space-y-3">
+                  <div className="bg-muted rounded-xl p-3">
+                    <p className="text-xs font-semibold mb-1">Chat</p>
+                    <div className="space-y-2">
+                      <div className="bg-card rounded-lg p-2 text-xs"><strong>Martin Lawrence</strong> · If you need any help, I'm your Account Manager</div>
+                      <div className="bg-primary/10 rounded-lg p-2 text-xs"><strong>Anna Carlton</strong> · Thanks Martin. I'll reach out soon about billing.</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Content output growth */}
+            <Card>
+              <CardContent className="p-8">
+                <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">📈 OUTPUT GROWTH</Badge>
+                <h3 className="text-xl font-heading font-bold mb-4">Content output over time</h3>
+                <div className="flex items-end gap-1.5 h-32 mt-4">
+                  {[15, 25, 30, 45, 55, 50, 70, 80, 75, 90, 95, 100].map((h, i) => (
+                    <motion.div key={i} className="flex-1 bg-primary/20 rounded-t relative" initial={{ height: 0 }} whileInView={{ height: `${h}%` }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}>
+                      <div className="absolute inset-0 bg-primary rounded-t" style={{ height: `${60 + i * 3}%` }} />
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="flex justify-between mt-2">
+                  <span className="text-[10px] text-muted-foreground font-heading">Month 1</span>
+                  <span className="text-[10px] text-muted-foreground font-heading">Month 12</span>
+                </div>
+                <p className="text-xs text-primary font-heading font-semibold mt-2 text-center">+340% avg. content increase</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Say goodbye */}
             <Card>
               <CardContent className="p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">👋 THE OLD WAY</Badge>
@@ -1000,25 +1112,6 @@ const Index: React.FC = () => {
                       <span className="text-muted-foreground text-xs">{item}</span>
                     </div>
                   ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Collaboration */}
-            <Card>
-              <CardContent className="p-8">
-                <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">💬 COLLABORATION</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-4">Tech built for easy collaboration</h3>
-                <div className="space-y-3">
-                  <div className="bg-muted rounded-xl p-3">
-                    <p className="text-xs font-semibold mb-1">Chat</p>
-                    <div className="space-y-2">
-                      <div className="bg-card rounded-lg p-2 text-xs"><strong>Martin Lawrence</strong> · If you need any help, I'm your Account Manager</div>
-                      <div className="bg-primary/10 rounded-lg p-2 text-xs"><strong>Anna Carlton</strong> · Thanks Martin. I'll reach out soon about billing.</div>
-                    </div>
-                  </div>
                 </div>
               </CardContent>
             </Card>
