@@ -34,7 +34,7 @@ const AIFactory: React.FC = () => {
             <div className="border-2 border-dashed border-primary/30 rounded-xl p-12 text-center hover:border-primary/60 hover:bg-primary/5 transition-all cursor-pointer">
               <Upload className="w-12 h-12 text-primary mx-auto mb-4" />
               <p className="font-heading font-semibold mb-1">Drop files here or click to upload</p>
-              <p className="text-sm text-muted-foreground">Supports JPG, PNG, MP4 — Max 50MB</p>
+              <p className="text-sm text-muted-foreground">Supports JPG, PNG, MP4 - Max 50MB</p>
               <div className="flex gap-2 justify-center mt-4">
                 <Badge variant="secondary"><Image className="w-3 h-3 mr-1" /> Images</Badge>
                 <Badge variant="secondary"><Film className="w-3 h-3 mr-1" /> Videos</Badge>

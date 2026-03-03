@@ -155,7 +155,7 @@ const beforeAfterClients = ["SpinSudz", "KokoKai Foods LLC", "Crystal Imagery", 
 const featureTabs = ["Services", "Onboarding", "Communication", "Collaboration", "Scheduling", "Analytics"];
 const featureContent: Record<string, { title: string; desc: string }> = {
   Services: { title: "Pick Your Package", desc: "Explore our creative menu and assemble the exact mix of AI edits, UGC, and strategy your brand needs." },
-  Onboarding: { title: "5-Minute Brand Intake", desc: "Share your brand guidelines, colors, and tone — our system learns your identity and starts producing instantly." },
+  Onboarding: { title: "5-Minute Brand Intake", desc: "Share your brand guidelines, colors, and tone. Our system learns your identity and starts producing instantly." },
   Communication: { title: "Direct Line to Your Team", desc: "Chat with your dedicated creative lead in real time. Feedback loops that actually move fast." },
   Collaboration: { title: "One Dashboard, Zero Chaos", desc: "Approve assets, request tweaks, and track every deliverable from a single streamlined workspace." },
   Scheduling: { title: "We Post, You Grow", desc: "Ryze handles content scheduling and publishing across all your channels so you never miss a beat." },
@@ -165,10 +165,10 @@ const featureContent: Record<string, { title: string; desc: string }> = {
 const faqItems = [
   { q: "What does Ryze Studios cost?", a: "Our Entry Level Pass starts at $10/mo for a single AI product edit. From there, scale into UGC, managed posting, and full creative outsourcing as your brand grows." },
   { q: "How can you charge so little?", a: "We built a proprietary AI production engine that replaces bloated agency overhead. You get luxury-grade output at a fraction of the traditional cost." },
-  { q: "Where is your team based?", a: "Ryze operates globally with creative leads in the US, UK, and Southeast Asia — ensuring round-the-clock production capacity." },
+  { q: "Where is your team based?", a: "Ryze operates globally with creative leads in the US, UK, and Southeast Asia, ensuring round-the-clock production capacity." },
   { q: "How fast can I get started?", a: "Pick a plan, complete our 5-minute brand intake, and your first assets enter production the same day." },
   { q: "What happens once I subscribe?", a: "Your dedicated creative lead reaches out within hours, walks you through the dashboard, and kicks off your first content batch." },
-  { q: "How do I give feedback on deliverables?", a: "Everything lives in your Ryze dashboard — review, approve, or request revisions with one click. Plus direct chat with your creative lead." },
+  { q: "How do I give feedback on deliverables?", a: "Everything lives in your Ryze dashboard. Review, approve, or request revisions with one click. Plus direct chat with your creative lead." },
 ];
 
 /* ─── REUSABLE COMPONENTS ─── */
@@ -1037,7 +1037,7 @@ const Index: React.FC = () => {
               ⚡ WHY BRANDS SWITCH
             </Badge>
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">The smarter creative model</h2>
-            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Agencies are slow and expensive. DIY AI tools lack quality. Ryze sits in the sweet spot — delivering <strong className="text-foreground">1,800+</strong> brands premium content without the overhead.</p>
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Agencies are slow and expensive. DIY AI tools lack quality. Ryze sits in the sweet spot, delivering <strong className="text-foreground">1,800+</strong> brands premium content without the overhead.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">

@@ -6,14 +6,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, Download, Image, Film, FileText } from "lucide-react";
 
 const assets = [
-  { name: "Product Hero — Sneakers", type: "Image", date: "Mar 1, 2026" },
-  { name: "UGC Unboxing — Candle Set", type: "Video", date: "Feb 27, 2026" },
+  { name: "Product Hero - Sneakers", type: "Image", date: "Mar 1, 2026" },
+  { name: "UGC Unboxing - Candle Set", type: "Video", date: "Feb 27, 2026" },
   { name: "Brand Banner v3", type: "Image", date: "Feb 24, 2026" },
-  { name: "Campaign Copy — Spring", type: "Document", date: "Feb 20, 2026" },
+  { name: "Campaign Copy - Spring", type: "Document", date: "Feb 20, 2026" },
   { name: "Lifestyle Flat Lay", type: "Image", date: "Feb 18, 2026" },
-  { name: "Social Reel — Product Demo", type: "Video", date: "Feb 15, 2026" },
-  { name: "Product Grid — Full Line", type: "Image", date: "Feb 12, 2026" },
-  { name: "Testimonial Cut — Sarah K", type: "Video", date: "Feb 10, 2026" },
+  { name: "Social Reel - Product Demo", type: "Video", date: "Feb 15, 2026" },
+  { name: "Product Grid - Full Line", type: "Image", date: "Feb 12, 2026" },
+  { name: "Testimonial Cut - Sarah K", type: "Video", date: "Feb 10, 2026" },
 ];
 
 const typeIcon = { Image: Image, Video: Film, Document: FileText };
