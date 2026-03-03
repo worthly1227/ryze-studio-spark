@@ -75,31 +75,46 @@ const BeforeAfterSlider: React.FC = () => {
   );
 };
 
-/* Fake social post card */
+const scrollCards = [
+  { color: "bg-gradient-to-br from-amber-400 to-orange-500", title: "ANOTHER WAY TO GROW", hasVideo: true },
+  { color: "bg-gradient-to-br from-slate-600 to-slate-800", title: "RISE ABOVE THE REST" },
+  { color: "bg-gradient-to-br from-rose-400 to-red-500", title: "GAME, YOUR STORY" },
+  { color: "bg-gradient-to-br from-violet-500 to-purple-700", title: "BUILD YOUR EMPIRE" },
+  { color: "bg-gradient-to-br from-emerald-400 to-teal-600", title: "CREATE & INSPIRE", hasVideo: true },
+  { color: "bg-gradient-to-br from-cyan-400 to-blue-600", title: "LEVEL UP TODAY" },
+  { color: "bg-gradient-to-br from-pink-400 to-rose-600", title: "STAND OUT NOW" },
+  { color: "bg-gradient-to-br from-yellow-400 to-amber-600", title: "SHINE BRIGHTER", hasVideo: true },
+  { color: "bg-gradient-to-br from-indigo-400 to-blue-800", title: "DREAM BIGGER" },
+];
+
 const SocialPostCard: React.FC<{ color: string; title: string; hasVideo?: boolean }> = ({ color, title, hasVideo }) => (
-  <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
+  <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm flex-shrink-0">
     <div className={`aspect-[4/5] ${color} flex items-center justify-center relative`}>
       {hasVideo && (
-        <div className="w-14 h-14 rounded-full bg-background/80 backdrop-blur flex items-center justify-center">
-          <Play className="w-6 h-6 text-foreground ml-1" />
+        <div className="w-12 h-12 rounded-full bg-background/80 backdrop-blur flex items-center justify-center">
+          <Play className="w-5 h-5 text-foreground ml-0.5" />
         </div>
       )}
-      <p className="absolute bottom-4 left-4 right-4 text-white font-heading font-bold text-lg leading-tight drop-shadow-lg">{title}</p>
+      <p className="absolute bottom-3 left-3 right-3 text-white font-heading font-bold text-sm leading-tight drop-shadow-lg">{title}</p>
     </div>
-    <div className="p-3 flex items-center gap-3">
-      <Heart className="w-5 h-5 text-destructive fill-destructive" />
-      <MessageCircle className="w-5 h-5 text-muted-foreground" />
-      <Send className="w-5 h-5 text-muted-foreground" />
-      <Bookmark className="w-5 h-5 text-muted-foreground ml-auto" />
+    <div className="p-2.5 flex items-center gap-2.5">
+      <Heart className="w-4 h-4 text-destructive fill-destructive" />
+      <MessageCircle className="w-4 h-4 text-muted-foreground" />
+      <Send className="w-4 h-4 text-muted-foreground" />
+      <Bookmark className="w-4 h-4 text-muted-foreground ml-auto" />
     </div>
   </div>
 );
 
-const StoryCard: React.FC<{ color: string }> = ({ color }) => (
-  <div className={`rounded-2xl ${color} aspect-[9/16] w-full flex items-end p-3`}>
-    <div className="flex items-center gap-2">
-      <div className="w-6 h-6 rounded-full bg-background/50 border-2 border-primary" />
-      <span className="text-xs text-white font-medium drop-shadow">Business · 3s ago</span>
+const ScrollingColumn: React.FC<{ cards: typeof scrollCards; speed?: number; reverse?: boolean }> = ({ cards, speed = 25, reverse = false }) => (
+  <div className="relative overflow-hidden h-[540px]">
+    <div
+      className={`flex flex-col gap-3 ${reverse ? "animate-scroll-down" : "animate-scroll-up"}`}
+      style={{ animationDuration: `${speed}s` }}
+    >
+      {[...cards, ...cards].map((card, i) => (
+        <SocialPostCard key={i} {...card} />
+      ))}
     </div>
   </div>
 );
