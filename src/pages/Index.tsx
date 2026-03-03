@@ -567,7 +567,7 @@ const Index: React.FC = () => {
             <div className="hidden md:flex items-center gap-5 text-sm font-medium text-muted-foreground">
               <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Services</button>
               <button onClick={() => document.getElementById("examples")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Examples</button>
-              <button onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Pricing</button>
+              <button onClick={() => navigate("/plans")} className="hover:text-foreground transition-colors">Pricing</button>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -590,7 +590,7 @@ const Index: React.FC = () => {
               <div className="px-4 py-3 space-y-2">
                 <button onClick={() => { setMobileMenuOpen(false); document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }); }} className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Services</button>
                 <button onClick={() => { setMobileMenuOpen(false); document.getElementById("examples")?.scrollIntoView({ behavior: "smooth" }); }} className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Examples</button>
-                <button onClick={() => { setMobileMenuOpen(false); document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" }); }} className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Pricing</button>
+                <button onClick={() => { setMobileMenuOpen(false); navigate("/plans"); }} className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Pricing</button>
                 <hr className="border-border" />
                 <button onClick={() => navigate("/login")} className="block w-full text-left py-2 text-sm font-medium">Log in</button>
                 <Button onClick={() => navigate("/book-demo")} className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full text-sm">
