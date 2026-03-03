@@ -815,12 +815,11 @@ const Index: React.FC = () => {
             })}
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-8 px-6">
             <Button className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-heading px-8">
               Browse Template Store <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
-        </div>
       </section>
 
       {/* ═══════ BEFORE & AFTER ═══════ */}
