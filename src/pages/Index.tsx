@@ -1126,7 +1126,7 @@ const Index: React.FC = () => {
                   <p className="text-muted-foreground text-sm font-body">Apply to join the Ryze Studios reseller program</p>
                 </div>
               </div>
-              <Button onClick={() => navigate("/reseller")} className="bg-foreground text-background hover:bg-foreground/90 font-heading rounded-full px-8 py-5 whitespace-nowrap shadow-md relative">
+              <Button onClick={() => navigate("/reseller")} className="bg-primary text-primary-foreground hover:bg-primary/90 font-body font-medium rounded-full px-6 py-5 whitespace-nowrap text-sm relative">
                 Apply to become a reseller <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
