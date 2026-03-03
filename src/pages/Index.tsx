@@ -547,7 +547,7 @@ const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
 const Index: React.FC = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
-  const [activeGridIndustry, setActiveGridIndustry] = useState("Skincare");
+  const [activeGridIndustry, setActiveGridIndustry] = useState("E-Commerce");
   const [activeClient, setActiveClient] = useState("SpinSudz");
   const [activeFeatureTab, setActiveFeatureTab] = useState("Services");
 
