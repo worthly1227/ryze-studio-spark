@@ -4,6 +4,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { useNavigate } from "react-router-dom";
 
 const mockNotifications = [
   { id: 1, icon: Package, title: "Your deliverables are ready", desc: "3 files uploaded to Brand Kit project", time: "2m ago", unread: true },
@@ -13,6 +14,7 @@ const mockNotifications = [
 
 const TopBar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
   const unreadCount = mockNotifications.filter((n) => n.unread).length;
 
   return (
@@ -62,9 +64,15 @@ const TopBar: React.FC = () => {
         <Button variant="ghost" size="icon" onClick={toggleTheme} className="text-muted-foreground hover:text-foreground">
           {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </Button>
-        <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
-          <User className="w-4 h-4 text-primary" />
-        </div>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => navigate("/settings")}
+          aria-label="Open settings"
+          className="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 text-primary hover:bg-primary/25"
+        >
+          <User className="w-4 h-4" />
+        </Button>
       </div>
     </header>
   );
