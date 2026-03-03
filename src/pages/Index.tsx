@@ -1113,12 +1113,14 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ RESELLER CTA ═══════ */}
-      <section className="px-6 pb-16">
+      <section className="px-6 -mt-10 mb-0 relative z-10">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-border bg-card p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+            <div className="relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/10 via-card to-primary/5 p-6 md:p-8 shadow-lg cyan-glow-sm">
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-primary/8 rounded-full blur-2xl pointer-events-none" />
+              <div className="flex items-center gap-4 relative">
+                <div className="w-12 h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center flex-shrink-0 cyan-glow-sm">
                   <Sparkles className="w-6 h-6 text-primary" />
                 </div>
                 <div>
@@ -1126,8 +1128,8 @@ const Index: React.FC = () => {
                   <p className="text-muted-foreground text-sm">Apply to join the Ryze Studios reseller program</p>
                 </div>
               </div>
-              <Button onClick={() => navigate("/reseller")} className="bg-foreground text-background hover:bg-foreground/90 font-heading rounded-full px-6 whitespace-nowrap">
-                Apply to become a reseller
+              <Button onClick={() => navigate("/reseller")} className="bg-foreground text-background hover:bg-foreground/90 font-heading rounded-full px-8 py-5 whitespace-nowrap shadow-md relative">
+                Apply to become a reseller <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
           </motion.div>
@@ -1135,7 +1137,7 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ FAQ ═══════ */}
-      <section className="py-20 px-6">
+      <section className="pt-14 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
