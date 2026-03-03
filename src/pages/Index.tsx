@@ -696,7 +696,7 @@ const Index: React.FC = () => {
                         </div>
                       ))}
                     </div>
-                    <Button className={`w-full text-xs font-heading ${tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
+                    <Button onClick={() => navigate("/plans")} className={`w-full text-xs font-heading ${tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
                       Get Started
                     </Button>
                   </CardContent>
