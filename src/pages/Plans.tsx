@@ -275,39 +275,6 @@ const Plans: React.FC = () => {
         </div>
       </section>
 
-      {/* ─── ADD-ONS SECTION ─── */}
-      <section className="pb-12 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
-            <h2 className="text-xl sm:text-2xl font-heading font-bold mb-2">Add-On Services</h2>
-            <p className="text-muted-foreground text-sm max-w-xl mx-auto">Enhance any plan with individual services.</p>
-          </motion.div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {addOns.map((addon, i) => (
-              <motion.div key={addon.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
-                <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden group">
-                  <div className={`h-1 bg-gradient-to-r ${addon.gradient}`} />
-                  <CardContent className="p-4 flex flex-col h-full">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${addon.gradient} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
-                      <addon.icon className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="font-heading font-bold text-sm mb-1">{addon.name}</h3>
-                    <p className="text-muted-foreground text-[10px] mb-3 flex-1 leading-relaxed">{addon.desc}</p>
-                    <div className="flex items-baseline gap-1 mb-2">
-                      <span className="text-lg font-heading font-black">{addon.price}</span>
-                      {addon.unit && <span className="text-[10px] text-muted-foreground">{addon.unit}</span>}
-                    </div>
-                    <Button onClick={() => handleAddOnClick(addon)} variant="outline" className="w-full text-xs font-heading border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors" size="sm">
-                      Add to Plan
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ─── PLANS GRID ─── */}
       <section id="plans-grid" className="pb-16 px-4 sm:px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
@@ -533,7 +500,38 @@ const Plans: React.FC = () => {
         </div>
       </section>
 
-
+      {/* ─── ADD-ONS SECTION ─── */}
+      <section className="pb-16 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
+            <h2 className="text-xl sm:text-2xl font-heading font-bold mb-2">Add-On Services</h2>
+            <p className="text-muted-foreground text-sm max-w-xl mx-auto">Enhance any plan with individual services.</p>
+          </motion.div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {addOns.map((addon, i) => (
+              <motion.div key={addon.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
+                <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden group">
+                  <div className={`h-1 bg-gradient-to-r ${addon.gradient}`} />
+                  <CardContent className="p-4 flex flex-col h-full">
+                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${addon.gradient} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+                      <addon.icon className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="font-heading font-bold text-sm mb-1">{addon.name}</h3>
+                    <p className="text-muted-foreground text-[10px] mb-3 flex-1 leading-relaxed">{addon.desc}</p>
+                    <div className="flex items-baseline gap-1 mb-2">
+                      <span className="text-lg font-heading font-black">{addon.price}</span>
+                      {addon.unit && <span className="text-[10px] text-muted-foreground">{addon.unit}</span>}
+                    </div>
+                    <Button onClick={() => handleAddOnClick(addon)} variant="outline" className="w-full text-xs font-heading border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors" size="sm">
+                      Add to Plan
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ─── SUPPORT COMPARISON ─── */}
       <section className="py-16 px-4 sm:px-6">
