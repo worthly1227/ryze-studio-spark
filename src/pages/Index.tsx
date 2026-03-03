@@ -574,7 +574,7 @@ const Index: React.FC = () => {
             <button onClick={toggleTheme} className="p-2 rounded-lg hover:bg-muted transition-colors">
               {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-            <Button variant="ghost" onClick={() => navigate("/dashboard")} className="font-medium text-sm hidden sm:inline-flex">Log in</Button>
+            <Button variant="ghost" onClick={() => navigate("/login")} className="font-medium text-sm hidden sm:inline-flex">Log in</Button>
             <Button onClick={() => navigate("/book-demo")} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-4 sm:px-5 text-xs sm:text-sm hidden sm:inline-flex">
               Book a Demo <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
@@ -592,7 +592,7 @@ const Index: React.FC = () => {
                 <button className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Examples</button>
                 <button className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Pricing</button>
                 <hr className="border-border" />
-                <button onClick={() => navigate("/dashboard")} className="block w-full text-left py-2 text-sm font-medium">Log in</button>
+                <button onClick={() => navigate("/login")} className="block w-full text-left py-2 text-sm font-medium">Log in</button>
                 <Button onClick={() => navigate("/book-demo")} className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full text-sm">
                   Book a Demo <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>

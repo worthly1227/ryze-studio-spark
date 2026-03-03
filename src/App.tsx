@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Onboarding from "./pages/Onboarding";
 import AuthenticatedLayout from "./components/layout/AuthenticatedLayout";
 import Dashboard from "./pages/Dashboard";
 import AIFactory from "./pages/AIFactory";
@@ -33,6 +36,9 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/book-demo" element={<BookDemo />} />
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
