@@ -78,7 +78,7 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
 
   return (
     <Dialog open={open} onOpenChange={resetAndClose}>
-      <DialogContent className="sm:max-w-[680px] p-0 gap-0 overflow-hidden rounded-2xl border-border max-h-[90vh] overflow-y-auto">
+      <DialogContent className="w-[95vw] max-w-[680px] p-0 gap-0 overflow-hidden rounded-2xl border-border max-h-[90vh] overflow-y-auto">
         <DialogTitle className="sr-only">Book a Call — {planName}</DialogTitle>
 
         {/* Header */}
@@ -101,7 +101,7 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
 
         {step === "confirmed" ? (
           /* ─── CONFIRMED VIEW ─── */
-          <div className="p-8 text-center">
+          <div className="p-5 sm:p-8 text-center">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Check className="w-8 h-8 text-primary" />
             </div>
@@ -141,7 +141,7 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
           /* ─── ENTER DETAILS STEP ─── */
           <div className="grid grid-cols-1 sm:grid-cols-5">
             {/* Left - call info */}
-            <div className="sm:col-span-2 bg-muted/20 p-6 border-b sm:border-b-0 sm:border-r border-border">
+            <div className="sm:col-span-2 bg-muted/20 p-4 sm:p-6 border-b sm:border-b-0 sm:border-r border-border">
               <div className="flex items-center gap-3 mb-4">
                 <img src={ryzeLogo} alt="" className="w-10 h-10 rounded-xl object-cover" />
                 <div>
@@ -176,7 +176,7 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
             </div>
 
             {/* Right - form */}
-            <div className="sm:col-span-3 p-6">
+            <div className="sm:col-span-3 p-4 sm:p-6">
               <h3 className="font-heading font-bold text-base mb-4">Enter Details</h3>
               <form onSubmit={handleConfirmDetails} className="space-y-3.5">
                 <div>
@@ -203,7 +203,7 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
           </div>
         ) : (
           /* ─── CALENDAR STEP ─── */
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-heading font-bold text-base">Pick a time that works</h3>
               <div className="flex items-center gap-1">
@@ -272,7 +272,7 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
                   Available times for{" "}
                   {new Date(viewYear, viewMonth, selectedDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                 </p>
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 mb-5">
+                <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mb-5">
                   {timeSlots.map((t) => (
                     <button
                       key={t}

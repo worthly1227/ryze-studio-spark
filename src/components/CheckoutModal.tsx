@@ -57,7 +57,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[520px] p-0 gap-0 overflow-hidden rounded-2xl border-border">
+      <DialogContent className="w-[95vw] max-w-[520px] p-0 gap-0 overflow-hidden rounded-2xl border-border max-h-[90vh] overflow-y-auto">
         <DialogTitle className="sr-only">Checkout — {planName}</DialogTitle>
 
         {/* Header */}
@@ -71,9 +71,9 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
         <div className="grid grid-cols-1 sm:grid-cols-5">
           {/* Left — Order Summary */}
-          <div className="sm:col-span-2 bg-muted/20 p-6 border-b sm:border-b-0 sm:border-r border-border">
+          <div className="sm:col-span-2 bg-muted/20 p-4 sm:p-6 border-b sm:border-b-0 sm:border-r border-border">
             <p className="text-xs text-muted-foreground font-heading mb-1">PAY RYZE STUDIOS</p>
-            <p className="text-3xl font-heading font-black mb-1">
+            <p className="text-2xl sm:text-3xl font-heading font-black mb-1">
               ${price.toLocaleString()}
               <span className="text-sm font-normal text-muted-foreground">{period ? period : ""}</span>
             </p>
@@ -139,7 +139,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
           </div>
 
           {/* Right — Payment Form */}
-          <div className="sm:col-span-3 p-6">
+          <div className="sm:col-span-3 p-4 sm:p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <Label className="text-xs font-heading mb-1.5 block">Email</Label>
