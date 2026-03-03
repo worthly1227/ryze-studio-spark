@@ -1116,16 +1116,14 @@ const Index: React.FC = () => {
       <section className="px-6 -mt-10 mb-0 relative z-10">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/10 via-card to-primary/5 p-6 md:p-8 shadow-lg cyan-glow-sm">
-              <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-primary/8 rounded-full blur-2xl pointer-events-none" />
+            <div className="relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-border/60 bg-muted/60 backdrop-blur-sm p-6 md:p-8">
               <div className="flex items-center gap-4 relative">
-                <div className="w-12 h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center flex-shrink-0 cyan-glow-sm">
-                  <Sparkles className="w-6 h-6 text-primary" />
+                <div className="w-11 h-11 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg">Looking to resell our services to your clients?</h3>
-                  <p className="text-muted-foreground text-sm">Apply to join the Ryze Studios reseller program</p>
+                  <h3 className="font-body font-semibold text-base text-foreground">Looking to resell our services to your clients?</h3>
+                  <p className="text-muted-foreground text-sm font-body">Apply to join the Ryze Studios reseller program</p>
                 </div>
               </div>
               <Button onClick={() => navigate("/reseller")} className="bg-foreground text-background hover:bg-foreground/90 font-heading rounded-full px-8 py-5 whitespace-nowrap shadow-md relative">
