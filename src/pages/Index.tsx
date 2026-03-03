@@ -582,32 +582,32 @@ const Index: React.FC = () => {
       </nav>
 
       {/* Hero */}
-      <section className="pt-28 pb-16 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="pt-6">
-            <div className="mb-6 inline-flex items-center bg-muted text-foreground border border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+      <section className="pt-32 pb-24 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="pt-8">
+            <div className="mb-8 inline-flex items-center bg-muted text-foreground border border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               🤦‍♂️ <span className="font-bold">Tired of Overpriced Agencies? Meet Ryze</span>
             </div>
-            <h1 className="text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-8">
               Your On-Demand Creative Team<br />and AI Production Platform Starting at <span className="text-primary">$10/mo</span>
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 max-w-lg leading-relaxed">
+            <p className="text-lg text-muted-foreground mb-10 max-w-lg leading-relaxed">
               We create distortion-free AI visuals, social content, UGC, and brand strategies so you can focus on pushing your business to the next level.
             </p>
-            <div className="grid grid-cols-2 gap-3 mb-8">
+            <div className="grid grid-cols-2 gap-4 mb-10">
               {[
                 { icon: Camera, text: "Studio-grade product shots" },
                 { icon: Wand2, text: "AI-powered, brand-matched" },
                 { icon: Rocket, text: "Delivered in days, not weeks" },
                 { icon: FileText, text: "Posts, reels, ads & more" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2.5 bg-card border border-border rounded-xl px-3 py-2.5">
+                <div key={i} className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3">
                   <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                   <p className="text-sm font-medium">{item.text}</p>
                 </div>
               ))}
             </div>
-            <Button size="lg" onClick={() => navigate("/dashboard")} className="bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-base px-8 py-6 rounded-full mb-5">
+            <Button size="lg" onClick={() => navigate("/dashboard")} className="bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-base px-8 py-6 rounded-full mb-6">
               Book your free strategy call <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             <p className="text-sm text-muted-foreground">Trusted by <strong className="text-foreground">1,800+</strong> growing brands  |  No contracts, cancel anytime</p>
