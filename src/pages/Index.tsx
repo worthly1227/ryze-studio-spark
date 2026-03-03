@@ -75,31 +75,46 @@ const BeforeAfterSlider: React.FC = () => {
   );
 };
 
-/* Fake social post card */
+const scrollCards = [
+  { color: "bg-gradient-to-br from-amber-400 to-orange-500", title: "ANOTHER WAY TO GROW", hasVideo: true },
+  { color: "bg-gradient-to-br from-slate-600 to-slate-800", title: "RISE ABOVE THE REST" },
+  { color: "bg-gradient-to-br from-rose-400 to-red-500", title: "GAME, YOUR STORY" },
+  { color: "bg-gradient-to-br from-violet-500 to-purple-700", title: "BUILD YOUR EMPIRE" },
+  { color: "bg-gradient-to-br from-emerald-400 to-teal-600", title: "CREATE & INSPIRE", hasVideo: true },
+  { color: "bg-gradient-to-br from-cyan-400 to-blue-600", title: "LEVEL UP TODAY" },
+  { color: "bg-gradient-to-br from-pink-400 to-rose-600", title: "STAND OUT NOW" },
+  { color: "bg-gradient-to-br from-yellow-400 to-amber-600", title: "SHINE BRIGHTER", hasVideo: true },
+  { color: "bg-gradient-to-br from-indigo-400 to-blue-800", title: "DREAM BIGGER" },
+];
+
 const SocialPostCard: React.FC<{ color: string; title: string; hasVideo?: boolean }> = ({ color, title, hasVideo }) => (
-  <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
+  <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm flex-shrink-0">
     <div className={`aspect-[4/5] ${color} flex items-center justify-center relative`}>
       {hasVideo && (
-        <div className="w-14 h-14 rounded-full bg-background/80 backdrop-blur flex items-center justify-center">
-          <Play className="w-6 h-6 text-foreground ml-1" />
+        <div className="w-12 h-12 rounded-full bg-background/80 backdrop-blur flex items-center justify-center">
+          <Play className="w-5 h-5 text-foreground ml-0.5" />
         </div>
       )}
-      <p className="absolute bottom-4 left-4 right-4 text-white font-heading font-bold text-lg leading-tight drop-shadow-lg">{title}</p>
+      <p className="absolute bottom-3 left-3 right-3 text-white font-heading font-bold text-sm leading-tight drop-shadow-lg">{title}</p>
     </div>
-    <div className="p-3 flex items-center gap-3">
-      <Heart className="w-5 h-5 text-destructive fill-destructive" />
-      <MessageCircle className="w-5 h-5 text-muted-foreground" />
-      <Send className="w-5 h-5 text-muted-foreground" />
-      <Bookmark className="w-5 h-5 text-muted-foreground ml-auto" />
+    <div className="p-2.5 flex items-center gap-2.5">
+      <Heart className="w-4 h-4 text-destructive fill-destructive" />
+      <MessageCircle className="w-4 h-4 text-muted-foreground" />
+      <Send className="w-4 h-4 text-muted-foreground" />
+      <Bookmark className="w-4 h-4 text-muted-foreground ml-auto" />
     </div>
   </div>
 );
 
-const StoryCard: React.FC<{ color: string }> = ({ color }) => (
-  <div className={`rounded-2xl ${color} aspect-[9/16] w-full flex items-end p-3`}>
-    <div className="flex items-center gap-2">
-      <div className="w-6 h-6 rounded-full bg-background/50 border-2 border-primary" />
-      <span className="text-xs text-white font-medium drop-shadow">Business · 3s ago</span>
+const ScrollingColumn: React.FC<{ cards: typeof scrollCards; speed?: number; reverse?: boolean }> = ({ cards, speed = 25, reverse = false }) => (
+  <div className="relative overflow-hidden h-[540px]">
+    <div
+      className={`flex flex-col gap-3 ${reverse ? "animate-scroll-down" : "animate-scroll-up"}`}
+      style={{ animationDuration: `${speed}s` }}
+    >
+      {[...cards, ...cards].map((card, i) => (
+        <SocialPostCard key={i} {...card} />
+      ))}
     </div>
   </div>
 );
@@ -189,63 +204,21 @@ const Index: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Right: social content grid (reference style) */}
+          {/* Right: scrolling social content columns */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="hidden lg:block"
+            className="hidden lg:block relative"
           >
+            {/* Fade masks top and bottom */}
+            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+
             <div className="grid grid-cols-3 gap-3">
-              {/* Row 1: 3 social post cards */}
-              <SocialPostCard color="bg-gradient-to-br from-amber-400 to-orange-500" title="ANOTHER WAY TO GROW" hasVideo />
-              <SocialPostCard color="bg-gradient-to-br from-slate-600 to-slate-800" title="RISE ABOVE THE REST" />
-              <SocialPostCard color="bg-gradient-to-br from-rose-400 to-red-500" title="GAME, YOUR STORY" />
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 mt-3">
-              {/* Stories card */}
-              <Card className="p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-5 h-5 rounded bg-muted flex items-center justify-center"><Bookmark className="w-3 h-3 text-muted-foreground" /></div>
-                  <span className="font-heading font-semibold text-sm">Instagram Stories</span>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <StoryCard color="bg-gradient-to-b from-emerald-400 to-teal-600" />
-                  <StoryCard color="bg-gradient-to-b from-cyan-500 to-blue-600" />
-                </div>
-              </Card>
-
-              {/* Growth card */}
-              <Card className="p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-5 h-5 rounded bg-muted flex items-center justify-center"><TrendingUp className="w-3 h-3 text-muted-foreground" /></div>
-                  <span className="font-heading font-semibold text-sm">Growth Analytics</span>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-muted-foreground">Followers</span>
-                      <BarChart3 className="w-4 h-4 text-primary" />
-                    </div>
-                    <p className="text-2xl font-heading font-black">8.4K <span className="text-xs text-primary font-medium">+128%</span></p>
-                    <div className="h-16 mt-2 flex items-end gap-1">
-                      {[30, 45, 35, 55, 50, 70, 65, 80, 90, 85, 95, 100].map((h, i) => (
-                        <div key={i} className="flex-1 bg-primary/20 rounded-t" style={{ height: `${h}%` }}>
-                          <div className="w-full bg-primary rounded-t" style={{ height: `${h * 0.6}%` }} />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-muted-foreground">Reach</span>
-                      <BarChart3 className="w-4 h-4 text-primary" />
-                    </div>
-                    <p className="text-2xl font-heading font-black">129K <span className="text-xs text-primary font-medium">+348%</span></p>
-                  </div>
-                </div>
-              </Card>
+              <ScrollingColumn cards={scrollCards.slice(0, 3)} speed={22} />
+              <ScrollingColumn cards={scrollCards.slice(3, 6)} speed={28} reverse />
+              <ScrollingColumn cards={scrollCards.slice(6, 9)} speed={25} />
             </div>
           </motion.div>
         </div>
