@@ -46,7 +46,13 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [showPromo, setShowPromo] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [addOnQty, setAddOnQty] = useState(preSelectedAddOnQty > 0 ? preSelectedAddOnQty : 0);
-  const [preAddOnQty, setPreAddOnQty] = useState(preSelectedAddOnQty);
+
+  // Reset qty when modal opens with new props
+  useEffect(() => {
+    if (open) {
+      setAddOnQty(preSelectedAddOnQty > 0 ? preSelectedAddOnQty : 0);
+    }
+  }, [open, preSelectedAddOnQty]);
 
   // The active add-on is either the pre-selected one or the suggested one
   const activeAddOn = preSelectedAddOn || suggestedAddOn;
