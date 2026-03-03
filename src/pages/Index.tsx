@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Play, Star, ArrowRight, Sparkles, ChevronRight, Zap, Shield, Users, MessageSquare, Calendar, Crown, Heart, MessageCircle, Send, Bookmark, TrendingUp, BarChart3 } from "lucide-react";
+import { Check, Play, Star, ArrowRight, Sparkles, ChevronRight, Zap, Shield, Users, MessageSquare, Calendar, Crown, Heart, MessageCircle, Send, Bookmark, TrendingUp, BarChart3, ImageIcon, BookOpen, Palette } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Moon, Sun } from "lucide-react";
