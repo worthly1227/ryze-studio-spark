@@ -124,15 +124,6 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   <span className="font-heading font-bold text-sm">${(activeAddOn.price * addOnQty).toLocaleString()}</span>
                 </div>
               )}
-              {preAddOnQty > 0 && preSelectedAddOn && suggestedAddOn && preSelectedAddOn.name !== suggestedAddOn.name && addOnQty > 0 && (
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="font-heading font-semibold text-sm">{suggestedAddOn.name}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">Recommended</p>
-                  </div>
-                  <span className="text-xs text-muted-foreground">See below</span>
-                </div>
-              )}
             </div>
 
             <Separator className="my-4" />
