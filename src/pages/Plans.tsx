@@ -293,7 +293,7 @@ const Plans: React.FC = () => {
                     <span className="font-heading font-semibold text-primary">
                       {pendingAddOn.name} added!
                     </span>
-                    <span className="text-muted-foreground hidden sm:inline">— Now select a plan above to continue to checkout.</span>
+                    <span className="text-muted-foreground hidden sm:inline">Now select a plan above to continue to checkout.</span>
                   </div>
                   <button onClick={() => setPendingAddOn(null)} className="text-muted-foreground hover:text-foreground transition-colors">
                     <X className="w-4 h-4" />
