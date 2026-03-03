@@ -560,10 +560,10 @@ const Index: React.FC = () => {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
           <div className="flex items-center gap-4 sm:gap-6">
-            <div className="flex items-center gap-2">
+            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2">
               <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-cover flex-shrink-0" />
               <span className="font-heading font-bold text-lg sm:text-xl tracking-tight">Ryze Studios</span>
-            </div>
+            </button>
             <div className="hidden md:flex items-center gap-5 text-sm font-medium text-muted-foreground">
               <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Services</button>
               <button onClick={() => document.getElementById("examples")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Examples</button>
@@ -1247,10 +1247,10 @@ const Index: React.FC = () => {
       {/* Footer */}
       <footer className="py-8 sm:py-12 px-4 sm:px-6 border-t border-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6">
-          <div className="flex items-center gap-2.5">
+          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2.5">
             <img src={ryzeLogo} alt="Ryze Studios" className="w-7 h-7 rounded-lg object-cover" />
             <span className="font-heading font-bold text-lg">Ryze Studios</span>
-          </div>
+          </button>
           <p className="text-xs sm:text-sm text-muted-foreground">© 2026 Ryze Studios. All rights reserved.</p>
           <div className="flex gap-6">
             <button onClick={() => navigate("/legal")} className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms</button>
