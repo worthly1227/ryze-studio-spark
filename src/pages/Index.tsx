@@ -698,6 +698,14 @@ const Index: React.FC = () => {
       {/* ═══════ SUBSCRIPTION TIERS ═══════ */}
       <section id="pricing" className="py-12 sm:py-20 px-4 sm:px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 sm:mb-14">
+            <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+              PLANS & PRICING
+            </Badge>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Find your perfect fit</h2>
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Whether you need one polished product shot or a full content engine, there's a Ryze plan built for you.</p>
+          </motion.div>
+
           {/* Pending add-on banner */}
           <AnimatePresence>
             {pendingAddOn && (
@@ -713,7 +721,7 @@ const Index: React.FC = () => {
                     <span className="font-heading font-semibold text-primary">
                       {pendingAddOn.name} added!
                     </span>
-                    <span className="text-muted-foreground hidden sm:inline">Now select a plan above to continue to checkout.</span>
+                    <span className="text-muted-foreground hidden sm:inline">Now select a plan below to continue to checkout.</span>
                   </div>
                   <button onClick={() => setPendingAddOn(null)} className="text-muted-foreground hover:text-foreground transition-colors">
                     <X className="w-4 h-4" />
@@ -722,14 +730,6 @@ const Index: React.FC = () => {
               </motion.div>
             )}
           </AnimatePresence>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 sm:mb-14">
-            <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
-              PLANS & PRICING
-            </Badge>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Find your perfect fit</h2>
-            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Whether you need one polished product shot or a full content engine, there's a Ryze plan built for you.</p>
-          </motion.div>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4">
             {subscriptionTiers.map((tier, i) => (
