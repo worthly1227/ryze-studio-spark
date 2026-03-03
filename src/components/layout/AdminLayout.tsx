@@ -1,14 +1,14 @@
 import React from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { ClientSidebar } from "@/components/layout/ClientSidebar";
+import { AdminSidebar } from "@/components/layout/AdminSidebar";
 import TopBar from "@/components/layout/TopBar";
 import { Outlet } from "react-router-dom";
 
-const AuthenticatedLayout: React.FC = () => {
+const AdminLayout: React.FC = () => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
-        <ClientSidebar />
+        <AdminSidebar />
         <div className="flex-1 flex flex-col min-w-0">
           <TopBar />
           <main className="flex-1 p-6 overflow-auto">
@@ -20,4 +20,4 @@ const AuthenticatedLayout: React.FC = () => {
   );
 };
 
-export default AuthenticatedLayout;
+export default AdminLayout;
