@@ -24,6 +24,7 @@ import InsightsBlog from "./pages/InsightsBlog";
 import LegalHub from "./pages/LegalHub";
 import SettingsPage from "./pages/SettingsPage";
 import BookDemo from "./pages/BookDemo";
+import Plans from "./pages/Plans";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/signup" element={<SignUp />} />
             <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/book-demo" element={<BookDemo />} />
+            <Route path="/plans" element={<Plans />} />
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/ai-factory" element={<AIFactory />} />
