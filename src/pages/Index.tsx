@@ -379,8 +379,7 @@ const FactoryProofSection: React.FC = () => {
     </section>
   );
 };
-
-
+const Index: React.FC = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
 
