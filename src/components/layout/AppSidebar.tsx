@@ -2,11 +2,12 @@ import React from "react";
 import {
   LayoutDashboard, Factory, ShoppingBag, LayoutTemplate, ClipboardList,
   Archive, Palette, Activity, Store, Users, BookOpen, Scale, Settings,
+  Upload, MessageSquare, FolderOpen, Download, UserCog, Send, Kanban,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import {
-  Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
+  Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
   SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,
 } from "@/components/ui/sidebar";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
@@ -27,10 +28,44 @@ const navItems = [
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
+const clientItems = [
+  { title: "Upload Content", url: "/client/uploads", icon: Upload },
+  { title: "Messages", url: "/client/messages", icon: MessageSquare },
+  { title: "My Projects", url: "/client/projects", icon: FolderOpen },
+  { title: "Deliverables", url: "/client/deliverables", icon: Download },
+];
+
+const adminItems = [
+  { title: "Clients", url: "/admin/clients", icon: UserCog },
+  { title: "All Projects", url: "/admin/projects", icon: Kanban },
+  { title: "Client Messages", url: "/admin/messages", icon: Send },
+  { title: "Deliver Files", url: "/admin/deliverables", icon: Upload },
+];
+
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
+
+  const renderNavItems = (items: typeof navItems) =>
+    items.map((item) => {
+      const isActive = location.pathname === item.url;
+      return (
+        <SidebarMenuItem key={item.title}>
+          <SidebarMenuButton asChild>
+            <NavLink
+              to={item.url}
+              end
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent ${isActive ? "!bg-primary/15 !text-primary font-semibold cyan-glow-sm" : ""}`}
+              activeClassName=""
+            >
+              <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? "text-primary" : ""}`} />
+              {!collapsed && <span className="text-sm font-heading">{item.title}</span>}
+            </NavLink>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      );
+    });
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border bg-sidebar">
@@ -42,24 +77,25 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {navItems.map((item) => {
-                const isActive = location.pathname === item.url;
-                return (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
-                      <NavLink
-                        to={item.url}
-                        end
-                        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent ${isActive ? "!bg-primary/15 !text-primary font-semibold cyan-glow-sm" : ""}`}
-                        activeClassName=""
-                      >
-                        <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? "text-primary" : ""}`} />
-                        {!collapsed && <span className="text-sm font-heading">{item.title}</span>}
-                      </NavLink>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
+              {renderNavItems(navItems)}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          {!collapsed && <SidebarGroupLabel className="text-xs font-heading text-muted-foreground uppercase tracking-wider px-3">Client Portal</SidebarGroupLabel>}
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {renderNavItems(clientItems)}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          {!collapsed && <SidebarGroupLabel className="text-xs font-heading text-muted-foreground uppercase tracking-wider px-3">Admin</SidebarGroupLabel>}
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {renderNavItems(adminItems)}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
