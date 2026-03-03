@@ -26,6 +26,14 @@ import SettingsPage from "./pages/SettingsPage";
 import BookDemo from "./pages/BookDemo";
 import Plans from "./pages/Plans";
 import TemplateStore from "./pages/TemplateStore";
+import ClientUploads from "./pages/client/ClientUploads";
+import ClientMessages from "./pages/client/ClientMessages";
+import ClientProjects from "./pages/client/ClientProjects";
+import ClientDeliverables from "./pages/client/ClientDeliverables";
+import AdminClients from "./pages/admin/AdminClients";
+import AdminDeliverables from "./pages/admin/AdminDeliverables";
+import AdminMessages from "./pages/admin/AdminMessages";
+import AdminProjects from "./pages/admin/AdminProjects";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +66,14 @@ const App = () => (
               <Route path="/insights" element={<InsightsBlog />} />
               <Route path="/legal" element={<LegalHub />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/client/uploads" element={<ClientUploads />} />
+              <Route path="/client/messages" element={<ClientMessages />} />
+              <Route path="/client/projects" element={<ClientProjects />} />
+              <Route path="/client/deliverables" element={<ClientDeliverables />} />
+              <Route path="/admin/clients" element={<AdminClients />} />
+              <Route path="/admin/deliverables" element={<AdminDeliverables />} />
+              <Route path="/admin/messages" element={<AdminMessages />} />
+              <Route path="/admin/projects" element={<AdminProjects />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
