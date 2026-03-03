@@ -695,27 +695,7 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* ═══════ RESELLER CTA ═══════ */}
-      <section className="px-6 pb-16">
-        <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-border bg-card p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Sparkles className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg">Looking to resell our services to your clients?</h3>
-                  <p className="text-muted-foreground text-sm">Apply to join the Ryze Studios reseller program</p>
-                </div>
-              </div>
-              <Button onClick={() => navigate("/reseller")} className="bg-foreground text-background hover:bg-foreground/90 font-heading rounded-full px-6 whitespace-nowrap">
-                Apply to become a reseller
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
 
       {/* ═══════ COMPARISON TABLE ═══════ */}
       <section className="py-20 px-6">
@@ -1129,6 +1109,28 @@ const Index: React.FC = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* ═══════ RESELLER CTA ═══════ */}
+      <section className="px-6 pb-16">
+        <div className="max-w-5xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-border bg-card p-6 md:p-8 shadow-sm">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold text-lg">Looking to resell our services to your clients?</h3>
+                  <p className="text-muted-foreground text-sm">Apply to join the Ryze Studios reseller program</p>
+                </div>
+              </div>
+              <Button onClick={() => navigate("/reseller")} className="bg-foreground text-background hover:bg-foreground/90 font-heading rounded-full px-6 whitespace-nowrap">
+                Apply to become a reseller
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
