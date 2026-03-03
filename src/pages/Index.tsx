@@ -567,6 +567,7 @@ const Index: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [checkoutTier, setCheckoutTier] = useState<typeof subscriptionTiers[0] | null>(null);
   const [calendlyTier, setCalendlyTier] = useState<typeof subscriptionTiers[0] | null>(null);
+  const [pendingAddOn, setPendingAddOn] = useState<{ name: string; price: number; description: string } | null>(null);
 
   const handleTierClick = (tier: typeof subscriptionTiers[0]) => {
     if (tier.price >= 299) {
@@ -574,6 +575,12 @@ const Index: React.FC = () => {
     } else {
       setCheckoutTier(tier);
     }
+  };
+
+  const handleAddOnClick = (addon: typeof addOns[0]) => {
+    const numericPrice = parseInt(addon.price.replace(/[^0-9]/g, ""));
+    setPendingAddOn({ name: addon.name, price: numericPrice, description: addon.desc });
+    document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleCalendlyBooked = () => {
