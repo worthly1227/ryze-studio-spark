@@ -463,20 +463,20 @@ const FactoryProofSection: React.FC = () => {
   const visible = showAll ? filtered : filtered.slice(0, 6);
 
   return (
-    <section className="py-20 px-6 bg-muted/30">
+    <section className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Built for product brands like yours</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Real transformations from real product brands. Browse by content type or niche to see the caliber of work Ryze delivers every single week.</p>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Built for product brands like yours</h2>
+          <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Real transformations from real product brands. Browse by content type or niche to see the caliber of work Ryze delivers every single week.</p>
         </motion.div>
 
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex bg-card border border-border rounded-full p-1 gap-0.5 flex-wrap justify-center">
+        <div className="mb-6 overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="inline-flex bg-card border border-border rounded-full p-1 gap-0.5 whitespace-nowrap">
             {contentTypes.map((type) => (
               <button
                 key={type}
                 onClick={() => { setActiveType(type); setShowAll(false); }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeType === type ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${activeType === type ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
               >
                 {type}
               </button>
@@ -484,7 +484,7 @@ const FactoryProofSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex justify-center mb-10">
+        <div className="flex justify-center mb-8 sm:mb-10">
           <div className="flex gap-2 flex-wrap justify-center">
             {industries.map((ind) => (
               <button
@@ -603,35 +603,35 @@ const Index: React.FC = () => {
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-24 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="pt-8">
-            <div className="mb-8 inline-flex items-center bg-muted text-foreground border border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="pt-4 sm:pt-8">
+            <div className="mb-6 sm:mb-8 inline-flex items-center bg-muted text-foreground border border-border font-heading text-xs tracking-wider px-3 sm:px-4 py-1.5 rounded-full">
               🤦‍♂️ <span className="font-bold">Tired of Overpriced Agencies? Meet Ryze</span>
             </div>
-            <h1 className="text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-8">
-              Your On-Demand Creative Team<br />and AI Production Platform Starting at <span className="text-primary">$10/mo</span>
+            <h1 className="text-3xl sm:text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6 sm:mb-8">
+              Your On-Demand Creative Team<br className="hidden sm:block" />{" "}and AI Production Platform Starting at <span className="text-primary">$10/mo</span>
             </h1>
-            <p className="text-lg text-muted-foreground mb-10 max-w-lg leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-lg leading-relaxed">
               We create distortion-free AI visuals, social content, UGC, and brand strategies so you can focus on pushing your business to the next level.
             </p>
-            <div className="grid grid-cols-2 gap-4 mb-10">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
               {[
                 { icon: Camera, text: "Studio-grade product shots" },
                 { icon: Wand2, text: "AI-powered, brand-matched" },
                 { icon: Rocket, text: "Delivered in days, not weeks" },
                 { icon: FileText, text: "Posts, reels, ads & more" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3">
+                <div key={i} className="flex items-center gap-2 sm:gap-3 bg-card border border-border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3">
                   <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
-                  <p className="text-sm font-medium">{item.text}</p>
+                  <p className="text-xs sm:text-sm font-medium">{item.text}</p>
                 </div>
               ))}
             </div>
-            <Button size="lg" onClick={() => navigate("/dashboard")} className="bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-base px-8 py-6 rounded-full mb-6">
+            <Button size="lg" onClick={() => navigate("/dashboard")} className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 rounded-full mb-4 sm:mb-6">
               Book your free strategy call <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <p className="text-sm text-muted-foreground">Trusted by <strong className="text-foreground">1,800+</strong> growing brands  |  No contracts, cancel anytime</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Trusted by <strong className="text-foreground">1,800+</strong> growing brands  |  No contracts, cancel anytime</p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="hidden lg:block relative overflow-hidden">
@@ -653,17 +653,17 @@ const Index: React.FC = () => {
       <FactoryProofSection />
 
       {/* ═══════ SUBSCRIPTION TIERS ═══════ */}
-      <section className="py-20 px-6">
+      <section className="py-12 sm:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 sm:mb-14">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               PLANS & PRICING
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Find your perfect fit</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Whether you need one polished product shot or a full content engine, there's a Ryze plan built for you.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Find your perfect fit</h2>
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Whether you need one polished product shot or a full content engine, there's a Ryze plan built for you.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4">
             {subscriptionTiers.map((tier, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
                 <Card className={`relative h-full transition-all duration-300 hover:shadow-lg ${tier.popular ? "border-primary ring-2 ring-primary/20" : ""} ${tier.premium ? "border-primary/50 bg-gradient-to-b from-card to-primary/5" : ""}`}>
@@ -708,11 +708,11 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ ADD-ONS ═══════ */}
-      <section className="py-16 bg-muted/30 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-3">Add-Ons</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">Enhance any plan with individual services.</p>
+      <section className="py-10 sm:py-16 bg-muted/30 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-2 sm:mb-3">Add-Ons</h2>
+            <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto">Enhance any plan with individual services.</p>
           </motion.div>
         </div>
 
@@ -721,7 +721,7 @@ const Index: React.FC = () => {
           <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
           <div className="flex" onMouseEnter={() => setIsAddOnsPaused(true)} onMouseLeave={() => setIsAddOnsPaused(false)} style={{ animation: 'scroll-left 18s linear infinite', animationPlayState: isAddOnsPaused ? 'paused' : 'running', width: 'max-content' }}>
             {[...addOns, ...addOns, ...addOns].map((addon, i) => (
-              <div key={i} className="flex-shrink-0 w-72 mx-2.5">
+              <div key={i} className="flex-shrink-0 w-56 sm:w-72 mx-2 sm:mx-2.5">
                 <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-0 shadow-md overflow-hidden group">
                   <div className={`h-1.5 bg-gradient-to-r ${addon.color}`} />
                   <CardContent className="p-5 flex flex-col h-full">
@@ -748,17 +748,41 @@ const Index: React.FC = () => {
 
 
       {/* ═══════ COMPARISON TABLE ═══════ */}
-      <section className="py-20 px-6">
+      <section className="py-12 sm:py-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-12">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               THE RYZE DIFFERENCE
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Stack us up against anyone</h2>
-            <p className="text-muted-foreground text-lg">See exactly where agencies, AI tools, and Ryze Studios stand side by side.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Stack us up against anyone</h2>
+            <p className="text-muted-foreground text-sm sm:text-lg">See exactly where agencies, AI tools, and Ryze Studios stand side by side.</p>
           </motion.div>
 
-          <div className="overflow-x-auto">
+          {/* Mobile comparison cards */}
+          <div className="sm:hidden space-y-4">
+            {comparisonData.map((row, i) => (
+              <div key={i} className="rounded-xl border border-border bg-card p-4">
+                <h4 className="font-heading font-semibold text-sm mb-3">{row.feature}</h4>
+                <div className="space-y-2">
+                  <div className="flex items-start gap-2">
+                    <X className="w-3.5 h-3.5 text-destructive flex-shrink-0 mt-0.5" />
+                    <div><span className="text-[10px] text-muted-foreground font-heading block">Agencies</span><span className="text-xs text-muted-foreground">{row.agency}</span></div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <X className="w-3.5 h-3.5 text-muted-foreground/50 flex-shrink-0 mt-0.5" />
+                    <div><span className="text-[10px] text-muted-foreground font-heading block">AI Tools</span><span className="text-xs text-muted-foreground">{row.ai}</span></div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                    <div><span className="text-[10px] text-primary font-heading block">Ryze</span><span className="text-xs font-semibold text-primary">{row.ryze}</span></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop comparison table */}
+          <div className="hidden sm:block overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr>
