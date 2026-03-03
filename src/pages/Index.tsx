@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
+import CheckoutModal from "@/components/CheckoutModal";
+import CalendlyModal from "@/components/CalendlyModal";
 
 /* ─── PRICING TIERS DATA ─── */
 const subscriptionTiers = [
@@ -553,6 +555,24 @@ const Index: React.FC = () => {
   const [activeFeatureTab, setActiveFeatureTab] = useState("Services");
   const [isAddOnsPaused, setIsAddOnsPaused] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [checkoutTier, setCheckoutTier] = useState<typeof subscriptionTiers[0] | null>(null);
+  const [calendlyTier, setCalendlyTier] = useState<typeof subscriptionTiers[0] | null>(null);
+
+  const handleTierClick = (tier: typeof subscriptionTiers[0]) => {
+    if (tier.price >= 299) {
+      setCalendlyTier(tier);
+    } else {
+      setCheckoutTier(tier);
+    }
+  };
+
+  const handleCalendlyBooked = () => {
+    const tier = calendlyTier;
+    setCalendlyTier(null);
+    if (tier) {
+      setCheckoutTier(tier);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -696,7 +716,7 @@ const Index: React.FC = () => {
                         </div>
                       ))}
                     </div>
-                    <Button onClick={() => tier.price >= 299 ? navigate("/book-demo") : navigate("/plans")} className={`w-full text-xs font-heading ${tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
+                    <Button onClick={() => handleTierClick(tier)} className={`w-full text-xs font-heading ${tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
                       {tier.price >= 299 ? "Book a Call" : "Get Started"}
                     </Button>
                   </CardContent>
