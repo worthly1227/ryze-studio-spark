@@ -645,10 +645,16 @@ const Index: React.FC = () => {
                   {tier.premium && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-foreground text-background font-heading text-[10px]">Premium</Badge></div>}
                   <CardHeader className="pb-3 pt-6">
                     <CardTitle className="font-heading text-sm">{tier.name}</CardTitle>
-                    <div className="flex items-baseline gap-0.5 mt-1">
+                    <div className="mt-1">
+                      {tier.competitorPrice && (
+                        <span className="text-sm text-muted-foreground line-through mr-2">${tier.competitorPrice}</span>
+                      )}
                       <span className="text-3xl font-heading font-black">${tier.price}</span>
                       <span className="text-muted-foreground text-xs">/mo</span>
                     </div>
+                    {tier.competitorPrice && (
+                      <Badge className="mt-1.5 bg-primary/10 text-primary border-0 text-[10px] font-heading">{tier.savingsPercent} cheaper</Badge>
+                    )}
                     <p className="text-xs text-muted-foreground mt-1">{tier.tagline}</p>
                   </CardHeader>
                   <CardContent className="pt-0">
@@ -683,22 +689,23 @@ const Index: React.FC = () => {
             <p className="text-muted-foreground max-w-xl mx-auto">Enhance any plan with individual services.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {addOns.map((addon, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-                <Card className="h-full hover:shadow-md transition-shadow">
-                  <CardContent className="p-5">
-                    <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
-                      <addon.icon className="w-5 h-5 text-muted-foreground" />
+                <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-0 shadow-md overflow-hidden group">
+                  <div className={`h-1.5 bg-gradient-to-r ${addon.color}`} />
+                  <CardContent className="p-5 flex flex-col h-full">
+                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${addon.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                      <addon.icon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-heading font-semibold text-sm mb-1">{addon.name}</h3>
-                    <p className="text-muted-foreground text-xs mb-3">{addon.desc}</p>
-                    <div className="mt-auto">
+                    <h3 className="font-heading font-bold text-base mb-2">{addon.name}</h3>
+                    <p className="text-muted-foreground text-xs mb-4 flex-1">{addon.desc}</p>
+                    <div className="flex items-baseline gap-1 mb-3">
                       <span className="text-2xl font-heading font-black">{addon.price}</span>
-                      {addon.unit && <span className="text-xs text-muted-foreground ml-1">{addon.unit}</span>}
+                      {addon.unit && <span className="text-xs text-muted-foreground">{addon.unit}</span>}
                     </div>
-                    <Button variant="outline" className="w-full mt-3 text-xs font-heading" size="sm">
-                      Add to Plan <ArrowRight className="w-3 h-3 ml-1" />
+                    <Button variant="outline" className="w-full text-xs font-heading border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors" size="sm">
+                      Add to Plan
                     </Button>
                   </CardContent>
                 </Card>
@@ -904,27 +911,23 @@ const Index: React.FC = () => {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <Card className="hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
-                <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
-                  <CalendarDays className="w-5 h-5 text-muted-foreground" />
-                </div>
-                <h3 className="font-heading font-bold mb-1">Talk to our team</h3>
-                <p className="text-sm text-muted-foreground mb-4">Hop on a 20-minute call with a Ryze creative lead and map out your content plan.</p>
-                <Button className="w-full bg-foreground text-background hover:bg-foreground/90 font-heading">Book a Call</Button>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
-                <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-3">
-                  <Zap className="w-5 h-5 text-muted-foreground" />
-                </div>
-                <h3 className="font-heading font-bold mb-1">Jump in today</h3>
-                <p className="text-sm text-muted-foreground mb-4">Pick a plan and start receiving polished, on-brand content within days.</p>
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading">Start Using Ryze Now</Button>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-foreground to-foreground/80 rounded-2xl p-8 text-background">
+              <Phone className="w-8 h-8 mb-4 text-primary" />
+              <h3 className="font-heading font-bold text-xl mb-2">Let's map out your strategy</h3>
+              <p className="text-sm text-background/70 mb-6">Hop on a 20-minute call with a Ryze creative lead and build a content plan tailored to your brand.</p>
+              <Button className="w-full bg-background text-foreground hover:bg-background/90 font-heading rounded-xl py-5">
+                Schedule a Call <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary/20 rounded-2xl p-8">
+              <Rocket className="w-8 h-8 mb-4 text-primary" />
+              <h3 className="font-heading font-bold text-xl mb-2">Ready to go? Pick a plan</h3>
+              <p className="text-sm text-muted-foreground mb-6">Choose your package and start receiving polished, on-brand content within days.</p>
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-xl py-5">
+                Browse Plans <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
