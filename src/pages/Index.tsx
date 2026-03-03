@@ -552,16 +552,17 @@ const Index: React.FC = () => {
   const [activeClient, setActiveClient] = useState("SpinSudz");
   const [activeFeatureTab, setActiveFeatureTab] = useState("Services");
   const [isAddOnsPaused, setIsAddOnsPaused] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2.5">
-              <img src={ryzeLogo} alt="Ryze Studios" className="w-9 h-9 rounded-lg object-cover flex-shrink-0" />
-              <span className="font-heading font-bold text-xl tracking-tight">Ryze Studios</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-2">
+              <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-cover flex-shrink-0" />
+              <span className="font-heading font-bold text-lg sm:text-xl tracking-tight">Ryze Studios</span>
             </div>
             <div className="hidden md:flex items-center gap-5 text-sm font-medium text-muted-foreground">
               <button className="hover:text-foreground transition-colors">Services</button>
@@ -569,17 +570,36 @@ const Index: React.FC = () => {
               <button className="hover:text-foreground transition-colors">Pricing</button>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button onClick={toggleTheme} className="p-2 rounded-lg hover:bg-muted transition-colors">
               {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-            <Button variant="ghost" onClick={() => navigate("/dashboard")} className="font-medium text-sm">Log in</Button>
-            <Button variant="ghost" onClick={() => navigate("/dashboard")} className="font-medium text-sm hidden sm:inline-flex">Get Started</Button>
-            <Button onClick={() => navigate("/dashboard")} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-5">
+            <Button variant="ghost" onClick={() => navigate("/dashboard")} className="font-medium text-sm hidden sm:inline-flex">Log in</Button>
+            <Button onClick={() => navigate("/dashboard")} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-4 sm:px-5 text-xs sm:text-sm hidden sm:inline-flex">
               Book a Demo <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="sm:hidden p-2 rounded-lg hover:bg-muted transition-colors">
+              <Menu className="w-5 h-5" />
+            </button>
           </div>
         </div>
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="sm:hidden overflow-hidden border-t border-border bg-background">
+              <div className="px-4 py-3 space-y-2">
+                <button className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Services</button>
+                <button className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Examples</button>
+                <button className="block w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground">Pricing</button>
+                <hr className="border-border" />
+                <button onClick={() => navigate("/dashboard")} className="block w-full text-left py-2 text-sm font-medium">Log in</button>
+                <Button onClick={() => navigate("/dashboard")} className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full text-sm">
+                  Book a Demo <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero */}
