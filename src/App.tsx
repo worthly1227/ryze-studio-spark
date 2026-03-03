@@ -3,24 +3,55 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import AuthenticatedLayout from "./components/layout/AuthenticatedLayout";
+import Dashboard from "./pages/Dashboard";
+import AIFactory from "./pages/AIFactory";
+import Marketplace from "./pages/Marketplace";
+import Templates from "./pages/Templates";
+import ProductionRequests from "./pages/ProductionRequests";
+import AssetArchive from "./pages/AssetArchive";
+import BrandKit from "./pages/BrandKit";
+import StatusTracker from "./pages/StatusTracker";
+import ResellerHub from "./pages/ResellerHub";
+import Affiliate from "./pages/Affiliate";
+import InsightsBlog from "./pages/InsightsBlog";
+import LegalHub from "./pages/LegalHub";
+import SettingsPage from "./pages/SettingsPage";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route element={<AuthenticatedLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/ai-factory" element={<AIFactory />} />
+              <Route path="/marketplace" element={<Marketplace />} />
+              <Route path="/templates" element={<Templates />} />
+              <Route path="/production-requests" element={<ProductionRequests />} />
+              <Route path="/asset-archive" element={<AssetArchive />} />
+              <Route path="/brand-kit" element={<BrandKit />} />
+              <Route path="/status-tracker" element={<StatusTracker />} />
+              <Route path="/reseller-hub" element={<ResellerHub />} />
+              <Route path="/affiliate" element={<Affiliate />} />
+              <Route path="/insights" element={<InsightsBlog />} />
+              <Route path="/legal" element={<LegalHub />} />
+              <Route path="/settings" element={<SettingsPage />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
