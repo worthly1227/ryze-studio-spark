@@ -515,16 +515,23 @@ const Plans: React.FC = () => {
         </div>
       </section>
 
-      {/* ─── FOOTER ─── */}
-      <footer className="py-8 px-4 sm:px-6 border-t border-border bg-muted/20">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2 cursor-pointer">
-            <img src={ryzeLogo} alt="Ryze Studios" className="w-6 h-6 rounded-md object-cover" />
-            <span className="font-heading font-bold text-sm">Ryze Studios</span>
-          </button>
-          <p className="text-xs text-muted-foreground">© 2025 Ryze Studios. All rights reserved.</p>
-        </div>
-      </footer>
+      {/* ─── MODALS ─── */}
+      <CheckoutModal
+        open={!!checkoutPlan}
+        onOpenChange={(open) => !open && setCheckoutPlan(null)}
+        planName={checkoutPlan?.name || ""}
+        price={checkoutPlan?.price || 0}
+        period={checkoutPlan?.period || ""}
+        features={checkoutPlan?.features.filter(f => f.included).map(f => f.text)}
+      />
+      <CalendlyModal
+        open={!!calendlyPlan}
+        onOpenChange={(open) => !open && setCalendlyPlan(null)}
+        planName={calendlyPlan?.name || ""}
+        price={calendlyPlan?.price || 0}
+        period={calendlyPlan?.period || ""}
+        onBooked={handleCalendlyBooked}
+      />
     </div>
   );
 };
