@@ -21,7 +21,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background flex">
-      {/* Left — branding panel */}
+      {/* Left - branding panel */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary/10 via-background to-primary/5 items-center justify-center p-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)", backgroundSize: "32px 32px" }} />
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="relative z-10 max-w-md">
@@ -33,7 +33,7 @@ const Login: React.FC = () => {
             Your creative command center awaits.
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Manage AI edits, UGC productions, brand assets, and growth analytics — all from one dashboard built for product brands.
+            Manage AI edits, UGC productions, brand assets, and growth analytics, all from one dashboard built for product brands.
           </p>
           <div className="mt-10 grid grid-cols-3 gap-4">
             {[
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Right — form */}
+      {/* Right - form */}
       <div className="flex-1 flex items-center justify-center p-6 sm:p-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="w-full max-w-sm">
           <div className="lg:hidden flex items-center gap-2 mb-8">

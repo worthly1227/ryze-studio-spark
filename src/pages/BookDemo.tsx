@@ -30,7 +30,7 @@ const BookDemo = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {/* Left — value prop */}
+          {/* Left - value prop */}
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <Badge className="mb-4 bg-primary/10 text-primary border-0 font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               <Sparkles className="w-3 h-3 mr-1.5" /> FREE STRATEGY CALL
@@ -39,7 +39,7 @@ const BookDemo = () => {
               Let's build your <span className="text-primary">content engine</span>
             </h1>
             <p className="text-muted-foreground text-base sm:text-lg mb-8 max-w-lg">
-              Hop on a 20-minute call with a Ryze creative lead. We'll map out a content strategy tailored to your brand — no obligations, no fluff.
+              Hop on a 20-minute call with a Ryze creative lead. We'll map out a content strategy tailored to your brand. No obligations, no fluff.
             </p>
 
             <div className="space-y-4 mb-8">
@@ -91,7 +91,7 @@ const BookDemo = () => {
             </div>
           </motion.div>
 
-          {/* Right — Calendly embed */}
+          {/* Right - Calendly embed */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,7 +103,7 @@ const BookDemo = () => {
                 <h3 className="font-heading font-semibold text-sm">Pick a time that works for you</h3>
                 <p className="text-xs text-muted-foreground mt-0.5">20-minute strategy call · Free · No obligations</p>
               </div>
-              {/* Calendly placeholder — replace YOUR_CALENDLY_URL with actual URL */}
+              {/* Calendly placeholder - replace YOUR_CALENDLY_URL with actual URL */}
               <div className="relative" style={{ minHeight: 650 }}>
                 <iframe
                   src="https://calendly.com/d/placeholder"

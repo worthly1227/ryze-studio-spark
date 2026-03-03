@@ -42,7 +42,7 @@ const SettingsPage: React.FC = () => (
       <CardHeader><CardTitle className="font-heading flex items-center gap-2"><CreditCard className="w-5 h-5 text-primary" /> Billing</CardTitle></CardHeader>
       <CardContent className="space-y-4">
         <div className="p-4 bg-muted/50 rounded-xl">
-          <p className="font-heading font-semibold">Viral Growth Plan — $240/mo</p>
+          <p className="font-heading font-semibold">Viral Growth Plan - $240/mo</p>
           <p className="text-sm text-muted-foreground">Next billing date: March 15, 2026</p>
         </div>
         <Button variant="outline" className="font-heading">Manage Subscription</Button>

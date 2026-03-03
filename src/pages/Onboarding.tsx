@@ -77,7 +77,7 @@ const Onboarding: React.FC = () => {
             </React.Fragment>
           ))}
         </div>
-        <p className="text-xs text-muted-foreground mb-8">Step {step + 1} of {steps.length} — {steps[step]}</p>
+        <p className="text-xs text-muted-foreground mb-8">Step {step + 1} of {steps.length} - {steps[step]}</p>
       </div>
 
       {/* Step content */}
