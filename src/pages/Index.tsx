@@ -1116,13 +1116,13 @@ const Index: React.FC = () => {
       <section className="px-6 -mt-10 mb-0 relative z-10">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-primary/20 bg-card p-6 md:p-8">
+            <div className="relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-border/60 bg-muted/60 backdrop-blur-sm p-6 md:p-8">
               <div className="flex items-center gap-4 relative">
                 <div className="w-11 h-11 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
                   <Sparkles className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-base text-foreground cyan-glow-text">Looking to resell our services to your clients?</h3>
+                  <h3 className="font-body font-semibold text-base text-foreground">Looking to resell our services to your clients?</h3>
                   <p className="text-muted-foreground text-sm font-body">Apply to join the Ryze Studios reseller program</p>
                 </div>
               </div>
