@@ -534,6 +534,7 @@ const Plans: React.FC = () => {
         price={checkoutPlan?.price || 0}
         period={checkoutPlan?.period || ""}
         features={checkoutPlan?.features.filter(f => f.included).map(f => f.text)}
+        suggestedAddOn={checkoutPlan ? suggestedAddOns[checkoutPlan.name] : undefined}
       />
       <CalendlyModal
         open={!!calendlyPlan}
