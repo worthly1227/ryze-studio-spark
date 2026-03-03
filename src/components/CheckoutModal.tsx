@@ -8,6 +8,12 @@ import { Separator } from "@/components/ui/separator";
 import { Check, CreditCard, Lock, ShieldCheck, ArrowLeft } from "lucide-react";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 
+interface AddOn {
+  name: string;
+  price: number;
+  description: string;
+}
+
 interface CheckoutModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -15,6 +21,7 @@ interface CheckoutModalProps {
   price: number;
   period: string;
   features?: string[];
+  suggestedAddOn?: AddOn;
 }
 
 const CheckoutModal: React.FC<CheckoutModalProps> = ({
@@ -24,6 +31,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   price,
   period,
   features = [],
+  suggestedAddOn,
 }) => {
   const [email, setEmail] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -33,6 +41,9 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [promoCode, setPromoCode] = useState("");
   const [showPromo, setShowPromo] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const [addOnSelected, setAddOnSelected] = useState(false);
+
+  const totalPrice = addOnSelected && suggestedAddOn ? price + suggestedAddOn.price : price;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,7 +85,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
           <div className="sm:col-span-2 bg-muted/20 p-4 sm:p-6 border-b sm:border-b-0 sm:border-r border-border">
             <p className="text-xs text-muted-foreground font-heading mb-1">PAY RYZE STUDIOS</p>
             <p className="text-2xl sm:text-3xl font-heading font-black mb-1">
-              ${price.toLocaleString()}
+              ${totalPrice.toLocaleString()}
               <span className="text-sm font-normal text-muted-foreground">{period ? period : ""}</span>
             </p>
 
@@ -90,6 +101,15 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 </div>
                 <span className="font-heading font-bold text-sm">${price.toLocaleString()}</span>
               </div>
+              {addOnSelected && suggestedAddOn && (
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="font-heading font-semibold text-sm">{suggestedAddOn.name}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Add-on service</p>
+                  </div>
+                  <span className="font-heading font-bold text-sm">${suggestedAddOn.price.toLocaleString()}</span>
+                </div>
+              )}
             </div>
 
             <Separator className="my-4" />
@@ -119,7 +139,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
             <div className="flex justify-between">
               <span className="font-heading font-semibold text-sm">Total due</span>
-              <span className="font-heading font-black text-lg">${price.toLocaleString()}</span>
+              <span className="font-heading font-black text-lg">${totalPrice.toLocaleString()}</span>
             </div>
 
             {features.length > 0 && (
@@ -134,6 +154,35 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     </div>
                   ))}
                 </div>
+              </>
+            )}
+
+            {suggestedAddOn && (
+              <>
+                <Separator className="my-4" />
+                <p className="text-[10px] text-muted-foreground font-heading mb-2">RECOMMENDED ADD-ON</p>
+                <button
+                  type="button"
+                  onClick={() => setAddOnSelected(!addOnSelected)}
+                  className={`w-full text-left rounded-lg border p-3 transition-all ${
+                    addOnSelected
+                      ? "border-primary bg-primary/5 ring-1 ring-primary"
+                      : "border-border hover:border-primary/40"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-heading font-semibold text-xs">{suggestedAddOn.name}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-heading font-bold text-xs">${suggestedAddOn.price}</span>
+                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
+                        addOnSelected ? "border-primary bg-primary" : "border-muted-foreground/30"
+                      }`}>
+                        {addOnSelected && <Check className="w-2.5 h-2.5 text-primary-foreground" />}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground leading-relaxed">{suggestedAddOn.description}</p>
+                </button>
               </>
             )}
           </div>
@@ -219,7 +268,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 ) : (
                   <span className="flex items-center gap-2">
                     <Lock className="w-3.5 h-3.5" />
-                    Pay ${price.toLocaleString()}
+                    Pay ${totalPrice.toLocaleString()}
                   </span>
                 )}
               </Button>

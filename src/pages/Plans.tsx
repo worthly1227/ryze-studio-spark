@@ -189,6 +189,16 @@ const addOns = [
   { name: "Max Business Launch", price: "$2,500", unit: "", desc: "We build your US brand, stock it with products, and hand you the keys in 24 hours.", icon: Rocket, gradient: "from-rose-400 to-pink-500" },
 ];
 
+const suggestedAddOns: Record<string, { name: string; price: number; description: string }> = {
+  "Entry Level Pass": { name: "Extra AI Product Image", price: 10, description: "Generate unlimited variations — only pay for the final image you choose." },
+  "Visual Starter Kit": { name: "Short Video (<20s)", price: 59, description: "Quick, scroll-stopping clips optimized for Reels, TikTok, and Stories." },
+  "Viral Growth": { name: "30-Second UGC Video", price: 99, description: "Professionally produced social-ready video featuring vetted creators." },
+  "Full Brand Manager": { name: "Strategic Consultancy", price: 224, description: "45-minute 1-on-1 session to guide your brand strategy and growth." },
+  "Done For You": { name: "30-Second UGC Video", price: 99, description: "Professionally produced social-ready video featuring vetted creators." },
+  "Master Production": { name: "Strategic Consultancy", price: 224, description: "45-minute 1-on-1 session to guide your brand strategy and growth." },
+  "Max Business Launch": { name: "Strategic Consultancy", price: 224, description: "45-minute 1-on-1 session to guide your brand strategy and growth." },
+};
+
 const Plans: React.FC = () => {
   const navigate = useNavigate();
   const [expandedPlan, setExpandedPlan] = useState<string | null>(null);
@@ -534,6 +544,7 @@ const Plans: React.FC = () => {
         price={checkoutPlan?.price || 0}
         period={checkoutPlan?.period || ""}
         features={checkoutPlan?.features.filter(f => f.included).map(f => f.text)}
+        suggestedAddOn={checkoutPlan ? suggestedAddOns[checkoutPlan.name] : undefined}
       />
       <CalendlyModal
         open={!!calendlyPlan}
