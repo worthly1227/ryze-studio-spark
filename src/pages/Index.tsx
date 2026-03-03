@@ -584,7 +584,7 @@ const Index: React.FC = () => {
       <section className="pt-28 pb-16 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="pt-6">
-            <div className="mb-6 inline-flex items-center bg-muted text-foreground border border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
+            <div className="mb-6 inline-flex items-center bg-muted text-foreground border border-border font-heading text-xs font-bold tracking-wider px-4 py-1.5 rounded-full">
               🤦‍♂️ Tired of Overpriced Agencies? Meet Ryze
             </div>
             <h1 className="text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6">
