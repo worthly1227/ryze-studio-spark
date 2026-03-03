@@ -1279,6 +1279,24 @@ const Index: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* ─── MODALS ─── */}
+      <CheckoutModal
+        open={!!checkoutTier}
+        onOpenChange={(open) => !open && setCheckoutTier(null)}
+        planName={checkoutTier?.name || ""}
+        price={checkoutTier?.price || 0}
+        period={checkoutTier?.price ? "/mo" : ""}
+        features={checkoutTier?.features.filter(f => f.included).map(f => f.text)}
+      />
+      <CalendlyModal
+        open={!!calendlyTier}
+        onOpenChange={(open) => !open && setCalendlyTier(null)}
+        planName={calendlyTier?.name || ""}
+        price={calendlyTier?.price || 0}
+        period={calendlyTier?.price ? "/mo" : ""}
+        onBooked={handleCalendlyBooked}
+      />
     </div>
   );
 };
