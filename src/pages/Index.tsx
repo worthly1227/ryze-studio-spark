@@ -697,7 +697,7 @@ const Index: React.FC = () => {
         <div className="relative">
           <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
-          <div className="flex gap-5 animate-scroll-up" style={{ animationName: 'scroll-left', animationDuration: '30s', animationTimingFunction: 'linear', animationIterationCount: 'infinite' }}>
+          <div className="flex gap-5 hover:[animation-play-state:paused]" style={{ animation: 'scroll-left 30s linear infinite' }}>
             {[...addOns, ...addOns, ...addOns].map((addon, i) => (
               <div key={i} className="flex-shrink-0 w-72">
                 <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-0 shadow-md overflow-hidden group">
