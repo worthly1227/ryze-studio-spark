@@ -698,7 +698,7 @@ const Index: React.FC = () => {
         <div className="relative">
           <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
-          <div className="flex gap-5" onMouseEnter={() => setIsAddOnsPaused(true)} onMouseLeave={() => setIsAddOnsPaused(false)} style={{ animation: 'scroll-left 30s linear infinite', animationPlayState: isAddOnsPaused ? 'paused' : 'running' }}>
+          <div className="flex gap-5" onMouseEnter={() => setIsAddOnsPaused(true)} onMouseLeave={() => setIsAddOnsPaused(false)} style={{ animation: 'scroll-left 18s linear infinite', animationPlayState: isAddOnsPaused ? 'paused' : 'running' }}>
             {[...addOns, ...addOns, ...addOns].map((addon, i) => (
               <div key={i} className="flex-shrink-0 w-72">
                 <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-0 shadow-md overflow-hidden group">
