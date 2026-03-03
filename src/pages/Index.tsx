@@ -465,8 +465,8 @@ const FactoryProofSection: React.FC = () => {
     <section className="py-20 px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">What we've built for brands like yours</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Real results from real clients. Browse by content type or industry to see the caliber of work Ryze delivers every single week.</p>
+          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Built for product brands like yours</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Real transformations from real product brands. Browse by content type or niche to see the caliber of work Ryze delivers every single week.</p>
         </motion.div>
 
         <div className="flex justify-center mb-6">
@@ -588,19 +588,21 @@ const Index: React.FC = () => {
               <Sparkles className="w-3 h-3 mr-1.5 text-primary" /> AI-POWERED CREATIVE PRODUCTION
             </Badge>
             <h1 className="text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6">
-              Your entire creative<br />team, powered by AI,<br />from <span className="text-primary">$10/mo</span>
+              Your On-Demand Creative<br />Team and AI Production<br />Engine, Starting at <span className="text-primary">$10/mo</span>
             </h1>
-            <div className="space-y-3 mb-8">
+            <p className="text-lg text-muted-foreground mb-6 max-w-lg leading-relaxed">
+              We handle your product photography, social content, UGC videos, and brand strategy — so you can focus on selling.
+            </p>
+            <div className="grid grid-cols-2 gap-3 mb-8">
               {[
-                { bold: "Brand-matched", text: "visuals that look like you hired an agency" },
-                { bold: "90% less", text: "than traditional creative services" },
-                { bold: "Production-ready", text: "assets delivered in days, not weeks" },
+                { icon: Camera, text: "Studio-grade product shots" },
+                { icon: Wand2, text: "AI-powered, brand-matched" },
+                { icon: Rocket, text: "Delivered in days, not weeks" },
+                { icon: FileText, text: "Posts, reels, ads & more" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-primary-foreground" />
-                  </div>
-                  <p className="text-base"><strong>{item.bold}</strong> {item.text}</p>
+                <div key={i} className="flex items-center gap-2.5 bg-card border border-border rounded-xl px-3 py-2.5">
+                  <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                  <p className="text-sm font-medium">{item.text}</p>
                 </div>
               ))}
             </div>
@@ -749,7 +751,7 @@ const Index: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Your feed, elevated</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Every post designed to fit a cohesive grid — turning your social presence into a visual storefront.</p>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Every post crafted to reinforce your brand identity and transform your page into a polished, conversion-driven storefront.</p>
           </motion.div>
 
           <div className="flex justify-center gap-3 mb-10 flex-wrap">
@@ -845,7 +847,7 @@ const Index: React.FC = () => {
                 ))}
               </div>
               <div className="mt-4 space-y-2">
-                {["Inconsistent visual identity across posts", "Basic stock-like content without personality", "Limited content variety and formats", "Missed engagement opportunities"].map((t, i) => (
+                {["Posting randomly without a real content plan", "Reels and posts not aligned or connected", "A messy grid that doesn't fully reflect the brand", "Spent a lot of time creating content that barely gets engagement", "Inconsistent visuals that confuse followers", "No clear strategy behind what is being posted"].map((t, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <X className="w-4 h-4 text-destructive flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">{t}</span>
@@ -868,7 +870,7 @@ const Index: React.FC = () => {
                 })}
               </div>
               <div className="mt-4 space-y-2">
-                {["Strong brand consistency across all posts", "Custom designed content that stands out", "Diverse content mix to keep feeds fresh", "Strategic content that drives engagement"].map((t, i) => (
+                {["A structured content plan for posts and Reels", "Everything aligned under one clear visual direction", "A clean, intentional grid that reflects the brand", "Content designed with purpose, not guesswork", "Consistent visuals that build recognition", "A strategy behind every piece of content"].map((t, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-primary flex-shrink-0" />
                     <span className="text-sm">{t}</span>
