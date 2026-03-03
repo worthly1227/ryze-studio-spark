@@ -440,52 +440,7 @@ const Plans: React.FC = () => {
         </div>
       </section>
 
-      {/* ─── ADD-ONS ─── */}
-      <section className="py-16 px-4 sm:px-6 bg-muted/30">
-        <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-            <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
-              ENHANCE YOUR PLAN
-            </Badge>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3">Power-Up Add-Ons</h2>
-            <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto">
-              Stack these onto any plan to supercharge your content output.
-            </p>
-          </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {addOns.slice(0, -1).map((addon, i) => (
-              <motion.div
-                key={addon.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden group">
-                  <div className={`h-1 bg-gradient-to-r ${addon.gradient}`} />
-                  <CardContent className="p-6 flex flex-col h-full">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${addon.gradient} flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                        <addon.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="text-right">
-                        <span className="text-2xl font-heading font-black">{addon.price}</span>
-                        {addon.unit && <p className="text-[10px] text-muted-foreground">{addon.unit}</p>}
-                      </div>
-                    </div>
-                    <h3 className="font-heading font-bold text-base mb-2">{addon.name}</h3>
-                    <p className="text-muted-foreground text-sm flex-1 leading-relaxed mb-4">{addon.desc}</p>
-                    <Button variant="outline" className="w-full font-heading border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors rounded-xl" size="sm">
-                      Add to Plan
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ─── SUPPORT COMPARISON ─── */}
       <section className="py-16 px-4 sm:px-6">
