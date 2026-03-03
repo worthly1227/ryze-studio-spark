@@ -166,13 +166,13 @@ const gridEmojis: Record<string, string> = { "Social Media Templates": "📱", "
 const beforeAfterClients = ["SpinSudz", "KokoKai Foods LLC", "Crystal Imagery", "True North Wellness", "No Place Like Home", "Darkhorse Solutions"];
 
 const featureTabs = ["Services", "Onboarding", "Communication", "Collaboration", "Scheduling", "Analytics"];
-const featureContent: Record<string, { title: string; desc: string }> = {
-  Services: { title: "Pick Your Package", desc: "Explore our creative menu and assemble the exact mix of AI edits, UGC, and strategy your brand needs." },
-  Onboarding: { title: "5-Minute Brand Intake", desc: "Share your brand guidelines, colors, and tone. Our system learns your identity and starts producing instantly." },
-  Communication: { title: "Direct Line to Your Team", desc: "Chat with your dedicated creative lead in real time. Feedback loops that actually move fast." },
-  Collaboration: { title: "One Dashboard, Zero Chaos", desc: "Approve assets, request tweaks, and track every deliverable from a single streamlined workspace." },
-  Scheduling: { title: "We Post, You Grow", desc: "Ryze handles content scheduling and publishing across all your channels so you never miss a beat." },
-  Analytics: { title: "See What's Working", desc: "Track reach, engagement, and conversion with built-in analytics that help you double down on winners." },
+const featureContent: Record<string, { title: string; desc: string; image: string }> = {
+  Services: { title: "Pick Your Package", desc: "Explore our creative menu and assemble the exact mix of AI edits, UGC, and strategy your brand needs.", image: "/images/feature-services.png" },
+  Onboarding: { title: "5-Minute Brand Intake", desc: "Share your brand guidelines, colors, and tone. Our system learns your identity and starts producing instantly.", image: "/images/feature-onboarding.png" },
+  Communication: { title: "Direct Line to Your Team", desc: "Chat with your dedicated creative lead in real time. Feedback loops that actually move fast.", image: "/images/feature-communication.png" },
+  Collaboration: { title: "One Dashboard, Zero Chaos", desc: "Approve assets, request tweaks, and track every deliverable from a single streamlined workspace.", image: "/images/feature-collaboration.png" },
+  Scheduling: { title: "We Post, You Grow", desc: "Ryze handles content scheduling and publishing across all your channels so you never miss a beat.", image: "/images/feature-scheduling.png" },
+  Analytics: { title: "See What's Working", desc: "Track reach, engagement, and conversion with built-in analytics that help you double down on winners.", image: "/images/feature-analytics.png" },
 };
 
 const faqItems = [
@@ -1045,7 +1045,7 @@ const Index: React.FC = () => {
               <Rocket className="w-7 h-7 sm:w-8 sm:h-8 mb-3 sm:mb-4 text-primary" />
               <h3 className="font-heading font-bold text-lg sm:text-xl mb-2">Ready to go? Pick a plan</h3>
               <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">Choose your package and start receiving polished, on-brand content within days.</p>
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-xl py-4 sm:py-5 text-sm">
+              <Button onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-xl py-4 sm:py-5 text-sm">
                 Browse Plans <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
@@ -1084,13 +1084,12 @@ const Index: React.FC = () => {
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold mb-3 sm:mb-4">{featureContent[activeFeatureTab].title}</h3>
                 <p className="text-muted-foreground text-sm sm:text-lg">{featureContent[activeFeatureTab].desc}</p>
               </div>
-              <div className="aspect-[4/3] rounded-2xl bg-card border border-border flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                    <LayoutGrid className="w-10 h-10 text-primary" />
-                  </div>
-                  <p className="text-sm text-muted-foreground font-heading">{activeFeatureTab} Preview</p>
-                </div>
+              <div className="aspect-[4/3] rounded-2xl bg-card border border-border overflow-hidden">
+                <img 
+                  src={featureContent[activeFeatureTab].image} 
+                  alt={`${activeFeatureTab} preview`} 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </motion.div>
