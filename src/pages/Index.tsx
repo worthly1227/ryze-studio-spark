@@ -808,23 +808,25 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ SOCIAL MEDIA GRID GALLERY ═══════ */}
-      <section className="py-20 px-6 bg-accent/30">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-accent/30">
         <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Ryze Studio's Design Vault</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Everything your brand needs in one place, including social templates, investor decks, portfolio websites, single product stores, and seasonal campaigns.</p>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Ryze Studio's Design Vault</h2>
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Everything your brand needs in one place, including social templates, investor decks, portfolio websites, single product stores, and seasonal campaigns.</p>
           </motion.div>
 
-          <div className="flex justify-center gap-3 mb-10 flex-wrap">
-            {gridIndustries.map((ind) => (
-              <button
-                key={ind}
-                onClick={() => setActiveGridIndustry(ind)}
-                className={`px-5 py-3 rounded-xl text-sm font-medium border transition-all ${activeGridIndustry === ind ? "bg-card border-primary/40 shadow-md text-foreground ring-1 ring-primary/20" : "bg-card/50 border-border text-muted-foreground hover:text-foreground hover:border-primary/20 hover:bg-card"}`}
-              >
-                {gridEmojis[ind]} {ind}
-              </button>
-            ))}
+          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-8 sm:mb-10">
+            <div className="flex gap-2 sm:gap-3 sm:flex-wrap sm:justify-center whitespace-nowrap">
+              {gridIndustries.map((ind) => (
+                <button
+                  key={ind}
+                  onClick={() => setActiveGridIndustry(ind)}
+                  className={`px-3 sm:px-5 py-2 sm:py-3 rounded-xl text-xs sm:text-sm font-medium border transition-all flex-shrink-0 ${activeGridIndustry === ind ? "bg-card border-primary/40 shadow-md text-foreground ring-1 ring-primary/20" : "bg-card/50 border-border text-muted-foreground hover:text-foreground hover:border-primary/20 hover:bg-card"}`}
+                >
+                  {gridEmojis[ind]} {ind}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* 4-column IG grid */}
@@ -868,27 +870,29 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ BEFORE & AFTER ═══════ */}
-      <section className="py-20 px-6">
+      <section className="py-12 sm:py-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-6">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               🎨 TRANSFORMATIONS
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">The Ryze effect</h2>
-            <p className="text-muted-foreground text-lg">See how brands went from scattered feeds to scroll-stopping content.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">The Ryze effect</h2>
+            <p className="text-muted-foreground text-sm sm:text-lg">See how brands went from scattered feeds to scroll-stopping content.</p>
           </motion.div>
 
           {/* Client tabs */}
-          <div className="flex gap-2 justify-center mb-10 flex-wrap">
-            {beforeAfterClients.map((client) => (
-              <button
-                key={client}
-                onClick={() => setActiveClient(client)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeClient === client ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground border border-border"}`}
-              >
-                {client}
-              </button>
-            ))}
+          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-8 sm:mb-10">
+            <div className="flex gap-2 justify-center whitespace-nowrap">
+              {beforeAfterClients.map((client) => (
+                <button
+                  key={client}
+                  onClick={() => setActiveClient(client)}
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex-shrink-0 ${activeClient === client ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground border border-border"}`}
+                >
+                  {client}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -939,11 +943,11 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ DEMO VIDEO ═══════ */}
-      <section className="py-20 px-6 bg-muted/30">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-3">See Ryze in action</h2>
-            <p className="text-muted-foreground mb-8">A quick walkthrough of how we turn your raw products into premium, brand-ready content.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3">See Ryze in action</h2>
+            <p className="text-muted-foreground text-sm sm:text-base mb-6 sm:mb-8">A quick walkthrough of how we turn your raw products into premium, brand-ready content.</p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative aspect-video rounded-2xl overflow-hidden bg-muted border border-border mb-10 group cursor-pointer">
@@ -960,20 +964,20 @@ const Index: React.FC = () => {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-foreground to-foreground/80 rounded-2xl p-8 text-background">
-              <Phone className="w-8 h-8 mb-4 text-primary" />
-              <h3 className="font-heading font-bold text-xl mb-2">Let's map out your strategy</h3>
-              <p className="text-sm text-background/70 mb-6">Hop on a 20-minute call with a Ryze creative lead and build a content plan tailored to your brand.</p>
-              <Button className="w-full bg-background text-foreground hover:bg-background/90 font-heading rounded-xl py-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 max-w-3xl mx-auto">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-foreground to-foreground/80 rounded-2xl p-6 sm:p-8 text-background">
+              <Phone className="w-7 h-7 sm:w-8 sm:h-8 mb-3 sm:mb-4 text-primary" />
+              <h3 className="font-heading font-bold text-lg sm:text-xl mb-2">Let's map out your strategy</h3>
+              <p className="text-xs sm:text-sm text-background/70 mb-4 sm:mb-6">Hop on a 20-minute call with a Ryze creative lead and build a content plan tailored to your brand.</p>
+              <Button className="w-full bg-background text-foreground hover:bg-background/90 font-heading rounded-xl py-4 sm:py-5 text-sm">
                 Schedule a Call <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary/20 rounded-2xl p-8">
-              <Rocket className="w-8 h-8 mb-4 text-primary" />
-              <h3 className="font-heading font-bold text-xl mb-2">Ready to go? Pick a plan</h3>
-              <p className="text-sm text-muted-foreground mb-6">Choose your package and start receiving polished, on-brand content within days.</p>
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-xl py-5">
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary/20 rounded-2xl p-6 sm:p-8">
+              <Rocket className="w-7 h-7 sm:w-8 sm:h-8 mb-3 sm:mb-4 text-primary" />
+              <h3 className="font-heading font-bold text-lg sm:text-xl mb-2">Ready to go? Pick a plan</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">Choose your package and start receiving polished, on-brand content within days.</p>
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-xl py-4 sm:py-5 text-sm">
                 Browse Plans <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
@@ -982,33 +986,35 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ SEAMLESS EXPERIENCE ═══════ */}
-      <section className="py-20 px-6">
+      <section className="py-12 sm:py-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-10">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               <LayoutGrid className="w-3 h-3 mr-1.5 text-primary" /> HOW IT WORKS
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Built for zero friction</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">From onboarding to analytics, every touchpoint is designed so you spend less time managing and more time growing.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Built for zero friction</h2>
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">From onboarding to analytics, every touchpoint is designed so you spend less time managing and more time growing.</p>
           </motion.div>
 
-          <div className="flex justify-center gap-2 mb-10 flex-wrap">
-            {featureTabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveFeatureTab(tab)}
-                className={`px-5 py-2.5 rounded-full text-sm font-heading font-medium transition-all ${activeFeatureTab === tab ? "bg-foreground text-background" : "border border-border text-muted-foreground hover:text-foreground"}`}
-              >
-                {tab}
-              </button>
-            ))}
+          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-8 sm:mb-10">
+            <div className="flex gap-2 sm:justify-center whitespace-nowrap">
+              {featureTabs.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveFeatureTab(tab)}
+                  className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-heading font-medium transition-all flex-shrink-0 ${activeFeatureTab === tab ? "bg-foreground text-background" : "border border-border text-muted-foreground hover:text-foreground"}`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <motion.div key={activeFeatureTab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl bg-muted/50 border border-border p-10 md:p-14">
+          <motion.div key={activeFeatureTab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl sm:rounded-3xl bg-muted/50 border border-border p-6 sm:p-10 md:p-14">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div>
-                <h3 className="text-2xl md:text-3xl font-heading font-bold mb-4">{featureContent[activeFeatureTab].title}</h3>
-                <p className="text-muted-foreground text-lg">{featureContent[activeFeatureTab].desc}</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold mb-3 sm:mb-4">{featureContent[activeFeatureTab].title}</h3>
+                <p className="text-muted-foreground text-sm sm:text-lg">{featureContent[activeFeatureTab].desc}</p>
               </div>
               <div className="aspect-[4/3] rounded-2xl bg-card border border-border flex items-center justify-center">
                 <div className="text-center">
@@ -1024,22 +1030,22 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ THE BETTER WAY ═══════ */}
-      <section className="py-20 px-6 bg-muted/30">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 sm:mb-14">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               ⚡ WHY BRANDS SWITCH
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">The smarter creative model</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Agencies are slow and expensive. DIY AI tools lack quality. Ryze sits in the sweet spot — delivering <strong className="text-foreground">1,800+</strong> brands premium content without the overhead.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">The smarter creative model</h2>
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Agencies are slow and expensive. DIY AI tools lack quality. Ryze sits in the sweet spot — delivering <strong className="text-foreground">1,800+</strong> brands premium content without the overhead.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
             {/* Cost savings chart */}
             <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-              <CardContent className="p-8">
+              <CardContent className="p-5 sm:p-8">
                 <Badge className="mb-3 bg-primary/10 text-primary border-0 text-[10px] font-heading">📉 COST COMPARISON</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-6">Cut creative costs by up to 95%</h3>
+                <h3 className="text-xl sm:text-2xl font-heading font-bold mb-4 sm:mb-6">Cut creative costs by up to 95%</h3>
                 <div className="space-y-4">
                   {[
                     { label: "Traditional Agency", value: 100, amount: "$2,000+/mo", color: "bg-destructive/60" },
@@ -1063,10 +1069,10 @@ const Index: React.FC = () => {
 
             {/* Turnaround time chart */}
             <Card>
-              <CardContent className="p-8">
+              <CardContent className="p-5 sm:p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">⏱️ TURNAROUND TIME</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-6">From brief to deliverable, fast</h3>
-                <div className="flex items-end gap-4 h-48 mb-4">
+                <h3 className="text-xl sm:text-2xl font-heading font-bold mb-4 sm:mb-6">From brief to deliverable, fast</h3>
+                <div className="flex items-end gap-3 sm:gap-4 h-36 sm:h-48 mb-4">
                   {[
                     { label: "Agency", days: 21, height: "100%", color: "bg-destructive/40" },
                     { label: "Freelancer", days: 14, height: "67%", color: "bg-amber-400/60" },
@@ -1085,10 +1091,10 @@ const Index: React.FC = () => {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-6">
             {/* Quality score */}
             <Card>
-              <CardContent className="p-8 text-center">
+              <CardContent className="p-5 sm:p-8 text-center">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">🎯 QUALITY SCORE</Badge>
                 <div className="relative w-32 h-32 mx-auto my-4">
                   <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
@@ -1106,7 +1112,7 @@ const Index: React.FC = () => {
 
             {/* Collaboration */}
             <Card>
-              <CardContent className="p-8">
+              <CardContent className="p-5 sm:p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">💬 COLLABORATION</Badge>
                 <h3 className="text-xl font-heading font-bold mb-4">Your creative team, one chat away</h3>
                 <div className="space-y-3">
@@ -1123,7 +1129,7 @@ const Index: React.FC = () => {
 
             {/* Content output growth */}
             <Card>
-              <CardContent className="p-8">
+              <CardContent className="p-5 sm:p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">📈 OUTPUT GROWTH</Badge>
                 <h3 className="text-xl font-heading font-bold mb-4">Watch your output scale</h3>
                 <div className="flex items-end gap-1.5 h-32 mt-4">
@@ -1142,13 +1148,13 @@ const Index: React.FC = () => {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {/* Say goodbye */}
             <Card>
-              <CardContent className="p-8">
+              <CardContent className="p-5 sm:p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">👋 THE OLD WAY</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-4">Leave behind</h3>
-                <div className="grid grid-cols-2 gap-2">
+                <h3 className="text-xl sm:text-2xl font-heading font-bold mb-3 sm:mb-4">Leave behind</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {["Chasing unreliable freelancers", "Weeks-long turnaround", "Overpriced agency retainers", "Endless hiring cycles", "Inconsistent brand quality", "DIY tools that fall short"].map((item, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm">
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${i === 5 ? "bg-destructive/10" : "bg-muted"}`}>
@@ -1163,9 +1169,9 @@ const Index: React.FC = () => {
 
             {/* Subscription model */}
             <Card>
-              <CardContent className="p-8">
+              <CardContent className="p-5 sm:p-8">
                 <Badge className="mb-3 bg-muted text-muted-foreground border-0 text-[10px] font-heading">💳 SUBSCRIPTION BASED</Badge>
-                <h3 className="text-2xl font-heading font-bold mb-4">Subscribe on your terms</h3>
+                <h3 className="text-xl sm:text-2xl font-heading font-bold mb-3 sm:mb-4">Subscribe on your terms</h3>
                 <div className="flex flex-wrap gap-2">
                   {["Cancel anytime", "Zero lock-in contracts", "Pause when you need", "Scale up or down freely", "Simple monthly billing"].map((item, i) => (
                     <Badge key={i} variant="secondary" className="text-xs font-heading">{item}</Badge>
@@ -1178,20 +1184,20 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ RESELLER CTA ═══════ */}
-      <section className="px-6 -mt-10 mb-0 relative z-10">
+      <section className="px-4 sm:px-6 -mt-6 sm:-mt-10 mb-0 relative z-10">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-primary/20 bg-card p-6 md:p-8">
-              <div className="flex items-center gap-4 relative">
-                <div className="w-11 h-11 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Sparkles className="w-5 h-5 text-primary" />
+            <div className="relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 rounded-2xl border border-primary/20 bg-card p-5 sm:p-6 md:p-8">
+              <div className="flex items-start sm:items-center gap-3 sm:gap-4 relative">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-base text-foreground">Want to offer Ryze-quality creative to your own clients?</h3>
-                  <p className="text-muted-foreground text-sm font-heading font-medium">Join the Ryze partner network and white-label our services</p>
+                  <h3 className="font-heading font-bold text-sm sm:text-base text-foreground">Want to offer Ryze-quality creative to your own clients?</h3>
+                  <p className="text-muted-foreground text-xs sm:text-sm font-heading font-medium">Join the Ryze partner network and white-label our services</p>
                 </div>
               </div>
-              <Button onClick={() => navigate("/reseller")} className="bg-primary text-primary-foreground hover:bg-primary/90 font-heading font-semibold rounded-full px-6 py-5 whitespace-nowrap text-sm relative">
+              <Button onClick={() => navigate("/reseller")} className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-heading font-semibold rounded-full px-6 py-4 sm:py-5 whitespace-nowrap text-sm relative">
                 Apply for partner access <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
@@ -1200,14 +1206,14 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ FAQ ═══════ */}
-      <section className="pt-14 pb-20 px-6">
+      <section className="pt-10 sm:pt-14 pb-12 sm:pb-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-12">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
               ❓ QUESTIONS & ANSWERS
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Got questions? We've got answers</h2>
-            <p className="text-muted-foreground">Don't see yours here? Book a free call and we'll walk you through everything.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Got questions? We've got answers</h2>
+            <p className="text-muted-foreground text-sm sm:text-base">Don't see yours here? Book a free call and we'll walk you through everything.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-10">
@@ -1239,13 +1245,13 @@ const Index: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-border">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <footer className="py-8 sm:py-12 px-4 sm:px-6 border-t border-border">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6">
           <div className="flex items-center gap-2.5">
             <img src={ryzeLogo} alt="Ryze Studios" className="w-7 h-7 rounded-lg object-cover" />
             <span className="font-heading font-bold text-lg">Ryze Studios</span>
           </div>
-          <p className="text-sm text-muted-foreground">© 2026 Ryze Studios. All rights reserved.</p>
+          <p className="text-xs sm:text-sm text-muted-foreground">© 2026 Ryze Studios. All rights reserved.</p>
           <div className="flex gap-6">
             <button onClick={() => navigate("/legal")} className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms</button>
             <button onClick={() => navigate("/legal")} className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy</button>
