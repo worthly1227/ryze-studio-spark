@@ -1298,6 +1298,7 @@ const Index: React.FC = () => {
         price={checkoutTier?.price || 0}
         period={checkoutTier?.price ? "/mo" : ""}
         features={checkoutTier?.features.filter(f => f.included).map(f => f.text)}
+        suggestedAddOn={checkoutTier ? suggestedAddOns[checkoutTier.name] : undefined}
       />
       <CalendlyModal
         open={!!calendlyTier}
