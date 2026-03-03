@@ -463,7 +463,7 @@ const FactoryProofSection: React.FC = () => {
   const visible = showAll ? filtered : filtered.slice(0, 6);
 
   return (
-      <section id="examples" className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30 scroll-mt-20">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Built for product brands like yours</h2>
@@ -870,7 +870,7 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ BEFORE & AFTER ═══════ */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6">
+      <section id="examples" className="py-12 sm:py-20 px-4 sm:px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-6">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
@@ -943,7 +943,7 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ DEMO VIDEO ═══════ */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30">
+      <section id="services" className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30 scroll-mt-20">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3">See Ryze in action</h2>
@@ -986,7 +986,7 @@ const Index: React.FC = () => {
       </section>
 
       {/* ═══════ SEAMLESS EXPERIENCE ═══════ */}
-      <section id="services" className="py-12 sm:py-20 px-4 sm:px-6 scroll-mt-20">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 scroll-mt-20">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-10">
             <Badge className="mb-4 bg-muted text-foreground border-border font-heading text-xs tracking-wider px-4 py-1.5 rounded-full">
