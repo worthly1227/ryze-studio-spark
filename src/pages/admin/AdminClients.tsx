@@ -43,14 +43,14 @@ const AdminClients: React.FC = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6 px-1 sm:px-0">
       <div>
-        <h1 className="text-3xl font-heading font-bold">Client Management</h1>
-        <p className="text-muted-foreground mt-1">View and manage all active client accounts</p>
+        <h1 className="text-2xl sm:text-3xl font-heading font-bold">Client Management</h1>
+        <p className="text-muted-foreground mt-1 text-sm">View and manage all active client accounts</p>
       </div>
 
       {/* Summary */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
         {[
           { label: "Total Clients", value: clients.length.toString(), icon: Users },
           { label: "Active", value: clients.filter(c => c.status === "active").length.toString(), icon: CheckCircle },
@@ -58,10 +58,10 @@ const AdminClients: React.FC = () => {
           { label: "Total Revenue", value: "$24,200", icon: Clock },
         ].map((s, i) => (
           <Card key={i}>
-            <CardContent className="p-5">
-              <s.icon className="w-5 h-5 text-muted-foreground mb-2" />
-              <p className="text-2xl font-heading font-bold">{s.value}</p>
-              <p className="text-sm text-muted-foreground">{s.label}</p>
+            <CardContent className="p-3 sm:p-5">
+              <s.icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground mb-1 sm:mb-2" />
+              <p className="text-xl sm:text-2xl font-heading font-bold">{s.value}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">{s.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -80,8 +80,8 @@ const AdminClients: React.FC = () => {
           return (
             <motion.div key={client.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
               <Card className="hover:border-primary/20 hover:cyan-glow-sm transition-all">
-                <CardContent className="p-5 flex items-center gap-4">
-                  <Avatar className="w-12 h-12">
+                <CardContent className="p-3 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                  <Avatar className="w-10 h-10 sm:w-12 sm:h-12 hidden sm:flex">
                     <AvatarFallback className="bg-primary/10 text-primary font-heading font-bold">{client.initials}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
@@ -90,17 +90,17 @@ const AdminClients: React.FC = () => {
                       <Badge className={`${status.color} text-xs`}>{status.label}</Badge>
                     </div>
                     <p className="text-sm text-muted-foreground">{client.company} · {client.plan}</p>
-                    <div className="flex gap-4 mt-1">
-                      <span className="text-xs text-muted-foreground">{client.activeProjects} active projects</span>
+                    <div className="flex flex-wrap gap-2 sm:gap-4 mt-1">
+                      <span className="text-xs text-muted-foreground">{client.activeProjects} active</span>
                       <span className="text-xs text-muted-foreground">{client.totalDelivered} delivered</span>
-                      <span className="text-xs text-muted-foreground">Last active: {client.lastActive}</span>
+                      <span className="text-xs text-muted-foreground hidden sm:inline">Last: {client.lastActive}</span>
                     </div>
                   </div>
-                  <div className="text-right flex-shrink-0">
+                  <div className="text-right flex-shrink-0 hidden sm:block">
                     <p className="font-heading font-bold text-lg">{client.revenue}</p>
                     <p className="text-xs text-muted-foreground">total revenue</p>
                   </div>
-                  <div className="flex gap-1 flex-shrink-0">
+                  <div className="flex gap-1 flex-shrink-0 sm:flex hidden">
                     <Button variant="ghost" size="icon"><Eye className="w-4 h-4 text-muted-foreground" /></Button>
                     <Button variant="ghost" size="icon"><MessageSquare className="w-4 h-4 text-muted-foreground" /></Button>
                     <Button variant="ghost" size="icon"><MoreVertical className="w-4 h-4 text-muted-foreground" /></Button>

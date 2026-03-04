@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -6,11 +6,25 @@ import { Progress } from "@/components/ui/progress";
 import { Factory, ClipboardList, TrendingUp, Eye, Image, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import ClientWalkthrough from "@/components/ClientWalkthrough";
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
+  const [showWalkthrough, setShowWalkthrough] = useState(false);
+
+  useEffect(() => {
+    const seen = localStorage.getItem("ryze-walkthrough-seen");
+    if (!seen) setShowWalkthrough(true);
+  }, []);
+
+  const completeWalkthrough = () => {
+    setShowWalkthrough(false);
+    localStorage.setItem("ryze-walkthrough-seen", "true");
+  };
 
   return (
+    <>
+      {showWalkthrough && <ClientWalkthrough onComplete={completeWalkthrough} />}
     <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6 px-1 sm:px-0">
       <div>
         <h1 className="text-2xl sm:text-3xl font-heading font-bold">Dashboard</h1>
@@ -106,6 +120,7 @@ const Dashboard: React.FC = () => {
         </CardContent>
       </Card>
     </div>
+    </>
   );
 };
 
