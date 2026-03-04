@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Check, CreditCard, Lock, ShieldCheck, ArrowLeft, Plus, Minus } from "lucide-react";
+import { Check, CreditCard, Lock, ShieldCheck, ArrowLeft, Plus, Minus, PartyPopper, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 
 interface AddOn {
