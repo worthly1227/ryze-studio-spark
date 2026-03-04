@@ -263,16 +263,22 @@ const PartnerOnboarding: React.FC = () => {
 
           {/* Navigation */}
           <div className="flex items-center justify-between mt-10 pb-12">
-            {step > 0 ? (
+            {step > 0 && step < steps.length - 1 ? (
               <Button variant="ghost" onClick={() => setStep(step - 1)} className="gap-1 text-muted-foreground">
                 <ArrowLeft className="w-4 h-4" /> Back
               </Button>
             ) : (
               <div />
             )}
-            <Button onClick={next} disabled={!canNext()} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-6 gap-1">
-              {step === steps.length - 1 ? "Go to Partner Hub" : "Continue"} <ArrowRight className="w-4 h-4" />
-            </Button>
+            {step === steps.length - 1 ? (
+              <Button onClick={() => navigate("/")} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-6 gap-1">
+                Back to Home <ArrowRight className="w-4 h-4" />
+              </Button>
+            ) : (
+              <Button onClick={next} disabled={!canNext()} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-6 gap-1">
+                {step === steps.length - 2 ? "Submit Application" : "Continue"} <ArrowRight className="w-4 h-4" />
+              </Button>
+            )}
           </div>
         </div>
       </div>
