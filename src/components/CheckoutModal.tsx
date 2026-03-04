@@ -39,6 +39,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   preSelectedAddOn,
   preSelectedAddOnQty = 0,
 }) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
@@ -48,11 +49,13 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [showPromo, setShowPromo] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [addOnQty, setAddOnQty] = useState(preSelectedAddOnQty > 0 ? preSelectedAddOnQty : 0);
+  const [step, setStep] = useState<"checkout" | "success">("checkout");
 
-  // Reset qty when modal opens with new props
+  // Reset state when modal opens
   useEffect(() => {
     if (open) {
       setAddOnQty(preSelectedAddOnQty > 0 ? preSelectedAddOnQty : 0);
+      setStep("checkout");
     }
   }, [open, preSelectedAddOnQty]);
 
@@ -64,11 +67,15 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setProcessing(true);
-    // Placeholder — will be replaced with real Stripe integration
     setTimeout(() => {
       setProcessing(false);
-      onOpenChange(false);
+      setStep("success");
     }, 2000);
+  };
+
+  const handleGetStarted = () => {
+    onOpenChange(false);
+    navigate("/onboarding");
   };
 
   const formatCard = (val: string) => {
