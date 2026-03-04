@@ -4,7 +4,7 @@ import {
   Factory, LayoutTemplate, Activity, Settings,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
   SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,
@@ -27,10 +27,14 @@ export function ClientSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border bg-sidebar">
-      <div className="p-4 flex items-center gap-2.5 border-b border-sidebar-border">
+      <div
+        className="p-4 flex items-center gap-2.5 border-b border-sidebar-border cursor-pointer hover:bg-sidebar-accent transition-colors"
+        onClick={() => navigate("/")}
+      >
         <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 rounded-lg object-cover flex-shrink-0" />
         {!collapsed && <span className="font-heading font-bold text-lg text-sidebar-foreground tracking-tight">Ryze Studios</span>}
       </div>
