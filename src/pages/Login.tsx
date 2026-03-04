@@ -20,7 +20,7 @@ const Login: React.FC = () => {
 
   const getDestination = () => {
     if (role === "admin") return "/admin/clients";
-    if (role === "partner") return "/reseller-hub";
+    if (role === "partner") return "/partner-onboarding";
     return "/dashboard";
   };
 
