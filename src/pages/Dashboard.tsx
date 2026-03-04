@@ -120,6 +120,7 @@ const Dashboard: React.FC = () => {
         </CardContent>
       </Card>
     </div>
+    </>
   );
 };
 
