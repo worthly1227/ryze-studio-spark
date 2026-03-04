@@ -1263,7 +1263,7 @@ const Index: React.FC = () => {
                   <p className="text-muted-foreground text-xs sm:text-sm font-heading font-medium">Join the Ryze partner network and white-label our services</p>
                 </div>
               </div>
-              <Button onClick={() => navigate("/reseller")} className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-heading font-semibold rounded-full px-6 py-4 sm:py-5 whitespace-nowrap text-sm relative">
+              <Button onClick={() => navigate("/login?role=partner")} className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-heading font-semibold rounded-full px-6 py-4 sm:py-5 whitespace-nowrap text-sm relative">
                 Apply for partner access <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>

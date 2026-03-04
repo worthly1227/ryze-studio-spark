@@ -4,19 +4,25 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, ArrowRight, Eye, EyeOff, Mail } from "lucide-react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
+
+type LoginRole = "client" | "admin" | "partner";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const initialRole = (searchParams.get("role") as LoginRole) || "client";
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [role, setRole] = useState<LoginRole>(initialRole);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate(isAdmin ? "/admin/clients" : "/dashboard");
+    if (role === "admin") navigate("/admin/clients");
+    else if (role === "partner") navigate("/reseller-hub");
+    else navigate("/dashboard");
   };
 
   return (
@@ -61,25 +67,31 @@ const Login: React.FC = () => {
             <span className="font-heading font-bold text-xl tracking-tight">Ryze Studios</span>
           </div>
 
-          <h2 className="font-heading font-bold text-2xl mb-1">{isAdmin ? "Admin Login" : "Welcome back"}</h2>
-          <p className="text-muted-foreground text-sm mb-6">{isAdmin ? "Sign in to the Ryze Studios admin portal" : "Sign in to your account to continue"}</p>
+          <h2 className="font-heading font-bold text-2xl mb-1">
+            {role === "admin" ? "Admin Login" : role === "partner" ? "Partner Login" : "Welcome back"}
+          </h2>
+          <p className="text-muted-foreground text-sm mb-6">
+            {role === "admin"
+              ? "Sign in to the Ryze Studios admin portal"
+              : role === "partner"
+              ? "Sign in to your partner dashboard"
+              : "Sign in to your account to continue"}
+          </p>
 
-          {/* Toggle between Client and Admin */}
+          {/* Toggle between Client, Partner, and Admin */}
           <div className="flex rounded-full border border-border p-1 mb-6">
-            <button
-              type="button"
-              onClick={() => setIsAdmin(false)}
-              className={`flex-1 text-sm font-heading font-medium py-2 rounded-full transition-all ${!isAdmin ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
-            >
-              Client
-            </button>
-            <button
-              type="button"
-              onClick={() => setIsAdmin(true)}
-              className={`flex-1 text-sm font-heading font-medium py-2 rounded-full transition-all ${isAdmin ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
-            >
-              Admin
-            </button>
+            {(["client", "partner", "admin"] as LoginRole[]).map((r) => (
+              <button
+                key={r}
+                type="button"
+                onClick={() => setRole(r)}
+                className={`flex-1 text-xs sm:text-sm font-heading font-medium py-2 rounded-full transition-all capitalize ${
+                  role === r ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {r}
+              </button>
+            ))}
           </div>
 
           {/* Social login */}
