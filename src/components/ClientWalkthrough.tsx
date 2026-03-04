@@ -30,7 +30,7 @@ const walkthroughSteps = [
   {
     icon: Download,
     title: "Deliverables",
-    desc: "Review, approve, or request revisions on completed work — all in one place.",
+    desc: "Review, approve, or request revisions on completed work, all in one place.",
   },
   {
     icon: MessageSquare,
