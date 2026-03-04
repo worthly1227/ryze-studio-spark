@@ -18,11 +18,15 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<LoginRole>(initialRole);
 
+  const getDestination = () => {
+    if (role === "admin") return "/admin/clients";
+    if (role === "partner") return "/reseller-hub";
+    return "/dashboard";
+  };
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (role === "admin") navigate("/admin/clients");
-    else if (role === "partner") navigate("/reseller-hub");
-    else navigate("/dashboard");
+    navigate(getDestination());
   };
 
   return (
