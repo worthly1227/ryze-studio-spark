@@ -12,11 +12,11 @@ const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Frontend-only: navigate to dashboard
-    navigate("/dashboard");
+    navigate(isAdmin ? "/admin/clients" : "/dashboard");
   };
 
   return (
@@ -61,8 +61,26 @@ const Login: React.FC = () => {
             <span className="font-heading font-bold text-xl tracking-tight">Ryze Studios</span>
           </div>
 
-          <h2 className="font-heading font-bold text-2xl mb-1">Welcome back</h2>
-          <p className="text-muted-foreground text-sm mb-8">Sign in to your account to continue</p>
+          <h2 className="font-heading font-bold text-2xl mb-1">{isAdmin ? "Admin Login" : "Welcome back"}</h2>
+          <p className="text-muted-foreground text-sm mb-6">{isAdmin ? "Sign in to the Ryze Studios admin portal" : "Sign in to your account to continue"}</p>
+
+          {/* Toggle between Client and Admin */}
+          <div className="flex rounded-full border border-border p-1 mb-6">
+            <button
+              type="button"
+              onClick={() => setIsAdmin(false)}
+              className={`flex-1 text-sm font-heading font-medium py-2 rounded-full transition-all ${!isAdmin ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >
+              Client
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsAdmin(true)}
+              className={`flex-1 text-sm font-heading font-medium py-2 rounded-full transition-all ${isAdmin ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >
+              Admin
+            </button>
+          </div>
 
           {/* Social login */}
           <Button variant="outline" className="w-full mb-3 gap-2 font-medium" onClick={() => navigate("/dashboard")}>
