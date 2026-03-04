@@ -55,23 +55,23 @@ const AdminProjects: React.FC = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6 px-1 sm:px-0">
       <div>
-        <h1 className="text-3xl font-heading font-bold">All Projects</h1>
-        <p className="text-muted-foreground mt-1">Manage and update project statuses across all clients</p>
+        <h1 className="text-2xl sm:text-3xl font-heading font-bold">All Projects</h1>
+        <p className="text-muted-foreground mt-1 text-sm">Manage and update project statuses across all clients</p>
       </div>
 
       {/* Pipeline */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3">
         {(["received", "in_progress", "review", "revision", "delivered"] as const).map((s) => {
           const cfg = statusConfig[s];
           const count = projects.filter(p => p.status === s).length;
           return (
             <Card key={s} className={`cursor-pointer transition-all ${statusFilter === s ? "border-primary cyan-glow-sm" : "hover:border-primary/20"}`}
               onClick={() => setStatusFilter(statusFilter === s ? "all" : s)}>
-              <CardContent className="p-4 text-center">
-                <p className="text-2xl font-heading font-bold">{count}</p>
-                <Badge className={`${cfg.color} text-xs mt-1`}>{cfg.label}</Badge>
+              <CardContent className="p-3 sm:p-4 text-center">
+                <p className="text-xl sm:text-2xl font-heading font-bold">{count}</p>
+                <Badge className={`${cfg.color} text-[10px] sm:text-xs mt-1`}>{cfg.label}</Badge>
               </CardContent>
             </Card>
           );
@@ -91,8 +91,8 @@ const AdminProjects: React.FC = () => {
           return (
             <motion.div key={project.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
               <Card className="hover:border-primary/20 transition-all cursor-pointer">
-                <CardContent className="p-5 flex items-center gap-4">
-                  <Avatar className="w-10 h-10 flex-shrink-0">
+                <CardContent className="p-3 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                  <Avatar className="w-10 h-10 flex-shrink-0 hidden sm:flex">
                     <AvatarFallback className="bg-primary/10 text-primary text-xs font-heading">{project.clientInitials}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
@@ -102,7 +102,7 @@ const AdminProjects: React.FC = () => {
                     </div>
                     <p className="text-sm text-muted-foreground">{project.clientName} · {project.service} · {project.assignee}</p>
                   </div>
-                  <div className="w-32 flex-shrink-0">
+                  <div className="hidden sm:block w-32 flex-shrink-0">
                     <div className="flex items-center gap-2">
                       <Progress value={project.progress} className="flex-1 h-1.5" />
                       <span className="text-xs text-muted-foreground">{project.progress}%</span>
@@ -111,7 +111,7 @@ const AdminProjects: React.FC = () => {
                   </div>
                   <Badge className={`${status.color} text-xs flex-shrink-0`}>{status.label}</Badge>
                   <Select defaultValue={project.status}>
-                    <SelectTrigger className="w-36 h-8 text-xs"><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="w-28 sm:w-36 h-8 text-xs"><SelectValue /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="received">Received</SelectItem>
                       <SelectItem value="in_progress">In Progress</SelectItem>

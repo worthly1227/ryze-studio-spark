@@ -45,19 +45,19 @@ const AdminDeliverables: React.FC = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6 px-1 sm:px-0">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-heading font-bold">Deliverable Manager</h1>
-          <p className="text-muted-foreground mt-1">Upload and send completed work to clients</p>
+          <h1 className="text-2xl sm:text-3xl font-heading font-bold">Deliverable Manager</h1>
+          <p className="text-muted-foreground mt-1 text-sm">Upload and send completed work to clients</p>
         </div>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading gap-2">
+        <Button className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading gap-2 w-full sm:w-auto">
           <Upload className="w-4 h-4" /> Upload Files
         </Button>
       </div>
 
       {/* Summary */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
         {[
           { label: "Pending", value: tasks.filter(t => t.status === "pending").length },
           { label: "Uploading", value: tasks.filter(t => t.status === "uploading").length },
@@ -65,16 +65,16 @@ const AdminDeliverables: React.FC = () => {
           { label: "Sent", value: tasks.filter(t => t.status === "sent").length },
         ].map((s, i) => (
           <Card key={i}>
-            <CardContent className="p-5 text-center">
-              <p className="text-2xl font-heading font-bold">{s.value}</p>
-              <p className="text-sm text-muted-foreground">{s.label}</p>
+            <CardContent className="p-3 sm:p-5 text-center">
+              <p className="text-xl sm:text-2xl font-heading font-bold">{s.value}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">{s.label}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Filters */}
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input placeholder="Search by project or client..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
@@ -100,8 +100,8 @@ const AdminDeliverables: React.FC = () => {
           return (
             <motion.div key={task.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
               <Card className="hover:border-primary/20 transition-all">
-                <CardContent className="p-5 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
+                <CardContent className="p-3 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-muted flex items-center justify-center flex-shrink-0 hidden sm:flex">
                     <TypeIcon className="w-6 h-6 text-muted-foreground" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -114,7 +114,7 @@ const AdminDeliverables: React.FC = () => {
                   <Badge className={`${status.color} text-xs gap-1`}>
                     <StatusIcon className="w-3 h-3" /> {status.label}
                   </Badge>
-                  <div className="flex gap-2 flex-shrink-0">
+                  <div className="flex flex-wrap gap-2 flex-shrink-0">
                     {task.status === "pending" && (
                       <Button variant="outline" className="font-heading gap-2 text-sm"><Upload className="w-4 h-4" /> Upload</Button>
                     )}

@@ -47,9 +47,9 @@ const AdminMessages: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto h-[calc(100vh-8rem)]">
-      <div className="flex h-full gap-4">
+      <div className="flex h-full gap-2 sm:gap-4">
         {/* Thread List */}
-        <Card className="w-80 flex-shrink-0 flex flex-col overflow-hidden">
+        <Card className="w-full sm:w-80 flex-shrink-0 flex flex-col overflow-hidden">
           <div className="p-4 border-b border-border">
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-heading font-bold text-lg">Client Messages</h2>
@@ -95,7 +95,7 @@ const AdminMessages: React.FC = () => {
         </Card>
 
         {/* Chat */}
-        <Card className="flex-1 flex flex-col overflow-hidden">
+        <Card className="flex-1 hidden sm:flex flex-col overflow-hidden">
           <div className="p-4 border-b border-border flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Avatar className="w-10 h-10">
