@@ -62,7 +62,7 @@ const PartnerOnboarding: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Top bar */}
-      <div className="h-14 border-b border-border flex items-center px-6 gap-3">
+      <div className="h-14 border-b border-border flex items-center px-6 gap-3 cursor-pointer hover:bg-muted/50 transition-colors" onClick={() => navigate("/")}>
         <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 rounded-lg object-cover" />
         <span className="font-heading font-bold text-lg tracking-tight">Ryze Studios</span>
         <span className="text-xs text-muted-foreground font-heading ml-1">Partner Program</span>
