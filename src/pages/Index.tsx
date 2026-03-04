@@ -51,9 +51,10 @@ const subscriptionTiers = [
       { text: "10 Ready-to-Use Design Templates", included: true },
       { text: "Standard Processing", included: true },
       { text: "Email Support", included: true },
-      { text: "$10 USD per Additional Image", included: true },
-      { text: "UGC Video", included: false },
+      { text: "Short Form Videos", included: false },
+      { text: "UGC Videos", included: false },
       { text: "Managed Social Posting", included: false },
+      { text: "Strategy Sessions", included: false },
     ],
   },
   {
@@ -108,6 +109,7 @@ const subscriptionTiers = [
       { text: "Managed Social Posting", included: true },
       { text: "Priority Processing", included: true },
       { text: "1 Strategy Session (Quarterly)", included: true },
+      { text: "Fast-Track Production", included: false },
     ],
   },
   {
