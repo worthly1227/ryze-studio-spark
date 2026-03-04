@@ -133,7 +133,9 @@ const Login: React.FC = () => {
 
           <p className="text-center text-sm text-muted-foreground mt-6">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-primary hover:underline font-medium">Create one</Link>
+            <Link to={role === "partner" ? "/partner-onboarding" : "/signup"} className="text-primary hover:underline font-medium">
+              {role === "partner" ? "Apply as a partner" : "Create one"}
+            </Link>
           </p>
         </motion.div>
       </div>
