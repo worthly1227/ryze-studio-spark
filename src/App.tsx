@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Onboarding from "./pages/Onboarding";
+import PartnerOnboarding from "./pages/PartnerOnboarding";
 import AuthenticatedLayout from "./components/layout/AuthenticatedLayout";
 import AdminLayout from "./components/layout/AdminLayout";
 import Dashboard from "./pages/Dashboard";
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/onboarding" element={<Onboarding />} />
+            <Route path="/partner-onboarding" element={<PartnerOnboarding />} />
             <Route path="/book-demo" element={<BookDemo />} />
             <Route path="/plans" element={<Plans />} />
             <Route path="/template-store" element={<TemplateStore />} />
