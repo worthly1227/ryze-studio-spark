@@ -28,6 +28,7 @@ import ClientMessages from "./pages/client/ClientMessages";
 import ClientProjects from "./pages/client/ClientProjects";
 import ClientDeliverables from "./pages/client/ClientDeliverables";
 import AdminClients from "./pages/admin/AdminClients";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminDeliverables from "./pages/admin/AdminDeliverables";
 import AdminMessages from "./pages/admin/AdminMessages";
 import AdminProjects from "./pages/admin/AdminProjects";
@@ -66,7 +67,7 @@ const App = () => (
 
             {/* Admin portal */}
             <Route element={<AdminLayout />}>
-              <Route path="/admin/dashboard" element={<Dashboard />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/clients" element={<AdminClients />} />
               <Route path="/admin/projects" element={<AdminProjects />} />
               <Route path="/admin/messages" element={<AdminMessages />} />
