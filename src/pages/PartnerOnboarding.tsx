@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   ArrowRight, ArrowLeft, Check, Globe, Building2, Users, Palette,
-  Sparkles, Shield, Upload,
+  Sparkles, Shield, Upload, Clock, Mail,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
@@ -27,7 +27,7 @@ const services = [
   { label: "Full Creative Outsourcing", desc: "End-to-end production" },
 ];
 
-const steps = ["Company Info", "Client Volume", "Services", "White-Label", "Ready"];
+const steps = ["Company Info", "Client Volume", "Services", "White-Label", "Submitted"];
 
 const PartnerOnboarding: React.FC = () => {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const PartnerOnboarding: React.FC = () => {
 
   const next = () => {
     if (step < steps.length - 1) setStep(step + 1);
-    else navigate("/reseller-hub");
+    else navigate("/");
   };
 
   return (
@@ -220,29 +220,42 @@ const PartnerOnboarding: React.FC = () => {
               </motion.div>
             )}
 
-            {/* Step 4: Ready */}
+            {/* Step 4: Application Submitted */}
             {step === 4 && (
               <motion.div key="s4" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} className="text-center space-y-6 py-8">
-                <div className="w-20 h-20 rounded-2xl bg-primary/15 flex items-center justify-center mx-auto cyan-glow">
-                  <Shield className="w-9 h-9 text-primary" />
+                <div className="w-20 h-20 rounded-2xl bg-amber-500/15 flex items-center justify-center mx-auto">
+                  <Clock className="w-9 h-9 text-amber-500" />
                 </div>
                 <div>
-                  <h2 className="font-heading font-bold text-3xl mb-2">Welcome to the Partner Network!</h2>
+                  <h2 className="font-heading font-bold text-3xl mb-2">Application Submitted</h2>
                   <p className="text-muted-foreground max-w-md mx-auto">
-                    Your partner account is ready. Explore your Reseller Hub to manage clients, customize your white-label portal, and start offering Ryze services.
+                    Thank you for applying to the Ryze Partner Network. Our team will review your application and verify your business within 1–3 business days.
                   </p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-md mx-auto">
-                  {[
-                    { icon: Users, label: "Add Your First Client" },
-                    { icon: Palette, label: "Customize Branding" },
-                    { icon: Sparkles, label: "Explore Services" },
-                  ].map((action) => (
-                    <div key={action.label} className="glass-card p-4 text-center hover:border-primary/40 transition-colors cursor-pointer">
-                      <action.icon className="w-5 h-5 text-primary mx-auto mb-2" />
-                      <p className="text-xs font-medium">{action.label}</p>
+                <div className="glass-card p-5 max-w-sm mx-auto text-left space-y-3">
+                  <h4 className="font-heading font-semibold text-sm">What happens next?</h4>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-primary">1</span>
                     </div>
-                  ))}
+                    <p className="text-sm text-muted-foreground">We review your company details and market fit</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-primary">2</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">A partner manager may reach out for a quick call</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-primary">3</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Once approved, you'll receive an email with your partner portal access</p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <Mail className="w-4 h-4" />
+                  <span>We'll notify you at your registered email</span>
                 </div>
               </motion.div>
             )}
@@ -250,16 +263,22 @@ const PartnerOnboarding: React.FC = () => {
 
           {/* Navigation */}
           <div className="flex items-center justify-between mt-10 pb-12">
-            {step > 0 ? (
+            {step > 0 && step < steps.length - 1 ? (
               <Button variant="ghost" onClick={() => setStep(step - 1)} className="gap-1 text-muted-foreground">
                 <ArrowLeft className="w-4 h-4" /> Back
               </Button>
             ) : (
               <div />
             )}
-            <Button onClick={next} disabled={!canNext()} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-6 gap-1">
-              {step === steps.length - 1 ? "Go to Partner Hub" : "Continue"} <ArrowRight className="w-4 h-4" />
-            </Button>
+            {step === steps.length - 1 ? (
+              <Button onClick={() => navigate("/")} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-6 gap-1">
+                Back to Home <ArrowRight className="w-4 h-4" />
+              </Button>
+            ) : (
+              <Button onClick={next} disabled={!canNext()} className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-6 gap-1">
+                {step === steps.length - 2 ? "Submit Application" : "Continue"} <ArrowRight className="w-4 h-4" />
+              </Button>
+            )}
           </div>
         </div>
       </div>
