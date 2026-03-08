@@ -24,11 +24,13 @@ const subscriptionTiers = [
   {
     name: "Entry Level Pass",
     price: 10,
+    priceUnit: "per session",
     tagline: "For brands testing premium AI visuals.",
     icon: Zap,
     competitorPrice: 39,
     savingsPercent: "74%",
     features: [
+      { text: "5 AI Generation Credits", included: true },
       { text: "1 Final AI Image Download", included: true },
       { text: "Standard Processing", included: true },
       { text: "Email Support", included: true },
@@ -153,7 +155,7 @@ const suggestedAddOns: Record<string, { name: string; price: number; description
 };
 
 const comparisonData = [
-  { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10/mo" },
+  { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10 USDD" },
   { feature: "Visual Quality", agency: "Prone to human error", ai: "AI distortion & artifacts", ryze: "Pixel-perfect quality" },
   { feature: "Production Method", agency: "Physical studios required", ai: "Basic background swaps", ryze: "Full AI creative pipeline" },
   { feature: "Speed", agency: "3–6 week lead times", ai: "Fast but low quality", ryze: "Same-week premium output" },
@@ -176,7 +178,7 @@ const featureContent: Record<string, { title: string; desc: string; image: strin
 };
 
 const faqItems = [
-  { q: "What does Ryze Studios cost?", a: "Our Entry Level Pass starts at $10/mo for a single AI product edit. From there, scale into UGC, managed posting, and full creative outsourcing as your brand grows." },
+  { q: "What does Ryze Studios cost?", a: "Our Entry Level Pass starts at $1 USD per sessiono for a single AI product edit. From there, scale into UGC, managed posting, and full creative outsourcing as your brand grows." },
   { q: "How can you charge so little?", a: "We built a proprietary AI production engine that replaces bloated agency overhead. You get luxury-grade output at a fraction of the traditional cost." },
   { q: "Where is your team based?", a: "Ryze operates globally with creative leads in the US, UK, and Southeast Asia, ensuring round-the-clock production capacity." },
   { q: "How fast can I get started?", a: "Pick a plan, complete our 5-minute brand intake, and your first assets enter production the same day." },
@@ -754,7 +756,7 @@ const Index: React.FC = () => {
                         <span className="text-sm text-muted-foreground line-through mr-2">${tier.competitorPrice}</span>
                       )}
                       <span className="text-3xl font-heading font-black">${tier.price}</span>
-                      <span className="text-muted-foreground text-xs">/mo</span>
+                      <span className="text-muted-foreground text-xs">{tier.priceUnit ? ` ${tier.priceUnit}` : "/mo"}</span>
                     </div>
                     {tier.competitorPrice && (
                       <Badge className="mt-1.5 bg-primary/10 text-primary border-0 text-[10px] font-heading">{tier.savingsPercent} cheaper</Badge>
@@ -775,7 +777,7 @@ const Index: React.FC = () => {
                       ))}
                     </div>
                     <Button onClick={() => handleTierClick(tier)} className={`w-full text-xs font-heading ${tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
-                      {tier.price >= 299 ? "Book a Call" : "Get Started"}
+                      {tier.price >= 299 ? "Book a Call" : tier.name === "Entry Level Pass" ? "Generate Image" : "Get Started"}
                     </Button>
                   </CardContent>
                 </Card>
