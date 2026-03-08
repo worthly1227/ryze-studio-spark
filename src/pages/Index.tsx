@@ -478,8 +478,8 @@ const FactoryProofSection: React.FC = () => {
 
   const filtered = proofItems.filter((item) => {
     const typeMatch = item.category === activeType;
-    const industryMatch = activeIndustry === "Featured" || item.industry === activeIndustry;
-    return typeMatch && industryMatch;
+    const subMatch = activeSub === currentSubs[0] || item.industry === activeSub;
+    return typeMatch && subMatch;
   });
 
   const visible = showAll ? filtered : filtered.slice(0, 6);
