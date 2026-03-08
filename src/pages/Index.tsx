@@ -155,7 +155,7 @@ const suggestedAddOns: Record<string, { name: string; price: number; description
 };
 
 const comparisonData = [
-  { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10 USD" },
+  { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10 USDD" },
   { feature: "Visual Quality", agency: "Prone to human error", ai: "AI distortion & artifacts", ryze: "Pixel-perfect quality" },
   { feature: "Production Method", agency: "Physical studios required", ai: "Basic background swaps", ryze: "Full AI creative pipeline" },
   { feature: "Speed", agency: "3–6 week lead times", ai: "Fast but low quality", ryze: "Same-week premium output" },
@@ -178,7 +178,7 @@ const featureContent: Record<string, { title: string; desc: string; image: strin
 };
 
 const faqItems = [
-  { q: "What does Ryze Studios cost?", a: "Our Entry Level Pass starts at $10/mo for a single AI product edit. From there, scale into UGC, managed posting, and full creative outsourcing as your brand grows." },
+  { q: "What does Ryze Studios cost?", a: "Our Entry Level Pass starts at $1 USD per sessiono for a single AI product edit. From there, scale into UGC, managed posting, and full creative outsourcing as your brand grows." },
   { q: "How can you charge so little?", a: "We built a proprietary AI production engine that replaces bloated agency overhead. You get luxury-grade output at a fraction of the traditional cost." },
   { q: "Where is your team based?", a: "Ryze operates globally with creative leads in the US, UK, and Southeast Asia, ensuring round-the-clock production capacity." },
   { q: "How fast can I get started?", a: "Pick a plan, complete our 5-minute brand intake, and your first assets enter production the same day." },
