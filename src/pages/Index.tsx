@@ -504,16 +504,20 @@ const FactoryProofSection: React.FC = () => {
           ))}
         </div>
 
-        <div className="mb-8 sm:mb-10 flex flex-wrap justify-center gap-1.5 sm:gap-2">
-          {currentSubs.map((sub) => (
-            <button
-              key={sub}
-              onClick={() => { setActiveSub(sub); setShowAll(false); }}
-              className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${activeSub === sub ? "border-primary text-primary bg-primary/5" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"}`}
-            >
-              {sub}
-            </button>
-          ))}
+        <div className="mb-8 sm:mb-10 -mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto scrollbar-hide">
+          <div className="w-max min-w-full flex sm:justify-center">
+            <div className="inline-flex gap-2 whitespace-nowrap">
+              {currentSubs.map((sub) => (
+                <button
+                  key={sub}
+                  onClick={() => { setActiveSub(sub); setShowAll(false); }}
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${activeSub === sub ? "border-primary text-primary bg-primary/5" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"}`}
+                >
+                  {sub}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {visible.length > 0 ? (
