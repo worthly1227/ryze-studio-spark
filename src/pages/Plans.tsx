@@ -20,7 +20,7 @@ const plans = [
   {
     name: "Entry Level Pass",
     price: 10,
-    period: "/mo",
+    period: "per session",
     tagline: "For brands testing premium AI visuals.",
     icon: Zap,
     gradient: "from-slate-400 to-slate-600",
@@ -32,6 +32,7 @@ const plans = [
     savingsPercent: "74%",
     canContact: false,
     features: [
+      { text: "5 AI Generation Credits", included: true },
       { text: "1 Final AI Image Download", included: true },
       { text: "Standard Processing", included: true },
       { text: "Email Support", included: true },
