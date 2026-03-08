@@ -113,7 +113,6 @@ const subscriptionTiers = [
       { text: "Managed Social Posting", included: true },
       { text: "Priority Processing", included: true },
       { text: "1 Strategy Session (Quarterly)", included: true },
-      { text: "Fast-Track Production", included: false },
     ],
   },
   {
