@@ -137,8 +137,9 @@ const addOns = [
   { name: "Extra AI Product Image", price: "$10 USD", unit: "per final download", desc: "Generate unlimited variations and only pay for the final image you choose.", icon: Camera, color: "from-sky-400 to-cyan-500" },
   { name: "30-Second UGC Video", price: "$99 USD", unit: "", desc: "Professionally produced social media-ready video featuring vetted creators.", icon: Play, color: "from-violet-400 to-purple-500" },
   { name: "Short Video (<20 sec)", price: "$59 USD", unit: "", desc: "Quick, attention-grabbing clips optimized for Reels, TikTok, and social posts.", icon: Rocket, color: "from-amber-400 to-orange-500" },
+  { name: "Content Management & Delivery", price: "$120 USD", unit: "per month", desc: "We manage and post your content across your 3 primary social platforms on a consistent, expert schedule.", icon: Calendar, color: "from-indigo-400 to-blue-500" },
   { name: "Strategic Consultancy", price: "$224 USD", unit: "", desc: "A 45-minute one-on-one session to guide your brand strategy and growth planning.", icon: Megaphone, color: "from-emerald-400 to-teal-500" },
-  { name: "Max Business Launch", price: "$2,500 USD", unit: "each", desc: "We build your US brand, stock it with products, and give you the keys in 24 hours.", icon: Rocket, color: "from-rose-400 to-pink-500" },
+  { name: "Max Business Launch", price: "$2,500 USD", unit: "each", desc: "We deliver a fully operational US product brand, pre-stocked and ready for market, handing you the keys in 24 hours.", icon: Rocket, color: "from-rose-400 to-pink-500" },
 ];
 
 const suggestedAddOns: Record<string, { name: string; price: number; description: string }> = {
