@@ -510,14 +510,14 @@ const FactoryProofSection: React.FC = () => {
 
         <div className="mb-8 sm:mb-10 overflow-x-auto scrollbar-hide">
           <div className="w-max min-w-full flex sm:justify-center px-4 sm:px-0">
-            <div className="inline-flex gap-2 whitespace-nowrap">
-              {industries.map((ind) => (
+             <div className="inline-flex gap-2 whitespace-nowrap">
+              {currentSubs.map((sub) => (
                 <button
-                  key={ind}
-                  onClick={() => { setActiveIndustry(ind); setShowAll(false); }}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${activeIndustry === ind ? "border-primary text-primary bg-primary/5" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"}`}
+                  key={sub}
+                  onClick={() => { setActiveSub(sub); setShowAll(false); }}
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${activeSub === sub ? "border-primary text-primary bg-primary/5" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"}`}
                 >
-                  {ind}
+                  {sub}
                 </button>
               ))}
             </div>
