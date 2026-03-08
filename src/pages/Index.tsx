@@ -482,8 +482,8 @@ const FactoryProofSection: React.FC = () => {
           <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Real transformations from real product brands. Browse by content type or niche to see the caliber of work Ryze delivers every single week.</p>
         </motion.div>
 
-        <div className="flex justify-center mb-6 overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
-          <div className="inline-flex bg-card border border-border rounded-full p-1 gap-0.5 whitespace-nowrap">
+        <div className="flex justify-center mb-6 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex flex-wrap justify-center bg-card border border-border rounded-2xl sm:rounded-full p-1 gap-0.5">
             {contentTypes.map((type) => (
               <button
                 key={type}
