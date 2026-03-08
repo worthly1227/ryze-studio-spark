@@ -662,7 +662,7 @@ const Index: React.FC = () => {
               🤦‍♂️ <span className="font-bold">Tired of Overpriced Agencies? Meet Ryze</span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6 sm:mb-8">
-              Your On-Demand Creative Team<br className="hidden sm:block" />{" "}and AI Production Platform Starting at <span className="text-primary">$10/mo</span>
+              Your On-Demand Creative Team<br className="hidden sm:block" />{" "}and AI Production Platform Starting at <span className="text-primary">$10 USD</span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-lg leading-relaxed">
               We create distortion-free AI visuals, social content, UGC, and brand strategies so you can focus on pushing your business to the next level.
