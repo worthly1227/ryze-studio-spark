@@ -782,7 +782,7 @@ const Index: React.FC = () => {
                         </div>
                       ))}
                     </div>
-                    <Button onClick={() => handleTierClick(tier)} className={`w-full text-xs font-heading ${tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
+                    <Button onClick={() => handleTierClick(tier)} className={`w-full text-xs font-heading ${tier.starter ? "bg-pink-500 text-white hover:bg-pink-600" : tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
                       {tier.price >= 299 ? "Book a Call" : tier.name === "Entry Level Pass" ? "Generate Image" : "Get Started"}
                       <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                     </Button>
