@@ -24,11 +24,13 @@ const subscriptionTiers = [
   {
     name: "Entry Level Pass",
     price: 10,
+    priceUnit: "per session",
     tagline: "For brands testing premium AI visuals.",
     icon: Zap,
     competitorPrice: 39,
     savingsPercent: "74%",
     features: [
+      { text: "5 AI Generation Credits", included: true },
       { text: "1 Final AI Image Download", included: true },
       { text: "Standard Processing", included: true },
       { text: "Email Support", included: true },
