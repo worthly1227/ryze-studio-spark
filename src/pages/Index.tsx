@@ -1364,6 +1364,10 @@ const Index: React.FC = () => {
         period={calendlyTier?.price ? "/mo" : ""}
         onBooked={handleCalendlyBooked}
       />
+      <EntryLevelPaymentModal
+        open={entryLevelOpen}
+        onOpenChange={setEntryLevelOpen}
+      />
     </div>
   );
 };
