@@ -753,7 +753,7 @@ const Index: React.FC = () => {
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
                 <Card className={`relative h-full flex flex-col transition-all duration-300 hover:shadow-lg ${tier.starter ? "border-pink-400 ring-2 ring-pink-400/20" : ""} ${tier.popular ? "border-primary ring-2 ring-primary/20" : ""} ${tier.premium ? "border-primary/50 bg-gradient-to-b from-card to-primary/5" : ""}`}>
                   {tier.starter && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-pink-500 text-white font-heading text-[10px]">Start Now</Badge></div>}
-                  {tier.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-primary text-primary-foreground font-heading text-[10px]">Most Popular</Badge></div>}
+                  {tier.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-primary text-primary-foreground font-heading text-[10px]"><span className="sm:hidden">Popular</span><span className="hidden sm:inline">Most Popular</span></Badge></div>}
                   {tier.premium && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-foreground text-background font-heading text-[10px]">Premium</Badge></div>}
                   <CardHeader className="pb-3 pt-6">
                     <CardTitle className="font-heading text-sm">{tier.name}</CardTitle>
