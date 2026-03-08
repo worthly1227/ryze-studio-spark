@@ -28,6 +28,7 @@ const subscriptionTiers = [
     priceUnit: "per session",
     tagline: "For brands testing premium AI visuals.",
     icon: Zap,
+    starter: true,
     competitorPrice: 39,
     savingsPercent: "74%",
     features: [
