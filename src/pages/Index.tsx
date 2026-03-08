@@ -498,7 +498,7 @@ const FactoryProofSection: React.FC = () => {
               {contentTypes.map((type) => (
                 <button
                   key={type}
-                  onClick={() => { setActiveType(type); setShowAll(false); }}
+                  onClick={() => { setActiveType(type); setActiveSub(subcategoriesByType[type]?.[0] || "Featured"); setShowAll(false); }}
                   className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${activeType === type ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
                 >
                   {type}
