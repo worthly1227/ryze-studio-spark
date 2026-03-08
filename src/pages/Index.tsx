@@ -751,16 +751,18 @@ const Index: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4">
             {subscriptionTiers.map((tier, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-                <Card className={`relative h-full transition-all duration-300 hover:shadow-lg ${tier.starter ? "border-pink-400 ring-2 ring-pink-400/20" : ""} ${tier.popular ? "border-primary ring-2 ring-primary/20" : ""} ${tier.premium ? "border-primary/50 bg-gradient-to-b from-card to-primary/5" : ""}`}>
+                <Card className={`relative h-full flex flex-col transition-all duration-300 hover:shadow-lg ${tier.starter ? "border-pink-400 ring-2 ring-pink-400/20" : ""} ${tier.popular ? "border-primary ring-2 ring-primary/20" : ""} ${tier.premium ? "border-primary/50 bg-gradient-to-b from-card to-primary/5" : ""}`}>
                   {tier.starter && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-pink-500 text-white font-heading text-[10px]">Start Now</Badge></div>}
                   {tier.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-primary text-primary-foreground font-heading text-[10px]">Most Popular</Badge></div>}
                   {tier.premium && <div className="absolute -top-3 left-1/2 -translate-x-1/2"><Badge className="bg-foreground text-background font-heading text-[10px]">Premium</Badge></div>}
                   <CardHeader className="pb-3 pt-6">
                     <CardTitle className="font-heading text-sm">{tier.name}</CardTitle>
-                    <div className="mt-1">
-                      {tier.competitorPrice && (
-                        <span className="text-sm text-muted-foreground line-through mr-2">${tier.competitorPrice}</span>
-                      )}
+                    {tier.competitorPrice && (
+                      <div className="mt-1">
+                        <span className="text-[10px] text-muted-foreground">Market price: <span className="line-through">${tier.competitorPrice}</span></span>
+                      </div>
+                    )}
+                    <div className="mt-0.5">
                       <span className="text-3xl font-heading font-black">${tier.price}</span>
                       <span className="text-muted-foreground text-xs">{tier.priceUnit ? ` ${tier.priceUnit}` : "/mo"}</span>
                     </div>
@@ -769,8 +771,8 @@ const Index: React.FC = () => {
                     )}
                     <p className="text-xs text-muted-foreground mt-1">{tier.tagline}</p>
                   </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="space-y-2 mb-5">
+                  <CardContent className="pt-0 flex flex-col flex-1">
+                    <div className="space-y-2 mb-5 flex-1">
                       {tier.features.map((f, j) => (
                         <div key={j} className="flex items-center gap-2">
                           {f.included ? (
@@ -782,8 +784,8 @@ const Index: React.FC = () => {
                         </div>
                       ))}
                     </div>
-                    <Button onClick={() => handleTierClick(tier)} className={`w-full text-xs font-heading ${tier.starter ? "bg-pink-500 text-white hover:bg-pink-600" : tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
-                      {tier.price >= 299 ? "Book a Call" : tier.name === "Entry Level Pass" ? "Generate Image" : "Get Started"}
+                    <Button onClick={() => handleTierClick(tier)} className={`w-full text-xs font-heading mt-auto ${tier.starter ? "bg-pink-500 text-white hover:bg-pink-600" : tier.popular || tier.premium ? "bg-primary text-primary-foreground hover:bg-primary-pressed" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`} size="sm">
+                      {tier.price >= 299 ? "Book a Call" : tier.name === "Entry Level Pass" ? (<><span className="sm:hidden">Generate</span><span className="hidden sm:inline">Generate Image</span></>) : "Get Started"}
                       <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                     </Button>
                   </CardContent>
