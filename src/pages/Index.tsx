@@ -492,36 +492,28 @@ const FactoryProofSection: React.FC = () => {
           <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">Real transformations from real product brands. Browse by content type or niche to see the caliber of work Ryze delivers every single week.</p>
         </motion.div>
 
-        <div className="mb-6 overflow-x-auto scrollbar-hide">
-          <div className="w-max min-w-full flex sm:justify-center px-4 sm:px-0">
-            <div className="inline-flex bg-card border border-border rounded-full p-1 gap-0.5 whitespace-nowrap">
-              {contentTypes.map((type) => (
-                <button
-                  key={type}
-                  onClick={() => { setActiveType(type); setActiveSub(subcategoriesByType[type]?.[0] || "Featured"); setShowAll(false); }}
-                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${activeType === type ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
-                >
-                  {type}
-                </button>
-              ))}
-            </div>
-          </div>
+        <div className="mb-6 flex flex-wrap justify-center gap-1.5 sm:gap-2">
+          {contentTypes.map((type) => (
+            <button
+              key={type}
+              onClick={() => { setActiveType(type); setActiveSub(subcategoriesByType[type]?.[0] || "Featured"); setShowAll(false); }}
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all border ${activeType === type ? "bg-primary text-primary-foreground border-primary shadow-sm" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 bg-card"}`}
+            >
+              {type}
+            </button>
+          ))}
         </div>
 
-        <div className="mb-8 sm:mb-10 overflow-x-auto scrollbar-hide">
-          <div className="w-max min-w-full flex sm:justify-center px-4 sm:px-0">
-             <div className="inline-flex gap-2 whitespace-nowrap">
-              {currentSubs.map((sub) => (
-                <button
-                  key={sub}
-                  onClick={() => { setActiveSub(sub); setShowAll(false); }}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${activeSub === sub ? "border-primary text-primary bg-primary/5" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"}`}
-                >
-                  {sub}
-                </button>
-              ))}
-            </div>
-          </div>
+        <div className="mb-8 sm:mb-10 flex flex-wrap justify-center gap-1.5 sm:gap-2">
+          {currentSubs.map((sub) => (
+            <button
+              key={sub}
+              onClick={() => { setActiveSub(sub); setShowAll(false); }}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${activeSub === sub ? "border-primary text-primary bg-primary/5" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"}`}
+            >
+              {sub}
+            </button>
+          ))}
         </div>
 
         {visible.length > 0 ? (
