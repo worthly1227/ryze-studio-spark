@@ -471,8 +471,10 @@ const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => (
 
 const FactoryProofSection: React.FC = () => {
   const [activeType, setActiveType] = useState("Posts");
-  const [activeIndustry, setActiveIndustry] = useState("Featured");
+  const [activeSub, setActiveSub] = useState("Featured");
   const [showAll, setShowAll] = useState(false);
+
+  const currentSubs = subcategoriesByType[activeType] || ["Featured"];
 
   const filtered = proofItems.filter((item) => {
     const typeMatch = item.category === activeType;
