@@ -16,6 +16,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 import CheckoutModal from "@/components/CheckoutModal";
+import EntryLevelPaymentModal from "@/components/EntryLevelPaymentModal";
 import CalendlyModal from "@/components/CalendlyModal";
 import { useToast } from "@/hooks/use-toast";
 
@@ -582,9 +583,12 @@ const Index: React.FC = () => {
   const [checkoutTier, setCheckoutTier] = useState<typeof subscriptionTiers[0] | null>(null);
   const [calendlyTier, setCalendlyTier] = useState<typeof subscriptionTiers[0] | null>(null);
   const [pendingAddOn, setPendingAddOn] = useState<{ name: string; price: number; description: string } | null>(null);
+  const [entryLevelOpen, setEntryLevelOpen] = useState(false);
 
   const handleTierClick = (tier: typeof subscriptionTiers[0]) => {
-    if (tier.price >= 299) {
+    if (tier.name === "Entry Level Pass") {
+      setEntryLevelOpen(true);
+    } else if (tier.price >= 299) {
       setCalendlyTier(tier);
     } else {
       setCheckoutTier(tier);
@@ -1359,6 +1363,10 @@ const Index: React.FC = () => {
         price={calendlyTier?.price || 0}
         period={calendlyTier?.price ? "/mo" : ""}
         onBooked={handleCalendlyBooked}
+      />
+      <EntryLevelPaymentModal
+        open={entryLevelOpen}
+        onOpenChange={setEntryLevelOpen}
       />
     </div>
   );
