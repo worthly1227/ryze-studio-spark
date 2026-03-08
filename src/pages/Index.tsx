@@ -383,7 +383,7 @@ const subcategoriesByType: Record<string, string[]> = {
   "Videos": ["Orbit", "Focus", "Glide", "Pedestal", "Still", "Sweep"],
   "UGC": ["Man", "Woman", "Young", "Adult", "Dark Skin", "Light Skin"],
   "Social Ads": ["Static Image", "Short Form Video", "Carousel", "Stories", "Direct Response"],
-  "Short Form Video": ["Featured"],
+  "Short Form Video": ["Featured", "AI Videos", "Stock Videos"],
   "Template Designs": ["Social Media Templates", "Sales Templates", "Seasonal Templates", "Email Templates"],
   "Web Designs": ["Landing Pages", "E-Commerce Sites", "Portfolio Sites", "Business Sites", "Blog / Content Sites"],
 };
