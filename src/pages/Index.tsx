@@ -377,8 +377,16 @@ const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reve
 );
 
 /* Factory Proof Section */
-const contentTypes = ["Posts", "Videos", "UGC", "Social Ads", "Short Form Video", "Video Ads", "Template Designs", "Web Designs"];
-const industries = ["Featured", "Skincare & Beauty", "Health & Supplements", "Fashion & Apparel", "Jewelry & Accessories", "Other"];
+const contentTypes = ["Posts", "Videos", "UGC", "Social Ads", "Short Form Video", "Template Designs", "Web Designs"];
+const subcategoriesByType: Record<string, string[]> = {
+  "Posts": ["Featured", "Health, Skincare & Supplements", "Beverages & Packaged Goods", "Apothecary & Home", "Tech & Workspace", "Other"],
+  "Videos": ["Orbit", "Focus", "Glide", "Pedestal", "Still", "Sweep"],
+  "UGC": ["Man", "Woman", "Young", "Adult", "Dark Skin", "Light Skin"],
+  "Social Ads": ["Static Image", "Short Form Video", "Carousel", "Stories", "Direct Response"],
+  "Short Form Video": ["Featured"],
+  "Template Designs": ["Social Media Templates", "Sales Templates", "Seasonal Templates", "Email Templates"],
+  "Web Designs": ["Landing Pages", "E-Commerce Sites", "Portfolio Sites", "Business Sites", "Blog / Content Sites"],
+};
 
 const proofItems = [
   { before: "📦", after: "✨", category: "Posts", industry: "Skincare & Beauty", gradient: "from-rose-400 to-pink-600" },
