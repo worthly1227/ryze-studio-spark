@@ -756,7 +756,7 @@ const Index: React.FC = () => {
                         <span className="text-sm text-muted-foreground line-through mr-2">${tier.competitorPrice}</span>
                       )}
                       <span className="text-3xl font-heading font-black">${tier.price}</span>
-                      <span className="text-muted-foreground text-xs">/mo</span>
+                      <span className="text-muted-foreground text-xs">{tier.priceUnit ? ` ${tier.priceUnit}` : "/mo"}</span>
                     </div>
                     {tier.competitorPrice && (
                       <Badge className="mt-1.5 bg-primary/10 text-primary border-0 text-[10px] font-heading">{tier.savingsPercent} cheaper</Badge>
