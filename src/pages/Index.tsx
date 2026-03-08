@@ -377,8 +377,16 @@ const ScrollingColumn: React.FC<{ cards: React.ReactNode[]; speed?: number; reve
 );
 
 /* Factory Proof Section */
-const contentTypes = ["Posts", "Videos", "UGC", "Social Ads", "Short Form Video", "Video Ads", "Template Designs", "Web Designs"];
-const industries = ["Featured", "Skincare & Beauty", "Health & Supplements", "Fashion & Apparel", "Jewelry & Accessories", "Other"];
+const contentTypes = ["Posts", "Videos", "UGC", "Social Ads", "Short Form Video", "Template Designs", "Web Designs"];
+const subcategoriesByType: Record<string, string[]> = {
+  "Posts": ["Featured", "Health, Skincare & Supplements", "Beverages & Packaged Goods", "Apothecary & Home", "Tech & Workspace", "Other"],
+  "Videos": ["Orbit", "Focus", "Glide", "Pedestal", "Still", "Sweep"],
+  "UGC": ["Man", "Woman", "Young", "Adult", "Dark Skin", "Light Skin"],
+  "Social Ads": ["Static Image", "Short Form Video", "Carousel", "Stories", "Direct Response"],
+  "Short Form Video": ["Featured"],
+  "Template Designs": ["Social Media Templates", "Sales Templates", "Seasonal Templates", "Email Templates"],
+  "Web Designs": ["Landing Pages", "E-Commerce Sites", "Portfolio Sites", "Business Sites", "Blog / Content Sites"],
+};
 
 const proofItems = [
   { before: "📦", after: "✨", category: "Posts", industry: "Skincare & Beauty", gradient: "from-rose-400 to-pink-600" },
@@ -463,13 +471,15 @@ const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => (
 
 const FactoryProofSection: React.FC = () => {
   const [activeType, setActiveType] = useState("Posts");
-  const [activeIndustry, setActiveIndustry] = useState("Featured");
+  const [activeSub, setActiveSub] = useState("Featured");
   const [showAll, setShowAll] = useState(false);
+
+  const currentSubs = subcategoriesByType[activeType] || ["Featured"];
 
   const filtered = proofItems.filter((item) => {
     const typeMatch = item.category === activeType;
-    const industryMatch = activeIndustry === "Featured" || item.industry === activeIndustry;
-    return typeMatch && industryMatch;
+    const subMatch = activeSub === currentSubs[0] || item.industry === activeSub;
+    return typeMatch && subMatch;
   });
 
   const visible = showAll ? filtered : filtered.slice(0, 6);
@@ -488,7 +498,7 @@ const FactoryProofSection: React.FC = () => {
               {contentTypes.map((type) => (
                 <button
                   key={type}
-                  onClick={() => { setActiveType(type); setShowAll(false); }}
+                  onClick={() => { setActiveType(type); setActiveSub(subcategoriesByType[type]?.[0] || "Featured"); setShowAll(false); }}
                   className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${activeType === type ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
                 >
                   {type}
@@ -500,14 +510,14 @@ const FactoryProofSection: React.FC = () => {
 
         <div className="mb-8 sm:mb-10 overflow-x-auto scrollbar-hide">
           <div className="w-max min-w-full flex sm:justify-center px-4 sm:px-0">
-            <div className="inline-flex gap-2 whitespace-nowrap">
-              {industries.map((ind) => (
+             <div className="inline-flex gap-2 whitespace-nowrap">
+              {currentSubs.map((sub) => (
                 <button
-                  key={ind}
-                  onClick={() => { setActiveIndustry(ind); setShowAll(false); }}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${activeIndustry === ind ? "border-primary text-primary bg-primary/5" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"}`}
+                  key={sub}
+                  onClick={() => { setActiveSub(sub); setShowAll(false); }}
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${activeSub === sub ? "border-primary text-primary bg-primary/5" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"}`}
                 >
-                  {ind}
+                  {sub}
                 </button>
               ))}
             </div>
