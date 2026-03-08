@@ -436,7 +436,7 @@ const Plans: React.FC = () => {
                             : "bg-foreground text-background hover:bg-foreground/90"
                         }`}
                       >
-                        {plan.canContact ? "Book a Call" : "Get Started"}
+                        {plan.canContact ? "Book a Call" : plan.name === "Entry Level Pass" ? "Generate Image" : "Get Started"}
                         <ArrowRight className="w-4 h-4 ml-1.5" />
                       </Button>
                     </CardContent>
