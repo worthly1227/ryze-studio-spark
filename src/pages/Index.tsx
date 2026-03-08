@@ -16,6 +16,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
 import CheckoutModal from "@/components/CheckoutModal";
+import EntryLevelPaymentModal from "@/components/EntryLevelPaymentModal";
 import CalendlyModal from "@/components/CalendlyModal";
 import { useToast } from "@/hooks/use-toast";
 
