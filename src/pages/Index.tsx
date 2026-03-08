@@ -583,9 +583,12 @@ const Index: React.FC = () => {
   const [checkoutTier, setCheckoutTier] = useState<typeof subscriptionTiers[0] | null>(null);
   const [calendlyTier, setCalendlyTier] = useState<typeof subscriptionTiers[0] | null>(null);
   const [pendingAddOn, setPendingAddOn] = useState<{ name: string; price: number; description: string } | null>(null);
+  const [entryLevelOpen, setEntryLevelOpen] = useState(false);
 
   const handleTierClick = (tier: typeof subscriptionTiers[0]) => {
-    if (tier.price >= 299) {
+    if (tier.name === "Entry Level Pass") {
+      setEntryLevelOpen(true);
+    } else if (tier.price >= 299) {
       setCalendlyTier(tier);
     } else {
       setCheckoutTier(tier);
