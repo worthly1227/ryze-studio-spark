@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import {
-  Factory, TrendingUp, Eye, Image, Zap, Upload, LayoutTemplate,
+  Factory, Image, Zap, Upload, LayoutTemplate,
   Film, MessageSquare, Calendar, CheckCircle2, Circle, ArrowRight,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -134,18 +134,15 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
+        <div className="grid grid-cols-2 gap-2 sm:gap-4">
           {[
-            { label: "Generation Credits", value: planFeatures?.generationCredits?.toString() ?? "0", icon: Zap, change: "" },
-            { label: "Final Downloads", value: planFeatures?.finalDownloads?.toString() ?? "0", icon: Image, change: "" },
-            { label: "Views", value: "8.4K", icon: Eye, change: "+24%" },
-            { label: "Engagement", value: "312%", icon: TrendingUp, change: "+8%" },
+            { label: "Generation Credits", value: planFeatures?.generationCredits?.toString() ?? "0", icon: Zap },
+            { label: "Final Downloads", value: planFeatures?.finalDownloads?.toString() ?? "0", icon: Image },
           ].map((m, i) => (
             <Card key={i}>
               <CardContent className="p-3 sm:p-5">
                 <div className="flex items-center justify-between mb-1 sm:mb-2">
                   <m.icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
-                  {m.change && <span className="text-[10px] sm:text-xs text-primary font-semibold">{m.change}</span>}
                 </div>
                 <p className="text-xl sm:text-2xl font-heading font-bold">{m.value}</p>
                 <p className="text-xs sm:text-sm text-muted-foreground">{m.label}</p>

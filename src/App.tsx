@@ -31,6 +31,7 @@ import ClientDeliverables from "./pages/client/ClientDeliverables";
 import MyVideos from "./pages/client/MyVideos";
 import SocialPosting from "./pages/client/SocialPosting";
 import StrategySessions from "./pages/client/StrategySessions";
+import ContactUs from "./pages/client/ContactUs";
 import AdminClients from "./pages/admin/AdminClients";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminDeliverables from "./pages/admin/AdminDeliverables";
@@ -72,6 +73,7 @@ const App = () => (
                 <Route path="/client/videos" element={<MyVideos />} />
                 <Route path="/client/social" element={<SocialPosting />} />
                 <Route path="/client/strategy" element={<StrategySessions />} />
+                <Route path="/client/contact" element={<ContactUs />} />
               </Route>
 
               {/* Admin portal */}
