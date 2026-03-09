@@ -757,7 +757,7 @@ const Index: React.FC = () => {
                 </svg>
               </div>
               <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3">
-                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">AI Powered Branding</span>
+                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg whitespace-nowrap">AI & Human Powered Branding</span>
               </div>
             </motion.div>
 
@@ -785,7 +785,7 @@ const Index: React.FC = () => {
             >
               {[
                 { icon: Camera, label: "Studio Product Shots" },
-                { icon: Wand2, label: "AI Powered Branding" },
+                { icon: Wand2, label: "AI & Human Powered Branding" },
                 { icon: Calendar, label: "Rapid Turnarounds" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2.5 sm:gap-4">
