@@ -402,18 +402,18 @@ const subcategoriesByType: Record<string, string[]> = {
 };
 
 const proofItems = [
-  { before: "📦", after: "✨", category: "Posts", industry: "Skincare & Beauty", gradient: "from-rose-400 to-pink-600" },
-  { before: "📷", after: "🎨", category: "Posts", industry: "Food & Beverages", gradient: "from-amber-400 to-orange-500" },
-  { before: "🏷️", after: "💎", category: "Posts", industry: "Fashion & Accessories", gradient: "from-emerald-400 to-teal-600" },
-  { before: "🎥", after: "🎬", category: "Videos", industry: "Coffee & Tea", gradient: "from-sky-400 to-blue-600" },
-  { before: "📸", after: "🌟", category: "UGC", industry: "Health & Supplements", gradient: "from-violet-400 to-purple-600" },
-  { before: "📄", after: "🔥", category: "Static Ads", industry: "Pet Products", gradient: "from-cyan-400 to-teal-500" },
-  { before: "🎞️", after: "⚡", category: "Video Ads", industry: "Home & Lifestyle", gradient: "from-indigo-400 to-blue-700" },
-  { before: "✉️", after: "💌", category: "Emails", industry: "Handmade & Artisan", gradient: "from-rose-300 to-red-500" },
-  { before: "📝", after: "📖", category: "Blogs", industry: "Fitness & Wellness", gradient: "from-lime-400 to-green-600" },
-  { before: "📱", after: "🚀", category: "Stories", industry: "Skincare & Beauty", gradient: "from-fuchsia-400 to-pink-600" },
-  { before: "🖼️", after: "🎯", category: "Posts", industry: "Featured", gradient: "from-yellow-400 to-amber-600" },
-  { before: "🏠", after: "🏡", category: "Static Ads", industry: "Home & Lifestyle", gradient: "from-slate-400 to-gray-600" },
+  { before: "📦", after: "✨", category: "Posts", industry: "Skincare & Beauty", gradient: "from-rose-400 to-pink-600", prompt: "Premium skincare product on marble surface with soft pink lighting and rose petals" },
+  { before: "📷", after: "🎨", category: "Posts", industry: "Food & Beverages", gradient: "from-amber-400 to-orange-500", prompt: "Artisan coffee bag on rustic wooden table with warm golden hour lighting" },
+  { before: "🏷️", after: "💎", category: "Posts", industry: "Fashion & Accessories", gradient: "from-emerald-400 to-teal-600", prompt: "Luxury handbag floating on emerald silk fabric with studio lighting" },
+  { before: "🎥", after: "🎬", category: "Videos", industry: "Coffee & Tea", gradient: "from-sky-400 to-blue-600", prompt: "Steaming latte art pour in slow motion with moody café backdrop" },
+  { before: "📸", after: "🌟", category: "UGC", industry: "Health & Supplements", gradient: "from-violet-400 to-purple-600", prompt: "Supplement bottle held by model in natural sunlight with clean white background" },
+  { before: "📄", after: "🔥", category: "Static Ads", industry: "Pet Products", gradient: "from-cyan-400 to-teal-500", prompt: "Premium pet food packaging on clean teal gradient with playful typography" },
+  { before: "🎞️", after: "⚡", category: "Video Ads", industry: "Home & Lifestyle", gradient: "from-indigo-400 to-blue-700", prompt: "Minimalist candle collection with dramatic shadows and indigo backdrop" },
+  { before: "✉️", after: "💌", category: "Emails", industry: "Handmade & Artisan", gradient: "from-rose-300 to-red-500", prompt: "Handcrafted soap bars arranged on linen with dried flowers and warm tones" },
+  { before: "📝", after: "📖", category: "Blogs", industry: "Fitness & Wellness", gradient: "from-lime-400 to-green-600", prompt: "Protein powder container in active gym setting with dynamic green accents" },
+  { before: "📱", after: "🚀", category: "Stories", industry: "Skincare & Beauty", gradient: "from-fuchsia-400 to-pink-600", prompt: "Serum dropper with liquid splash effect on vibrant fuchsia background" },
+  { before: "🖼️", after: "🎯", category: "Posts", industry: "Featured", gradient: "from-yellow-400 to-amber-600", prompt: "Hero product shot with geometric shadows and warm amber studio lighting" },
+  { before: "🏠", after: "🏡", category: "Static Ads", industry: "Home & Lifestyle", gradient: "from-slate-400 to-gray-600", prompt: "Modern home diffuser on concrete shelf with minimalist lifestyle setting" },
 ];
 
 const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
@@ -465,26 +465,67 @@ const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
   );
 };
 
-const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => (
-  <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-    <div className="flex items-center gap-2 px-3 py-2.5">
-      <img src={ryzeLogo} alt="Ryze" className="w-7 h-7 rounded-full object-cover" />
-      <span className="text-sm font-semibold font-heading">Ryze Studios</span>
-      <span className="text-muted-foreground ml-auto text-sm">···</span>
+const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
+  const [showComments, setShowComments] = useState(false);
+
+  const handleShare = async () => {
+    const shareText = `✨ AI Prompt: "${item.prompt}"\n\n🚀 Try Ryze Studios today — studio-quality product visuals starting at just $10 USD.\n\nhttps://ryzestudios.com`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'Ryze Studios — AI Product Visuals', text: shareText, url: 'https://ryzestudios.com' });
+      } catch { /* user cancelled */ }
+    } else {
+      await navigator.clipboard.writeText(shareText);
+    }
+  };
+
+  return (
+    <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex items-center gap-2 px-3 py-2.5">
+        <img src={ryzeLogo} alt="Ryze" className="w-7 h-7 rounded-full object-cover" />
+        <span className="text-sm font-semibold font-heading">Ryze Studios</span>
+        <span className="text-muted-foreground ml-auto text-sm">···</span>
+      </div>
+      <MiniSlider item={item} />
+      <div className="px-3 py-2.5 flex items-center gap-3">
+        <Heart className="w-5 h-5 text-destructive fill-destructive" />
+        <button onClick={() => setShowComments(!showComments)} className="transition-colors cursor-pointer">
+          <MessageCircle className={`w-5 h-5 ${showComments ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`} />
+        </button>
+        <button onClick={handleShare} className="transition-colors cursor-pointer">
+          <Send className="w-5 h-5 text-muted-foreground hover:text-foreground" />
+        </button>
+        <Bookmark className="w-5 h-5 text-muted-foreground ml-auto" />
+      </div>
+      <AnimatePresence>
+        {showComments && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden border-t border-border"
+          >
+            <div className="px-3 py-3 space-y-2">
+              <div className="flex gap-2">
+                <img src={ryzeLogo} alt="Ryze" className="w-6 h-6 rounded-full object-cover mt-0.5 flex-shrink-0" />
+                <div>
+                  <span className="text-xs font-semibold font-heading">ryzestudios</span>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                    <span className="font-medium text-foreground">Prompt:</span> "{item.prompt}"
+                  </p>
+                </div>
+              </div>
+              <p className="text-[11px] text-muted-foreground/70 uppercase tracking-wide">
+                Powered by Ryze AI · Try it for $10 USD
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-    <MiniSlider item={item} />
-    <div className="px-3 py-2.5 flex items-center gap-3">
-      <Heart className="w-5 h-5 text-destructive fill-destructive" />
-      <button onClick={() => window.open('https://www.instagram.com/ryzestudios/', '_blank')} className="hover:text-foreground transition-colors cursor-pointer">
-        <MessageCircle className="w-5 h-5 text-muted-foreground hover:text-foreground" />
-      </button>
-      <button onClick={() => { if (navigator.share) { navigator.share({ title: 'Ryze Studios', url: window.location.href }); } else { navigator.clipboard.writeText(window.location.href); } }} className="hover:text-foreground transition-colors cursor-pointer">
-        <Send className="w-5 h-5 text-muted-foreground hover:text-foreground" />
-      </button>
-      <Bookmark className="w-5 h-5 text-muted-foreground ml-auto" />
-    </div>
-  </div>
-);
+  );
+};
 
 const FactoryProofSection: React.FC = () => {
   const [activeType, setActiveType] = useState("Posts");
