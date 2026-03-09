@@ -688,35 +688,50 @@ const Index: React.FC = () => {
               <img src="/images/hero-4.jpg" alt="Product photography" className="w-full h-full object-cover" />
             </div>
           </div>
-          {/* Headline Overlay at Bottom */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pt-24 pb-6 px-4">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl sm:text-5xl md:text-6xl font-heading font-black text-white text-center leading-[1.05] drop-shadow-lg"
-            >
-              Your On-Demand<br />Creative Team
-            </motion.h1>
+          {/* Headline Overlay - centered on grid */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
+            <div className="bg-black/30 backdrop-blur-[2px] rounded-2xl px-6 py-5 text-center">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-3xl sm:text-5xl md:text-6xl font-heading font-black text-white leading-[1.05] drop-shadow-lg"
+              >
+                Your On-Demand<br />Creative Team
+              </motion.h1>
+            </div>
+          </div>
+          {/* Curved white edge */}
+          <div className="absolute -bottom-1 left-0 right-0">
+            <svg viewBox="0 0 1440 60" className="w-full h-[30px] sm:h-[50px]" preserveAspectRatio="none">
+              <path d="M0,60 L0,20 Q720,0 1440,20 L1440,60 Z" fill="hsl(var(--background))" />
+            </svg>
           </div>
         </div>
 
         {/* START FOR $10 Button */}
-        <div className="flex justify-center py-5 sm:py-6 bg-background">
+        <div className="flex justify-center py-4 sm:py-5 bg-background -mt-1">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
             <Button
               size="lg"
               onClick={() => navigate("/plans")}
               className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading text-sm sm:text-base px-10 sm:px-12 py-5 sm:py-6 rounded-full cyan-glow-sm uppercase tracking-widest font-bold"
             >
-              Start for $10
+              Start for just $10 USD
             </Button>
           </motion.div>
         </div>
 
-        {/* Trust Bar */}
-        <div className="flex items-center justify-center gap-2 py-3 bg-muted/50 border-y border-border">
-          <span className="text-xs sm:text-sm text-muted-foreground">🛡️ Trusted by <strong className="text-foreground">1,800+</strong> growing brands</span>
+        {/* Scrolling Trust Bar */}
+        <div className="overflow-hidden py-3 bg-muted/50 border-y border-border">
+          <div className="flex animate-[scroll-left_20s_linear_infinite] whitespace-nowrap">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex items-center gap-8 px-4 flex-shrink-0">
+                <span className="text-xs sm:text-sm text-muted-foreground">🛡️ Trusted by <strong className="text-foreground">1,800+</strong> growing brands</span>
+                <span className="text-xs sm:text-sm text-muted-foreground">📋 <strong className="text-foreground">No contracts</strong>, cancel anytime</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -734,7 +749,7 @@ const Index: React.FC = () => {
 
           {/* 2x2 Grid: top row = 2 images, bottom row = perks + image */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            {/* Top Left Image */}
+            {/* Top Left Image - with Instagram cutout */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -742,9 +757,16 @@ const Index: React.FC = () => {
               className="rounded-2xl overflow-hidden relative aspect-square"
             >
               <img src="/images/why-ryze-1.jpg" alt="AI Powered Branding" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              {/* Instagram icon cutout */}
+              <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </div>
               <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3">
-                <Badge className="bg-primary/90 text-primary-foreground font-heading text-[9px] sm:text-xs">AI Powered Branding</Badge>
+                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">AI Powered Branding</span>
               </div>
             </motion.div>
 
@@ -757,9 +779,8 @@ const Index: React.FC = () => {
               className="rounded-2xl overflow-hidden relative aspect-square"
             >
               <img src="/images/why-ryze-2.jpg" alt="Fast Delivery" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3">
-                <Badge className="bg-primary/90 text-primary-foreground font-heading text-[9px] sm:text-xs">Fast Delivery</Badge>
+              <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3">
+                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">Fast Delivery</span>
               </div>
             </motion.div>
 
@@ -793,11 +814,17 @@ const Index: React.FC = () => {
               transition={{ delay: 0.2 }}
               className="rounded-2xl overflow-hidden relative aspect-square"
             >
-              <img src="/images/why-ryze-3.jpg" alt="Brand packaging" className="w-full h-full object-cover" />
+              <img src="/images/why-ryze-3.jpg" alt="Studio Product Shots" className="w-full h-full object-cover" />
+              <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3">
+                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">Studio Product Shots</span>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Divider before Built for Product Brands */}
+      <div className="w-full border-t border-border" />
 
       {/* Sticky Bottom CTA - Mobile */}
       <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden p-3 bg-background/90 backdrop-blur-md border-t border-border">
