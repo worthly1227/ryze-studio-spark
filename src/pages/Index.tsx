@@ -672,19 +672,19 @@ const Index: React.FC = () => {
 
       {/* Hero - 2x2 Photo Grid */}
       <section className="pt-14 sm:pt-16">
-        <div className="relative">
+        <div className="relative max-w-5xl mx-auto">
           {/* 2x2 Image Grid */}
           <div className="grid grid-cols-2 w-full">
-            <div className="aspect-square overflow-hidden">
+            <div className="aspect-square sm:aspect-[4/3] overflow-hidden">
               <img src="/images/hero-1.jpg" alt="Product photography" className="w-full h-full object-cover" />
             </div>
-            <div className="aspect-square overflow-hidden">
+            <div className="aspect-square sm:aspect-[4/3] overflow-hidden">
               <img src="/images/hero-2.jpg" alt="Product photography" className="w-full h-full object-cover" />
             </div>
-            <div className="aspect-square overflow-hidden">
+            <div className="aspect-square sm:aspect-[4/3] overflow-hidden">
               <img src="/images/hero-3.jpg" alt="Product photography" className="w-full h-full object-cover" />
             </div>
-            <div className="aspect-square overflow-hidden">
+            <div className="aspect-square sm:aspect-[4/3] overflow-hidden">
               <img src="/images/hero-4.jpg" alt="Product photography" className="w-full h-full object-cover" />
             </div>
           </div>
