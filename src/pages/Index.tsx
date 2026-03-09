@@ -701,12 +701,8 @@ const Index: React.FC = () => {
               </motion.h1>
             </div>
           </div>
-          {/* Curved white edge */}
-          <div className="absolute -bottom-1 left-0 right-0">
-            <svg viewBox="0 0 1440 80" className="w-full h-[40px] sm:h-[60px]" preserveAspectRatio="none">
-              <path d="M0,80 L0,60 Q720,0 1440,60 L1440,80 Z" fill="hsl(var(--background))" />
-            </svg>
-          </div>
+          {/* Rounded corners overlay */}
+          <div className="absolute -bottom-1 left-0 right-0 h-6 sm:h-8 bg-background rounded-t-3xl" />
         </div>
 
         {/* START FOR $10 Button */}
