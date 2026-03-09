@@ -156,7 +156,7 @@ const addOns = [
 
 const suggestedAddOns: Record<string, { name: string; price: number; description: string }> = {
   "Entry Level Pass": { name: "Extra AI Product Image", price: 10, description: "Generate unlimited variations — only pay for the final image you choose." },
-  "Visual Starter Kit": { name: "Short Video (<20s)", price: 59, description: "Quick, scroll-stopping clips optimized for Reels, TikTok, and Stories." },
+  "Visual Starter Kit": { name: "Short Video (<20s)", price: 11, description: "Quick, scroll-stopping clips optimized for Reels, TikTok, and Stories." },
   "Viral Growth": { name: "30-Second UGC Video", price: 99, description: "Professionally produced social-ready video featuring vetted creators." },
   "Full Brand Manager": { name: "Strategic Consultancy", price: 224, description: "45-minute 1-on-1 session to guide your brand strategy and growth." },
   "Done For You": { name: "30-Second UGC Video", price: 99, description: "Professionally produced social-ready video featuring vetted creators." },
