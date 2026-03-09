@@ -18,7 +18,6 @@ import ryzeLogo from "@/assets/ryze-logo.jpeg";
 import CheckoutModal from "@/components/CheckoutModal";
 import EntryLevelPaymentModal from "@/components/EntryLevelPaymentModal";
 import CalendlyModal from "@/components/CalendlyModal";
-import BalloonDivider from "@/components/BalloonDivider";
 import { useToast } from "@/hooks/use-toast";
 
 /* ─── PRICING TIERS DATA ─── */
@@ -820,8 +819,8 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* Balloon Divider before Built for Product Brands */}
-      <BalloonDivider />
+      {/* Divider before Built for Product Brands */}
+      <div className="w-full border-t border-border" />
 
       {/* Sticky Bottom CTA - Mobile */}
       <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden p-3 bg-background/90 backdrop-blur-md border-t border-border">
