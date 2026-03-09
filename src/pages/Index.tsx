@@ -701,12 +701,8 @@ const Index: React.FC = () => {
               </motion.h1>
             </div>
           </div>
-          {/* Curved white edge */}
-          <div className="absolute -bottom-1 left-0 right-0">
-            <svg viewBox="0 0 1440 80" className="w-full h-[40px] sm:h-[60px]" preserveAspectRatio="none">
-              <path d="M0,80 L0,60 Q720,0 1440,60 L1440,80 Z" fill="hsl(var(--background))" />
-            </svg>
-          </div>
+          {/* Rounded corners overlay */}
+          <div className="absolute -bottom-1 left-0 right-0 h-6 sm:h-8 bg-background rounded-t-3xl" />
         </div>
 
         {/* START FOR $10 Button */}
@@ -724,9 +720,9 @@ const Index: React.FC = () => {
 
         {/* Scrolling Trust Bar */}
         <div className="overflow-hidden py-3 bg-muted/50 border-y border-border">
-          <div className="flex animate-[scroll-left_20s_linear_infinite] whitespace-nowrap">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="flex items-center gap-8 px-4 flex-shrink-0">
+          <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 25s linear infinite', width: 'max-content' }}>
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="flex items-center gap-8 px-6 flex-shrink-0">
                 <span className="text-xs sm:text-sm text-muted-foreground">🛡️ Trusted by <strong className="text-foreground">1,800+</strong> growing brands</span>
                 <span className="text-xs sm:text-sm text-muted-foreground">📋 <strong className="text-foreground">No contracts</strong>, cancel anytime</span>
               </div>
@@ -816,7 +812,7 @@ const Index: React.FC = () => {
             >
               <img src="/images/why-ryze-3.jpg" alt="Studio Product Shots" className="w-full h-full object-cover" />
               <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3">
-                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">Studio Product Shots</span>
+                <span className="text-foreground font-heading font-bold text-[10px] sm:text-sm drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">Studio Product Shots</span>
               </div>
             </motion.div>
           </div>
