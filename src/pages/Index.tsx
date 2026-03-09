@@ -891,7 +891,7 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
     >
       {/* Hidden preload image */}
       <img src={ryzeLogo} alt="" className="absolute w-0 h-0 opacity-0 pointer-events-none" aria-hidden="true" />
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         {phase === 0 && (
           <motion.p
             key="hook"
