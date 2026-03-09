@@ -57,7 +57,7 @@ const FEATURE_MATRIX: Record<Exclude<PlanName, null>, PlanFeatures> = {
   "Done For You": {
     hasImageUpload: true, generationCredits: 120, finalDownloads: 75,
     hasTemplates: true, templateCount: 30,
-    hasShortFormVideo: true, videoCount: 2, hasUGC: true, ugcCount: 1,
+    hasShortFormVideo: true, videoCount: 9, hasUGC: true, ugcCount: 1,
     hasManagedPosting: true, hasPriorityProcessing: true,
     hasStrategySessions: true, strategyFrequency: "quarterly",
   },
