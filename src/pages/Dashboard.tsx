@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import {
-  Factory, TrendingUp, Eye, Image, Zap, Upload, LayoutTemplate,
+  Factory, Image, Zap, Upload, LayoutTemplate,
   Film, MessageSquare, Calendar, CheckCircle2, Circle, ArrowRight,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
