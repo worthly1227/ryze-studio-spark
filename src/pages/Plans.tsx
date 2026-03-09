@@ -377,7 +377,7 @@ const Plans: React.FC = () => {
                         </div>
                         <div className="flex items-center gap-2 mt-1.5">
                           <span className="text-xs text-muted-foreground line-through">
-                            Competitors: ${plan.competitorPrice.toLocaleString()}
+                            Competitor's price: ${plan.competitorPrice.toLocaleString()}
                           </span>
                           <Badge variant="secondary" className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-0 font-heading">
                             SAVE {plan.savingsPercent}

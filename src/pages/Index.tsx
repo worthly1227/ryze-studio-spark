@@ -40,6 +40,7 @@ const subscriptionTiers = [
       { text: "Short Form Videos", included: false },
       { text: "UGC Videos", included: false },
       { text: "Managed Social Posting", included: false },
+      { text: "Priority Processing", included: false },
       { text: "Strategy Sessions", included: false },
     ],
   },
@@ -51,6 +52,7 @@ const subscriptionTiers = [
     competitorPrice: 870,
     savingsPercent: "87%",
     features: [
+      { text: "35 AI Generation Credits", included: true },
       { text: "20 Final AI Image Downloads", included: true },
       { text: "10 Ready-to-Use Design Templates", included: true },
       { text: "Standard Processing", included: true },
@@ -58,6 +60,7 @@ const subscriptionTiers = [
       { text: "Short Form Videos", included: false },
       { text: "UGC Videos", included: false },
       { text: "Managed Social Posting", included: false },
+      { text: "Priority Processing", included: false },
       { text: "Strategy Sessions", included: false },
     ],
   },
@@ -70,6 +73,7 @@ const subscriptionTiers = [
     competitorPrice: 2100,
     savingsPercent: "88%",
     features: [
+      { text: "60 AI Generation Credits", included: true },
       { text: "40 Final AI Image Downloads", included: true },
       { text: "15 Design Templates", included: true },
       { text: "1 Short Form Video (under 20s)", included: true },
@@ -77,6 +81,7 @@ const subscriptionTiers = [
       { text: "Email Support", included: true },
       { text: "UGC Videos", included: false },
       { text: "Managed Social Posting", included: false },
+      { text: "Priority Processing", included: false },
       { text: "Strategy Sessions", included: false },
     ],
   },
@@ -88,6 +93,7 @@ const subscriptionTiers = [
     competitorPrice: 1800,
     savingsPercent: "83%",
     features: [
+      { text: "80 AI Generation Credits", included: true },
       { text: "50 Final AI Image Downloads", included: true },
       { text: "20 Design Templates", included: true },
       { text: "2 Short Form Videos", included: true },
@@ -106,6 +112,7 @@ const subscriptionTiers = [
     competitorPrice: 5500,
     savingsPercent: "91%",
     features: [
+      { text: "120 AI Generation Credits", included: true },
       { text: "75 Final AI Image Downloads", included: true },
       { text: "30 Design Templates", included: true },
       { text: "1 × 30-sec UGC Video", included: true },
@@ -125,6 +132,7 @@ const subscriptionTiers = [
     competitorPrice: 6800,
     savingsPercent: "90%",
     features: [
+      { text: "180 AI Generation Credits", included: true },
       { text: "120 Final AI Image Downloads", included: true },
       { text: "40 Design Templates", included: true },
       { text: "2 × 30-sec UGC Videos", included: true },
@@ -759,7 +767,7 @@ const Index: React.FC = () => {
                     <CardTitle className="font-heading text-sm">{tier.name}</CardTitle>
                     {tier.competitorPrice && (
                       <div className="mt-1">
-                        <span className="text-[10px] text-muted-foreground">Market price: <span className="line-through">${tier.competitorPrice}</span></span>
+                        <span className="text-[10px] text-muted-foreground">Competitor's price: <span className="line-through">${tier.competitorPrice}</span></span>
                       </div>
                     )}
                     <div className="mt-0.5">
