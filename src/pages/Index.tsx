@@ -827,7 +827,7 @@ const Index: React.FC = () => {
         <div className="absolute inset-y-0 right-0 w-16 sm:w-24 z-10" style={{ background: 'linear-gradient(to left, hsl(var(--background)), transparent)' }} />
         <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 35s linear infinite', width: 'max-content' }}>
           {[...Array(8)].map((_, i) =>
-          <div key={i} className="flex items-center gap-6 sm:gap-10 px-4 sm:px-6 flex-shrink-0">
+          <div key={i} className="flex items-center gap-6 sm:gap-10 px-4 flex-shrink-0 sm:px-0">
               <span className="font-heading text-sm sm:text-lg font-bold tracking-[0.2em] uppercase text-primary">Clenature</span>
               <span className="text-pink-400/60">✦</span>
               <span className="font-body text-base sm:text-xl font-light italic text-accent-foreground py-[15px] my-[30px]">Hebab Essentials</span>
