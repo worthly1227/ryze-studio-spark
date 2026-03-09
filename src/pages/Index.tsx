@@ -843,10 +843,20 @@ const HOOKS = [
 /* ─── BRAND INTRO ANIMATION (4s) ─── */
 const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRef: React.RefObject<HTMLDivElement | null> }> = ({ hookText, onComplete, navLogoRef }) => {
   const [phase, setPhase] = useState(0);
+  const [logoLoaded, setLogoLoaded] = useState(false);
   const centerLogoRef = useRef<HTMLDivElement>(null);
   const [snapStyle, setSnapStyle] = useState<React.CSSProperties>({});
 
+  // Preload logo before starting animation timers
   useEffect(() => {
+    const img = new window.Image();
+    img.src = ryzeLogo;
+    img.onload = () => setLogoLoaded(true);
+    if (img.complete) setLogoLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!logoLoaded) return;
     // Phase 0: 0.0s–1.5s (hook text)
     // Phase 1: 1.5s–3.0s (Meet Ryze Studios + logo)
     // Phase 2: 3.0s–3.3s ("Meet" fades out)
@@ -870,7 +880,7 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
       onComplete();
     }, 4000);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
-  }, [onComplete, navLogoRef]);
+  }, [logoLoaded, onComplete, navLogoRef]);
 
   return (
     <motion.div
