@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      video_downloads: {
+        Row: {
+          downloaded_at: string
+          id: string
+          pexels_video_id: number
+          user_id: string
+        }
+        Insert: {
+          downloaded_at?: string
+          id?: string
+          pexels_video_id: number
+          user_id: string
+        }
+        Update: {
+          downloaded_at?: string
+          id?: string
+          pexels_video_id?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       vip_access: {
         Row: {
           created_at: string
