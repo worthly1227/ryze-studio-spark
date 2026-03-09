@@ -165,7 +165,7 @@ const suggestedAddOns: Record<string, { name: string; price: number; description
 };
 
 const comparisonData = [
-  { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10 USDD" },
+  { feature: "Pricing", agency: "Hefty retainers ($3k+)", ai: "Credit-based subscriptions", ryze: "Flat-rate from $10 USD" },
   { feature: "Visual Quality", agency: "Prone to human error", ai: "AI distortion & artifacts", ryze: "Pixel-perfect quality" },
   { feature: "Production Method", agency: "Physical studios required", ai: "Basic background swaps", ryze: "Full AI creative pipeline" },
   { feature: "Speed", agency: "3–6 week lead times", ai: "Fast but low quality", ryze: "Same-week premium output" },
@@ -475,8 +475,12 @@ const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => (
     <MiniSlider item={item} />
     <div className="px-3 py-2.5 flex items-center gap-3">
       <Heart className="w-5 h-5 text-destructive fill-destructive" />
-      <MessageCircle className="w-5 h-5 text-muted-foreground" />
-      <Send className="w-5 h-5 text-muted-foreground" />
+      <button onClick={() => window.open('https://www.instagram.com/ryzestudios/', '_blank')} className="hover:text-foreground transition-colors cursor-pointer">
+        <MessageCircle className="w-5 h-5 text-muted-foreground hover:text-foreground" />
+      </button>
+      <button onClick={() => { if (navigator.share) { navigator.share({ title: 'Ryze Studios', url: window.location.href }); } else { navigator.clipboard.writeText(window.location.href); } }} className="hover:text-foreground transition-colors cursor-pointer">
+        <Send className="w-5 h-5 text-muted-foreground hover:text-foreground" />
+      </button>
       <Bookmark className="w-5 h-5 text-muted-foreground ml-auto" />
     </div>
   </div>
