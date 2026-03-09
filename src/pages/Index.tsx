@@ -785,7 +785,7 @@ const Index: React.FC = () => {
             >
               {[
                 { icon: Camera, label: "Studio Product Shots" },
-                { icon: Wand2, label: "AI Powered Branding" },
+                { icon: Wand2, label: "AI & Human Powered Branding" },
                 { icon: Calendar, label: "Rapid Turnarounds" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2.5 sm:gap-4">
