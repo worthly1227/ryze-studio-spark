@@ -1238,7 +1238,7 @@ const Index: React.FC = () => {
               <span className="font-body text-base sm:text-xl font-bold uppercase tracking-[0.3em] text-accent-foreground/90">FROM THIS ISLAND</span>
               <span className="text-rose-400/60">✦</span>
               <span className="font-heading text-sm sm:text-lg font-semibold tracking-[0.18em] uppercase text-primary/90">A Neva Fragrance JA</span>
-              <span className="text-cyan-400/60">✦</span>
+              <span className="text-orange-400/60">✦</span>
             </div>
           ))}
         </div>
