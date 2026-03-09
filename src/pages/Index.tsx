@@ -882,8 +882,10 @@ const BrandIntro: React.FC<{ onComplete: () => void; navLogoRef: React.RefObject
             animate={{
               opacity: phase === 3 ? 0 : 1,
               scale: 1,
-              ...(phase === 3 ? snapStyle : {}),
+              x: phase === 3 && snapStyle.transform ? undefined : 0,
+              y: phase === 3 && snapStyle.transform ? undefined : 0,
             }}
+            style={phase === 3 ? snapStyle : undefined}
             transition={{ duration: phase === 3 ? 0.2 : 0.25, ease: 'easeInOut' }}
             className="flex items-center gap-2 sm:gap-3"
           >
