@@ -1076,7 +1076,7 @@ const Index: React.FC = () => {
           <span className="text-border hidden sm:inline">|</span>
           <span className="text-[10px] sm:text-sm text-muted-foreground whitespace-nowrap">📋 <strong className="text-foreground">No contracts</strong>, cancel anytime</span>
         </div>
-      </section>
+      </motion.section>
 
       {/* Why Ryze - Half Page Tile */}
       <section className="py-8 sm:py-14 px-4 sm:px-6 bg-background">
