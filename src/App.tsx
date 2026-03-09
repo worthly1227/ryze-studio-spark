@@ -73,6 +73,7 @@ const App = () => (
                 <Route path="/client/videos" element={<MyVideos />} />
                 <Route path="/client/social" element={<SocialPosting />} />
                 <Route path="/client/strategy" element={<StrategySessions />} />
+                <Route path="/client/contact" element={<ContactUs />} />
               </Route>
 
               {/* Admin portal */}

@@ -30,6 +30,7 @@ export function ClientSidebar() {
     { title: "Strategy Sessions", url: "/client/strategy", icon: Calendar, visible: planFeatures?.hasStrategySessions ?? false, locked: !planFeatures?.hasStrategySessions },
     { title: "Deliverables", url: "/client/deliverables", icon: Download, visible: true },
     { title: "Status Tracker", url: "/status-tracker", icon: Activity, visible: true },
+    { title: "Contact Us", url: "/client/contact", icon: HelpCircle, visible: true },
     { title: "Settings", url: "/settings", icon: Settings, visible: true },
   ];
 
