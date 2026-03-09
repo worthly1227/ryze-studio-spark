@@ -89,7 +89,18 @@ const GenerateSession: React.FC = () => {
     );
   }
 
-  const handleSelectFinal = () => {
+  const handleFileDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setDragOver(false);
+    const file = e.dataTransfer.files[0];
+    if (file) setUploadedFile(file.name);
+  };
+
+  const handleFileSelect = () => {
+    setUploadedFile(`product-image-${Date.now()}.jpg`);
+  };
+
+
     if (selectedImageId === null) return;
     setFinalDownloadId(selectedImageId);
     setSessionCompleted(true);
