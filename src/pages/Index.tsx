@@ -719,7 +719,7 @@ const Index: React.FC = () => {
         </div>
 
         {/* Trust Bar - Static */}
-        <div className="flex items-center justify-center gap-4 sm:gap-8 py-3 bg-muted/50 border-y border-border flex-wrap">
+        <div className="flex items-center justify-center gap-4 sm:gap-8 py-3 bg-muted/50 flex-wrap">
           <span className="text-[10px] sm:text-sm text-muted-foreground whitespace-nowrap">🛡️ Trusted by <strong className="text-foreground">1,800+</strong> growing brands</span>
           <span className="text-border hidden sm:inline">|</span>
           <span className="text-[10px] sm:text-sm text-muted-foreground whitespace-nowrap">📋 <strong className="text-foreground">No contracts</strong>, cancel anytime</span>
