@@ -50,7 +50,7 @@ const FEATURE_MATRIX: Record<Exclude<PlanName, null>, PlanFeatures> = {
   "Full Brand Manager": {
     hasImageUpload: true, generationCredits: 80, finalDownloads: 50,
     hasTemplates: true, templateCount: 20,
-    hasShortFormVideo: true, videoCount: 2, hasUGC: false, ugcCount: 0,
+    hasShortFormVideo: true, videoCount: 6, hasUGC: false, ugcCount: 0,
     hasManagedPosting: true, hasPriorityProcessing: false,
     hasStrategySessions: false, strategyFrequency: null,
   },
