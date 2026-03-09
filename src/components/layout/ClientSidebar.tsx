@@ -1,7 +1,7 @@
 import React from "react";
 import {
   LayoutDashboard, Upload, Factory, LayoutTemplate, Activity, Settings,
-  Film, MessageSquare, Calendar, Download, Lock,
+  Film, MessageSquare, Calendar, Download, Lock, HelpCircle,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
