@@ -812,7 +812,7 @@ const Index: React.FC = () => {
             >
               <img src="/images/why-ryze-3.jpg" alt="Studio Product Shots" className="w-full h-full object-cover" />
               <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3">
-                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">Studio Product Shots</span>
+                <span className="text-foreground font-heading font-bold text-[10px] sm:text-sm drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">Studio Product Shots</span>
               </div>
             </motion.div>
           </div>
