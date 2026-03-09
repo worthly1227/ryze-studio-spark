@@ -36,7 +36,6 @@ const plans = [
       { text: "1 Final AI Image Download", included: true },
       { text: "Standard Processing", included: true },
       { text: "Email Support", included: true },
-      
       { text: "Short Form Videos", included: false },
       { text: "UGC Videos", included: false },
       { text: "Managed Social Posting", included: false },
