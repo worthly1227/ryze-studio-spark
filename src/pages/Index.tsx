@@ -825,7 +825,7 @@ const Index: React.FC = () => {
       </div>
 
       {/* Brand Scroll Bar */}
-      <div className="w-full overflow-hidden py-2 sm:py-3 relative">
+      <div className="w-full overflow-hidden pt-4 sm:pt-5 pb-2 sm:pb-3 relative">
         <div className="absolute inset-y-0 left-0 w-16 sm:w-24 z-10" style={{ background: 'linear-gradient(to right, hsl(var(--background)), transparent)' }} />
         <div className="absolute inset-y-0 right-0 w-16 sm:w-24 z-10" style={{ background: 'linear-gradient(to left, hsl(var(--background)), transparent)' }} />
         <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 35s linear infinite', width: 'max-content' }}>
