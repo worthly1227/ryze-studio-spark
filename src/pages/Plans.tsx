@@ -205,7 +205,7 @@ const plans = [
 const addOns = [
   { name: "Extra AI Product Image", price: "$10 USD", unit: "per final download", desc: "Generate unlimited variations — only pay for the final image you choose.", icon: Camera, gradient: "from-sky-400 to-cyan-500" },
   { name: "30-Second UGC Video", price: "$99 USD", unit: "", desc: "Professionally produced social-ready video featuring vetted creators.", icon: Play, gradient: "from-violet-400 to-purple-500" },
-  { name: "Short Video (<20s)", price: "$59 USD", unit: "", desc: "Quick, scroll-stopping clips optimized for Reels, TikTok, and Stories.", icon: Rocket, gradient: "from-amber-400 to-orange-500" },
+  { name: "Short Video (<20s)", price: "$11 USD", unit: "", desc: "Quick, scroll-stopping clips optimized for Reels, TikTok, and Stories.", icon: Rocket, gradient: "from-amber-400 to-orange-500" },
   { name: "Content Management & Delivery", price: "$120 USD", unit: "per month", desc: "We manage and post your content across your 3 primary social platforms on a consistent, expert schedule.", icon: Calendar, gradient: "from-indigo-400 to-blue-500" },
   { name: "Strategic Consultancy", price: "$224 USD", unit: "", desc: "45-minute 1-on-1 session to guide your brand strategy and growth.", icon: Megaphone, gradient: "from-emerald-400 to-teal-500" },
   { name: "Max Business Launch", price: "$2,500 USD", unit: "", desc: "We deliver a fully operational US product brand, pre-stocked and ready for market, handing you the keys in 24 hours.", icon: Rocket, gradient: "from-rose-400 to-pink-500" },
