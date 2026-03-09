@@ -993,7 +993,7 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Brand Intro Animation */}
-      {showIntro && <BrandIntro onComplete={handleIntroComplete} navLogoRef={navLogoRef} />}
+      {showIntro && <BrandIntro hookText={currentHook} onComplete={handleIntroComplete} navLogoRef={navLogoRef} />}
 
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
