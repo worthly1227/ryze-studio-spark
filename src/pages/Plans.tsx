@@ -36,7 +36,6 @@ const plans = [
       { text: "1 Final AI Image Download", included: true },
       { text: "Standard Processing", included: true },
       { text: "Email Support", included: true },
-      
       { text: "Short Form Videos", included: false },
       { text: "UGC Videos", included: false },
       { text: "Managed Social Posting", included: false },
@@ -59,6 +58,7 @@ const plans = [
     savingsPercent: "87%",
     canContact: false,
     features: [
+      { text: "35 AI Generation Credits", included: true },
       { text: "20 Final AI Image Downloads", included: true },
       { text: "10 Ready-to-Use Design Templates", included: true },
       { text: "Standard Processing", included: true },
@@ -86,6 +86,7 @@ const plans = [
     savingsPercent: "88%",
     canContact: false,
     features: [
+      { text: "60 AI Generation Credits", included: true },
       { text: "40 Final AI Image Downloads", included: true },
       { text: "15 Design Templates", included: true },
       { text: "1 Short Form Video (under 20s)", included: true },
@@ -112,6 +113,7 @@ const plans = [
     savingsPercent: "83%",
     canContact: true,
     features: [
+      { text: "80 AI Generation Credits", included: true },
       { text: "50 Final AI Image Downloads", included: true },
       { text: "20 Design Templates", included: true },
       { text: "2 Short Form Videos", included: true },
@@ -137,6 +139,7 @@ const plans = [
     savingsPercent: "91%",
     canContact: true,
     features: [
+      { text: "120 AI Generation Credits", included: true },
       { text: "75 Final AI Image Downloads", included: true },
       { text: "30 Design Templates", included: true },
       { text: "1 × 30-sec UGC Video", included: true },
@@ -163,6 +166,7 @@ const plans = [
     savingsPercent: "90%",
     canContact: true,
     features: [
+      { text: "180 AI Generation Credits", included: true },
       { text: "120 Final AI Image Downloads", included: true },
       { text: "40 Design Templates", included: true },
       { text: "2 × 30-sec UGC Videos", included: true },

@@ -11,6 +11,8 @@ export type PlanName =
 
 export interface PlanFeatures {
   hasImageUpload: boolean;
+  generationCredits: number;
+  finalDownloads: number;
   hasTemplates: boolean;
   templateCount: number;
   hasShortFormVideo: boolean;
@@ -18,40 +20,53 @@ export interface PlanFeatures {
   hasUGC: boolean;
   ugcCount: number;
   hasManagedPosting: boolean;
+  hasPriorityProcessing: boolean;
   hasStrategySessions: boolean;
   strategyFrequency: string | null;
 }
 
 const FEATURE_MATRIX: Record<Exclude<PlanName, null>, PlanFeatures> = {
   "Entry Level Pass": {
-    hasImageUpload: true, hasTemplates: false, templateCount: 0,
+    hasImageUpload: true, generationCredits: 5, finalDownloads: 1,
+    hasTemplates: false, templateCount: 0,
     hasShortFormVideo: false, videoCount: 0, hasUGC: false, ugcCount: 0,
-    hasManagedPosting: false, hasStrategySessions: false, strategyFrequency: null,
+    hasManagedPosting: false, hasPriorityProcessing: false,
+    hasStrategySessions: false, strategyFrequency: null,
   },
   "Visual Starter Kit": {
-    hasImageUpload: true, hasTemplates: true, templateCount: 10,
+    hasImageUpload: true, generationCredits: 35, finalDownloads: 20,
+    hasTemplates: true, templateCount: 10,
     hasShortFormVideo: false, videoCount: 0, hasUGC: false, ugcCount: 0,
-    hasManagedPosting: false, hasStrategySessions: false, strategyFrequency: null,
+    hasManagedPosting: false, hasPriorityProcessing: false,
+    hasStrategySessions: false, strategyFrequency: null,
   },
   "Viral Growth": {
-    hasImageUpload: true, hasTemplates: true, templateCount: 15,
+    hasImageUpload: true, generationCredits: 60, finalDownloads: 40,
+    hasTemplates: true, templateCount: 15,
     hasShortFormVideo: true, videoCount: 1, hasUGC: false, ugcCount: 0,
-    hasManagedPosting: false, hasStrategySessions: false, strategyFrequency: null,
+    hasManagedPosting: false, hasPriorityProcessing: false,
+    hasStrategySessions: false, strategyFrequency: null,
   },
   "Full Brand Manager": {
-    hasImageUpload: true, hasTemplates: true, templateCount: 20,
+    hasImageUpload: true, generationCredits: 80, finalDownloads: 50,
+    hasTemplates: true, templateCount: 20,
     hasShortFormVideo: true, videoCount: 2, hasUGC: false, ugcCount: 0,
-    hasManagedPosting: true, hasStrategySessions: false, strategyFrequency: null,
+    hasManagedPosting: true, hasPriorityProcessing: false,
+    hasStrategySessions: false, strategyFrequency: null,
   },
   "Done For You": {
-    hasImageUpload: true, hasTemplates: true, templateCount: 30,
+    hasImageUpload: true, generationCredits: 120, finalDownloads: 75,
+    hasTemplates: true, templateCount: 30,
     hasShortFormVideo: true, videoCount: 2, hasUGC: true, ugcCount: 1,
-    hasManagedPosting: true, hasStrategySessions: true, strategyFrequency: "quarterly",
+    hasManagedPosting: true, hasPriorityProcessing: true,
+    hasStrategySessions: true, strategyFrequency: "quarterly",
   },
   "Master Production": {
-    hasImageUpload: true, hasTemplates: true, templateCount: 40,
+    hasImageUpload: true, generationCredits: 180, finalDownloads: 120,
+    hasTemplates: true, templateCount: 40,
     hasShortFormVideo: true, videoCount: 3, hasUGC: true, ugcCount: 2,
-    hasManagedPosting: true, hasStrategySessions: true, strategyFrequency: "quarterly",
+    hasManagedPosting: true, hasPriorityProcessing: true,
+    hasStrategySessions: true, strategyFrequency: "quarterly",
   },
 };
 

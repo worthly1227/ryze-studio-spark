@@ -78,7 +78,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const handleGetStarted = () => {
     setPlan(planName as PlanName);
     onOpenChange(false);
-    navigate("/setup");
+    navigate("/generate", { state: { sessionActive: true } });
   };
 
   const formatCard = (val: string) => {
