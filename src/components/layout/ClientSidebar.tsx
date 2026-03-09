@@ -25,7 +25,7 @@ export function ClientSidebar() {
     { title: "Upload Center", url: "/client/uploads", icon: Upload, visible: true },
     { title: "AI Factory", url: "/ai-factory", icon: Factory, visible: true },
     { title: "Templates", url: "/templates", icon: LayoutTemplate, visible: planFeatures?.hasTemplates ?? false, locked: !planFeatures?.hasTemplates },
-    { title: "My Videos", url: "/client/videos", icon: Film, visible: planFeatures?.hasShortFormVideo ?? false, locked: !planFeatures?.hasShortFormVideo },
+    { title: "Videos", url: "/client/videos", icon: Film, visible: planFeatures?.hasShortFormVideo ?? false, locked: !planFeatures?.hasShortFormVideo },
     { title: "Social Posting", url: "/client/social", icon: MessageSquare, visible: planFeatures?.hasManagedPosting ?? false, locked: !planFeatures?.hasManagedPosting },
     { title: "Strategy Sessions", url: "/client/strategy", icon: Calendar, visible: planFeatures?.hasStrategySessions ?? false, locked: !planFeatures?.hasStrategySessions },
     { title: "Deliverables", url: "/client/deliverables", icon: Download, visible: true },
