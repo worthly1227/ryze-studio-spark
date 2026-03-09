@@ -718,16 +718,11 @@ const Index: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Scrolling Trust Bar */}
-        <div className="overflow-hidden py-3 bg-muted/50 border-y border-border">
-          <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 45s linear infinite', width: 'max-content' }}>
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="flex items-center gap-8 px-6 flex-shrink-0">
-                <span className="text-xs sm:text-sm text-muted-foreground">🛡️ Trusted by <strong className="text-foreground">1,800+</strong> growing brands</span>
-                <span className="text-xs sm:text-sm text-muted-foreground">📋 <strong className="text-foreground">No contracts</strong>, cancel anytime</span>
-              </div>
-            ))}
-          </div>
+        {/* Trust Bar - Static */}
+        <div className="flex items-center justify-center gap-4 sm:gap-8 py-3 bg-muted/50 border-y border-border flex-wrap">
+          <span className="text-[10px] sm:text-sm text-muted-foreground whitespace-nowrap">🛡️ Trusted by <strong className="text-foreground">1,800+</strong> growing brands</span>
+          <span className="text-border hidden sm:inline">|</span>
+          <span className="text-[10px] sm:text-sm text-muted-foreground whitespace-nowrap">📋 <strong className="text-foreground">No contracts</strong>, cancel anytime</span>
         </div>
       </section>
 
