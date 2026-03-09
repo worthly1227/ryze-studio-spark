@@ -1,135 +1,109 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import balloonPink from "@/assets/balloon-pink.png";
+import balloonBlue from "@/assets/balloon-blue.png";
+
+const BALLOON_SIZE = 36;
+const CONTAINER_H = 50;
 
 const BalloonDivider = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
+    target: ref,
+    offset: ["start end", "center center"],
   });
 
-  // Progress mapped to 0-1 range for the animation
-  const progress = useTransform(scrollYProgress, [0, 0.45], [0, 1]);
+  // Smooth easeInOutCubic via spring-like transform mapping
+  const progress = useTransform(scrollYProgress, [0, 1], [0, 1], {
+    ease: (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+  });
 
-  // Left balloon: starts off-screen left, arches up and to center
-  const leftX = useTransform(progress, [0, 0.5, 1], ["-60vw", "-15vw", "0vw"]);
-  const leftY = useTransform(progress, [0, 0.4, 0.7, 1], ["80px", "-40px", "-80px", "-10px"]);
-  const leftRotate = useTransform(progress, [0, 0.5, 1], [-30, -10, 8]);
+  // Left balloon: from far left to just-left-of-center
+  const leftX = useTransform(progress, [0, 1], ["-50vw", "-18px"]);
+  const leftY = useTransform(progress, [0, 0.4, 0.7, 1], [20, -6, -12, 0]);
+  const leftRotate = useTransform(progress, [0, 1], [-20, 6]);
 
-  // Right balloon: starts off-screen right, arches up and to center
-  const rightX = useTransform(progress, [0, 0.5, 1], ["60vw", "15vw", "0vw"]);
-  const rightY = useTransform(progress, [0, 0.4, 0.7, 1], ["80px", "-40px", "-80px", "-10px"]);
-  const rightRotate = useTransform(progress, [0, 0.5, 1], [30, 10, -8]);
+  // Right balloon: from far right to just-right-of-center
+  const rightX = useTransform(progress, [0, 1], ["50vw", "18px"]);
+  const rightY = useTransform(progress, [0, 0.4, 0.7, 1], [20, -6, -12, 0]);
+  const rightRotate = useTransform(progress, [0, 1], [20, -6]);
 
-  // Opacity: fade in as they enter
-  const opacity = useTransform(progress, [0, 0.15], [0, 1]);
-
-  // String curves widen as balloons move inward
-  const leftStringEnd = useTransform(progress, [0, 1], ["-40vw", "-50vw"]);
-  const rightStringEnd = useTransform(progress, [0, 1], ["40vw", "50vw"]);
+  const opacity = useTransform(progress, [0, 0.12], [0, 1]);
 
   return (
     <div
-      ref={containerRef}
-      className="relative w-full overflow-hidden"
-      style={{ height: "200px" }}
+      ref={ref}
+      className="relative w-full"
+      style={{ height: CONTAINER_H, pointerEvents: "none" }}
     >
-      <div className="sticky top-0 w-full h-[200px] flex items-center justify-center">
-        {/* Left balloon group */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        {/* Left balloon + tethered string */}
         <motion.div
           className="absolute"
-          style={{
-            x: leftX,
-            y: leftY,
-            rotate: leftRotate,
-            opacity,
-            left: "calc(50% - 60px)",
-          }}
+          style={{ x: leftX, y: leftY, rotate: leftRotate, opacity }}
         >
-          {/* String */}
-          <motion.svg
-            width="200"
-            height="160"
-            viewBox="0 0 200 160"
-            className="absolute top-[68px] left-[10px]"
-            style={{ overflow: "visible" }}
-          >
-            <motion.path
-              d="M 25 0 Q -40 80, -200 160"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1.5"
-              fill="none"
-              opacity="0.5"
+          <div className="relative" style={{ width: BALLOON_SIZE, height: BALLOON_SIZE }}>
+            <img
+              src={balloonPink}
+              alt=""
+              className="w-full h-full object-contain drop-shadow-sm"
+              draggable={false}
             />
-          </motion.svg>
-
-          {/* Balloon */}
-          <svg width="52" height="72" viewBox="0 0 52 72">
-            {/* Balloon body - Pink */}
-            <ellipse cx="26" cy="28" rx="24" ry="28" fill="#F472B6" />
-            <ellipse cx="26" cy="28" rx="24" ry="28" fill="url(#pinkShine)" />
-            {/* Highlight */}
-            <ellipse cx="18" cy="18" rx="8" ry="12" fill="white" opacity="0.25" transform="rotate(-15 18 18)" />
-            {/* Knot */}
-            <polygon points="23,55 29,55 26,62" fill="#EC4899" />
-            {/* Tiny string segment */}
-            <line x1="26" y1="62" x2="26" y2="72" stroke="hsl(var(--muted-foreground))" strokeWidth="1.2" opacity="0.5" />
-            <defs>
-              <radialGradient id="pinkShine" cx="0.35" cy="0.3" r="0.65">
-                <stop offset="0%" stopColor="white" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-          </svg>
+            {/* String pinned to balloon base center */}
+            <svg
+              className="absolute"
+              style={{
+                top: BALLOON_SIZE - 2,
+                left: BALLOON_SIZE / 2 - 0.75,
+                overflow: "visible",
+              }}
+              width="2"
+              height="80"
+              viewBox="0 0 2 80"
+            >
+              <path
+                d="M 1 0 Q -30 40, -120 80"
+                stroke="hsl(var(--muted-foreground) / 0.4)"
+                strokeWidth="1"
+                fill="none"
+              />
+            </svg>
+          </div>
         </motion.div>
 
-        {/* Right balloon group */}
+        {/* Right balloon + tethered string */}
         <motion.div
           className="absolute"
-          style={{
-            x: rightX,
-            y: rightY,
-            rotate: rightRotate,
-            opacity,
-            left: "calc(50% + 8px)",
-          }}
+          style={{ x: rightX, y: rightY, rotate: rightRotate, opacity }}
         >
-          {/* String */}
-          <motion.svg
-            width="200"
-            height="160"
-            viewBox="0 0 200 160"
-            className="absolute top-[68px] left-[16px]"
-            style={{ overflow: "visible" }}
-          >
-            <motion.path
-              d="M 25 0 Q 90 80, 250 160"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1.5"
-              fill="none"
-              opacity="0.5"
+          <div className="relative" style={{ width: BALLOON_SIZE, height: BALLOON_SIZE }}>
+            <img
+              src={balloonBlue}
+              alt=""
+              className="w-full h-full object-contain drop-shadow-sm"
+              draggable={false}
             />
-          </motion.svg>
-
-          {/* Balloon */}
-          <svg width="52" height="72" viewBox="0 0 52 72">
-            {/* Balloon body - Blue */}
-            <ellipse cx="26" cy="28" rx="24" ry="28" fill="#60A5FA" />
-            <ellipse cx="26" cy="28" rx="24" ry="28" fill="url(#blueShine)" />
-            {/* Highlight */}
-            <ellipse cx="18" cy="18" rx="8" ry="12" fill="white" opacity="0.25" transform="rotate(-15 18 18)" />
-            {/* Knot */}
-            <polygon points="23,55 29,55 26,62" fill="#3B82F6" />
-            {/* Tiny string segment */}
-            <line x1="26" y1="62" x2="26" y2="72" stroke="hsl(var(--muted-foreground))" strokeWidth="1.2" opacity="0.5" />
-            <defs>
-              <radialGradient id="blueShine" cx="0.35" cy="0.3" r="0.65">
-                <stop offset="0%" stopColor="white" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-          </svg>
+            {/* String pinned to balloon base center */}
+            <svg
+              className="absolute"
+              style={{
+                top: BALLOON_SIZE - 2,
+                left: BALLOON_SIZE / 2 - 0.75,
+                overflow: "visible",
+              }}
+              width="2"
+              height="80"
+              viewBox="0 0 2 80"
+            >
+              <path
+                d="M 1 0 Q 32 40, 120 80"
+                stroke="hsl(var(--muted-foreground) / 0.4)"
+                strokeWidth="1"
+                fill="none"
+              />
+            </svg>
+          </div>
         </motion.div>
       </div>
     </div>
