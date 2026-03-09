@@ -922,22 +922,20 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
             className="flex items-center gap-2 sm:gap-3"
           >
             <img src={ryzeLogo} alt="Ryze Studios" className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl object-cover" />
-            <span className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl flex items-center gap-0">
-              <span>
-                <AnimatePresence>
-                  {phase === 1 && (
-                    <motion.span
-                      key="meet"
-                      exit={{ opacity: 0, width: 0, marginRight: 0 }}
-                      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                      className="inline-block mr-2 sm:mr-3 overflow-hidden whitespace-nowrap"
-                    >
-                      Meet
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </span>
-              Ryze Studios.
+            <span className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl whitespace-nowrap">
+              <AnimatePresence>
+                {phase === 1 && (
+                  <motion.span
+                    key="meet"
+                    exit={{ opacity: 0, width: 0, marginRight: 0 }}
+                    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="inline-block mr-2 sm:mr-3 overflow-hidden whitespace-nowrap align-baseline"
+                  >
+                    Meet
+                  </motion.span>
+                )}
+              </AnimatePresence>
+              <span className="align-baseline">Ryze Studios.</span>
             </span>
           </motion.div>
         )}
