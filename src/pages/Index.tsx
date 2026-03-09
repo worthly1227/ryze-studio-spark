@@ -826,6 +826,92 @@ const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
   );
 };
 
+/* ─── BRAND INTRO ANIMATION ─── */
+const BrandIntro: React.FC<{ onComplete: () => void; navLogoRef: React.RefObject<HTMLDivElement | null> }> = ({ onComplete, navLogoRef }) => {
+  const [phase, setPhase] = useState(0);
+  const centerLogoRef = useRef<HTMLDivElement>(null);
+  const [snapStyle, setSnapStyle] = useState<React.CSSProperties>({});
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase(1), 500);
+    const t2 = setTimeout(() => setPhase(2), 1000);
+    const t3 = setTimeout(() => {
+      // Calculate snap target
+      if (navLogoRef.current && centerLogoRef.current) {
+        const navRect = navLogoRef.current.getBoundingClientRect();
+        const centerRect = centerLogoRef.current.getBoundingClientRect();
+        setSnapStyle({
+          transform: `translate(${navRect.left - centerRect.left}px, ${navRect.top - centerRect.top}px) scale(${navRect.height / centerRect.height})`,
+          transformOrigin: 'top left',
+        });
+      }
+      setPhase(3);
+    }, 1300);
+    const t4 = setTimeout(() => {
+      sessionStorage.setItem('ryze_intro_shown', 'true');
+      onComplete();
+    }, 1500);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+  }, [onComplete, navLogoRef]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[100] bg-white flex items-center justify-center"
+      animate={phase === 3 ? { opacity: 0 } : { opacity: 1 }}
+      transition={{ duration: 0.2, ease: 'easeInOut' }}
+    >
+      <AnimatePresence mode="wait">
+        {phase === 0 && (
+          <motion.p
+            key="hook"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl text-center px-6 max-w-3xl"
+          >
+            Tired of overpriced, underperforming agencies?
+          </motion.p>
+        )}
+
+        {(phase === 1 || phase === 2 || phase === 3) && (
+          <motion.div
+            key="reveal"
+            ref={centerLogoRef}
+            initial={phase === 1 ? { opacity: 0, scale: 0.95 } : false}
+            animate={{
+              opacity: phase === 3 ? 0 : 1,
+              scale: 1,
+              x: phase === 3 && snapStyle.transform ? undefined : 0,
+              y: phase === 3 && snapStyle.transform ? undefined : 0,
+            }}
+            style={phase === 3 ? snapStyle : undefined}
+            transition={{ duration: phase === 3 ? 0.2 : 0.25, ease: 'easeInOut' }}
+            className="flex items-center gap-2 sm:gap-3"
+          >
+            <img src={ryzeLogo} alt="Ryze Studios" className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl object-cover" />
+            <span className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl flex items-center gap-0">
+              <AnimatePresence>
+                {phase === 1 && (
+                  <motion.span
+                    key="meet"
+                    exit={{ opacity: 0, width: 0, marginRight: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="inline-block mr-2 sm:mr-3 overflow-hidden whitespace-nowrap"
+                  >
+                    Meet
+                  </motion.span>
+                )}
+              </AnimatePresence>
+              Ryze Studios.
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
 /* ─── MAIN PAGE ─── */
 const Index: React.FC = () => {
   const navigate = useNavigate();
@@ -840,6 +926,15 @@ const Index: React.FC = () => {
   const [calendlyTier, setCalendlyTier] = useState<typeof subscriptionTiers[0] | null>(null);
   const [pendingAddOn, setPendingAddOn] = useState<{ name: string; price: number; description: string } | null>(null);
   const [entryLevelOpen, setEntryLevelOpen] = useState(false);
+
+  const [showIntro, setShowIntro] = useState(() => !sessionStorage.getItem('ryze_intro_shown'));
+  const [introComplete, setIntroComplete] = useState(() => !!sessionStorage.getItem('ryze_intro_shown'));
+  const navLogoRef = useRef<HTMLDivElement>(null);
+
+  const handleIntroComplete = React.useCallback(() => {
+    setShowIntro(false);
+    setIntroComplete(true);
+  }, []);
 
   const handleTierClick = (tier: typeof subscriptionTiers[0]) => {
     if (tier.name === "Entry Level Pass") {
@@ -871,13 +966,18 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Brand Intro Animation */}
+      {showIntro && <BrandIntro onComplete={handleIntroComplete} navLogoRef={navLogoRef} />}
+
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
           <div className="flex items-center gap-4 sm:gap-6">
             <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2">
-              <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-cover flex-shrink-0" />
-              <span className="font-heading font-bold text-lg sm:text-xl tracking-tight">Ryze Studios</span>
+              <div ref={navLogoRef} className={`flex items-center gap-2 ${showIntro ? 'opacity-0' : 'opacity-100'} transition-opacity`}>
+                <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-cover flex-shrink-0" />
+                <span className="font-heading font-bold text-lg sm:text-xl tracking-tight">Ryze Studios</span>
+              </div>
             </button>
             <div className="hidden md:flex items-center gap-5 text-sm font-medium text-muted-foreground">
               <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Services</button>
@@ -918,7 +1018,12 @@ const Index: React.FC = () => {
       </nav>
 
       {/* Hero - 2x2 Photo Grid */}
-      <section className="pt-14 sm:pt-16">
+      <motion.section
+        initial={!introComplete ? { opacity: 0 } : { opacity: 1 }}
+        animate={{ opacity: introComplete ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
+        className="pt-14 sm:pt-16"
+      >
         <div className="relative max-w-5xl mx-auto">
           {/* 2x2 Hero Grid */}
           <div className="grid grid-cols-2 w-full">
@@ -971,7 +1076,7 @@ const Index: React.FC = () => {
           <span className="text-border hidden sm:inline">|</span>
           <span className="text-[10px] sm:text-sm text-muted-foreground whitespace-nowrap">📋 <strong className="text-foreground">No contracts</strong>, cancel anytime</span>
         </div>
-      </section>
+      </motion.section>
 
       {/* Why Ryze - Half Page Tile */}
       <section className="py-8 sm:py-14 px-4 sm:px-6 bg-background">
