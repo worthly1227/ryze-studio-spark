@@ -19,7 +19,7 @@ import CheckoutModal from "@/components/CheckoutModal";
 import EntryLevelPaymentModal from "@/components/EntryLevelPaymentModal";
 import CalendlyModal from "@/components/CalendlyModal";
 import { useToast } from "@/hooks/use-toast";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogOverlay } from "@/components/ui/dialog";
+import { Dialog, DialogPortal, DialogOverlay, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 /* ─── PRICING TIERS DATA ─── */
 const subscriptionTiers = [
