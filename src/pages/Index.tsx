@@ -769,9 +769,9 @@ const Index: React.FC = () => {
               transition={{ delay: 0.1 }}
               className="rounded-2xl overflow-hidden relative aspect-square"
             >
-              <img src="/images/why-ryze-2.jpg" alt="Fast Delivery" className="w-full h-full object-cover" />
+              <img src="/images/why-ryze-2.jpg" alt="Rapid Turnarounds" className="w-full h-full object-cover" />
               <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3">
-                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">Fast Delivery</span>
+                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">Rapid Turnarounds</span>
               </div>
             </motion.div>
 
@@ -786,7 +786,7 @@ const Index: React.FC = () => {
               {[
                 { icon: Camera, label: "Studio Product Shots" },
                 { icon: Wand2, label: "AI Powered Branding" },
-                { icon: Calendar, label: "Fast Delivery" },
+                { icon: Calendar, label: "Rapid Turnarounds" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2.5 sm:gap-3">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-muted border border-border flex items-center justify-center flex-shrink-0">
