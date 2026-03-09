@@ -826,6 +826,90 @@ const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
   );
 };
 
+/* ─── BRAND INTRO ANIMATION ─── */
+const BrandIntro: React.FC<{ onComplete: () => void; navLogoRef: React.RefObject<HTMLDivElement | null> }> = ({ onComplete, navLogoRef }) => {
+  const [phase, setPhase] = useState(0);
+  const centerLogoRef = useRef<HTMLDivElement>(null);
+  const [snapStyle, setSnapStyle] = useState<React.CSSProperties>({});
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase(1), 500);
+    const t2 = setTimeout(() => setPhase(2), 1000);
+    const t3 = setTimeout(() => {
+      // Calculate snap target
+      if (navLogoRef.current && centerLogoRef.current) {
+        const navRect = navLogoRef.current.getBoundingClientRect();
+        const centerRect = centerLogoRef.current.getBoundingClientRect();
+        setSnapStyle({
+          transform: `translate(${navRect.left - centerRect.left}px, ${navRect.top - centerRect.top}px) scale(${navRect.height / centerRect.height})`,
+          transformOrigin: 'top left',
+        });
+      }
+      setPhase(3);
+    }, 1300);
+    const t4 = setTimeout(() => {
+      sessionStorage.setItem('ryze_intro_shown', 'true');
+      onComplete();
+    }, 1500);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+  }, [onComplete, navLogoRef]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[100] bg-white flex items-center justify-center"
+      animate={phase === 3 ? { opacity: 0 } : { opacity: 1 }}
+      transition={{ duration: 0.2, ease: 'easeInOut' }}
+    >
+      <AnimatePresence mode="wait">
+        {phase === 0 && (
+          <motion.p
+            key="hook"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl text-center px-6 max-w-3xl"
+          >
+            Tired of overpriced, underperforming agencies?
+          </motion.p>
+        )}
+
+        {(phase === 1 || phase === 2 || phase === 3) && (
+          <motion.div
+            key="reveal"
+            ref={centerLogoRef}
+            initial={phase === 1 ? { opacity: 0, scale: 0.95 } : false}
+            animate={{
+              opacity: phase === 3 ? 0 : 1,
+              scale: 1,
+              ...(phase === 3 ? snapStyle : {}),
+            }}
+            transition={{ duration: phase === 3 ? 0.2 : 0.25, ease: 'easeInOut' }}
+            className="flex items-center gap-2 sm:gap-3"
+          >
+            <img src={ryzeLogo} alt="Ryze Studios" className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl object-cover" />
+            <span className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl flex items-center gap-0">
+              <AnimatePresence>
+                {phase === 1 && (
+                  <motion.span
+                    key="meet"
+                    exit={{ opacity: 0, width: 0, marginRight: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="inline-block mr-2 sm:mr-3 overflow-hidden whitespace-nowrap"
+                  >
+                    Meet
+                  </motion.span>
+                )}
+              </AnimatePresence>
+              Ryze Studios.
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
 /* ─── MAIN PAGE ─── */
 const Index: React.FC = () => {
   const navigate = useNavigate();
@@ -840,6 +924,15 @@ const Index: React.FC = () => {
   const [calendlyTier, setCalendlyTier] = useState<typeof subscriptionTiers[0] | null>(null);
   const [pendingAddOn, setPendingAddOn] = useState<{ name: string; price: number; description: string } | null>(null);
   const [entryLevelOpen, setEntryLevelOpen] = useState(false);
+
+  const [showIntro, setShowIntro] = useState(() => !sessionStorage.getItem('ryze_intro_shown'));
+  const [introComplete, setIntroComplete] = useState(() => !!sessionStorage.getItem('ryze_intro_shown'));
+  const navLogoRef = useRef<HTMLDivElement>(null);
+
+  const handleIntroComplete = React.useCallback(() => {
+    setShowIntro(false);
+    setIntroComplete(true);
+  }, []);
 
   const handleTierClick = (tier: typeof subscriptionTiers[0]) => {
     if (tier.name === "Entry Level Pass") {
