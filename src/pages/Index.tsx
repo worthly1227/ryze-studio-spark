@@ -255,6 +255,16 @@ const BeforeAfterSlider: React.FC = () => {
   );
 };
 
+/* Hero showcase cards for mobile carousel */
+const heroShowcaseCards = [
+  { icon: Camera, label: "AI Product Shot", badge: "AI Product Shot", gradient: "bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700" },
+  { icon: Play, label: "Studio-grade product shots", badge: "", gradient: "bg-gradient-to-br from-amber-600 via-orange-700 to-stone-800" },
+  { icon: Wand2, label: "Animated Logo", badge: "AI Product Shot", gradient: "bg-gradient-to-br from-cyan-500 via-teal-600 to-emerald-700" },
+  { icon: ImageIcon, label: "Social Media Post", badge: "Brand-Matched", gradient: "bg-gradient-to-br from-rose-500 via-pink-600 to-fuchsia-700" },
+  { icon: Rocket, label: "Short Form Video", badge: "Trending", gradient: "bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700" },
+  { icon: PenTool, label: "Brand Kit Design", badge: "", gradient: "bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-700" },
+];
+
 /* Service preview cards for scrolling hero */
 const ServiceCard: React.FC<{ icon: React.ReactNode; label: string; children: React.ReactNode }> = ({ icon, label, children }) => (
   <div className="rounded-2xl border border-border bg-card shadow-sm flex-shrink-0 overflow-hidden">
@@ -671,19 +681,67 @@ const Index: React.FC = () => {
       </nav>
 
       {/* Hero */}
-      <section className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6">
+      <section className="pt-24 sm:pt-32 pb-8 sm:pb-24 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="pt-4 sm:pt-8">
-            <div className="mb-6 sm:mb-8 inline-flex items-center bg-muted text-foreground border border-border font-heading text-xs tracking-wider px-3 sm:px-4 py-1.5 rounded-full">
-              🤦‍♂️ <span className="font-bold">Tired of Overpriced Agencies? Meet Ryze</span>
+            <div className="mb-4 sm:mb-8 inline-flex items-center bg-muted text-foreground border border-border font-heading text-xs tracking-wider px-3 sm:px-4 py-1.5 rounded-full">
+              ✦ <span className="font-bold ml-1">Tired of Overpriced Agencies? Meet Ryze</span> ✦
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6 sm:mb-8">
-              Your On-Demand Creative Team<br className="hidden sm:block" />{" "}and AI Production Platform Starting at <span className="text-primary">$10 USD</span>
+            <h1 className="text-[1.75rem] sm:text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.08] mb-4 sm:mb-8">
+              Your AI Creative Team{" "}<br className="hidden sm:block" />
+              <span className="text-primary">From $10 USD</span>
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-lg leading-relaxed">
-              We create distortion-free AI visuals, social content, UGC, and brand strategies so you can focus on pushing your business to the next level.
+            <p className="text-sm sm:text-lg text-muted-foreground mb-6 sm:mb-10 max-w-lg leading-relaxed">
+              Unlock stunning visuals, social content, & brand magic, faster.
             </p>
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
+
+            {/* Mobile showcase carousel */}
+            <div className="lg:hidden mb-6 -mx-4 overflow-hidden">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+                <div className="flex gap-3 px-4" style={{ animation: 'scroll-showcase 20s linear infinite', width: 'max-content' }}>
+                  {[...heroShowcaseCards, ...heroShowcaseCards, ...heroShowcaseCards].map((card, i) => (
+                    <div key={i} className="flex-shrink-0 w-40 sm:w-48">
+                      <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-md">
+                        <div className={`aspect-[4/3] ${card.gradient} flex items-center justify-center relative`}>
+                          {card.badge && (
+                            <span className="absolute top-2 right-2 bg-primary/90 text-primary-foreground text-[9px] font-heading font-semibold px-2 py-0.5 rounded-full backdrop-blur-sm">
+                              {card.badge}
+                            </span>
+                          )}
+                          <card.icon className="w-8 h-8 text-white drop-shadow-lg" />
+                        </div>
+                        <div className="px-3 py-2.5">
+                          <p className="text-xs font-heading font-semibold truncate">{card.label}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile value props - compact icon grid */}
+            <div className="grid grid-cols-4 gap-2 mb-6 lg:hidden">
+              {[
+                { icon: Rocket, label: "Days,", sub: "Not Weeks." },
+                { icon: Wand2, label: "AI-Driven", sub: "Quality" },
+                { icon: FileText, label: "Posts,", sub: "Reels, Ads" },
+                { icon: Shield, label: "Brand-", sub: "Matched" },
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center text-center bg-card border border-border rounded-2xl px-2 py-3">
+                  <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center mb-2 bg-background">
+                    <item.icon className="w-5 h-5 text-foreground" />
+                  </div>
+                  <p className="text-[11px] font-heading font-bold leading-tight">{item.label}</p>
+                  <p className="text-[11px] font-heading font-bold leading-tight">{item.sub}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop value props */}
+            <div className="hidden lg:grid grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
               {[
                 { icon: Camera, text: "Studio-grade product shots" },
                 { icon: Wand2, text: "AI-powered, brand-matched" },
@@ -696,10 +754,11 @@ const Index: React.FC = () => {
                 </div>
               ))}
             </div>
+
             <Button size="lg" onClick={() => navigate("/book-demo")} className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 rounded-full mb-4 sm:mb-6">
-              Book your free strategy call <ArrowRight className="w-5 h-5 ml-2" />
+              Book your Free Strategy Call <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <p className="text-xs sm:text-sm text-muted-foreground">Trusted by <strong className="text-foreground">1,800+</strong> growing brands  |  No contracts, cancel anytime</p>
+            <p className="text-xs sm:text-sm text-muted-foreground text-center sm:text-left">Trusted by <strong className="text-foreground">1,800+</strong> growing brands  |  No contracts, cancel anytime</p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="hidden lg:block relative overflow-hidden">
