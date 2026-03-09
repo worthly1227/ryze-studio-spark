@@ -28,9 +28,7 @@ interface GeneratedImage {
 
 const GenerateSession: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { currentPlan, planFeatures } = usePlan();
-  const sessionActive = location.state?.sessionActive === true;
 
   const [prompt, setPrompt] = useState("");
   const [uploadedFile, setUploadedFile] = useState<string | null>(null);
