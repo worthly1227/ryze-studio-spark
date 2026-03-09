@@ -670,122 +670,131 @@ const Index: React.FC = () => {
         </AnimatePresence>
       </nav>
 
-      {/* Hero - Image Forward */}
+      {/* Hero - 2x2 Photo Grid */}
       <section className="pt-14 sm:pt-16">
-        {/* Hero Image with Overlay */}
-        <div className="relative w-full aspect-[4/3] sm:aspect-[16/7] overflow-hidden">
-          <img
-            src="/images/hero-collage.jpg"
-            alt="Premium product photography by Ryze Studios"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-          <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 sm:pb-14 px-4">
+        <div className="relative">
+          {/* 2x2 Image Grid */}
+          <div className="grid grid-cols-2 w-full">
+            <div className="aspect-square overflow-hidden">
+              <img src="/images/hero-1.jpg" alt="Product photography" className="w-full h-full object-cover" />
+            </div>
+            <div className="aspect-square overflow-hidden">
+              <img src="/images/hero-2.jpg" alt="Product photography" className="w-full h-full object-cover" />
+            </div>
+            <div className="aspect-square overflow-hidden">
+              <img src="/images/hero-3.jpg" alt="Product photography" className="w-full h-full object-cover" />
+            </div>
+            <div className="aspect-square overflow-hidden">
+              <img src="/images/hero-4.jpg" alt="Product photography" className="w-full h-full object-cover" />
+            </div>
+          </div>
+          {/* Headline Overlay at Bottom */}
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pt-24 pb-6 px-4">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-3xl sm:text-5xl md:text-6xl font-heading font-black text-white text-center leading-[1.1] mb-5 sm:mb-7 drop-shadow-lg"
+              className="text-3xl sm:text-5xl md:text-6xl font-heading font-black text-white text-center leading-[1.05] drop-shadow-lg"
             >
               Your On-Demand<br />Creative Team
             </motion.h1>
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-              <Button
-                size="lg"
-                onClick={() => navigate("/plans")}
-                className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading text-sm sm:text-base px-8 sm:px-10 py-5 sm:py-6 rounded-full cyan-glow-sm uppercase tracking-wider"
-              >
-                Start for $10
-              </Button>
-            </motion.div>
           </div>
         </div>
 
+        {/* START FOR $10 Button */}
+        <div className="flex justify-center py-5 sm:py-6 bg-background">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+            <Button
+              size="lg"
+              onClick={() => navigate("/plans")}
+              className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading text-sm sm:text-base px-10 sm:px-12 py-5 sm:py-6 rounded-full cyan-glow-sm uppercase tracking-widest font-bold"
+            >
+              Start for $10
+            </Button>
+          </motion.div>
+        </div>
+
         {/* Trust Bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="flex items-center justify-center gap-2 py-3 sm:py-4 bg-foreground/5 border-b border-border"
-        >
+        <div className="flex items-center justify-center gap-2 py-3 bg-muted/50 border-y border-border">
           <span className="text-xs sm:text-sm text-muted-foreground">🛡️ Trusted by <strong className="text-foreground">1,800+</strong> growing brands</span>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Why Ryze Section */}
-      <section className="py-10 sm:py-16 px-4 sm:px-6">
+      {/* Why Ryze - Half Page Tile */}
+      <section className="py-8 sm:py-14 px-4 sm:px-6 bg-background">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-6 sm:mb-10"
+            className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-5 sm:mb-8"
           >
             Why Ryze
           </motion.h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            {/* Portfolio Cards */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="rounded-2xl overflow-hidden relative aspect-square"
-              >
-                <img src="/images/why-ryze-1.jpg" alt="AI Powered Branding" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-3 left-3">
-                  <Badge className="bg-primary/90 text-primary-foreground font-heading text-[10px] sm:text-xs">AI Powered Branding</Badge>
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="rounded-2xl overflow-hidden relative aspect-square"
-              >
-                <img src="/images/why-ryze-2.jpg" alt="Fast Delivery" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-3 left-3">
-                  <Badge className="bg-primary/90 text-primary-foreground font-heading text-[10px] sm:text-xs">Fast Delivery</Badge>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Services List + Third Image */}
-            <div className="flex flex-col gap-4">
-              <div className="space-y-3 sm:space-y-4">
-                {[
-                  { icon: Camera, label: "Studio Product Shots" },
-                  { icon: Wand2, label: "AI Powered Branding" },
-                  { icon: Calendar, label: "Fast Delivery" },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-3 sm:gap-4 py-2"
-                  >
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-muted border border-border flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
-                    </div>
-                    <span className="font-heading font-semibold text-sm sm:text-base">{item.label}</span>
-                  </motion.div>
-                ))}
+          {/* 2x2 Grid: top row = 2 images, bottom row = perks + image */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            {/* Top Left Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden relative aspect-square"
+            >
+              <img src="/images/why-ryze-1.jpg" alt="AI Powered Branding" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3">
+                <Badge className="bg-primary/90 text-primary-foreground font-heading text-[9px] sm:text-xs">AI Powered Branding</Badge>
               </div>
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="rounded-2xl overflow-hidden flex-1 min-h-[180px]"
-              >
-                <img src="/images/why-ryze-3.jpg" alt="Brand packaging designs" className="w-full h-full object-cover" />
-              </motion.div>
-            </div>
+            </motion.div>
+
+            {/* Top Right Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="rounded-2xl overflow-hidden relative aspect-square"
+            >
+              <img src="/images/why-ryze-2.jpg" alt="Fast Delivery" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3">
+                <Badge className="bg-primary/90 text-primary-foreground font-heading text-[9px] sm:text-xs">Fast Delivery</Badge>
+              </div>
+            </motion.div>
+
+            {/* Bottom Left - Perks List */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+              className="flex flex-col justify-center gap-3 sm:gap-4 py-2"
+            >
+              {[
+                { icon: Camera, label: "Studio Product Shots" },
+                { icon: Wand2, label: "AI Powered Branding" },
+                { icon: Calendar, label: "Fast Delivery" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-2.5 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-muted border border-border flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted-foreground" />
+                  </div>
+                  <span className="font-heading font-semibold text-xs sm:text-sm">{item.label}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Bottom Right Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="rounded-2xl overflow-hidden relative aspect-square"
+            >
+              <img src="/images/why-ryze-3.jpg" alt="Brand packaging" className="w-full h-full object-cover" />
+            </motion.div>
           </div>
         </div>
       </section>
