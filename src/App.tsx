@@ -31,6 +31,7 @@ import ClientDeliverables from "./pages/client/ClientDeliverables";
 import MyVideos from "./pages/client/MyVideos";
 import SocialPosting from "./pages/client/SocialPosting";
 import StrategySessions from "./pages/client/StrategySessions";
+import ContactUs from "./pages/client/ContactUs";
 import AdminClients from "./pages/admin/AdminClients";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminDeliverables from "./pages/admin/AdminDeliverables";
