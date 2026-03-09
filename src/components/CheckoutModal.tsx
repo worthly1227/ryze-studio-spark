@@ -76,8 +76,9 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   };
 
   const handleGetStarted = () => {
+    setPlan(planName as PlanName);
     onOpenChange(false);
-    navigate("/onboarding");
+    navigate("/setup");
   };
 
   const formatCard = (val: string) => {
