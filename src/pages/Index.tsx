@@ -837,17 +837,17 @@ const Index: React.FC = () => {
           {[...Array(8)].map((_, i) => (
             <div key={i} className="flex items-center gap-6 sm:gap-10 px-4 sm:px-6 flex-shrink-0">
               <span className="font-heading text-sm sm:text-lg font-bold tracking-[0.2em] uppercase text-primary">Clenature</span>
-              <span className="text-primary/30">✦</span>
+              <span className="text-pink-400/60">✦</span>
               <span className="font-body text-base sm:text-xl font-light italic text-accent-foreground">Hebab Essentials</span>
-              <span className="text-primary/30">✦</span>
+              <span className="text-amber-400/60">✦</span>
               <span className="font-heading text-sm sm:text-lg font-extrabold tracking-widest uppercase text-primary/80">THE FACE SHOP</span>
-              <span className="text-primary/30">✦</span>
+              <span className="text-violet-400/60">✦</span>
               <span className="font-body text-base sm:text-xl font-semibold tracking-tight text-accent-foreground/80" style={{ fontVariant: 'small-caps' }}>ANUA</span>
-              <span className="text-primary/30">✦</span>
+              <span className="text-emerald-400/60">✦</span>
               <span className="font-heading text-sm sm:text-lg font-medium tracking-[0.15em] text-primary/70">Shower Mate</span>
-              <span className="text-primary/30">✦</span>
+              <span className="text-sky-400/60">✦</span>
               <span className="font-body text-base sm:text-xl font-bold uppercase tracking-[0.3em] text-accent-foreground/90">FROM THIS ISLAND</span>
-              <span className="text-primary/30">✦</span>
+              <span className="text-rose-400/60">✦</span>
             </div>
           ))}
         </div>
