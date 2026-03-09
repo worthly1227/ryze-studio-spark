@@ -159,12 +159,12 @@ const AIFactory: React.FC = () => {
       {/* Batch Processing */}
       <Card className="bg-gradient-to-br from-primary/5 to-primary/15 border-primary/20">
         <CardContent className="pt-6">
-          <div className="flex flex-col sm:flex-row items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <div className="flex-1 text-center sm:text-left">
-              <h2 className="font-heading font-bold text-2xl mb-1">Batch Processing</h2>
-              <p className="text-muted-foreground">Edit up to 250 images at once. Save hours on repetitive edits.</p>
+              <h2 className="font-heading font-bold text-xl sm:text-2xl mb-1">Batch Processing</h2>
+              <p className="text-muted-foreground text-sm sm:text-base">Edit up to 250 images at once. Save hours on repetitive edits.</p>
             </div>
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-8">
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading rounded-full px-8 w-full sm:w-auto">
               <Scissors className="w-4 h-4 mr-2" /> Start New Batch
             </Button>
           </div>

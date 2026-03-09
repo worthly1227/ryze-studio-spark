@@ -56,7 +56,8 @@ const App = () => (
               <Route path="/book-demo" element={<BookDemo />} />
               <Route path="/plans" element={<Plans />} />
               <Route path="/template-store" element={<TemplateStore />} />
-              <Route path="/entry-level-session" element={<EntryLevelSession />} />
+              <Route path="/entry-level-session" element={<GenerateSession />} />
+              <Route path="/generate" element={<GenerateSession />} />
               <Route path="/setup" element={<PlanSetup />} />
 
               {/* Client portal */}
