@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,9 +28,7 @@ interface GeneratedImage {
 
 const GenerateSession: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { currentPlan, planFeatures } = usePlan();
-  const sessionActive = location.state?.sessionActive === true;
 
   const [prompt, setPrompt] = useState("");
   const [uploadedFile, setUploadedFile] = useState<string | null>(null);
@@ -48,7 +46,31 @@ const GenerateSession: React.FC = () => {
   const hasSelection = selectedImageId !== null;
   const isFinalized = finalDownloadId !== null;
 
-  if (!sessionActive || !currentPlan) {
+  const handleGenerate = useCallback(() => {
+    if (!prompt.trim() || !canGenerate || !uploadedFile) return;
+
+    setGenerating(true);
+    setTimeout(() => {
+      const newImage: GeneratedImage = {
+        id: Date.now(),
+        url: MOCK_IMAGES[creditsUsed % MOCK_IMAGES.length],
+        prompt: prompt.trim(),
+      };
+      setGeneratedImages((prev) => [...prev, newImage]);
+      setCreditsUsed((prev) => prev + 1);
+      setPrompt("");
+      setGenerating(false);
+      toast({
+        title: `Image generated! (${creditsUsed + 1}/${maxCredits} credits used)`,
+        description:
+          creditsUsed + 1 >= maxCredits
+            ? "All credits used. Select your final image to download."
+            : `${maxCredits - creditsUsed - 1} generation${maxCredits - creditsUsed - 1 !== 1 ? "s" : ""} remaining.`,
+      });
+    }, 2000);
+  }, [prompt, canGenerate, creditsUsed, maxCredits, uploadedFile]);
+
+  if (!currentPlan) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <Card className="max-w-md w-full">
@@ -77,30 +99,6 @@ const GenerateSession: React.FC = () => {
   const handleFileSelect = () => {
     setUploadedFile(`product-image-${Date.now()}.jpg`);
   };
-
-  const handleGenerate = useCallback(() => {
-    if (!prompt.trim() || !canGenerate || !uploadedFile) return;
-
-    setGenerating(true);
-    setTimeout(() => {
-      const newImage: GeneratedImage = {
-        id: Date.now(),
-        url: MOCK_IMAGES[creditsUsed % MOCK_IMAGES.length],
-        prompt: prompt.trim(),
-      };
-      setGeneratedImages((prev) => [...prev, newImage]);
-      setCreditsUsed((prev) => prev + 1);
-      setPrompt("");
-      setGenerating(false);
-      toast({
-        title: `Image generated! (${creditsUsed + 1}/${maxCredits} credits used)`,
-        description:
-          creditsUsed + 1 >= maxCredits
-            ? "All credits used. Select your final image to download."
-            : `${maxCredits - creditsUsed - 1} generation${maxCredits - creditsUsed - 1 !== 1 ? "s" : ""} remaining.`,
-      });
-    }, 2000);
-  }, [prompt, canGenerate, creditsUsed, maxCredits, uploadedFile]);
 
   const handleSelectFinal = () => {
     if (selectedImageId === null) return;
