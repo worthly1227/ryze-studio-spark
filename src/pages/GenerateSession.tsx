@@ -100,7 +100,7 @@ const GenerateSession: React.FC = () => {
     setUploadedFile(`product-image-${Date.now()}.jpg`);
   };
 
-
+  const handleSelectFinal = () => {
     if (selectedImageId === null) return;
     setFinalDownloadId(selectedImageId);
     setSessionCompleted(true);
