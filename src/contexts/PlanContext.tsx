@@ -64,7 +64,7 @@ const FEATURE_MATRIX: Record<Exclude<PlanName, null>, PlanFeatures> = {
   "Master Production": {
     hasImageUpload: true, generationCredits: 180, finalDownloads: 120,
     hasTemplates: true, templateCount: 40,
-    hasShortFormVideo: true, videoCount: 3, hasUGC: true, ugcCount: 2,
+    hasShortFormVideo: true, videoCount: 12, hasUGC: true, ugcCount: 2,
     hasManagedPosting: true, hasPriorityProcessing: true,
     hasStrategySessions: true, strategyFrequency: "quarterly",
   },
