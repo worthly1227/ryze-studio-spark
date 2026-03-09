@@ -1195,24 +1195,7 @@ const Index: React.FC = () => {
                 "from-indigo-300 to-blue-600", "from-red-300 to-rose-500", "from-teal-300 to-cyan-500",
               ];
               return (
-                <motion.div key={`${activeGridIndustry}-${i}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.03 }}>
-                    <div className="rounded-xl overflow-hidden border border-border bg-card">
-                      <div className="flex items-center gap-1.5 px-2 py-1.5">
-                        <img src={ryzeLogo} alt="Ryze" className="w-4 h-4 rounded-full object-cover" />
-                        <span className="text-[10px] font-semibold font-heading">Ryze Studios</span>
-                        <span className="text-muted-foreground ml-auto text-[10px]">···</span>
-                      </div>
-                      <div className={`aspect-square bg-gradient-to-br ${gradients[i]} flex items-center justify-center`}>
-                        <span className="text-white text-3xl drop-shadow-lg">{gridEmojis[activeGridIndustry]}</span>
-                      </div>
-                      <div className="p-1.5 flex items-center gap-1.5">
-                        <Heart className="w-3 h-3 text-destructive fill-destructive" />
-                        <MessageCircle className="w-3 h-3 text-muted-foreground" />
-                        <Send className="w-3 h-3 text-muted-foreground" />
-                        <Bookmark className="w-3 h-3 text-muted-foreground ml-auto" />
-                      </div>
-                    </div>
-                </motion.div>
+                <DesignVaultCard key={`${activeGridIndustry}-${i}`} gradient={gradients[i]} emoji={gridEmojis[activeGridIndustry]} index={i} industry={activeGridIndustry} />
               );
             })}
           </div>
