@@ -9,7 +9,7 @@ import {
   Heart, MessageCircle, Send, Bookmark, TrendingUp, BarChart3,
   ImageIcon, BookOpen, Palette, Plus, Volume2,
   Phone, Lightbulb, Globe, LayoutGrid, Rocket, Camera, Wand2, Megaphone, PenTool, FileText,
-  Menu
+  Menu, Copy, Facebook, Mail
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -19,6 +19,7 @@ import CheckoutModal from "@/components/CheckoutModal";
 import EntryLevelPaymentModal from "@/components/EntryLevelPaymentModal";
 import CalendlyModal from "@/components/CalendlyModal";
 import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogOverlay } from "@/components/ui/dialog";
 
 /* ─── PRICING TIERS DATA ─── */
 const subscriptionTiers = [
