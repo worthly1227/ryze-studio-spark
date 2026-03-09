@@ -41,6 +41,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   preSelectedAddOnQty = 0,
 }) => {
   const navigate = useNavigate();
+  const { setPlan } = usePlan();
   const [email, setEmail] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
