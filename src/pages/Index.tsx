@@ -498,7 +498,7 @@ const FactoryProofSection: React.FC = () => {
   const visible = showAll ? filtered : filtered.slice(0, 6);
 
   return (
-      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-muted/30 scroll-mt-20">
+      <section className="pt-6 sm:pt-10 pb-12 sm:pb-20 px-4 sm:px-6 bg-muted/30 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-3 sm:mb-4">Built for product brands like yours</h2>
@@ -833,10 +833,10 @@ const Index: React.FC = () => {
       </div>
 
       {/* Fade: background → muted */}
-      <div className="w-full h-16 sm:h-20" style={{ background: 'linear-gradient(to bottom, hsl(var(--background)), hsl(var(--muted)))' }} />
+      <div className="w-full h-6 sm:h-8" style={{ background: 'linear-gradient(to bottom, hsl(var(--background)), hsl(var(--muted)))' }} />
 
       {/* Brand Scroll Bar */}
-      <div className="w-full overflow-hidden py-6 sm:py-8 bg-muted">
+      <div className="w-full overflow-hidden py-3 sm:py-4 bg-muted">
         <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 35s linear infinite', width: 'max-content' }}>
           {[...Array(8)].map((_, i) => (
             <div key={i} className="flex items-center gap-6 sm:gap-10 px-4 sm:px-6 flex-shrink-0">
@@ -858,7 +858,7 @@ const Index: React.FC = () => {
       </div>
 
       {/* Fade: muted → background */}
-      <div className="w-full h-16 sm:h-20" style={{ background: 'linear-gradient(to bottom, hsl(var(--muted)), hsl(var(--background)))' }} />
+      <div className="w-full h-6 sm:h-8" style={{ background: 'linear-gradient(to bottom, hsl(var(--muted)), hsl(var(--background)))' }} />
 
       {/* Factory Proof */}
       <FactoryProofSection />
