@@ -757,7 +757,7 @@ const Index: React.FC = () => {
                 </svg>
               </div>
               <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3">
-                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">AI Powered Branding</span>
+                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg whitespace-nowrap">AI & Human Powered Branding</span>
               </div>
             </motion.div>
 
