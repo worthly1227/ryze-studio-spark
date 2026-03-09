@@ -490,7 +490,7 @@ const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
       <div className="px-3 py-2.5 flex items-center gap-3">
         <Heart className="w-5 h-5 text-destructive fill-destructive" />
         <button onClick={() => setShowComments(!showComments)} className="transition-colors cursor-pointer">
-          <MessageCircle className={cn("w-5 h-5", showComments ? "text-foreground" : "text-muted-foreground hover:text-foreground")} />
+          <MessageCircle className={`w-5 h-5 ${showComments ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`} />
         </button>
         <button onClick={handleShare} className="transition-colors cursor-pointer">
           <Send className="w-5 h-5 text-muted-foreground hover:text-foreground" />
