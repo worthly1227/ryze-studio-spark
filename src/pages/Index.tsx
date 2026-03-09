@@ -832,6 +832,28 @@ const Index: React.FC = () => {
         </Button>
       </div>
 
+      {/* Brand Scroll Bar */}
+      <div className="w-full overflow-hidden py-6 sm:py-8">
+        <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 35s linear infinite', width: 'max-content' }}>
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="flex items-center gap-6 sm:gap-10 px-4 sm:px-6 flex-shrink-0">
+              <span className="font-heading text-sm sm:text-lg font-bold tracking-[0.2em] uppercase text-foreground/70">Clenature</span>
+              <span className="text-muted-foreground/30">✦</span>
+              <span className="font-body text-base sm:text-xl font-light italic text-foreground/60">Hebab Essentials</span>
+              <span className="text-muted-foreground/30">✦</span>
+              <span className="font-heading text-sm sm:text-lg font-extrabold tracking-widest uppercase text-foreground/80">THE FACE SHOP</span>
+              <span className="text-muted-foreground/30">✦</span>
+              <span className="font-body text-base sm:text-xl font-semibold tracking-tight text-foreground/70" style={{ fontVariant: 'small-caps' }}>ANUA</span>
+              <span className="text-muted-foreground/30">✦</span>
+              <span className="font-heading text-sm sm:text-lg font-medium tracking-[0.15em] text-foreground/60">Shower Mate</span>
+              <span className="text-muted-foreground/30">✦</span>
+              <span className="font-body text-base sm:text-xl font-bold uppercase tracking-[0.3em] text-foreground/75">FROM THIS ISLAND</span>
+              <span className="text-muted-foreground/30">✦</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Factory Proof */}
       <FactoryProofSection />
 
