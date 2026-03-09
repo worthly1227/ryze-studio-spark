@@ -130,6 +130,7 @@ const subscriptionTiers = [
     competitorPrice: 6800,
     savingsPercent: "90%",
     features: [
+      { text: "180 AI Generation Credits", included: true },
       { text: "120 Final AI Image Downloads", included: true },
       { text: "40 Design Templates", included: true },
       { text: "2 × 30-sec UGC Videos", included: true },
