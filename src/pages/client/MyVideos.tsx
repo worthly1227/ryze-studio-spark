@@ -135,7 +135,7 @@ const MyVideos: React.FC = () => {
         <div>
           <h1 className="text-2xl sm:text-3xl font-heading font-bold">Video Library</h1>
           <p className="text-muted-foreground mt-1">
-            Search free stock videos powered by Pexels — preview, download, and use in your projects.
+            Search, preview, and download Pexels stock videos to use in your projects.
           </p>
         </div>
         <Badge variant={canDownload ? "default" : "destructive"} className="text-sm whitespace-nowrap mt-1">
