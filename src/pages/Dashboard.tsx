@@ -136,10 +136,10 @@ const Dashboard: React.FC = () => {
         {/* Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
           {[
-            { label: "Total Edits", value: "127", icon: Image, change: "+12%" },
+            { label: "Generation Credits", value: planFeatures?.generationCredits?.toString() ?? "0", icon: Zap, change: "" },
+            { label: "Final Downloads", value: planFeatures?.finalDownloads?.toString() ?? "0", icon: Image, change: "" },
             { label: "Views", value: "8.4K", icon: Eye, change: "+24%" },
             { label: "Engagement", value: "312%", icon: TrendingUp, change: "+8%" },
-            { label: "Credits Left", value: "2", icon: Zap, change: "" },
           ].map((m, i) => (
             <Card key={i}>
               <CardContent className="p-3 sm:p-5">
