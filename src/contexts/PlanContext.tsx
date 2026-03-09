@@ -36,7 +36,7 @@ const FEATURE_MATRIX: Record<Exclude<PlanName, null>, PlanFeatures> = {
   "Visual Starter Kit": {
     hasImageUpload: true, generationCredits: 35, finalDownloads: 20,
     hasTemplates: true, templateCount: 10,
-    hasShortFormVideo: false, videoCount: 0, hasUGC: false, ugcCount: 0,
+    hasShortFormVideo: true, videoCount: 3, hasUGC: false, ugcCount: 0,
     hasManagedPosting: false, hasPriorityProcessing: false,
     hasStrategySessions: false, strategyFrequency: null,
   },
@@ -64,7 +64,7 @@ const FEATURE_MATRIX: Record<Exclude<PlanName, null>, PlanFeatures> = {
   "Master Production": {
     hasImageUpload: true, generationCredits: 180, finalDownloads: 120,
     hasTemplates: true, templateCount: 40,
-    hasShortFormVideo: true, videoCount: 12, hasUGC: true, ugcCount: 2,
+    hasShortFormVideo: true, videoCount: 15, hasUGC: true, ugcCount: 2,
     hasManagedPosting: true, hasPriorityProcessing: true,
     hasStrategySessions: true, strategyFrequency: "quarterly",
   },
