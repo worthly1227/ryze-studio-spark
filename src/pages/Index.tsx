@@ -670,52 +670,135 @@ const Index: React.FC = () => {
         </AnimatePresence>
       </nav>
 
-      {/* Hero */}
-      <section className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="pt-4 sm:pt-8">
-            <div className="mb-6 sm:mb-8 inline-flex items-center bg-muted text-foreground border border-border font-heading text-xs tracking-wider px-3 sm:px-4 py-1.5 rounded-full">
-              🤦‍♂️ <span className="font-bold">Tired of Overpriced Agencies? Meet Ryze</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-[3.4rem] font-heading font-black tracking-tight leading-[1.1] mb-6 sm:mb-8">
-              Your On-Demand Creative Team<br className="hidden sm:block" />{" "}and AI Production Platform Starting at <span className="text-primary">$10 USD</span>
-            </h1>
-            <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-lg leading-relaxed">
-              We create distortion-free AI visuals, social content, UGC, and brand strategies so you can focus on pushing your business to the next level.
-            </p>
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
-              {[
-                { icon: Camera, text: "Studio-grade product shots" },
-                { icon: Wand2, text: "AI-powered, brand-matched" },
-                { icon: Rocket, text: "Delivered in days, not weeks" },
-                { icon: FileText, text: "Posts, reels, ads & more" },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 sm:gap-3 bg-card border border-border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3">
-                  <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
-                  <p className="text-xs sm:text-sm font-medium">{item.text}</p>
-                </div>
-              ))}
-            </div>
-            <Button size="lg" onClick={() => navigate("/book-demo")} className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary-pressed cyan-glow-sm font-heading text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 rounded-full mb-4 sm:mb-6">
-              Book your free strategy call <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-            <p className="text-xs sm:text-sm text-muted-foreground">Trusted by <strong className="text-foreground">1,800+</strong> growing brands  |  No contracts, cancel anytime</p>
-          </motion.div>
+      {/* Hero - Image Forward */}
+      <section className="pt-14 sm:pt-16">
+        {/* Hero Image with Overlay */}
+        <div className="relative w-full aspect-[4/3] sm:aspect-[16/7] overflow-hidden">
+          <img
+            src="/images/hero-collage.jpg"
+            alt="Premium product photography by Ryze Studios"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 sm:pb-14 px-4">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl sm:text-5xl md:text-6xl font-heading font-black text-white text-center leading-[1.1] mb-5 sm:mb-7 drop-shadow-lg"
+            >
+              Your On-Demand<br />Creative Team
+            </motion.h1>
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+              <Button
+                size="lg"
+                onClick={() => navigate("/plans")}
+                className="bg-primary text-primary-foreground hover:bg-primary-pressed font-heading text-sm sm:text-base px-8 sm:px-10 py-5 sm:py-6 rounded-full cyan-glow-sm uppercase tracking-wider"
+              >
+                Start for $10
+              </Button>
+            </motion.div>
+          </div>
+        </div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="hidden lg:block relative overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background/70 to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-            <div className="transform -rotate-12 origin-center scale-125 -translate-x-6">
-              <div className="grid grid-cols-2 gap-3">
-                <ScrollingColumn cards={col1Cards} speed={30} />
-                <ScrollingColumn cards={col2Cards} speed={35} reverse />
-              </div>
+        {/* Trust Bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="flex items-center justify-center gap-2 py-3 sm:py-4 bg-foreground/5 border-b border-border"
+        >
+          <span className="text-xs sm:text-sm text-muted-foreground">🛡️ Trusted by <strong className="text-foreground">1,800+</strong> growing brands</span>
+        </motion.div>
+      </section>
+
+      {/* Why Ryze Section */}
+      <section className="py-10 sm:py-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-6 sm:mb-10"
+          >
+            Why Ryze
+          </motion.h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            {/* Portfolio Cards */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="rounded-2xl overflow-hidden relative aspect-square"
+              >
+                <img src="/images/why-ryze-1.jpg" alt="AI Powered Branding" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-3 left-3">
+                  <Badge className="bg-primary/90 text-primary-foreground font-heading text-[10px] sm:text-xs">AI Powered Branding</Badge>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="rounded-2xl overflow-hidden relative aspect-square"
+              >
+                <img src="/images/why-ryze-2.jpg" alt="Fast Delivery" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-3 left-3">
+                  <Badge className="bg-primary/90 text-primary-foreground font-heading text-[10px] sm:text-xs">Fast Delivery</Badge>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
+
+            {/* Services List + Third Image */}
+            <div className="flex flex-col gap-4">
+              <div className="space-y-3 sm:space-y-4">
+                {[
+                  { icon: Camera, label: "Studio Product Shots" },
+                  { icon: Wand2, label: "AI Powered Branding" },
+                  { icon: Calendar, label: "Fast Delivery" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex items-center gap-3 sm:gap-4 py-2"
+                  >
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-muted border border-border flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
+                    </div>
+                    <span className="font-heading font-semibold text-sm sm:text-base">{item.label}</span>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="rounded-2xl overflow-hidden flex-1 min-h-[180px]"
+              >
+                <img src="/images/why-ryze-3.jpg" alt="Brand packaging designs" className="w-full h-full object-cover" />
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* Sticky Bottom CTA - Mobile */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden p-3 bg-background/90 backdrop-blur-md border-t border-border">
+        <Button
+          onClick={() => navigate("/book-demo")}
+          className="w-full bg-primary text-primary-foreground hover:bg-primary-pressed font-heading text-sm py-5 rounded-full cyan-glow-sm uppercase tracking-wider"
+        >
+          Book for your free strategy call
+        </Button>
+      </div>
 
       {/* Factory Proof */}
       <FactoryProofSection />
