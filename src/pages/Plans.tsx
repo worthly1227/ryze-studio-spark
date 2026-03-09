@@ -58,6 +58,7 @@ const plans = [
     savingsPercent: "87%",
     canContact: false,
     features: [
+      { text: "35 AI Generation Credits", included: true },
       { text: "20 Final AI Image Downloads", included: true },
       { text: "10 Ready-to-Use Design Templates", included: true },
       { text: "Standard Processing", included: true },
