@@ -255,6 +255,16 @@ const BeforeAfterSlider: React.FC = () => {
   );
 };
 
+/* Hero showcase cards for mobile carousel */
+const heroShowcaseCards = [
+  { icon: Camera, label: "AI Product Shot", badge: "AI Product Shot", gradient: "bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700" },
+  { icon: Play, label: "Studio-grade product shots", badge: "", gradient: "bg-gradient-to-br from-amber-600 via-orange-700 to-stone-800" },
+  { icon: Wand2, label: "Animated Logo", badge: "AI Product Shot", gradient: "bg-gradient-to-br from-cyan-500 via-teal-600 to-emerald-700" },
+  { icon: ImageIcon, label: "Social Media Post", badge: "Brand-Matched", gradient: "bg-gradient-to-br from-rose-500 via-pink-600 to-fuchsia-700" },
+  { icon: Rocket, label: "Short Form Video", badge: "Trending", gradient: "bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700" },
+  { icon: PenTool, label: "Brand Kit Design", badge: "", gradient: "bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-700" },
+];
+
 /* Service preview cards for scrolling hero */
 const ServiceCard: React.FC<{ icon: React.ReactNode; label: string; children: React.ReactNode }> = ({ icon, label, children }) => (
   <div className="rounded-2xl border border-border bg-card shadow-sm flex-shrink-0 overflow-hidden">
