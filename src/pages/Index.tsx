@@ -498,6 +498,7 @@ const FactoryProofSection: React.FC = () => {
   const visible = showAll ? filtered : filtered.slice(0, 6);
 
   return (
+    <>
       {/* Brand Scroll Bar */}
       <div className="w-full overflow-hidden py-6 sm:py-8 bg-muted/30">
         <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 35s linear infinite', width: 'max-content' }}>
