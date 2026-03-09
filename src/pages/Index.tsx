@@ -888,7 +888,8 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
       animate={phase === 3 ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
-      <AnimatePresence mode="wait">
+      {/* Hidden preload image */}
+      <img src={ryzeLogo} alt="" className="absolute w-0 h-0 opacity-0 pointer-events-none" aria-hidden="true" />
         {phase === 0 && (
           <motion.p
             key="hook"
