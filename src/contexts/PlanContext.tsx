@@ -43,7 +43,7 @@ const FEATURE_MATRIX: Record<Exclude<PlanName, null>, PlanFeatures> = {
   "Viral Growth": {
     hasImageUpload: true, generationCredits: 60, finalDownloads: 40,
     hasTemplates: true, templateCount: 15,
-    hasShortFormVideo: true, videoCount: 1, hasUGC: false, ugcCount: 0,
+    hasShortFormVideo: true, videoCount: 3, hasUGC: false, ugcCount: 0,
     hasManagedPosting: false, hasPriorityProcessing: false,
     hasStrategySessions: false, strategyFrequency: null,
   },
