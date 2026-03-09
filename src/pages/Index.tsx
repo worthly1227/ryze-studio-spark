@@ -890,6 +890,7 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
     >
       {/* Hidden preload image */}
       <img src={ryzeLogo} alt="" className="absolute w-0 h-0 opacity-0 pointer-events-none" aria-hidden="true" />
+      <AnimatePresence mode="wait">
         {phase === 0 && (
           <motion.p
             key="hook"
@@ -918,18 +919,20 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
           >
             <img src={ryzeLogo} alt="Ryze Studios" className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl object-cover" />
             <span className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl flex items-center gap-0">
-              <AnimatePresence>
-                {phase === 1 && (
-                  <motion.span
-                    key="meet"
-                    exit={{ opacity: 0, width: 0, marginRight: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="inline-block mr-2 sm:mr-3 overflow-hidden whitespace-nowrap"
-                  >
-                    Meet
-                  </motion.span>
-                )}
-              </AnimatePresence>
+              <span>
+                <AnimatePresence>
+                  {phase === 1 && (
+                    <motion.span
+                      key="meet"
+                      exit={{ opacity: 0, width: 0, marginRight: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="inline-block mr-2 sm:mr-3 overflow-hidden whitespace-nowrap"
+                    >
+                      Meet
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </span>
               Ryze Studios.
             </span>
           </motion.div>
