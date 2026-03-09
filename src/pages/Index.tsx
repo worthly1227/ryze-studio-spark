@@ -81,6 +81,7 @@ const subscriptionTiers = [
       { text: "Email Support", included: true },
       { text: "UGC Videos", included: false },
       { text: "Managed Social Posting", included: false },
+      { text: "Priority Processing", included: false },
       { text: "Strategy Sessions", included: false },
     ],
   },
