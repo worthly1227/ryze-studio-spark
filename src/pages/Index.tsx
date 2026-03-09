@@ -465,26 +465,67 @@ const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
   );
 };
 
-const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => (
-  <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-    <div className="flex items-center gap-2 px-3 py-2.5">
-      <img src={ryzeLogo} alt="Ryze" className="w-7 h-7 rounded-full object-cover" />
-      <span className="text-sm font-semibold font-heading">Ryze Studios</span>
-      <span className="text-muted-foreground ml-auto text-sm">···</span>
+const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
+  const [showComments, setShowComments] = useState(false);
+
+  const handleShare = async () => {
+    const shareText = `✨ AI Prompt: "${item.prompt}"\n\n🚀 Try Ryze Studios today — studio-quality product visuals starting at just $10 USD.\n\nhttps://ryzestudios.com`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'Ryze Studios — AI Product Visuals', text: shareText, url: 'https://ryzestudios.com' });
+      } catch { /* user cancelled */ }
+    } else {
+      await navigator.clipboard.writeText(shareText);
+    }
+  };
+
+  return (
+    <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex items-center gap-2 px-3 py-2.5">
+        <img src={ryzeLogo} alt="Ryze" className="w-7 h-7 rounded-full object-cover" />
+        <span className="text-sm font-semibold font-heading">Ryze Studios</span>
+        <span className="text-muted-foreground ml-auto text-sm">···</span>
+      </div>
+      <MiniSlider item={item} />
+      <div className="px-3 py-2.5 flex items-center gap-3">
+        <Heart className="w-5 h-5 text-destructive fill-destructive" />
+        <button onClick={() => setShowComments(!showComments)} className="transition-colors cursor-pointer">
+          <MessageCircle className={cn("w-5 h-5", showComments ? "text-foreground" : "text-muted-foreground hover:text-foreground")} />
+        </button>
+        <button onClick={handleShare} className="transition-colors cursor-pointer">
+          <Send className="w-5 h-5 text-muted-foreground hover:text-foreground" />
+        </button>
+        <Bookmark className="w-5 h-5 text-muted-foreground ml-auto" />
+      </div>
+      <AnimatePresence>
+        {showComments && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden border-t border-border"
+          >
+            <div className="px-3 py-3 space-y-2">
+              <div className="flex gap-2">
+                <img src={ryzeLogo} alt="Ryze" className="w-6 h-6 rounded-full object-cover mt-0.5 flex-shrink-0" />
+                <div>
+                  <span className="text-xs font-semibold font-heading">ryzestudios</span>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                    <span className="font-medium text-foreground">Prompt:</span> "{item.prompt}"
+                  </p>
+                </div>
+              </div>
+              <p className="text-[11px] text-muted-foreground/70 uppercase tracking-wide">
+                Powered by Ryze AI · Try it for $10 USD
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-    <MiniSlider item={item} />
-    <div className="px-3 py-2.5 flex items-center gap-3">
-      <Heart className="w-5 h-5 text-destructive fill-destructive" />
-      <button onClick={() => window.open('https://www.instagram.com/ryzestudios/', '_blank')} className="hover:text-foreground transition-colors cursor-pointer">
-        <MessageCircle className="w-5 h-5 text-muted-foreground hover:text-foreground" />
-      </button>
-      <button onClick={() => { if (navigator.share) { navigator.share({ title: 'Ryze Studios', url: window.location.href }); } else { navigator.clipboard.writeText(window.location.href); } }} className="hover:text-foreground transition-colors cursor-pointer">
-        <Send className="w-5 h-5 text-muted-foreground hover:text-foreground" />
-      </button>
-      <Bookmark className="w-5 h-5 text-muted-foreground ml-auto" />
-    </div>
-  </div>
-);
+  );
+};
 
 const FactoryProofSection: React.FC = () => {
   const [activeType, setActiveType] = useState("Posts");
