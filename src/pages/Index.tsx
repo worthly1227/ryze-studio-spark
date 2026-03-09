@@ -692,7 +692,7 @@ const Index: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl sm:text-5xl md:text-6xl font-heading font-black text-white leading-[1.05] drop-shadow-lg"
+                className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-black text-white leading-[1.05] drop-shadow-lg"
               >
                 Your On-Demand<br />Creative Team
               </motion.h1>
