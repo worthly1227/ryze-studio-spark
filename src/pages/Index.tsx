@@ -610,6 +610,125 @@ const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
   );
 };
 
+const DesignVaultCard: React.FC<{ gradient: string; emoji: string; index: number; industry: string }> = ({ gradient, emoji, index, industry }) => {
+  const [liked, setLiked] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const { toast } = useToast();
+
+  const shareText = `✨ Check out this ${industry} template from Ryze Studio's Design Vault!\n\n🚀 Try Ryze Studios today — studio-quality product visuals starting at just $10 USD.\n\nhttps://ryzestudios.com`;
+  const siteUrl = "https://ryzestudios.com";
+
+  const handleShare = async () => {
+    const isMobile = 'ontouchstart' in window && window.innerWidth < 768;
+    if (isMobile && navigator.share) {
+      try {
+        await navigator.share({ title: 'Ryze Studios — Design Vault', text: shareText, url: siteUrl });
+      } catch { /* user cancelled */ }
+    } else {
+      setShowShareModal(true);
+    }
+  };
+
+  const handleCopyLink = async () => {
+    await navigator.clipboard.writeText(shareText);
+    toast({ title: "Copied!", description: "Share text copied to clipboard." });
+    setShowShareModal(false);
+  };
+
+  const shareOptions = [
+    { label: "Copy Link", icon: <Copy className="w-6 h-6" />, onClick: handleCopyLink },
+    { label: "WhatsApp", icon: <WhatsAppIcon />, onClick: () => { window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, "_blank"); setShowShareModal(false); } },
+    { label: "iMessage", icon: <IMessageIcon />, onClick: () => { window.open(`sms:&body=${encodeURIComponent(shareText)}`); setShowShareModal(false); } },
+    { label: "Facebook", icon: <Facebook className="w-6 h-6" />, onClick: () => { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}&quote=${encodeURIComponent(shareText)}`, "_blank"); setShowShareModal(false); } },
+    { label: "Email", icon: <Mail className="w-6 h-6" />, onClick: () => { window.open(`mailto:?subject=${encodeURIComponent("Check out Ryze Studios")}&body=${encodeURIComponent(shareText)}`); setShowShareModal(false); } },
+  ];
+
+  return (
+    <>
+      <motion.div key={`${industry}-${index}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.03 }}>
+        <div className="rounded-xl overflow-hidden border border-border bg-card">
+          <div className="flex items-center gap-1.5 px-2 py-1.5">
+            <img src={ryzeLogo} alt="Ryze" className="w-4 h-4 rounded-full object-cover" />
+            <span className="text-[10px] font-semibold font-heading">Ryze Studios</span>
+            <span className="text-muted-foreground ml-auto text-[10px]">···</span>
+          </div>
+          <div className={`aspect-square bg-gradient-to-br ${gradient} flex items-center justify-center`}>
+            <span className="text-white text-3xl drop-shadow-lg">{emoji}</span>
+          </div>
+          <div className="p-1.5 flex items-center gap-1.5">
+            <button onClick={() => setLiked(!liked)} className="transition-colors cursor-pointer">
+              <Heart className={`w-3 h-3 ${liked ? "text-destructive fill-destructive" : "text-muted-foreground hover:text-foreground"}`} />
+            </button>
+            <button onClick={() => setShowComments(!showComments)} className="transition-colors cursor-pointer">
+              <MessageCircle className={`w-3 h-3 ${showComments ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`} />
+            </button>
+            <button onClick={handleShare} className="transition-colors cursor-pointer">
+              <Send className="w-3 h-3 text-muted-foreground hover:text-foreground" />
+            </button>
+            <Bookmark className="w-3 h-3 text-muted-foreground ml-auto" />
+          </div>
+          <AnimatePresence>
+            {showComments && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden border-t border-border"
+              >
+                <div className="px-2 py-2 space-y-1">
+                  <div className="flex gap-1.5">
+                    <img src={ryzeLogo} alt="Ryze" className="w-4 h-4 rounded-full object-cover mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="text-[9px] font-semibold font-heading">ryzestudios</span>
+                      <p className="text-[9px] text-muted-foreground mt-0.5 leading-relaxed">
+                        {industry} template — crafted for your brand ✨
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-[8px] text-muted-foreground/70 uppercase tracking-wide">
+                    Powered by Ryze AI · Browse the full vault
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.div>
+
+      {/* Share Modal */}
+      <Dialog open={showShareModal} onOpenChange={setShowShareModal}>
+        <DialogContent className="w-[90vw] max-w-sm rounded-3xl border border-border/50 bg-popover backdrop-blur-xl shadow-2xl p-0 [&>button:last-child]:hidden">
+          <button
+            onClick={() => setShowShareModal(false)}
+            className="absolute right-4 top-4 z-10 rounded-full w-8 h-8 flex items-center justify-center opacity-60 hover:opacity-100 hover:bg-muted transition-all text-muted-foreground"
+          >
+            <X className="h-4 w-4" />
+          </button>
+          <div className="px-6 pt-7 pb-1 text-center">
+            <h3 className="text-lg font-heading font-bold text-foreground tracking-tight">Share this post</h3>
+          </div>
+          <div className="grid grid-cols-5 gap-3 px-6 py-6">
+            {shareOptions.map((opt) => (
+              <button
+                key={opt.label}
+                onClick={opt.onClick}
+                className="flex flex-col items-center gap-2.5 group cursor-pointer"
+              >
+                <div className="w-14 h-14 rounded-full bg-secondary border border-border/40 flex items-center justify-center text-foreground group-hover:bg-accent group-hover:border-primary/30 group-hover:shadow-md transition-all duration-200">
+                  {opt.icon}
+                </div>
+                <span className="text-[11px] text-muted-foreground group-hover:text-foreground font-medium transition-colors">{opt.label}</span>
+              </button>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
 const FactoryProofSection: React.FC = () => {
   const [activeType, setActiveType] = useState("Posts");
   const [activeSub, setActiveSub] = useState("Featured");
@@ -1195,24 +1314,7 @@ const Index: React.FC = () => {
                 "from-indigo-300 to-blue-600", "from-red-300 to-rose-500", "from-teal-300 to-cyan-500",
               ];
               return (
-                <motion.div key={`${activeGridIndustry}-${i}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.03 }}>
-                    <div className="rounded-xl overflow-hidden border border-border bg-card">
-                      <div className="flex items-center gap-1.5 px-2 py-1.5">
-                        <img src={ryzeLogo} alt="Ryze" className="w-4 h-4 rounded-full object-cover" />
-                        <span className="text-[10px] font-semibold font-heading">Ryze Studios</span>
-                        <span className="text-muted-foreground ml-auto text-[10px]">···</span>
-                      </div>
-                      <div className={`aspect-square bg-gradient-to-br ${gradients[i]} flex items-center justify-center`}>
-                        <span className="text-white text-3xl drop-shadow-lg">{gridEmojis[activeGridIndustry]}</span>
-                      </div>
-                      <div className="p-1.5 flex items-center gap-1.5">
-                        <Heart className="w-3 h-3 text-destructive fill-destructive" />
-                        <MessageCircle className="w-3 h-3 text-muted-foreground" />
-                        <Send className="w-3 h-3 text-muted-foreground" />
-                        <Bookmark className="w-3 h-3 text-muted-foreground ml-auto" />
-                      </div>
-                    </div>
-                </motion.div>
+                <DesignVaultCard key={`${activeGridIndustry}-${i}`} gradient={gradients[i]} emoji={gridEmojis[activeGridIndustry]} index={i} industry={activeGridIndustry} />
               );
             })}
           </div>
