@@ -15,7 +15,7 @@ import AuthenticatedLayout from "./components/layout/AuthenticatedLayout";
 import AdminLayout from "./components/layout/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import AIFactory from "./pages/AIFactory";
-import EntryLevelSession from "./pages/EntryLevelSession";
+import GenerateSession from "./pages/GenerateSession";
 import Marketplace from "./pages/Marketplace";
 import Templates from "./pages/Templates";
 import StatusTracker from "./pages/StatusTracker";
