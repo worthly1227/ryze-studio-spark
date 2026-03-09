@@ -11,6 +11,8 @@ export type PlanName =
 
 export interface PlanFeatures {
   hasImageUpload: boolean;
+  generationCredits: number;
+  finalDownloads: number;
   hasTemplates: boolean;
   templateCount: number;
   hasShortFormVideo: boolean;
@@ -18,6 +20,7 @@ export interface PlanFeatures {
   hasUGC: boolean;
   ugcCount: number;
   hasManagedPosting: boolean;
+  hasPriorityProcessing: boolean;
   hasStrategySessions: boolean;
   strategyFrequency: string | null;
 }
