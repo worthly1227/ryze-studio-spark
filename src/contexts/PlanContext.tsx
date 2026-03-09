@@ -36,7 +36,7 @@ const FEATURE_MATRIX: Record<Exclude<PlanName, null>, PlanFeatures> = {
   "Visual Starter Kit": {
     hasImageUpload: true, generationCredits: 35, finalDownloads: 20,
     hasTemplates: true, templateCount: 10,
-    hasShortFormVideo: false, videoCount: 0, hasUGC: false, ugcCount: 0,
+    hasShortFormVideo: true, videoCount: 3, hasUGC: false, ugcCount: 0,
     hasManagedPosting: false, hasPriorityProcessing: false,
     hasStrategySessions: false, strategyFrequency: null,
   },
