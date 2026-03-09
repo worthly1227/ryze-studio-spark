@@ -579,25 +579,42 @@ const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
 
       {/* Share Modal */}
       <Dialog open={showShareModal} onOpenChange={setShowShareModal}>
-        <DialogContent className="sm:max-w-sm rounded-2xl border border-border bg-card/95 backdrop-blur-xl shadow-2xl p-0 gap-0 [&>button]:text-muted-foreground">
-          <DialogHeader className="px-6 pt-6 pb-2">
-            <DialogTitle className="text-center text-lg font-heading font-bold">Share this post</DialogTitle>
-          </DialogHeader>
-          <div className="grid grid-cols-5 gap-2 px-6 py-6">
-            {shareOptions.map((opt) => (
+        <DialogPortal>
+          <DialogOverlay className="bg-black/40 backdrop-blur-sm" />
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-[90vw] max-w-sm rounded-2xl border border-border bg-card/95 backdrop-blur-xl shadow-2xl p-0"
+            >
               <button
-                key={opt.label}
-                onClick={opt.onClick}
-                className="flex flex-col items-center gap-2 group cursor-pointer"
+                onClick={() => setShowShareModal(false)}
+                className="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100 transition-opacity text-muted-foreground"
               >
-                <div className="w-12 h-12 rounded-full bg-muted/60 backdrop-blur-sm border border-border flex items-center justify-center text-foreground group-hover:bg-muted transition-colors">
-                  {opt.icon}
-                </div>
-                <span className="text-[10px] text-muted-foreground font-medium">{opt.label}</span>
+                <X className="h-4 w-4" />
               </button>
-            ))}
+              <div className="px-6 pt-6 pb-2 text-center">
+                <h3 className="text-lg font-heading font-bold text-foreground">Share this post</h3>
+              </div>
+              <div className="grid grid-cols-5 gap-2 px-6 py-6">
+                {shareOptions.map((opt) => (
+                  <button
+                    key={opt.label}
+                    onClick={opt.onClick}
+                    className="flex flex-col items-center gap-2 group cursor-pointer"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-muted/60 backdrop-blur-sm border border-border flex items-center justify-center text-foreground group-hover:bg-muted transition-colors">
+                      {opt.icon}
+                    </div>
+                    <span className="text-[10px] text-muted-foreground font-medium">{opt.label}</span>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </DialogContent>
+        </DialogPortal>
       </Dialog>
     </>
   );
