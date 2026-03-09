@@ -50,13 +50,19 @@ const editingTools = [
 const AIFactory: React.FC = () => {
   const [prompt, setPrompt] = useState("");
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [dragOver, setDragOver] = useState(false);
 
-  return (
-    <div className="max-w-7xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-3xl font-heading font-bold">AI Factory</h1>
-        <p className="text-muted-foreground mt-1">Transform your product visuals with AI-powered tools</p>
-      </div>
+  const handleFileDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setDragOver(false);
+    const file = e.dataTransfer.files[0];
+    if (file) setUploadedImage(file.name);
+  };
+
+  const handleFileSelect = () => {
+    setUploadedImage(`product-image-${Date.now()}.jpg`);
+  };
 
       {/* Prompt Input Section */}
       <Card className="border-primary/20">
