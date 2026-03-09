@@ -487,7 +487,8 @@ const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
   const siteUrl = "https://ryzestudios.com";
 
   const handleShare = async () => {
-    if (navigator.share) {
+    const isMobile = 'ontouchstart' in window && window.innerWidth < 768;
+    if (isMobile && navigator.share) {
       try {
         await navigator.share({ title: 'Ryze Studios — AI Product Visuals', text: shareText, url: siteUrl });
       } catch { /* user cancelled */ }
