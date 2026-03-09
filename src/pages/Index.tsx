@@ -673,19 +673,16 @@ const Index: React.FC = () => {
       {/* Hero - 2x2 Photo Grid */}
       <section className="pt-14 sm:pt-16">
         <div className="relative max-w-5xl mx-auto">
-          {/* 2x2 Image Grid */}
+          {/* 3-image Hero Grid */}
           <div className="grid grid-cols-2 w-full">
             <div className="aspect-square sm:aspect-[4/3] overflow-hidden">
-              <img src="/images/hero-1.jpg" alt="Product photography" className="w-full h-full object-cover" />
+              <img src="/images/hero-person-1.jpg" alt="Creative professional" className="w-full h-full object-cover" />
             </div>
             <div className="aspect-square sm:aspect-[4/3] overflow-hidden">
-              <img src="/images/hero-2.jpg" alt="Product photography" className="w-full h-full object-cover" />
+              <img src="/images/hero-group.jpg" alt="Creative team laughing" className="w-full h-full object-cover" />
             </div>
-            <div className="aspect-square sm:aspect-[4/3] overflow-hidden">
-              <img src="/images/hero-3.jpg" alt="Product photography" className="w-full h-full object-cover" />
-            </div>
-            <div className="aspect-square sm:aspect-[4/3] overflow-hidden">
-              <img src="/images/hero-4.jpg" alt="Product photography" className="w-full h-full object-cover" />
+            <div className="col-span-2 aspect-[2/1] sm:aspect-[3/1] overflow-hidden">
+              <img src="/images/hero-person-2.jpg" alt="Brand entrepreneur" className="w-full h-full object-cover" />
             </div>
           </div>
           {/* Headline Overlay - centered on grid */}
