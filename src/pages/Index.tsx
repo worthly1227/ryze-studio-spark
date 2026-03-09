@@ -40,6 +40,7 @@ const subscriptionTiers = [
       { text: "Short Form Videos", included: false },
       { text: "UGC Videos", included: false },
       { text: "Managed Social Posting", included: false },
+      { text: "Priority Processing", included: false },
       { text: "Strategy Sessions", included: false },
     ],
   },
@@ -51,6 +52,7 @@ const subscriptionTiers = [
     competitorPrice: 870,
     savingsPercent: "87%",
     features: [
+      { text: "35 AI Generation Credits", included: true },
       { text: "20 Final AI Image Downloads", included: true },
       { text: "10 Ready-to-Use Design Templates", included: true },
       { text: "Standard Processing", included: true },
