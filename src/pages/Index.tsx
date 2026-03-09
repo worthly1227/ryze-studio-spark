@@ -899,8 +899,7 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{
-              enter: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
-              duration: 0.5,
+              duration: 0.6,
               ease: [0.25, 0.1, 0.25, 1],
             }}
             className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl text-center px-6 max-w-3xl leading-tight"
