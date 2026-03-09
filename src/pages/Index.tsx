@@ -765,7 +765,7 @@ const Index: React.FC = () => {
                     <CardTitle className="font-heading text-sm">{tier.name}</CardTitle>
                     {tier.competitorPrice && (
                       <div className="mt-1">
-                        <span className="text-[10px] text-muted-foreground">Market price: <span className="line-through">${tier.competitorPrice}</span></span>
+                        <span className="text-[10px] text-muted-foreground">Competitor's price: <span className="line-through">${tier.competitorPrice}</span></span>
                       </div>
                     )}
                     <div className="mt-0.5">
