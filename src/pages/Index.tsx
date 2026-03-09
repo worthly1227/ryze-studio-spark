@@ -999,7 +999,7 @@ const Index: React.FC = () => {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
           <div className="flex items-center gap-4 sm:gap-6">
-            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2">
+            <button onClick={handleLogoClick} className="flex items-center gap-2">
               <div ref={navLogoRef} className={`flex items-center gap-2 ${showIntro ? 'opacity-0' : 'opacity-100'} transition-opacity`}>
                 <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-cover flex-shrink-0" />
                 <span className="font-heading font-bold text-lg sm:text-xl tracking-tight">Ryze Studios</span>
