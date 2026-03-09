@@ -832,8 +832,11 @@ const Index: React.FC = () => {
         </Button>
       </div>
 
+      {/* Fade: background → muted */}
+      <div className="w-full h-12 sm:h-16 bg-gradient-to-b from-background to-muted/50" />
+
       {/* Brand Scroll Bar */}
-      <div className="w-full overflow-hidden py-6 sm:py-8">
+      <div className="w-full overflow-hidden py-6 sm:py-8 bg-muted/50">
         <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 35s linear infinite', width: 'max-content' }}>
           {[...Array(8)].map((_, i) => (
             <div key={i} className="flex items-center gap-6 sm:gap-10 px-4 sm:px-6 flex-shrink-0">
@@ -853,6 +856,9 @@ const Index: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* Fade: muted → background */}
+      <div className="w-full h-12 sm:h-16 bg-gradient-to-b from-muted/50 to-background" />
 
       {/* Factory Proof */}
       <FactoryProofSection />
