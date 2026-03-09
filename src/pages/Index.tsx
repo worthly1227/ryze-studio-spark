@@ -18,6 +18,7 @@ import ryzeLogo from "@/assets/ryze-logo.jpeg";
 import CheckoutModal from "@/components/CheckoutModal";
 import EntryLevelPaymentModal from "@/components/EntryLevelPaymentModal";
 import CalendlyModal from "@/components/CalendlyModal";
+import BalloonDivider from "@/components/BalloonDivider";
 import { useToast } from "@/hooks/use-toast";
 
 /* ─── PRICING TIERS DATA ─── */
