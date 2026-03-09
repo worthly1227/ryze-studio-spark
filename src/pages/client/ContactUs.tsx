@@ -70,7 +70,7 @@ const ContactUs: React.FC = () => {
       <div>
         <h1 className="text-2xl sm:text-3xl font-heading font-bold">Contact Us</h1>
         <p className="text-muted-foreground mt-1">
-          Reach out through the support channels included in your plan.
+          We are here to help, so please reach out via the support channels in your plan.
         </p>
       </div>
 
