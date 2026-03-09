@@ -946,10 +946,20 @@ const Index: React.FC = () => {
   const [showIntro, setShowIntro] = useState(() => !sessionStorage.getItem('ryze_intro_shown'));
   const [introComplete, setIntroComplete] = useState(() => !!sessionStorage.getItem('ryze_intro_shown'));
   const navLogoRef = useRef<HTMLDivElement>(null);
+  const hookIndexRef = useRef(Math.floor(Math.random() * HOOKS.length));
+  const [currentHook, setCurrentHook] = useState(HOOKS[hookIndexRef.current]);
 
   const handleIntroComplete = React.useCallback(() => {
     setShowIntro(false);
     setIntroComplete(true);
+  }, []);
+
+  const handleLogoClick = React.useCallback(() => {
+    hookIndexRef.current = (hookIndexRef.current + 1) % HOOKS.length;
+    setCurrentHook(HOOKS[hookIndexRef.current]);
+    setShowIntro(true);
+    setIntroComplete(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const handleTierClick = (tier: typeof subscriptionTiers[0]) => {
