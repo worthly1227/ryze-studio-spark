@@ -966,13 +966,18 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Brand Intro Animation */}
+      {showIntro && <BrandIntro onComplete={handleIntroComplete} navLogoRef={navLogoRef} />}
+
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
           <div className="flex items-center gap-4 sm:gap-6">
             <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2">
-              <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-cover flex-shrink-0" />
-              <span className="font-heading font-bold text-lg sm:text-xl tracking-tight">Ryze Studios</span>
+              <div ref={navLogoRef} className={`flex items-center gap-2 ${showIntro ? 'opacity-0' : 'opacity-100'} transition-opacity`}>
+                <img src={ryzeLogo} alt="Ryze Studios" className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-cover flex-shrink-0" />
+                <span className="font-heading font-bold text-lg sm:text-xl tracking-tight">Ryze Studios</span>
+              </div>
             </button>
             <div className="hidden md:flex items-center gap-5 text-sm font-medium text-muted-foreground">
               <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-foreground transition-colors">Services</button>
