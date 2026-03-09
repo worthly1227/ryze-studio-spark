@@ -819,9 +819,6 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* Divider before Built for Product Brands */}
-      <div className="w-full border-t border-border" />
-
       {/* Sticky Bottom CTA - Mobile */}
       <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden p-3 bg-background/90 backdrop-blur-md border-t border-border">
         <Button
@@ -832,33 +829,29 @@ const Index: React.FC = () => {
         </Button>
       </div>
 
-      {/* Fade: background → muted */}
-      <div className="w-full h-6 sm:h-8" style={{ background: 'linear-gradient(to bottom, hsl(var(--background)), hsl(var(--muted)))' }} />
-
       {/* Brand Scroll Bar */}
-      <div className="w-full overflow-hidden py-3 sm:py-4 bg-muted">
+      <div className="w-full overflow-hidden py-2 sm:py-3 relative">
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-24 z-10" style={{ background: 'linear-gradient(to right, hsl(var(--background)), transparent)' }} />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-24 z-10" style={{ background: 'linear-gradient(to left, hsl(var(--background)), transparent)' }} />
         <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 35s linear infinite', width: 'max-content' }}>
           {[...Array(8)].map((_, i) => (
             <div key={i} className="flex items-center gap-6 sm:gap-10 px-4 sm:px-6 flex-shrink-0">
-              <span className="font-heading text-sm sm:text-lg font-bold tracking-[0.2em] uppercase text-foreground/70">Clenature</span>
-              <span className="text-muted-foreground/30">✦</span>
-              <span className="font-body text-base sm:text-xl font-light italic text-foreground/60">Hebab Essentials</span>
-              <span className="text-muted-foreground/30">✦</span>
-              <span className="font-heading text-sm sm:text-lg font-extrabold tracking-widest uppercase text-foreground/80">THE FACE SHOP</span>
-              <span className="text-muted-foreground/30">✦</span>
-              <span className="font-body text-base sm:text-xl font-semibold tracking-tight text-foreground/70" style={{ fontVariant: 'small-caps' }}>ANUA</span>
-              <span className="text-muted-foreground/30">✦</span>
-              <span className="font-heading text-sm sm:text-lg font-medium tracking-[0.15em] text-foreground/60">Shower Mate</span>
-              <span className="text-muted-foreground/30">✦</span>
-              <span className="font-body text-base sm:text-xl font-bold uppercase tracking-[0.3em] text-foreground/75">FROM THIS ISLAND</span>
-              <span className="text-muted-foreground/30">✦</span>
+              <span className="font-heading text-sm sm:text-lg font-bold tracking-[0.2em] uppercase text-primary">Clenature</span>
+              <span className="text-primary/30">✦</span>
+              <span className="font-body text-base sm:text-xl font-light italic text-accent-foreground">Hebab Essentials</span>
+              <span className="text-primary/30">✦</span>
+              <span className="font-heading text-sm sm:text-lg font-extrabold tracking-widest uppercase text-primary/80">THE FACE SHOP</span>
+              <span className="text-primary/30">✦</span>
+              <span className="font-body text-base sm:text-xl font-semibold tracking-tight text-accent-foreground/80" style={{ fontVariant: 'small-caps' }}>ANUA</span>
+              <span className="text-primary/30">✦</span>
+              <span className="font-heading text-sm sm:text-lg font-medium tracking-[0.15em] text-primary/70">Shower Mate</span>
+              <span className="text-primary/30">✦</span>
+              <span className="font-body text-base sm:text-xl font-bold uppercase tracking-[0.3em] text-accent-foreground/90">FROM THIS ISLAND</span>
+              <span className="text-primary/30">✦</span>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Fade: muted → background */}
-      <div className="w-full h-6 sm:h-8" style={{ background: 'linear-gradient(to bottom, hsl(var(--muted)), hsl(var(--background)))' }} />
 
       {/* Factory Proof */}
       <FactoryProofSection />
