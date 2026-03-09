@@ -720,7 +720,7 @@ const Index: React.FC = () => {
 
         {/* Scrolling Trust Bar */}
         <div className="overflow-hidden py-3 bg-muted/50 border-y border-border">
-          <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 25s linear infinite', width: 'max-content' }}>
+          <div className="flex whitespace-nowrap" style={{ animation: 'scroll-left 45s linear infinite', width: 'max-content' }}>
             {[...Array(8)].map((_, i) => (
               <div key={i} className="flex items-center gap-8 px-6 flex-shrink-0">
                 <span className="text-xs sm:text-sm text-muted-foreground">🛡️ Trusted by <strong className="text-foreground">1,800+</strong> growing brands</span>
