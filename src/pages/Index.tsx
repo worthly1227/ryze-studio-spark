@@ -580,27 +580,27 @@ const ProofCard: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
 
       {/* Share Modal */}
       <Dialog open={showShareModal} onOpenChange={setShowShareModal}>
-        <DialogContent className="w-[90vw] max-w-sm rounded-2xl border border-border bg-card/95 backdrop-blur-xl shadow-2xl p-0 [&>button:last-child]:hidden">
+        <DialogContent className="w-[90vw] max-w-sm rounded-3xl border border-border/50 bg-popover backdrop-blur-xl shadow-2xl p-0 [&>button:last-child]:hidden">
           <button
             onClick={() => setShowShareModal(false)}
-            className="absolute right-4 top-4 z-10 rounded-sm opacity-70 hover:opacity-100 transition-opacity text-muted-foreground"
+            className="absolute right-4 top-4 z-10 rounded-full w-8 h-8 flex items-center justify-center opacity-60 hover:opacity-100 hover:bg-muted transition-all text-muted-foreground"
           >
             <X className="h-4 w-4" />
           </button>
-          <div className="px-6 pt-6 pb-2 text-center">
-            <h3 className="text-lg font-heading font-bold text-foreground">Share this post</h3>
+          <div className="px-6 pt-7 pb-1 text-center">
+            <h3 className="text-lg font-heading font-bold text-foreground tracking-tight">Share this post</h3>
           </div>
-          <div className="grid grid-cols-5 gap-2 px-6 py-6">
+          <div className="grid grid-cols-5 gap-3 px-6 py-6">
             {shareOptions.map((opt) => (
               <button
                 key={opt.label}
                 onClick={opt.onClick}
-                className="flex flex-col items-center gap-2 group cursor-pointer"
+                className="flex flex-col items-center gap-2.5 group cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-full bg-muted/60 backdrop-blur-sm border border-border flex items-center justify-center text-foreground group-hover:bg-muted transition-colors">
+                <div className="w-14 h-14 rounded-full bg-secondary border border-border/40 flex items-center justify-center text-foreground group-hover:bg-accent group-hover:border-primary/30 group-hover:shadow-md transition-all duration-200">
                   {opt.icon}
                 </div>
-                <span className="text-[10px] text-muted-foreground font-medium">{opt.label}</span>
+                <span className="text-[11px] text-muted-foreground group-hover:text-foreground font-medium transition-colors">{opt.label}</span>
               </button>
             ))}
           </div>
