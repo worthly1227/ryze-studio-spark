@@ -769,9 +769,9 @@ const Index: React.FC = () => {
               transition={{ delay: 0.1 }}
               className="rounded-2xl overflow-hidden relative aspect-square"
             >
-              <img src="/images/why-ryze-2.jpg" alt="Fast Delivery" className="w-full h-full object-cover" />
+              <img src="/images/why-ryze-2.jpg" alt="Rapid Turnarounds" className="w-full h-full object-cover" />
               <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3">
-                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">Fast Delivery</span>
+                <span className="text-white font-heading font-bold text-[10px] sm:text-sm drop-shadow-lg">Rapid Turnarounds</span>
               </div>
             </motion.div>
 
