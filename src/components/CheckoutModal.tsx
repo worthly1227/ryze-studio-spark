@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { usePlan, PlanName } from "@/contexts/PlanContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -40,6 +41,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   preSelectedAddOnQty = 0,
 }) => {
   const navigate = useNavigate();
+  const { setPlan } = usePlan();
   const [email, setEmail] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
@@ -74,8 +76,9 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
   };
 
   const handleGetStarted = () => {
+    setPlan(planName as PlanName);
     onOpenChange(false);
-    navigate("/onboarding");
+    navigate("/setup");
   };
 
   const formatCard = (val: string) => {

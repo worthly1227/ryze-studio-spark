@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  LayoutDashboard, Upload, MessageSquare, FolderOpen, Download,
-  Factory, LayoutTemplate, Activity, Settings,
+  LayoutDashboard, Upload, Factory, LayoutTemplate, Activity, Settings,
+  Film, MessageSquare, Calendar, Download, Lock,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -9,25 +9,29 @@ import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
   SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,
 } from "@/components/ui/sidebar";
+import { usePlan } from "@/contexts/PlanContext";
+import { Badge } from "@/components/ui/badge";
 import ryzeLogo from "@/assets/ryze-logo.jpeg";
-
-const items = [
-  { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Upload Content", url: "/client/uploads", icon: Upload },
-  { title: "Messages", url: "/client/messages", icon: MessageSquare },
-  { title: "My Projects", url: "/client/projects", icon: FolderOpen },
-  { title: "Deliverables", url: "/client/deliverables", icon: Download },
-  { title: "AI Factory", url: "/ai-factory", icon: Factory },
-  { title: "Templates", url: "/templates", icon: LayoutTemplate },
-  { title: "Status Tracker", url: "/status-tracker", icon: Activity },
-  { title: "Settings", url: "/settings", icon: Settings },
-];
 
 export function ClientSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
   const navigate = useNavigate();
+  const { planFeatures } = usePlan();
+
+  const items = [
+    { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard, visible: true },
+    { title: "Upload Center", url: "/client/uploads", icon: Upload, visible: true },
+    { title: "AI Factory", url: "/ai-factory", icon: Factory, visible: true },
+    { title: "Templates", url: "/templates", icon: LayoutTemplate, visible: planFeatures?.hasTemplates ?? false, locked: !planFeatures?.hasTemplates },
+    { title: "My Videos", url: "/client/videos", icon: Film, visible: planFeatures?.hasShortFormVideo ?? false, locked: !planFeatures?.hasShortFormVideo },
+    { title: "Social Posting", url: "/client/social", icon: MessageSquare, visible: planFeatures?.hasManagedPosting ?? false, locked: !planFeatures?.hasManagedPosting },
+    { title: "Strategy Sessions", url: "/client/strategy", icon: Calendar, visible: planFeatures?.hasStrategySessions ?? false, locked: !planFeatures?.hasStrategySessions },
+    { title: "Deliverables", url: "/client/deliverables", icon: Download, visible: true },
+    { title: "Status Tracker", url: "/status-tracker", icon: Activity, visible: true },
+    { title: "Settings", url: "/settings", icon: Settings, visible: true },
+  ];
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border bg-sidebar">
@@ -42,7 +46,7 @@ export function ClientSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => {
+              {items.filter((item) => item.visible).map((item) => {
                 const isActive = location.pathname === item.url;
                 return (
                   <SidebarMenuItem key={item.title}>
@@ -54,7 +58,9 @@ export function ClientSidebar() {
                         activeClassName=""
                       >
                         <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? "text-primary" : ""}`} />
-                        {!collapsed && <span className="text-sm font-heading">{item.title}</span>}
+                        {!collapsed && (
+                          <span className="text-sm font-heading flex-1">{item.title}</span>
+                        )}
                       </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
