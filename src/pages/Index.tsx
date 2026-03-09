@@ -826,17 +826,35 @@ const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
   );
 };
 
-/* ─── BRAND INTRO ANIMATION ─── */
-const BrandIntro: React.FC<{ onComplete: () => void; navLogoRef: React.RefObject<HTMLDivElement | null> }> = ({ onComplete, navLogoRef }) => {
+/* ─── HOOKS ARRAY ─── */
+const HOOKS = [
+  "Tired of overpriced, underperforming agencies?",
+  "Results matter. Pretty portfolios don't pay the bills.",
+  "Stop overpaying for average creative.",
+  "Your brand is burning money on slow, bloated agencies.",
+  "Your brand deserves better than standard.",
+  "If it doesn't scale, it isn't worth your time.",
+  "Creative that scales, not just spends.",
+  "Sick of paying for senior talent that doesn't deliver?",
+  "Build your brand at the speed of thought.",
+  "Traditional agencies aren't dying, they are already dead.",
+];
+
+/* ─── BRAND INTRO ANIMATION (4s) ─── */
+const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRef: React.RefObject<HTMLDivElement | null> }> = ({ hookText, onComplete, navLogoRef }) => {
   const [phase, setPhase] = useState(0);
   const centerLogoRef = useRef<HTMLDivElement>(null);
   const [snapStyle, setSnapStyle] = useState<React.CSSProperties>({});
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 500);
-    const t2 = setTimeout(() => setPhase(2), 1000);
+    // Phase 0: 0.0s–1.5s (hook text)
+    // Phase 1: 1.5s–3.0s (Meet Ryze Studios + logo)
+    // Phase 2: 3.0s–3.3s ("Meet" fades out)
+    // Phase 3: 3.3s–4.0s (snap to nav)
+    const t1 = setTimeout(() => setPhase(1), 1500);
+    const t2 = setTimeout(() => setPhase(2), 3000);
     const t3 = setTimeout(() => {
-      // Calculate snap target
+      // Recalculate snap target right before snap phase
       if (navLogoRef.current && centerLogoRef.current) {
         const navRect = navLogoRef.current.getBoundingClientRect();
         const centerRect = centerLogoRef.current.getBoundingClientRect();
@@ -846,11 +864,11 @@ const BrandIntro: React.FC<{ onComplete: () => void; navLogoRef: React.RefObject
         });
       }
       setPhase(3);
-    }, 1300);
+    }, 3300);
     const t4 = setTimeout(() => {
       sessionStorage.setItem('ryze_intro_shown', 'true');
       onComplete();
-    }, 1500);
+    }, 4000);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
   }, [onComplete, navLogoRef]);
 
@@ -858,7 +876,7 @@ const BrandIntro: React.FC<{ onComplete: () => void; navLogoRef: React.RefObject
     <motion.div
       className="fixed inset-0 z-[100] bg-white flex items-center justify-center"
       animate={phase === 3 ? { opacity: 0 } : { opacity: 1 }}
-      transition={{ duration: 0.2, ease: 'easeInOut' }}
+      transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
       <AnimatePresence mode="wait">
         {phase === 0 && (
@@ -867,10 +885,10 @@ const BrandIntro: React.FC<{ onComplete: () => void; navLogoRef: React.RefObject
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl text-center px-6 max-w-3xl"
           >
-            Tired of overpriced, underperforming agencies?
+            {hookText}
           </motion.p>
         )}
 
@@ -882,11 +900,9 @@ const BrandIntro: React.FC<{ onComplete: () => void; navLogoRef: React.RefObject
             animate={{
               opacity: phase === 3 ? 0 : 1,
               scale: 1,
-              x: phase === 3 && snapStyle.transform ? undefined : 0,
-              y: phase === 3 && snapStyle.transform ? undefined : 0,
             }}
             style={phase === 3 ? snapStyle : undefined}
-            transition={{ duration: phase === 3 ? 0.2 : 0.25, ease: 'easeInOut' }}
+            transition={{ duration: phase === 3 ? 0.7 : 0.4, ease: 'easeInOut' }}
             className="flex items-center gap-2 sm:gap-3"
           >
             <img src={ryzeLogo} alt="Ryze Studios" className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl object-cover" />
@@ -896,7 +912,7 @@ const BrandIntro: React.FC<{ onComplete: () => void; navLogoRef: React.RefObject
                   <motion.span
                     key="meet"
                     exit={{ opacity: 0, width: 0, marginRight: 0 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="inline-block mr-2 sm:mr-3 overflow-hidden whitespace-nowrap"
                   >
                     Meet
