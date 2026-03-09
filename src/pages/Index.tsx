@@ -703,8 +703,8 @@ const Index: React.FC = () => {
           </div>
           {/* Curved white edge */}
           <div className="absolute -bottom-1 left-0 right-0">
-            <svg viewBox="0 0 1440 60" className="w-full h-[30px] sm:h-[50px]" preserveAspectRatio="none">
-              <path d="M0,60 L0,20 Q720,0 1440,20 L1440,60 Z" fill="hsl(var(--background))" />
+            <svg viewBox="0 0 1440 80" className="w-full h-[40px] sm:h-[60px]" preserveAspectRatio="none">
+              <path d="M0,80 L0,60 Q720,0 1440,60 L1440,80 Z" fill="hsl(var(--background))" />
             </svg>
           </div>
         </div>
