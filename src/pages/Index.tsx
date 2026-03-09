@@ -402,18 +402,18 @@ const subcategoriesByType: Record<string, string[]> = {
 };
 
 const proofItems = [
-  { before: "📦", after: "✨", category: "Posts", industry: "Skincare & Beauty", gradient: "from-rose-400 to-pink-600" },
-  { before: "📷", after: "🎨", category: "Posts", industry: "Food & Beverages", gradient: "from-amber-400 to-orange-500" },
-  { before: "🏷️", after: "💎", category: "Posts", industry: "Fashion & Accessories", gradient: "from-emerald-400 to-teal-600" },
-  { before: "🎥", after: "🎬", category: "Videos", industry: "Coffee & Tea", gradient: "from-sky-400 to-blue-600" },
-  { before: "📸", after: "🌟", category: "UGC", industry: "Health & Supplements", gradient: "from-violet-400 to-purple-600" },
-  { before: "📄", after: "🔥", category: "Static Ads", industry: "Pet Products", gradient: "from-cyan-400 to-teal-500" },
-  { before: "🎞️", after: "⚡", category: "Video Ads", industry: "Home & Lifestyle", gradient: "from-indigo-400 to-blue-700" },
-  { before: "✉️", after: "💌", category: "Emails", industry: "Handmade & Artisan", gradient: "from-rose-300 to-red-500" },
-  { before: "📝", after: "📖", category: "Blogs", industry: "Fitness & Wellness", gradient: "from-lime-400 to-green-600" },
-  { before: "📱", after: "🚀", category: "Stories", industry: "Skincare & Beauty", gradient: "from-fuchsia-400 to-pink-600" },
-  { before: "🖼️", after: "🎯", category: "Posts", industry: "Featured", gradient: "from-yellow-400 to-amber-600" },
-  { before: "🏠", after: "🏡", category: "Static Ads", industry: "Home & Lifestyle", gradient: "from-slate-400 to-gray-600" },
+  { before: "📦", after: "✨", category: "Posts", industry: "Skincare & Beauty", gradient: "from-rose-400 to-pink-600", prompt: "Premium skincare product on marble surface with soft pink lighting and rose petals" },
+  { before: "📷", after: "🎨", category: "Posts", industry: "Food & Beverages", gradient: "from-amber-400 to-orange-500", prompt: "Artisan coffee bag on rustic wooden table with warm golden hour lighting" },
+  { before: "🏷️", after: "💎", category: "Posts", industry: "Fashion & Accessories", gradient: "from-emerald-400 to-teal-600", prompt: "Luxury handbag floating on emerald silk fabric with studio lighting" },
+  { before: "🎥", after: "🎬", category: "Videos", industry: "Coffee & Tea", gradient: "from-sky-400 to-blue-600", prompt: "Steaming latte art pour in slow motion with moody café backdrop" },
+  { before: "📸", after: "🌟", category: "UGC", industry: "Health & Supplements", gradient: "from-violet-400 to-purple-600", prompt: "Supplement bottle held by model in natural sunlight with clean white background" },
+  { before: "📄", after: "🔥", category: "Static Ads", industry: "Pet Products", gradient: "from-cyan-400 to-teal-500", prompt: "Premium pet food packaging on clean teal gradient with playful typography" },
+  { before: "🎞️", after: "⚡", category: "Video Ads", industry: "Home & Lifestyle", gradient: "from-indigo-400 to-blue-700", prompt: "Minimalist candle collection with dramatic shadows and indigo backdrop" },
+  { before: "✉️", after: "💌", category: "Emails", industry: "Handmade & Artisan", gradient: "from-rose-300 to-red-500", prompt: "Handcrafted soap bars arranged on linen with dried flowers and warm tones" },
+  { before: "📝", after: "📖", category: "Blogs", industry: "Fitness & Wellness", gradient: "from-lime-400 to-green-600", prompt: "Protein powder container in active gym setting with dynamic green accents" },
+  { before: "📱", after: "🚀", category: "Stories", industry: "Skincare & Beauty", gradient: "from-fuchsia-400 to-pink-600", prompt: "Serum dropper with liquid splash effect on vibrant fuchsia background" },
+  { before: "🖼️", after: "🎯", category: "Posts", industry: "Featured", gradient: "from-yellow-400 to-amber-600", prompt: "Hero product shot with geometric shadows and warm amber studio lighting" },
+  { before: "🏠", after: "🏡", category: "Static Ads", industry: "Home & Lifestyle", gradient: "from-slate-400 to-gray-600", prompt: "Modern home diffuser on concrete shelf with minimalist lifestyle setting" },
 ];
 
 const MiniSlider: React.FC<{ item: typeof proofItems[0] }> = ({ item }) => {
