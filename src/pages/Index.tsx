@@ -1234,7 +1234,7 @@ const Index: React.FC = () => {
               <span className="font-body text-base sm:text-xl font-semibold tracking-tight text-accent-foreground/80" style={{ fontVariant: 'small-caps' }}>ANUA</span>
               <span className="text-emerald-400/60">✦</span>
               <span className="font-heading text-sm sm:text-lg font-medium tracking-[0.15em] text-primary/70">Shower Mate</span>
-              <span className="text-sky-400/60">✦</span>
+              <span className="text-fuchsia-400/60">✦</span>
               <span className="font-body text-base sm:text-xl font-bold uppercase tracking-[0.3em] text-accent-foreground/90">FROM THIS ISLAND</span>
               <span className="text-rose-400/60">✦</span>
               <span className="font-heading text-sm sm:text-lg font-semibold tracking-[0.18em] uppercase text-primary/90">A Neva Fragrance JA</span>
