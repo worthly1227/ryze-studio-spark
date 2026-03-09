@@ -803,7 +803,7 @@ const Index: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="rounded-2xl overflow-hidden relative aspect-square"
+              className="rounded-2xl overflow-hidden relative aspect-square sm:aspect-[4/3]"
             >
               <img src="/images/why-ryze-3.jpg" alt="Studio Product Shots" className="w-full h-full object-cover" />
               <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3">
