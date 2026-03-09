@@ -1018,7 +1018,12 @@ const Index: React.FC = () => {
       </nav>
 
       {/* Hero - 2x2 Photo Grid */}
-      <section className="pt-14 sm:pt-16">
+      <motion.section
+        initial={!introComplete ? { opacity: 0 } : { opacity: 1 }}
+        animate={{ opacity: introComplete ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
+        className="pt-14 sm:pt-16"
+      >
         <div className="relative max-w-5xl mx-auto">
           {/* 2x2 Hero Grid */}
           <div className="grid grid-cols-2 w-full">
