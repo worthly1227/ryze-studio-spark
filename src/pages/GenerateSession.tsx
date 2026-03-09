@@ -46,36 +46,6 @@ const GenerateSession: React.FC = () => {
   const hasSelection = selectedImageId !== null;
   const isFinalized = finalDownloadId !== null;
 
-  if (!currentPlan) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="max-w-md w-full">
-          <CardContent className="pt-6 text-center space-y-4">
-            <Lock className="w-12 h-12 text-muted-foreground mx-auto" />
-            <h2 className="font-heading font-bold text-xl">No Active Session</h2>
-            <p className="text-muted-foreground text-sm">
-              Purchase a plan to start generating AI images.
-            </p>
-            <Button onClick={() => navigate("/plans")} className="font-heading">
-              <ArrowLeft className="w-4 h-4 mr-2" /> View Plans
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  const handleFileDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setDragOver(false);
-    const file = e.dataTransfer.files[0];
-    if (file) setUploadedFile(file.name);
-  };
-
-  const handleFileSelect = () => {
-    setUploadedFile(`product-image-${Date.now()}.jpg`);
-  };
-
   const handleGenerate = useCallback(() => {
     if (!prompt.trim() || !canGenerate || !uploadedFile) return;
 
@@ -99,6 +69,25 @@ const GenerateSession: React.FC = () => {
       });
     }, 2000);
   }, [prompt, canGenerate, creditsUsed, maxCredits, uploadedFile]);
+
+  if (!currentPlan) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <Card className="max-w-md w-full">
+          <CardContent className="pt-6 text-center space-y-4">
+            <Lock className="w-12 h-12 text-muted-foreground mx-auto" />
+            <h2 className="font-heading font-bold text-xl">No Active Session</h2>
+            <p className="text-muted-foreground text-sm">
+              Purchase a plan to start generating AI images.
+            </p>
+            <Button onClick={() => navigate("/plans")} className="font-heading">
+              <ArrowLeft className="w-4 h-4 mr-2" /> View Plans
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   const handleSelectFinal = () => {
     if (selectedImageId === null) return;
