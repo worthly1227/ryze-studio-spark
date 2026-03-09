@@ -842,7 +842,7 @@ const HOOKS = [
 
 /* ─── BRAND INTRO ANIMATION (4s) ─── */
 const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRef: React.RefObject<HTMLDivElement | null> }> = ({ hookText, onComplete, navLogoRef }) => {
-  const [phase, setPhase] = useState(0);
+  const [phase, setPhase] = useState(-1); // -1 = brief pause before hook appears
   const [logoLoaded, setLogoLoaded] = useState(false);
   const centerLogoRef = useRef<HTMLDivElement>(null);
   const [snapStyle, setSnapStyle] = useState<React.CSSProperties>({});
@@ -857,14 +857,15 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
 
   useEffect(() => {
     if (!logoLoaded) return;
-    // Phase 0: 0.0s–1.5s (hook text)
-    // Phase 1: 1.5s–3.0s (Meet Ryze Studios + logo)
-    // Phase 2: 3.0s–3.3s ("Meet" fades out)
-    // Phase 3: 3.3s–4.0s (snap to nav)
-    const t1 = setTimeout(() => setPhase(1), 1500);
-    const t2 = setTimeout(() => setPhase(2), 3000);
+    // Phase -1: 0.0s–0.3s (blank pause — let the overlay settle)
+    // Phase 0: 0.3s–1.8s (hook text fades in over 0.6s, holds)
+    // Phase 1: 1.8s–3.3s (Meet Ryze Studios + logo crossfades in over 0.5s, holds)
+    // Phase 2: 3.3s–3.7s ("Meet" fades out over 0.4s)
+    // Phase 3: 3.7s–4.5s (snap to nav over 0.8s)
+    const t0 = setTimeout(() => setPhase(0), 300);
+    const t1 = setTimeout(() => setPhase(1), 1800);
+    const t2 = setTimeout(() => setPhase(2), 3300);
     const t3 = setTimeout(() => {
-      // Recalculate snap target right before snap phase
       if (navLogoRef.current && centerLogoRef.current) {
         const navRect = navLogoRef.current.getBoundingClientRect();
         const centerRect = centerLogoRef.current.getBoundingClientRect();
@@ -874,19 +875,19 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
         });
       }
       setPhase(3);
-    }, 3300);
+    }, 3700);
     const t4 = setTimeout(() => {
       sessionStorage.setItem('ryze_intro_shown', 'true');
       onComplete();
-    }, 4000);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+    }, 4500);
+    return () => { clearTimeout(t0); clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
   }, [logoLoaded, onComplete, navLogoRef]);
 
   return (
     <motion.div
       className="fixed inset-0 z-[100] bg-white flex items-center justify-center"
       animate={phase === 3 ? { opacity: 0 } : { opacity: 1 }}
-      transition={{ duration: 0.7, ease: 'easeInOut' }}
+      transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
     >
       {/* Hidden preload image */}
       <img src={ryzeLogo} alt="" className="absolute w-0 h-0 opacity-0 pointer-events-none" aria-hidden="true" />
@@ -894,11 +895,14 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
         {phase === 0 && (
           <motion.p
             key="hook"
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl text-center px-6 max-w-3xl"
+            transition={{
+              duration: 0.6,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            className="font-heading font-bold text-black text-xl sm:text-3xl md:text-5xl text-center px-6 max-w-3xl leading-tight"
           >
             {hookText}
           </motion.p>
@@ -908,13 +912,13 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
           <motion.div
             key="reveal"
             ref={centerLogoRef}
-            initial={phase === 1 ? { opacity: 0, scale: 0.95 } : false}
+            initial={phase === 1 ? { opacity: 0, scale: 0.92 } : false}
             animate={{
               opacity: phase === 3 ? 0 : 1,
               scale: 1,
             }}
             style={phase === 3 ? snapStyle : undefined}
-            transition={{ duration: phase === 3 ? 0.7 : 0.4, ease: 'easeInOut' }}
+            transition={{ duration: phase === 3 ? 0.8 : 0.5, ease: [0.25, 0.1, 0.25, 1] }}
             className="flex items-center gap-2 sm:gap-3"
           >
             <img src={ryzeLogo} alt="Ryze Studios" className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl object-cover" />
@@ -925,7 +929,7 @@ const BrandIntro: React.FC<{ hookText: string; onComplete: () => void; navLogoRe
                     <motion.span
                       key="meet"
                       exit={{ opacity: 0, width: 0, marginRight: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                       className="inline-block mr-2 sm:mr-3 overflow-hidden whitespace-nowrap"
                     >
                       Meet
