@@ -742,7 +742,7 @@ const Index: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden relative aspect-square sm:aspect-[4/3]"
+              className="rounded-2xl overflow-hidden relative aspect-square sm:aspect-[5/4]"
             >
               <img src="/images/why-ryze-1.jpg" alt="AI Powered Branding" className="w-full h-full object-cover" />
               {/* Instagram icon cutout */}
@@ -764,7 +764,7 @@ const Index: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="rounded-2xl overflow-hidden relative aspect-square sm:aspect-[4/3]"
+              className="rounded-2xl overflow-hidden relative aspect-square sm:aspect-[5/4]"
             >
               <img src="/images/why-ryze-2.jpg" alt="Rapid Turnarounds" className="w-full h-full object-cover" />
               <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3">
@@ -778,18 +778,18 @@ const Index: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15 }}
-              className="flex flex-col justify-center gap-3 sm:gap-5 py-2"
+              className="flex flex-col justify-center gap-3 sm:gap-6 md:gap-8 py-2"
             >
               {[
                 { icon: Camera, label: "Studio Product Shots" },
                 { icon: Wand2, label: "AI Powered Branding" },
                 { icon: Calendar, label: "Rapid Turnarounds" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2.5 sm:gap-3">
-                  <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl bg-muted border border-border flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
+                <div key={i} className="flex items-center gap-2.5 sm:gap-4">
+                  <div className="w-8 h-8 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl bg-muted border border-border flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-3.5 h-3.5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-muted-foreground" />
                   </div>
-                  <span className="font-heading font-semibold text-xs sm:text-base">{item.label}</span>
+                  <span className="font-heading font-semibold text-xs sm:text-lg md:text-xl">{item.label}</span>
                 </div>
               ))}
             </motion.div>
@@ -800,7 +800,7 @@ const Index: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="rounded-2xl overflow-hidden relative aspect-square sm:aspect-[4/3]"
+              className="rounded-2xl overflow-hidden relative aspect-square sm:aspect-[5/4]"
             >
               <img src="/images/why-ryze-3.jpg" alt="Studio Product Shots" className="w-full h-full object-cover" />
               <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3">
